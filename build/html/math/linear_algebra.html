@@ -96,8 +96,9 @@
 <li class="toctree-l2"><a class="reference internal" href="base.html">基础知识</a></li>
 <li class="toctree-l2"><a class="reference internal" href="prob.html">概率论</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">线性代数</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">行列式</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">特征分解</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">矩阵</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">行列式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">矩阵的属性</a></li>
 </ul>
 </li>
 </ul>
@@ -173,13 +174,62 @@
   <div class="section" id="id1">
 <h1>线性代数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <p><a class="reference download internal" download="" href="../_downloads/1d6d0c0e31ea1c184c12ea30bfdcfb99/cs229-linalg.pdf"><code class="xref download docutils literal notranslate"><span class="pre">stanford</span> <span class="pre">cs229</span> <span class="pre">linalg</span></code></a></p>
+<p>主线： 有没有解 -&gt; 解的个数 -&gt; 解的结构</p>
 <div class="section" id="id2">
-<h2>行列式<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<h2>矩阵<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://www.matongxue.com/madocs/755.html">从高斯消元法到矩阵乘法</a></p>
+<p><a class="reference external" href="https://www.matongxue.com/madocs/555.html">矩阵乘法的理解</a></p>
+</div>
+<div class="section" id="id5">
+<h2>行列式<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://www.matongxue.com/madocs/791.html">行列式的来历与克拉默法则</a></p>
 <p><a class="reference external" href="https://www.zhihu.com/question/36966326/answer/162550802">行列式的本质</a></p>
 </div>
-<div class="section" id="id4">
-<h2>特征分解<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
-<p><a class="reference external" href="https://www.zhihu.com/question/21874816/answer/181864044">特征值的理解</a></p>
+<div class="section" id="id8">
+<h2>矩阵的属性<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://www.matongxue.com/madocs/254/">矩阵的秩(rank)</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>学术：矩阵中最大线性不相关向量个数</p></li>
+<li><p>具象：变换后的空间维度</p></li>
+</ul>
+<p><a class="reference external" href="https://www.zhihu.com/question/21832377/answer/202231378">矩阵的秩与解的关系</a></p>
+<p><a class="reference external" href="https://www.matongxue.com/madocs/290/">列秩等于行秩的原因</a></p>
+</div></blockquote>
+<p><a class="reference external" href="https://www.matongxue.com/madocs/491.html">相似矩阵</a></p>
+<blockquote>
+<div><p>同一个变换在不同基下的矩阵</p>
+<dl class="simple">
+<dt>相似不变量</dt><dd><ol class="upperalpha simple">
+<li><p>行列式 <span class="math notranslate nohighlight">\(\lambda_1 \times \lambda_2 \times \cdots \times \lambda_n\)</span></p></li>
+<li><p>迹 <span class="math notranslate nohighlight">\(\lambda_1 + \lambda_2 + \cdots + \lambda_n\)</span></p></li>
+</ol>
+</dd>
+</dl>
+</div></blockquote>
+<p><a class="reference external" href="https://www.matongxue.com/madocs/483/">矩阵的迹（trace)</a></p>
+<p><a class="reference external" href="https://www.zhihu.com/question/21874816/answer/181864044">EVD 特征值的理解</a></p>
+<p>因为特征值分解必须满足方阵的前提，因此引入奇异值分解</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>矩阵的谱分解，特征分解，对角化都是同一个概念</p>
+</div>
+<p><a class="reference external" href="https://www.matongxue.com/madocs/306/">奇异值分解(SVD)</a></p>
+<blockquote>
+<div><p>对旋转、缩放和投影三种变换的析构</p>
+</div></blockquote>
+<p>正定矩阵和半正定矩阵</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>变换后的向量与自身的夹角小于90度/小于等于90度</p></li>
+<li><p>所有特征值均大于零/不小于0</p></li>
+<li><p>曲面(二次型)在底面上方</p></li>
+</ul>
+</div></blockquote>
+<p>TODO:</p>
+<ol class="arabic simple">
+<li><p>对称矩阵一定n个线性无关的特征向量，所有特征向量构成的矩阵为正交矩阵</p></li>
+</ol>
 </div>
 </div>
 

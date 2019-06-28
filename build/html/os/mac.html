@@ -477,26 +477,26 @@ colorscheme solarized
 </pre></div>
 </div>
 <p>编辑 .zshrc 文件:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ZSH_THEME=&quot;agnoster&quot; # 使用 agnoster 主题，很好很强大
-DEFAULT_USER=&quot;你的用户名&quot;     # 增加这一项，可以隐藏掉路径前面那串用户名
-plugins=(git brew node npm)   # 自己按需把要用的 plugin 写上
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">ZSH_THEME</span><span class="o">=</span><span class="s2">&quot;agnoster&quot;</span> <span class="c1"># 使用 agnoster 主题，很好很强大</span>
+<span class="nv">DEFAULT_USER</span><span class="o">=</span><span class="s2">&quot;你的用户名&quot;</span>     <span class="c1"># 增加这一项，可以隐藏掉路径前面那串用户名</span>
+<span class="nv">plugins</span><span class="o">=(</span>git brew node npm<span class="o">)</span>   <span class="c1"># 自己按需把要用的 plugin 写上</span>
 
-# 关于 ls, Mac OS X 是基于 FreeBSD 的，所以一些工具 ls, top 等都是 BSD 那一套，ls 不是 GNU ls，
-# 所以即使 Terminal/iTerm2 配置了颜色，但是在 Mac 上敲入 ls 命令也不会显示高亮，
-# 可以通过安装 coreutils 来解决( brew install coreutils),
-#不过如果对 ls 颜色不挑剔的话有个简单办法就是在 .bash_profile 里输出 CLICOLOR=1：
-export CLICOLOR=1
+<span class="c1"># 关于 ls, Mac OS X 是基于 FreeBSD 的，所以一些工具 ls, top 等都是 BSD 那一套，ls 不是 GNU ls，</span>
+<span class="c1"># 所以即使 Terminal/iTerm2 配置了颜色，但是在 Mac 上敲入 ls 命令也不会显示高亮，</span>
+<span class="c1"># 可以通过安装 coreutils 来解决( brew install coreutils),</span>
+<span class="c1">#不过如果对 ls 颜色不挑剔的话有个简单办法就是在 .bash_profile 里输出 CLICOLOR=1：</span>
+<span class="nb">export</span> <span class="nv">CLICOLOR</span><span class="o">=</span><span class="m">1</span>
 
-#另外，建议把末尾的 export PATH 稍微调整一下，
-#比如 Homebrew 就建议 /usr/local/bin 应该优先于 /usr/bin；
-#另外也可以自己加上比如 Ruby Gems 目录 /usr/local/opt/ruby/bin、Node.js NPM 目录 ~/bin 等。
-export PATH=/usr/local/bin:/usr/local/sbin/:$HOME/bin:$PATH
+<span class="c1">#另外，建议把末尾的 export PATH 稍微调整一下，</span>
+<span class="c1">#比如 Homebrew 就建议 /usr/local/bin 应该优先于 /usr/bin；</span>
+<span class="c1">#另外也可以自己加上比如 Ruby Gems 目录 /usr/local/opt/ruby/bin、Node.js NPM 目录 ~/bin 等。</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/usr/local/bin:/usr/local/sbin/:<span class="nv">$HOME</span>/bin:<span class="nv">$PATH</span>
 
-#关于 Homebrew 的路径，比如 zsh 这个包可以通过 brew --prefix zsh 知道它的目录是 /usr/local/opt/zsh，
-#关于这些链接：
-#/usr/local/opt/zsh 目录 -&gt; /usr/local/Cellar/zsh/版本号 目录
-#/usr/local/bin/zsh 文件 -&gt; /usr/local/Cellar/zsh/版本号/bin/zsh 文件
-#所以就有了上面那条 chsh -s 命令的写法。
+<span class="c1">#关于 Homebrew 的路径，比如 zsh 这个包可以通过 brew --prefix zsh 知道它的目录是 /usr/local/opt/zsh，</span>
+<span class="c1">#关于这些链接：</span>
+<span class="c1">#/usr/local/opt/zsh 目录 -&gt; /usr/local/Cellar/zsh/版本号 目录</span>
+<span class="c1">#/usr/local/bin/zsh 文件 -&gt; /usr/local/Cellar/zsh/版本号/bin/zsh 文件</span>
+<span class="c1">#所以就有了上面那条 chsh -s 命令的写法。</span>
 </pre></div>
 </div>
 <div class="admonition note">

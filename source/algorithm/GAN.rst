@@ -152,7 +152,9 @@ WGAN
 
 但是, 有时一味地通过裁剪weight参数的方式保证训练稳定性, 可能导致生成低质量低清晰度的图片, 因此出现了 WGAN-GP
 
- WGAN-GP舍弃裁剪D网络weights参数的方式, 而是采用裁剪D网络梯度的方式(依据输入数据裁剪), WGAN-GP在某些情况下是WGAN的改进, 但是如果你已经用了一些可靠的GAN方法, 其实差距并不大.
+`互怼的艺术：从零直达 WGAN-GP <https://mp.weixin.qq.com/s?__biz=MzIwMTc4ODE0Mw==&mid=2247484880&idx=1&sn=4b2e976cc715c9fe2d022ff6923879a8&chksm=96e9da50a19e5346307b54f5ce172e355ccaba890aa157ce50fda68eeaccba6ea05425f6ad76&scene=21#wechat_redirect>`_
+
+WGAN-GP舍弃裁剪D网络weights参数的方式, 而是采用裁剪D网络梯度的方式(依据输入数据裁剪), WGAN-GP在某些情况下是WGAN的改进, 但是如果你已经用了一些可靠的GAN方法, 其实差距并不大.
 
 BGAN（Boundary-Seeking GAN）
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -161,7 +163,11 @@ BGAN优势在于生成离散样本（当然像图像这样的连续样本也可�
 
 BGAN的生成器以不断生成决策边界上的样本为目标
 
-GAN(Stacked GAN)
+EBGAN
+^^^^^^
+EBGAN在边缘的生成效果上更流畅, 而且加了特殊的正则项, 在生成的类别上, EBGAN更倾向于生成不同的脸型和人种
+
+SGAN(Stacked GAN)
 ^^^^^^^^^^^^^^^^^
 
 SGAN是一种结构创新的GAN，通过堆叠多个GAN网络，实现生成模型的信息“分层化”

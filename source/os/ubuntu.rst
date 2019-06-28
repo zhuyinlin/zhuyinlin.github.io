@@ -839,6 +839,8 @@ Uninstall
 
       $ sudo apt-get install zsh
       $ sudo chsh -s /bin/zsh # 重新启动生效
+      如果是在非主用户时，需要采用如下命令修改shell
+      $ sudo usermod -s /bin/zsh <user name>
       
       # 安装 oh-my-zsh, 配置 .zshrc
 

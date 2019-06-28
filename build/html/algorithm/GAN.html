@@ -116,7 +116,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#pix2pix">pix2pix</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#wgan">WGAN</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bgan-boundary-seeking-gan">BGAN（Boundary-Seeking GAN）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gan-stacked-gan">GAN(Stacked GAN)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ebgan">EBGAN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sgan-stacked-gan">SGAN(Stacked GAN)</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#gan-nlg-ntg">GAN 在NLG/NTG中的应用</a><ul>
@@ -219,12 +220,13 @@
 <li><p><a class="reference internal" href="#pix2pix" id="id20">pix2pix</a></p></li>
 <li><p><a class="reference internal" href="#wgan" id="id21">WGAN</a></p></li>
 <li><p><a class="reference internal" href="#bgan-boundary-seeking-gan" id="id22">BGAN（Boundary-Seeking GAN）</a></p></li>
-<li><p><a class="reference internal" href="#gan-stacked-gan" id="id23">GAN(Stacked GAN)</a></p></li>
+<li><p><a class="reference internal" href="#ebgan" id="id23">EBGAN</a></p></li>
+<li><p><a class="reference internal" href="#sgan-stacked-gan" id="id24">SGAN(Stacked GAN)</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#gan-nlg-ntg" id="id24">GAN 在NLG/NTG中的应用</a></p>
+<li><p><a class="reference internal" href="#gan-nlg-ntg" id="id25">GAN 在NLG/NTG中的应用</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id9" id="id25">GAN为何不能直接用于文本生成 </a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id26">GAN为何不能直接用于文本生成 </a></p></li>
 </ul>
 </li>
 </ul>
@@ -353,17 +355,20 @@
 <li><p>不要用基于动量的优化算法（包括momentum和Adam），推荐RMSProp，SGD也行</p></li>
 </ul>
 <p>但是, 有时一味地通过裁剪weight参数的方式保证训练稳定性, 可能导致生成低质量低清晰度的图片, 因此出现了 WGAN-GP</p>
-<blockquote>
-<div><p>WGAN-GP舍弃裁剪D网络weights参数的方式, 而是采用裁剪D网络梯度的方式(依据输入数据裁剪), WGAN-GP在某些情况下是WGAN的改进, 但是如果你已经用了一些可靠的GAN方法, 其实差距并不大.</p>
-</div></blockquote>
+<p><a class="reference external" href="https://mp.weixin.qq.com/s?__biz=MzIwMTc4ODE0Mw==&amp;mid=2247484880&amp;idx=1&amp;sn=4b2e976cc715c9fe2d022ff6923879a8&amp;chksm=96e9da50a19e5346307b54f5ce172e355ccaba890aa157ce50fda68eeaccba6ea05425f6ad76&amp;scene=21#wechat_redirect">互怼的艺术：从零直达 WGAN-GP</a></p>
+<p>WGAN-GP舍弃裁剪D网络weights参数的方式, 而是采用裁剪D网络梯度的方式(依据输入数据裁剪), WGAN-GP在某些情况下是WGAN的改进, 但是如果你已经用了一些可靠的GAN方法, 其实差距并不大.</p>
 </div>
 <div class="section" id="bgan-boundary-seeking-gan">
 <h3><a class="toc-backref" href="#id2">BGAN（Boundary-Seeking GAN）</a><a class="headerlink" href="#bgan-boundary-seeking-gan" title="永久链接至标题">¶</a></h3>
 <p>BGAN优势在于生成离散样本（当然像图像这样的连续样本也可以支持）。</p>
 <p>BGAN的生成器以不断生成决策边界上的样本为目标</p>
 </div>
-<div class="section" id="gan-stacked-gan">
-<h3><a class="toc-backref" href="#id2">GAN(Stacked GAN)</a><a class="headerlink" href="#gan-stacked-gan" title="永久链接至标题">¶</a></h3>
+<div class="section" id="ebgan">
+<h3><a class="toc-backref" href="#id2">EBGAN</a><a class="headerlink" href="#ebgan" title="永久链接至标题">¶</a></h3>
+<p>EBGAN在边缘的生成效果上更流畅, 而且加了特殊的正则项, 在生成的类别上, EBGAN更倾向于生成不同的脸型和人种</p>
+</div>
+<div class="section" id="sgan-stacked-gan">
+<h3><a class="toc-backref" href="#id2">SGAN(Stacked GAN)</a><a class="headerlink" href="#sgan-stacked-gan" title="永久链接至标题">¶</a></h3>
 <p>SGAN是一种结构创新的GAN，通过堆叠多个GAN网络，实现生成模型的信息“分层化”</p>
 </div>
 </div>

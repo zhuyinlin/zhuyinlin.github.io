@@ -123,8 +123,8 @@ conda 的使用
    conda create -n py2 python=2*
 
    # 虚拟环境
-   source activate <env_ name>  # 激活
-   source deactivate    # 退出
+   conda activate <env_ name>  # 激活
+   conda deactivate    # 退出
    conda remove -n <env_name> --all  # 移除
 
    # 虚拟环境中的安装包
@@ -489,7 +489,7 @@ jupyter
 
 ::
 
-   from <module> import <member> -> from .<module> import <member>
+   from <module> import <member> -> from .<module> import <member> # 不推荐
                                  -> from <package>.<module> import <member>  
 
 .. Note::
@@ -504,6 +504,14 @@ jupyter
 
    而第一种方法只能使用 `-m` 方式运行模块下的代码
 
+
+用 `setuptools` 打包分发
+
+1. 编辑 `setup.py` 文件
+2. :code:`python setup.py install --record <logName>` 安装包，这个命令会讲我们创建的egg安装到python的dist-packages目录下
+3. 卸载 
+   :code:`cat <logName> | xargs rm -rf`
+   
 
 生成文档
 -----------

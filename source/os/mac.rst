@@ -322,7 +322,9 @@ iTerm2 + Zsh + Oh-my-zsh + Solarized + Monaco for Powerline
 
       $ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 
-   编辑 .zshrc 文件::
+   编辑 .zshrc 文件:
+
+   .. code-block:: bash
 
            ZSH_THEME="agnoster" # 使用 agnoster 主题，很好很强大
            DEFAULT_USER="你的用户名"     # 增加这一项，可以隐藏掉路径前面那串用户名

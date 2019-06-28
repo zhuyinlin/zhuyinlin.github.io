@@ -174,7 +174,7 @@ Cho etl [#cho2014learning]_ 的模型结构中，语义向量c（整个句子的
 
    基础seq2seq模型
 
-Cho etl [#cho2014learning]_ 的 decoder 中，每次预测下一个词都会用到中间语义c，而这个c主要就是最后一个时刻的隐藏状态。bahdanau2014neural [#bahdanau2014neural]_ 提出了attention模型(详情查看 :ref:`attention-mechanism`)，在Decoder进行预测的时候，Encoder 中每个时刻的隐藏状态都被利用上了。这样子，Encoder 就能利用多个语义信息（隐藏状态）来表达整个句子的信息了。此外，Encoder用的是双端的 :abbr:GRU (Gated Recurrent Unit)`  `深度学习中的注意力机制(2017版) <https://blog.csdn.net/malefactor/article/details/78767781>`_
+Cho etl [#cho2014learning]_ 的 decoder 中，每次预测下一个词都会用到中间语义c，而这个c主要就是最后一个时刻的隐藏状态。bahdanau2014neural [#bahdanau2014neural]_ 提出了attention模型(详情查看 :ref:`attention-mechanism`)，在Decoder进行预测的时候，Encoder 中每个时刻的隐藏状态都被利用上了。这样子，Encoder 就能利用多个语义信息（隐藏状态）来表达整个句子的信息了。此外，Encoder用的是双端的 :abbr:`GRU (Gated Recurrent Unit)`  `深度学习中的注意力机制(2017版) <https://blog.csdn.net/malefactor/article/details/78767781>`_
 
 .. figure:: /_static/algorithm/NLP/seq2seq_attention.jpg
    :align: center
@@ -256,6 +256,11 @@ Attention 机制
 - Natural Language Processing (NLP)
 - Natural Language Inference(NLI)
 - Out of Vacabulary(OOV)
+
+
+*******************
+References
+*******************
 
 .. [#mitchell2008predicting] Mitchell T M, Shinkareva S V, Carlson A, et al. `Predicting human brain activity associated with the meanings of nouns[J] <http://www.cs.cmu.edu/~tom/pubs/science2008.pdf>`_ . science, 2008, 320(5880): 1191-1195.  
 .. [#mikolov2013efficient] Mikolov T, Chen K, Corrado G, et al. `Efficient estimation of word representations in vector space[J] <http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf>`_ . arXiv preprint arXiv:1301.3781, 2013. 

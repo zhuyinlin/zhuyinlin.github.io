@@ -3,6 +3,23 @@
 
 :download:`stanford cs229 prob <../_doc/math/cs229-prob.pdf>`
 
+概念汇总
+----------
+
+概率函数
+累积分布函数/概率分布函数/分布函数(cumulative distribution function, CDF): :math:`F_X(x) = Pr(X\le x)`
+概率密度函数（probability density function (PDF)）: PDF 就是 CDF 的导数  :math:`Pr(a\e X\le b)= \int_a^bf_X(x)dx`
+概率质量函数（probability mass function, PMF）: 针对离散变量，实际与PDF等价
+
+先验概率(prior) :math:`p(\theta)` :因的概率分布
+后验概率(posterior) :math:`p(\theta|x)` :知道果后，估计因的概率分布
+似然函数(likelihood) :math:`p(x|\theta)` :先确定原因，根据原因来估计结果的概率分布
+(evidence) :math:`p(x)` : 只看结果的概率分布
+
+贝叶斯公式
+  .. math:: p(\theta|x) = \frac{p(x|\theta)p(\theta)}{p(x)}
+
+
 协方差与相关系数
 -----------------
 
@@ -14,6 +31,8 @@
 通俗理解为两个变量在变化过程中是同方向变化？还是反方向变化？同向或反向程度如何？
 
 从数值来看，协方差的数值越大，两个变量同向程度也就越大。反之亦然。
+
+协方差为0，则两个变量不相关（uncorrelated）/不线性相关
 
 由于协方差会受变量变化幅度(向量长度)的影响，为了消除这种影响，准确地研究两个变量在变化过程中的相似程度，引入了相关系数
 
@@ -57,6 +76,63 @@
 
 则 X、Y 相互独立
 
+不相关与独立
+-------------
+
+不相关未必独立，但独立一定不相关。
+
+不相关只说明不存在线性相关，但未必不存在其它相关;而独立表示完全无关
+
+常见分布
+----------
+
+伯努利分布(Bernoulli distribution)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+如：抛硬币正面朝上的概率
+
+.. math::
+   f(x)=p^x(1-p)^{1-x}=\left \{
+   \begin{array}{ll}
+   p & \textrm{if $x =1$} \\
+   1-p&\textrm{if $x=0$} \\
+   0 & \textrm{otherwise}
+   \end{array} \right.
+
+二项分布(Binomial distribution)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+如：扔n次硬币
+
+.. math::
+   X &\sim B(n, p)
+
+   f(x) &= (_{n}^{x} )p^{x} (1-p)^{n-x}
+
+多项分布(Multinomial Distribution)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+如：扔骰子
+
+贝塔分布(Beta distribution)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+狄利克雷分布(Dirichlet distribution)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+泊松分布
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+正态分布（Normal distribution）
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+又名高斯分布（Gaussiandistribution）
+
+标准正态分布： :math:`\mathcal{N}(0, 1)`
+
+
+
+
 多变量正态分布
 ---------------
 
@@ -90,3 +166,40 @@
 `如何理解统计中的特征函数 <https://www.zhihu.com/question/23686709/answer/376439033>`_
 
 
+交叉熵（cross entropy）和相对熵（relative entropy）
+---------------------------------------------------
+
+.. figure:: /_static/math/KL-CE-MLE.jpg
+
+交叉熵
+  .. math::
+     CE(p \parallel q) = -\int p(x) \ln q(x) dx
+     :label: cross-entropy
+
+
+相对熵
+  就是KL散度（Kullback–Leibler divergence），用于衡量两个概率分布之间的差异。
+
+  .. math::
+     KL(p \parallel q) &= -\int p(x) \ln q(x) dx - (-\int p(x) \ln p(x) dx) \\
+     & = -\int p(x) \ln \left[\frac{q(x)}{p(x)}\right]dx
+     :label: KL-divergence
+
+.. important::
+
+   KL 散度不满足对称性，即 :math:`KL(p \parallel q) \neq KL(q \parallel p)`,
+   因为KL散度不满足对称性和勾股定理，因此其不能作为“距离”理解
+
+理解::
+
+   1）信息熵：编码方案完美时，最短平均编码长度的是多少。
+   2）交叉熵：编码方案不一定完美时（由于对概率分布的估计不一定正确），平均编码长度的是多少。
+   平均编码长度 = 最短平均编码长度 + 一个增量
+   3）相对熵：编码方案不一定完美时，平均编码长度相对于最小值的增加值。（即上面那个增量
+
+TODO
+--------
+
+difference between ica , pca and lda
+
+pca 是降维，ica 是信号的源分解

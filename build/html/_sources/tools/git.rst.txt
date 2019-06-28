@@ -390,3 +390,4 @@ ubuntu 上搭建git server
 
      ssh-keygen -R 192.168.1.101 
 
++ `git log 的信息无法打印在命令行 <https://stackoverflow.com/questions/33592008/git-log-show-etc-replaces-the-terminal-screen>`_

@@ -95,15 +95,29 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">math</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="base.html">基础知识</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">概率论</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">协方差与相关系数</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">概念汇总</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">协方差与相关系数</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#covariance">协方差(covariance)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">相关系数</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id4">协方差矩阵</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">相关系数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">协方差矩阵</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#independence">独立(independence)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">多变量正态分布</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">特征函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">不相关与独立</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">常见分布</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bernoulli-distribution">伯努利分布(Bernoulli distribution)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#binomial-distribution">二项分布(Binomial distribution)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multinomial-distribution">多项分布(Multinomial Distribution)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#beta-distribution">贝塔分布(Beta distribution)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dirichlet-distribution">狄利克雷分布(Dirichlet distribution)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">泊松分布</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#normal-distribution">正态分布（Normal distribution）</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">多变量正态分布</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">特征函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cross-entropy-relative-entropy">交叉熵（cross entropy）和相对熵（relative entropy）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#todo">TODO</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="linear_algebra.html">线性代数</a></li>
@@ -181,17 +195,34 @@
 <h1>概率论<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <p><a class="reference download internal" download="" href="../_downloads/9b4c460d233df40704e706bde93c42ff/cs229-prob.pdf"><code class="xref download docutils literal notranslate"><span class="pre">stanford</span> <span class="pre">cs229</span> <span class="pre">prob</span></code></a></p>
 <div class="section" id="id2">
-<h2>协方差与相关系数<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<h2>概念汇总<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>概率函数
+累积分布函数/概率分布函数/分布函数(cumulative distribution function, CDF): <span class="math notranslate nohighlight">\(F_X(x) = Pr(X\le x)\)</span>
+概率密度函数（probability density function (PDF)）: PDF 就是 CDF 的导数  <span class="math notranslate nohighlight">\(Pr(a\e X\le b)= \int_a^bf_X(x)dx\)</span>
+概率质量函数（probability mass function, PMF）: 针对离散变量，实际与PDF等价</p>
+<p>先验概率(prior) <span class="math notranslate nohighlight">\(p(\theta)\)</span> :因的概率分布
+后验概率(posterior) <span class="math notranslate nohighlight">\(p(\theta|x)\)</span> :知道果后，估计因的概率分布
+似然函数(likelihood) <span class="math notranslate nohighlight">\(p(x|\theta)\)</span> :先确定原因，根据原因来估计结果的概率分布
+(evidence) <span class="math notranslate nohighlight">\(p(x)\)</span> : 只看结果的概率分布</p>
+<dl>
+<dt>贝叶斯公式</dt><dd><div class="math notranslate nohighlight">
+\[p(\theta|x) = \frac{p(x|\theta)p(\theta)}{p(x)}\]</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="id3">
+<h2>协方差与相关系数<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <div class="section" id="covariance">
 <h3>协方差(covariance)<a class="headerlink" href="#covariance" title="永久链接至标题">¶</a></h3>
 <div class="math notranslate nohighlight" id="equation-covariance">
 <span class="eqno">(1)<a class="headerlink" href="#equation-covariance" title="公式的永久链接">¶</a></span>\[Cov[X, Y] = E[(X-E(X))(Y-E(Y))] = \frac{\vec{x} \cdot \vec{y}}{n}\]</div>
 <p>通俗理解为两个变量在变化过程中是同方向变化？还是反方向变化？同向或反向程度如何？</p>
 <p>从数值来看，协方差的数值越大，两个变量同向程度也就越大。反之亦然。</p>
+<p>协方差为0，则两个变量不相关（uncorrelated）/不线性相关</p>
 <p>由于协方差会受变量变化幅度(向量长度)的影响，为了消除这种影响，准确地研究两个变量在变化过程中的相似程度，引入了相关系数</p>
 </div>
-<div class="section" id="id3">
-<h3>相关系数<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id4">
+<h3>相关系数<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
 <div class="math notranslate nohighlight" id="equation-corelated">
 <span class="eqno">(2)<a class="headerlink" href="#equation-corelated" title="公式的永久链接">¶</a></span>\[\begin{split}\rho &amp;= \frac{Cov[X, Y]}{\sigma _X \sigma _Y} \\
 &amp;= \frac{\vec{x} \cdot \vec{y}}{\lVert \vec{x} \rVert \lVert \vec{y} \rVert} = \cos(\theta)  \\
@@ -211,8 +242,8 @@
 </div>
 <p>协方差也只能处理二维问题，那维数多了自然就需要计算多个协方差，因此就有了协方差矩阵</p>
 </div>
-<div class="section" id="id4">
-<h3>协方差矩阵<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id5">
+<h3>协方差矩阵<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[\Sigma _{ij} = Cov[X_i, Y_j]\]</div>
 <p>协方差矩阵是一个对称的矩阵，而且对角线是各个维度的方差。</p>
@@ -224,8 +255,51 @@
 \[P(X, Y) = P(X)P(Y)\]</div>
 <p>则 X、Y 相互独立</p>
 </div>
-<div class="section" id="id5">
-<h2>多变量正态分布<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id6">
+<h2>不相关与独立<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>不相关未必独立，但独立一定不相关。</p>
+<p>不相关只说明不存在线性相关，但未必不存在其它相关;而独立表示完全无关</p>
+</div>
+<div class="section" id="id7">
+<h2>常见分布<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<div class="section" id="bernoulli-distribution">
+<h3>伯努利分布(Bernoulli distribution)<a class="headerlink" href="#bernoulli-distribution" title="永久链接至标题">¶</a></h3>
+<p>如：抛硬币正面朝上的概率</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(x)=p^x(1-p)^{1-x}=\left \{
+\begin{array}{ll}
+p &amp; \textrm{if $x =1$} \\
+1-p&amp;\textrm{if $x=0$} \\
+0 &amp; \textrm{otherwise}
+\end{array} \right.\end{split}\]</div>
+</div>
+<div class="section" id="binomial-distribution">
+<h3>二项分布(Binomial distribution)<a class="headerlink" href="#binomial-distribution" title="永久链接至标题">¶</a></h3>
+<p>如：扔n次硬币</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}X &amp;\sim B(n, p)\\f(x) &amp;= (_{n}^{x} )p^{x} (1-p)^{n-x}\end{aligned}\end{align} \]</div>
+</div>
+<div class="section" id="multinomial-distribution">
+<h3>多项分布(Multinomial Distribution)<a class="headerlink" href="#multinomial-distribution" title="永久链接至标题">¶</a></h3>
+<p>如：扔骰子</p>
+</div>
+<div class="section" id="beta-distribution">
+<h3>贝塔分布(Beta distribution)<a class="headerlink" href="#beta-distribution" title="永久链接至标题">¶</a></h3>
+</div>
+<div class="section" id="dirichlet-distribution">
+<h3>狄利克雷分布(Dirichlet distribution)<a class="headerlink" href="#dirichlet-distribution" title="永久链接至标题">¶</a></h3>
+</div>
+<div class="section" id="id8">
+<h3>泊松分布<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+</div>
+<div class="section" id="normal-distribution">
+<h3>正态分布（Normal distribution）<a class="headerlink" href="#normal-distribution" title="永久链接至标题">¶</a></h3>
+<p>又名高斯分布（Gaussiandistribution）</p>
+<p>标准正态分布： <span class="math notranslate nohighlight">\(\mathcal{N}(0, 1)\)</span></p>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>多变量正态分布<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
 <p>多变量正态分布是正态分布在多维变量下的扩展，也称为多变量高斯分布。它的参数是一个均值向量(mean vector) <span class="math notranslate nohighlight">\(\mu\)</span> 和协方差矩阵 (covariance matrix) <span class="math notranslate nohighlight">\(\Sigma \in R^{n\times n}\)</span> ，其中 n 是多维变量的向量长度， <span class="math notranslate nohighlight">\(\Sigma \ge 0\)</span> 是对称正定矩阵。多变量正态分布的概率密度函数为：</p>
 <div class="math notranslate nohighlight">
 \[p(x;\mu,\Sigma)=\frac{1}{(2\pi)^{n/2}|\Sigma|^{1/2}}\exp\left(-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu)\right)\]</div>
@@ -239,14 +313,47 @@
 <div class="math notranslate nohighlight">
 \[\mathrm{Cov}(X)=\Sigma\]</div>
 <p>接下来，看几组二元正态分布的概率密度的图形：</p>
-<div class="figure align-center" id="id8">
+<div class="figure align-center" id="id12">
 <img alt="../_images/prob_gauss_1.png" src="../_images/prob_gauss_1.png" />
-<p class="caption"><span class="caption-text"><span class="math notranslate nohighlight">\(\mu=0\)</span> ( <span class="math notranslate nohighlight">\(2\times 1\)</span> 的零向量)时，随 <span class="math notranslate nohighlight">\(\Sigma\)</span> ( <span class="math notranslate nohighlight">\(2\times 2\)</span> 的矩阵)的变化。(a) <span class="math notranslate nohighlight">\(\Sigma=I\)</span>；(b) <span class="math notranslate nohighlight">\(\Sigma=0.6I\)</span> ；(c) <span class="math notranslate nohighlight">\(\Sigma=2I\)</span></span><a class="headerlink" href="#id8" title="永久链接至图片">¶</a></p>
+<p class="caption"><span class="caption-text"><span class="math notranslate nohighlight">\(\mu=0\)</span> ( <span class="math notranslate nohighlight">\(2\times 1\)</span> 的零向量)时，随 <span class="math notranslate nohighlight">\(\Sigma\)</span> ( <span class="math notranslate nohighlight">\(2\times 2\)</span> 的矩阵)的变化。(a) <span class="math notranslate nohighlight">\(\Sigma=I\)</span>；(b) <span class="math notranslate nohighlight">\(\Sigma=0.6I\)</span> ；(c) <span class="math notranslate nohighlight">\(\Sigma=2I\)</span></span><a class="headerlink" href="#id12" title="永久链接至图片">¶</a></p>
 </div>
 </div>
-<div class="section" id="id6">
-<h2>特征函数<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id10">
+<h2>特征函数<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
 <p><a class="reference external" href="https://www.zhihu.com/question/23686709/answer/376439033">如何理解统计中的特征函数</a></p>
+</div>
+<div class="section" id="cross-entropy-relative-entropy">
+<h2>交叉熵（cross entropy）和相对熵（relative entropy）<a class="headerlink" href="#cross-entropy-relative-entropy" title="永久链接至标题">¶</a></h2>
+<div class="figure align-center">
+<img alt="../_images/KL-CE-MLE.jpg" src="../_images/KL-CE-MLE.jpg" />
+</div>
+<dl>
+<dt>交叉熵</dt><dd><div class="math notranslate nohighlight" id="equation-cross-entropy">
+<span class="eqno">(3)<a class="headerlink" href="#equation-cross-entropy" title="公式的永久链接">¶</a></span>\[CE(p \parallel q) = -\int p(x) \ln q(x) dx\]</div>
+</dd>
+<dt>相对熵</dt><dd><p>就是KL散度（Kullback–Leibler divergence），用于衡量两个概率分布之间的差异。</p>
+<div class="math notranslate nohighlight" id="equation-kl-divergence">
+<span class="eqno">(4)<a class="headerlink" href="#equation-kl-divergence" title="公式的永久链接">¶</a></span>\[\begin{split}KL(p \parallel q) &amp;= -\int p(x) \ln q(x) dx - (-\int p(x) \ln p(x) dx) \\
+&amp; = -\int p(x) \ln \left[\frac{q(x)}{p(x)}\right]dx\end{split}\]</div>
+</dd>
+</dl>
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>KL 散度不满足对称性，即 <span class="math notranslate nohighlight">\(KL(p \parallel q) \neq KL(q \parallel p)\)</span>,
+因为KL散度不满足对称性和勾股定理，因此其不能作为“距离”理解</p>
+</div>
+<p>理解:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1）信息熵：编码方案完美时，最短平均编码长度的是多少。
+2）交叉熵：编码方案不一定完美时（由于对概率分布的估计不一定正确），平均编码长度的是多少。
+平均编码长度 = 最短平均编码长度 + 一个增量
+3）相对熵：编码方案不一定完美时，平均编码长度相对于最小值的增加值。（即上面那个增量
+</pre></div>
+</div>
+</div>
+<div class="section" id="todo">
+<h2>TODO<a class="headerlink" href="#todo" title="永久链接至标题">¶</a></h2>
+<p>difference between ica , pca and lda</p>
+<p>pca 是降维，ica 是信号的源分解</p>
 </div>
 </div>
 

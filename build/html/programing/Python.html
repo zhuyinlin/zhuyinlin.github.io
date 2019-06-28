@@ -346,8 +346,8 @@ conda create -n py3 <span class="nv">python</span><span class="o">=</span><span 
 conda create -n py2 <span class="nv">python</span><span class="o">=</span><span class="m">2</span>*
 
 <span class="c1"># 虚拟环境</span>
-<span class="nb">source</span> activate &lt;env_ name&gt;  <span class="c1"># 激活</span>
-<span class="nb">source</span> deactivate    <span class="c1"># 退出</span>
+conda activate &lt;env_ name&gt;  <span class="c1"># 激活</span>
+conda deactivate    <span class="c1"># 退出</span>
 conda remove -n &lt;env_name&gt; --all  <span class="c1"># 移除</span>
 
 <span class="c1"># 虚拟环境中的安装包</span>
@@ -695,7 +695,7 @@ ipython kernel install
 <p><a class="reference external" href="https://docs.python.org/3/distutils/setupscript.html#installing-package-data">Installing Package Data</a></p>
 <p><a class="reference external" href="http://peak.telecommunity.com/DevCenter/PkgResources#basic-resource-access">Basic Resource Access</a></p>
 <p>项目做成package时，import 部分要做修改：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="o">&lt;</span><span class="n">member</span><span class="o">&gt;</span> <span class="o">-&gt;</span> <span class="kn">from</span> <span class="nn">.</span><span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="o">&lt;</span><span class="n">member</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="o">&lt;</span><span class="n">member</span><span class="o">&gt;</span> <span class="o">-&gt;</span> <span class="kn">from</span> <span class="nn">.</span><span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="o">&lt;</span><span class="n">member</span><span class="o">&gt;</span> <span class="c1"># 不推荐</span>
                               <span class="o">-&gt;</span> <span class="kn">from</span> <span class="o">&lt;</span><span class="n">package</span><span class="o">&gt;.&lt;</span><span class="n">module</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="o">&lt;</span><span class="n">member</span><span class="o">&gt;</span>
 </pre></div>
 </div>
@@ -707,6 +707,13 @@ ipython kernel install
 <p><code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">&lt;package&gt;/&lt;module&gt;</span></code></p>
 <p>而第一种方法只能使用 <cite>-m</cite> 方式运行模块下的代码</p>
 </div>
+<p>用 <cite>setuptools</cite> 打包分发</p>
+<ol class="arabic simple">
+<li><p>编辑 <cite>setup.py</cite> 文件</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span> <span class="pre">--record</span> <span class="pre">&lt;logName&gt;</span></code> 安装包，这个命令会讲我们创建的egg安装到python的dist-packages目录下</p></li>
+<li><p>卸载
+<code class="code docutils literal notranslate"><span class="pre">cat</span> <span class="pre">&lt;logName&gt;</span> <span class="pre">|</span> <span class="pre">xargs</span> <span class="pre">rm</span> <span class="pre">-rf</span></code></p></li>
+</ol>
 </div>
 <div class="section" id="id13">
 <h2>生成文档<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h2>
