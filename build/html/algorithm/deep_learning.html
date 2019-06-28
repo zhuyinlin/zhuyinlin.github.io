@@ -1,0 +1,1294 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>深度学习 &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="元学习" href="meta_learning.html" />
+    <link rel="prev" title="回归分析" href="regression.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">算法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="image_process.html">图像处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine_learning.html">机器学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html">回归分析</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">深度学习</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">综述 </a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">1 引言</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">2 人脑视觉机理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">3 关于特征</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">4 算法介绍</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deep-learning">5 Deep Learning的常用模型或者方法</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">数据预处理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conv-deconv-transpose-conv-fractionally-strided-conv">Conv &amp; Deconv/Transpose Conv/Fractionally Strided Conv</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#conv">Conv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transpose-conv">Transpose Conv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dilated-conv">Dilated Conv</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#maxpooling-unpooling">Maxpooling &amp; Unpooling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">激活函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sigmoid">1、sigmoid函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tanh">2、tanh函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#relu-rectified-linear-unit">3、ReLU(Rectified Linear Unit)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#leaky-relu">4、Leaky ReLU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prelu-parametric-rectified-linear-unit">5、PReLU(Parametric Rectified Linear Unit)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rrelu-randomized-relu">6、RReLU(Randomized ReLU)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#elu-exponential-linear-units">7、ELU(Exponential Linear Units)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#maxout">8、Maxout</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">反向传播算法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id24">1 公式推导</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">2 算法步骤</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">过饱和问题</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id28">1 输出层过饱和问题</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id31">2 隐含层过饱和问题</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#overfitting">解决overfitting问题</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#l1-l2-regularization">1 L1/L2 规则化(regularization)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#early-stopping">2 early-stopping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dropout">3 dropout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#batch-normalization">4 batch_normalization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id38">5 人工增加训练集</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id39">DL 中的优化方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id40">网络模型变化</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#inception-google">Inception (google）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#residual-microsoft">Residual (Microsoft)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mobilenet-google">MobileNet(google)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shufflenet">ShuffleNet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#highway-network">Highway Network</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id42">调试经验</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="meta_learning.html">元学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RNN.html">RNN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GAN.html">GAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GCN.html">GCN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NLP.html">NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Transformer.html">Attention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stanford_notes.html">斯坦福课程笔记</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">算法</a> &raquo;</li>
+        
+      <li>深度学习</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/algorithm/deep_learning.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>深度学习<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="contents local topic" id="id2">
+<ul class="simple">
+<li><p><a class="reference internal" href="#id4" id="id50">综述 </a></p>
+<ul>
+<li><p><a class="reference internal" href="#id5" id="id51">1 引言</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id6" id="id52">1.1 概述</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id53">1.2  背景</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id8" id="id54">2 人脑视觉机理</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id55">3 关于特征</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id10" id="id56">3.1 特征表示的粒度</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id57">3.2  初级（浅层）特征表示</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id58">3.3  结构性特征表示</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id59">3.4  需要有多少个特征</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id14" id="id60">4 算法介绍</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id15" id="id61">4.1 基本思想</a></p></li>
+<li><p><a class="reference internal" href="#shallow-learning-dl" id="id62">4.2  浅层学习（Shallow Learning）和DL</a></p></li>
+<li><p><a class="reference internal" href="#dl" id="id63">4.3  DL与神经网络</a></p></li>
+<li><p><a class="reference internal" href="#id16" id="id64">4.4  DL训练过程</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id17" id="id65">4.4.1  传统神经网络的训练方法为什么不能用在深度神经网络</a></p></li>
+<li><p><a class="reference internal" href="#id18" id="id66">4.4.2 DL训练过程</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#deep-learning" id="id67">5 Deep Learning的常用模型或者方法</a></p>
+<ul>
+<li><p><a class="reference internal" href="#autoencoder" id="id68">5.1  AutoEncoder自动编码器</a></p></li>
+<li><p><a class="reference internal" href="#sparse-coding" id="id69">5.2 Sparse Coding稀疏编码</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id19" id="id70">数据预处理</a></p></li>
+<li><p><a class="reference internal" href="#conv-deconv-transpose-conv-fractionally-strided-conv" id="id71">Conv &amp; Deconv/Transpose Conv/Fractionally Strided Conv</a></p>
+<ul>
+<li><p><a class="reference internal" href="#conv" id="id72">Conv</a></p></li>
+<li><p><a class="reference internal" href="#transpose-conv" id="id73">Transpose Conv</a></p></li>
+<li><p><a class="reference internal" href="#dilated-conv" id="id74">Dilated Conv</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#maxpooling-unpooling" id="id75">Maxpooling &amp; Unpooling</a></p></li>
+<li><p><a class="reference internal" href="#id21" id="id76">激活函数</a></p>
+<ul>
+<li><p><a class="reference internal" href="#sigmoid" id="id77">1、sigmoid函数</a></p></li>
+<li><p><a class="reference internal" href="#tanh" id="id78">2、tanh函数</a></p></li>
+<li><p><a class="reference internal" href="#relu-rectified-linear-unit" id="id79">3、ReLU(Rectified Linear Unit)</a></p></li>
+<li><p><a class="reference internal" href="#leaky-relu" id="id80">4、Leaky ReLU</a></p></li>
+<li><p><a class="reference internal" href="#prelu-parametric-rectified-linear-unit" id="id81">5、PReLU(Parametric Rectified Linear Unit)</a></p></li>
+<li><p><a class="reference internal" href="#rrelu-randomized-relu" id="id82">6、RReLU(Randomized ReLU)</a></p></li>
+<li><p><a class="reference internal" href="#elu-exponential-linear-units" id="id83">7、ELU(Exponential Linear Units)</a></p></li>
+<li><p><a class="reference internal" href="#maxout" id="id84">8、Maxout</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id23" id="id85">反向传播算法</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id24" id="id86">1 公式推导</a></p></li>
+<li><p><a class="reference internal" href="#id25" id="id87">2 算法步骤</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id26" id="id88">2.1 单个样本</a></p></li>
+<li><p><a class="reference internal" href="#minibatch" id="id89">2.2 minibatch</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id27" id="id90">过饱和问题</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id28" id="id91">1 输出层过饱和问题</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id29" id="id92">1.1 改变损失函数</a></p></li>
+<li><p><a class="reference internal" href="#id30" id="id93">1.2 改变激活函数</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id31" id="id94">2 隐含层过饱和问题</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id32" id="id95">2.1 权重和偏置量的初始化方法</a></p></li>
+<li><p><a class="reference internal" href="#id33" id="id96">2.2 更换激励函数</a></p></li>
+<li><p><a class="reference internal" href="#momentum" id="id97">2.3 使用基于momentum的随机梯度下降</a></p></li>
+<li><p><a class="reference internal" href="#id34" id="id98">2.4 近期出现的</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#overfitting" id="id99">解决overfitting问题</a></p>
+<ul>
+<li><p><a class="reference internal" href="#l1-l2-regularization" id="id100">1 L1/L2 规则化(regularization)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#weight-decay-l2" id="id101">1.1 权重衰减(weight decay)/L2规则化</a></p></li>
+<li><p><a class="reference internal" href="#l1" id="id102">1.2 L1规则化</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#early-stopping" id="id103">2 early-stopping</a></p></li>
+<li><p><a class="reference internal" href="#dropout" id="id104">3 dropout</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id35" id="id105">3.1 原版</a></p></li>
+<li><p><a class="reference internal" href="#id36" id="id106">3.2 maxout</a></p></li>
+<li><p><a class="reference internal" href="#dropconnect" id="id107">3.3 DropConnect</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#batch-normalization" id="id108">4 batch_normalization</a></p></li>
+<li><p><a class="reference internal" href="#id38" id="id109">5 人工增加训练集</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id39" id="id110">DL 中的优化方法</a></p></li>
+<li><p><a class="reference internal" href="#id40" id="id111">网络模型变化</a></p>
+<ul>
+<li><p><a class="reference internal" href="#inception-google" id="id112">Inception (google）</a></p></li>
+<li><p><a class="reference internal" href="#residual-microsoft" id="id113">Residual (Microsoft)</a></p></li>
+<li><p><a class="reference internal" href="#mobilenet-google" id="id114">MobileNet(google)</a></p></li>
+<li><p><a class="reference internal" href="#shufflenet" id="id115">ShuffleNet</a></p></li>
+<li><p><a class="reference internal" href="#highway-network" id="id116">Highway Network</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id42" id="id117">调试经验</a></p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id2">综述 <a class="footnote-reference brackets" href="#id43" id="id3">1</a></a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id2">1 引言</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id6">
+<h4><a class="toc-backref" href="#id2">1.1 概述</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h4>
+<p>图灵（计算机和人工智能的鼻祖，分别对应于其著名的“图灵机”和“图灵测试”）在 1950 年的论文里，提出图灵试验的设想，即，隔墙对话，你将不知道与你谈话的，是人还是电脑。这无疑给计算机，尤其是人工智能，预设了一个很高的期望值。但是半个世纪过去了，人工智能的进展，远远没有达到图灵试验的标准。这不仅让多年翘首以待的人们，心灰意冷，认为人工智能是忽悠，相关领域是“伪科学”。
+但是自 2006 年以来，机器学习领域，取得了突破性的进展。图灵试验，至少不是那么可望而不可及了。至于技术手段，不仅仅依赖于云计算对大数据的并行处理能力，而且依赖于算法。这个算法就是深度学习（Deep Learning ，DL）。借助于 DL 算法，人类终于找到了如何处理“抽象概念”这个亘古难题的方法。</p>
+<p>2012年6月，《纽约时报》披露了Google Brain项目，吸引了公众的广泛关注。这个项目是由著名的斯坦福大学的机器学习教授Andrew Ng和在大规模计算机系统方面的世界顶尖专家Jeff Dean共同主导，用16000个CPU Core的并行计算平台训练一种称为“深度神经网络”（Deep Neural Networks，DNN）的机器学习模型（内部共有10亿个节点。这一网络自然是不能跟人类的神经网络相提并论的。要知道，人脑中可是有150多亿个神经元，互相连接的节点也就是突触数更是如银河沙数。曾经有人估算过，如果将一个人的大脑中所有神经细胞的轴突和树突依次连接起来，并拉成一根直线，可从地球连到月亮，再从月亮返回地球），在语音识别和图像识别等领域获得了巨大的成功。</p>
+<p>项目负责人之一Andrew称：“我们没有像通常做的那样自己框定边界，而是直接把海量数据投放到算法中，让数据自己说话，系统会自动从数据中学习。”另外一名负责人Jeff则说：“我们在训练的时候从来不会告诉机器说：‘这是一只猫。’系统其实是自己发明或者领悟了“猫”的概念。”
+2012年11月，微软在中天津的一次活动上公开演示了一个全自动的同声传译系统，讲演者用英文演讲，后台的计算机一气呵成自动完成语音识别、英中机器翻译和中文语音合成，效果非常流畅。据报道，后面支撑的关键技术也是DNN，或者DL。</p>
+<p>2013年1月，在百度年会上，创始人兼CEO李彦宏高调宣布要成立百度研究院，其中第一个成立的就是“深度学习研究所”（Institue of Deep Learning，IDL）。</p>
+</div>
+<div class="section" id="id7">
+<h4><a class="toc-backref" href="#id2">1.2  背景</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h4>
+<p>机器学习（Machine Learning，ML）是一门专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能的学科。机器能否像人类一样能具有学习能力呢？1959年美国的塞缪尔(Samuel)设计了一个下棋程序，这个程序具有学习能力，它可以在不断的对弈中改善自己的棋艺。4年后，这个程序战胜了设计者本人。又过了3年，这个程序战胜了美国一个保持8年之久的常胜不败的冠军。这个程序向人们展示了机器学习的能力，提出了许多令人深思的社会问题与哲学问题。</p>
+<p>机器学习虽然发展了几十年，但还是存在很多没有良好解决的问题：</p>
+<p>例如图像识别、语音识别、自然语言理解、天气预测、基因表达、内容推荐等等。目前我们通过机器学习去解决这些问题的思路都是这样的（以视觉感知为例子）：</p>
+<img alt="../_images/summ.png" src="../_images/summ.png" />
+<p>从开始的通过传感器（例如CMOS）来获得数据。然后经过预处理、特征提取、特征选择，再到推理、预测或者识别。最后一个部分，也就是机器学习的部分，绝大部分的工作是在这方面做的，也存在很多的paper和研究。而中间的三部分，概括起来就是特征表达。良好的特征表达，对最终算法的准确性起了非常关键的作用，而且系统主要的计算和测试工作都耗在这一大部分。但，这块实际中一般都是人工完成的。靠人工提取特征。</p>
+<p>截止现在，也出现了不少NB的特征（好的特征应具有不变性（大小、尺度和旋转等）和可区分性）：例如Sift的出现，是局部图像特征描述子研究领域一项里程碑式的工作。由于SIFT对尺度、旋转以及一定视角和光照变化等图像变化都具有不变性，并且SIFT具有很强的可区分性，的确让很多问题的解决变为可能。但它也不是万能的。</p>
+<img alt="../_images/feature.png" src="../_images/feature.png" />
+<p>然而，手工选取特征是一件非常费力、启发式（需要专业知识）的方法，能不能选取好很大程度上靠经验和运气，而且它的调节需要大量的时间。既然手工选取特征不太好，那么能不能自动地学习一些特征呢？答案是能！深度学习（Deep Learning，DL）就是用来干这个事情的，看它的一个别名Unsupervised Feature Learning，就可以顾名思义了，Unsupervised的意思就是不要人参与特征的选取过程。</p>
+<p>那它是怎么学习的呢？怎么知道哪些特征好哪些不好呢？我们说机器学习是一门专门研究计算机怎样模拟或实现人类的学习行为的学科。好，那我们人的视觉系统是怎么工作的呢？为什么在茫茫人海，芸芸众生，滚滚红尘中我们都可以找到另一个她。人脑那么NB，我们能不能参考人脑，模拟人脑呢？近几十年以来，认知神经科学、生物学等等学科的发展，让我们对自己这个神秘的而又神奇的大脑不再那么的陌生。也给人工智能的发展推波助澜。</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id2">2 人脑视觉机理</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p>1981 年的诺贝尔医学奖，颁发给了 David Hubel（出生于加拿大的美国神经生物学家） 和TorstenWiesel，以及 Roger Sperry。前两位的主要贡献，是“发现了视觉系统的信息处理”：可视皮层是分级的。</p>
+<p>我们看看他们做了什么。1958 年，DavidHubel 和Torsten Wiesel 在 JohnHopkins University研究瞳孔区域与大脑皮层神经元的对应关系。他们在猫的后脑头骨上，开了一个3毫米的小洞，向洞里插入电极，测量神经元的活跃程度。然后，他们在小猫的眼前，展现各种形状、各种亮度的物体。并且，在展现每一件物体时，还改变物体放置的位置和角度。他们期望通过这个办法，让小猫瞳孔感受不同类型、不同强弱的刺激。这个试验的目的是证明一个猜测：位于后脑皮层的不同视觉神经元，与瞳孔所受刺激之间，存在某种对应关系。一旦瞳孔受到某一种刺激，后脑皮层的某一部分神经元就会活跃。</p>
+<p>经历了很多天反复的枯燥的试验，同时牺牲了若干只可怜的小猫，David Hubel 和Torsten Wiesel 发现了一种被称为“方向选择性细胞（Orientation Selective Cell）”的神经元细胞。当瞳孔发现了眼前的物体的边缘，而且这个边缘指向某个方向时，这种神经元细胞就会活跃。</p>
+<p>这个发现激发了人们对于神经系统的进一步思考。神经-中枢-大脑的工作过程，或许是一个不断迭代、不断抽象的过程。这里的关键词有两个，一个是 <strong>抽象</strong> ，一个是 <strong>迭代</strong> 。从原始信号，做低级抽象，逐渐向高级抽象迭代。人类的逻辑思维，经常使用高度抽象的概念。例如，从原始信号摄入开始（瞳孔摄入像素 Pixels），接着做初步处理（大脑皮层某些细胞发现边缘和方向），然后抽象（大脑判定，眼前的物体的形状，是圆形的），然后进一步抽象（大脑进一步判定该物体是只气球）。</p>
+<img alt="../_images/feature2.png" src="../_images/feature2.png" />
+<p>这个生理学的发现，促成了计算机人工智能，在四十年后的突破性发展。总的来说，人的视觉系统的信息处理是分级的。从低级的V1区提取边缘特征，再到V2区的形状或者目标的部分等，再到更高层，整个目标、目标的行为等。也就是说高层的特征是低层特征的组合，从低层到高层的特征表示越来越抽象，越来越能表现语义或者意图。而抽象层面越高，存在的可能猜测就越少，就越利于分类。例如，单词集合和句子的对应是多对一的，句子和语义的对应又是多对一的，语义和意图的对应还是多对一的，这是个层级体系。</p>
+<p>敏感的人注意到关键词了：分层。而深度学习（Deep Learning ，DL）的deep是不是就表示我存在多少层，也就是多深呢？没错。那Deep learning是如何借鉴这个过程的呢？毕竟是归于计算机来处理，面对的一个问题就是怎么对这个过程建模？</p>
+<p>因为我们要学习的是特征的表达，那么关于特征，或者说关于这个层级特征，我们需要了解得更深入点。所以在说Deep Learning之前，我们有必要再啰嗦下特征。</p>
+</div>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id2">3 关于特征</a><a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<p>特征是机器学习系统的原材料，对最终模型的影响是毋庸置疑的。如果数据被很好的表达成了特征，通常线性模型就能达到满意的精度。那对于特征，我们需要考虑什么呢？</p>
+<div class="section" id="id10">
+<h4><a class="toc-backref" href="#id2">3.1 特征表示的粒度</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h4>
+<p>学习算法在一个什么粒度上的特征表示才能发挥作用？就一个图片来说，像素级的特征根本没有价值。例如下面的摩托车，从像素级别，根本得不到任何信息，其无法进行摩托车和非摩托车的区分。而如果特征是一个具有结构性（或者说有含义）的时候，比如是否具有车把手（handle），是否具有车轮（wheel），就很容易把摩托车和非摩托车区分，学习算法才能发挥作用。</p>
+</div>
+<div class="section" id="id11">
+<h4><a class="toc-backref" href="#id2">3.2  初级（浅层）特征表示</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h4>
+<p>既然像素级的特征表示方法没有作用，那怎样的表示才有用呢？
+1995 年前后，Bruno Olshausen和 David Field 两位学者任职 Cornell University，他们试图同时用生理学和计算机的手段，双管齐下，研究视觉问题。他们收集了很多黑白风景照片，从这些照片中，提取出 <span class="math notranslate nohighlight">\(400\)</span> 个小碎片，每个照片碎片的尺寸均为 <span class="math notranslate nohighlight">\(16\times 16\)</span> 像素，不妨把这 <span class="math notranslate nohighlight">\(400\)</span> 个碎片标记为 <span class="math notranslate nohighlight">\(S[i], i = 0, \dots, 399\)</span> 。接下来，再从这些黑白风景照片中，随机提取另一个碎片，尺寸也是 <span class="math notranslate nohighlight">\(16\times 16\)</span> 像素，不妨把这个碎片标记为 <span class="math notranslate nohighlight">\(T\)</span> 。他们提出的问题是，如何从这 <span class="math notranslate nohighlight">\(400\)</span> 个碎片中，选取一组碎片 <span class="math notranslate nohighlight">\(S[k]\)</span> , 通过叠加的办法，合成出一个新的碎片，而这个新的碎片，应当与随机选择的目标碎片 <span class="math notranslate nohighlight">\(T\)</span> 尽可能相似，同时， <span class="math notranslate nohighlight">\(S[k]\)</span> 的数量尽可能少。用数学的语言来描述，就是： <span class="math notranslate nohighlight">\(Sum_k (a[k] \times S[k]) \rightarrow T\)</span> ,其中 <span class="math notranslate nohighlight">\(a[k]\)</span> 是在叠加碎片 <span class="math notranslate nohighlight">\(S[k]\)</span> 时的权重系数。
+为解决这个问题，Bruno Olshausen和 David Field 发明了一个算法，稀疏编码（Sparse Coding）。稀疏编码是一个重复迭代的过程，每次迭代分两步：
+1. 选择一组 <span class="math notranslate nohighlight">\(S[k]\)</span> , 然后调整 <span class="math notranslate nohighlight">\(a[k]\)</span> ，使得 <span class="math notranslate nohighlight">\(Sum_k (a[k] \times S[k])\)</span> 最接近 <span class="math notranslate nohighlight">\(T\)</span> 。
+2. 固定住 <span class="math notranslate nohighlight">\(a[k]\)</span> ，在 <span class="math notranslate nohighlight">\(400\)</span> 个碎片中，选择其它更合适的碎片 <span class="math notranslate nohighlight">\(S’[k]\)</span> ，替代原先的 <span class="math notranslate nohighlight">\(S[k]\)</span> ，使得 <span class="math notranslate nohighlight">\(Sum_k (a[k] \times S’[k])\)</span> 最接近 <span class="math notranslate nohighlight">\(T\)</span> 。</p>
+<p>经过几次迭代后，最佳的 S[k] 组合，被遴选出来了。令人惊奇的是，被选中的 <span class="math notranslate nohighlight">\(S[k]\)</span> ，基本上都是照片上不同物体的边缘线，这些线段形状相似，区别在于方向。</p>
+<p>Bruno Olshausen和 David Field 的算法结果，与 David Hubel 和Torsten Wiesel 的生理发现不谋而合！也就是说，复杂图形，往往由一些基本结构组成。比如下图：一个图可以通过用 <span class="math notranslate nohighlight">\(64\)</span> 种正交的edges（可以理解成正交的基本结构）来线性表示。比如样例的 <span class="math notranslate nohighlight">\(x\)</span> 可以用 <span class="math notranslate nohighlight">\(1-64\)</span> 个edges中的三个按照 <span class="math notranslate nohighlight">\(0.8,0.3,0.5\)</span> 的权重调和而成。而其他基本edge没有贡献，因此均为 <span class="math notranslate nohighlight">\(0\)</span> 。</p>
+<img alt="../_images/feature3.png" src="../_images/feature3.png" />
+<p>另外，大牛们还发现，不仅图像存在这个规律，声音也存在。他们从未标注的声音中发现了20种基本的声音结构，其余的声音可以由这20种基本结构合成。</p>
+</div>
+<div class="section" id="id12">
+<h4><a class="toc-backref" href="#id2">3.3  结构性特征表示</a><a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h4>
+<p>小块的图形可以由基本edge组成，那么更结构化、更复杂的，具有概念性的图形如何表示呢？这就需要更高层次的特征表示，比如V2，V4。因此V1看像素级是像素级。V2看V1是像素级，这个是层次递进的，高层表达由底层表达的组合而成。专业点说就是基basis。V1取提出的basis是边缘，然后V2层是V1层这些basis的组合，这时候V2区得到的又是高一层的basis。即上一层的basis组合的结果，上上层又是上一层的组合basis……</p>
+<img alt="../_images/feature4.png" src="../_images/feature4.png" />
+<p>直观上说，就是找到make sense的小patch再将其进行combine，就得到了上一层的feature，递归地向上learning feature。 在不同object上做training时，所得的edge basis 是非常相似的，但object parts和models 就会completely different了（以下图为例，那咱们分辨car或者face是不是容易多了）：</p>
+<img alt="../_images/feature5.png" src="../_images/feature5.png" />
+<p>从文本来说，一个doc表示什么意思？我们描述一件事情，用什么来表示比较合适？用一个一个字吗？我看不是。字就是像素级别了，起码应该是term，换句话说每个doc都由term构成，但这样表示概念的能力就够了吗？可能也不够，需要再上一步，达到topic级，有了topic，再到doc就合理。但每个层次的数量差距很大，比如doc表示的概念-&gt;topic（千-万量级）-&gt;term（10万量级）-&gt;word（百万量级）。一个人在看一个doc的时候，眼睛看到的是word，由这些word在大脑里自动切词形成term，在按照概念组织的方式，先验的学习，得到topic，然后再进行高层次的learning。</p>
+</div>
+<div class="section" id="id13">
+<h4><a class="toc-backref" href="#id2">3.4  需要有多少个特征</a><a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h4>
+<p>我们知道需要层次的特征构建，由浅入深，但每一层该有多少个特征呢？任何一种方法，特征越多，给出的参考信息就越多，准确性会得到提升。但特征多意味着计算复杂，探索的空间大，可以用来训练的数据在每个特征上就会稀疏，都会带来各种问题，并不一定特征越多越好。</p>
+<img alt="../_images/feature6.png" src="../_images/feature6.png" />
+<p>好了，到了这一步，终于可以聊到深度学习（Deep Learning ，DL）了。上面我们聊到为什么会有DL（让机器自动学习良好的特征，而免去人工选取过程。还有参考人的分层视觉处理系统），我们得到一个结论就是DL需要多层来获得更抽象的特征表达。那么多少层才合适呢？用什么架构来建模呢？怎么进行非监督训练呢？</p>
+</div>
+</div>
+<div class="section" id="id14">
+<h3><a class="toc-backref" href="#id2">4 算法介绍</a><a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id15">
+<h4><a class="toc-backref" href="#id2">4.1 基本思想</a><a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h4>
+<p>假设我们有一个系统 <span class="math notranslate nohighlight">\(S\)</span> ，它有 <span class="math notranslate nohighlight">\(n\)</span> 层 <span class="math notranslate nohighlight">\((S_1,\dots ,S_n)\)</span> ，它的输入是 <span class="math notranslate nohighlight">\(I\)</span> ，输出是 <span class="math notranslate nohighlight">\(O\)</span> ，形象地表示为： <span class="math notranslate nohighlight">\(I\rightarrow S_1 \rightarrow S_2 \rightarrow \dots \rightarrow S_n \rightarrow O\)</span>，如果输出 <span class="math notranslate nohighlight">\(O\)</span> 等于输入 <span class="math notranslate nohighlight">\(I\)</span> ，即输入 <span class="math notranslate nohighlight">\(I\)</span> 经过这个系统变化之后没有任何的信息损失（大牛说，这是不可能的。信息论中有个“信息逐层丢失”的说法［信息处理不等式］，设处理 <span class="math notranslate nohighlight">\(a\)</span> 信息得到 <span class="math notranslate nohighlight">\(b\)</span> ，再对 <span class="math notranslate nohighlight">\(b\)</span> 处理得到 <span class="math notranslate nohighlight">\(c\)</span> ，那么可以证明： <span class="math notranslate nohighlight">\(a\)</span> 和 <span class="math notranslate nohighlight">\(c\)</span> 的互信息不会超过 <span class="math notranslate nohighlight">\(a\)</span> 和:math:<cite>b</cite> 的互信息。这表明信息处理不会增加信息，大部分处理会丢失信息。当然了，如果丢掉的是没用的信息那多好啊）——这意味着输入I⁆经过每一层 <span class="math notranslate nohighlight">\(S_i\)</span> 都没有任何的信息损失，即在任何一层 <span class="math notranslate nohighlight">\(S_i\)</span> ，它都是原有信息（即输入I）的另外一种表示。现在回到我们的主题深度学习（Deep Learning ，DL），我们需要自动地学习特征，假设我们有一堆输入 <span class="math notranslate nohighlight">\(I\)</span> （如一堆图像或者文本），并且我们设计了一个系统 <span class="math notranslate nohighlight">\(S\)</span> （有 <span class="math notranslate nohighlight">\(n\)</span> 层），通过调整系统中参数，使得它的输出仍然是输入 <span class="math notranslate nohighlight">\(I\)</span> ，那么我们就可以自动地获取得到输入 <span class="math notranslate nohighlight">\(I\)</span> 的一系列层次特征，即:math:<cite>S_1,dots ,S_n</cite></p>
+<p>对于深度学习来说，其思想就是堆叠多个层，也就是说这一层的输出作为下一层的输入。通过这种方式，就可以实现对输入信息进行分级表达了。另外，前面是假设输出严格地等于输入，这个限制太严格，我们可以略微地放松这个限制，例如我们只要使得输入与输出的差别尽可能地小即可，这个放松会导致另外一类不同的DL方法。</p>
+</div>
+<div class="section" id="shallow-learning-dl">
+<h4><a class="toc-backref" href="#id2">4.2  浅层学习（Shallow Learning）和DL</a><a class="headerlink" href="#shallow-learning-dl" title="永久链接至标题">¶</a></h4>
+<ol class="arabic">
+<li><dl class="simple">
+<dt>浅层学习是机器学习的第一次浪潮。</dt><dd><p>20世纪80年代末期，人工神经网络的反向传播算法（也叫  <strong>BP（Back Propagation）算法</strong> ）的发明给机器学习带来了希望，掀起了基于统计模型的机器学习的热潮。这个热潮一直持续到今天。人们发现，利用BP算法可以让一个人工神经网络模型从大量训练样本中学习统计规律，从而对未知事件做预测。这种基于统计的机器学习方法比起过去基于人工规则的系统，在很多方面显出优越性。这个时候的人工神经网络，虽也被称作 <strong>多层感知机（Multi-layer Perceptron）</strong> ，但实际是种只含有一层隐层节点的浅层模型。20世纪90年代，各种各样的浅层机器学习模型相继被提出，例如 <strong>支持向量机（Support Vector Machines，SVM）</strong> 、  <strong>Boosting</strong> 、最大熵方法（如 <strong>逻辑回归（Logistic Regression，LR）</strong> ）等。这些模型的结构基本上可以看成带有一层隐层节点（如SVM、Boosting），或没有隐层节点（如LR）。这些模型无论是在理论分析还是应用中都获得了巨大的成功。相比之下，由于理论分析的难度大，训练方法又需要很多经验和技巧，这个时期浅层人工神经网络反而相对沉寂。</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>DL是机器学习的第二次浪潮。</dt><dd><p>2006年，加拿大多伦多大学教授、机器学习领域的泰斗Geoffrey Hinton和他的学生Ruslan Salakhutdinov在《科学》上发表了一篇文章，开启了DL在学术界和工业界的浪潮。这篇文章有两个主要观点：</p>
+<ol class="loweralpha simple">
+<li><p>多隐层的人工神经网络具有优异的特征学习能力，学习得到的特征对数据有更本质的刻画，从而有利于可视化或分类；</p></li>
+<li><p>深度神经网络在训练上的难度，可以通过“逐层初始化”（layer-wise pre-training）来有效克服，在这篇文章中，逐层初始化是通过无监督学习实现的。</p></li>
+</ol>
+<p>当前多数分类、回归等学习方法为浅层结构算法，其局限性在于有限样本和计算单元情况下对复杂函数的表示能力有限，针对复杂分类问题其泛化能力受到一定制约。DL可通过学习一种深层非线性网络结构，实现复杂函数逼近，表征输入数据分布式表示，并展现了强大的从少数样本集中学习数据集本质特征的能力。（多层的好处是可以用较少的参数表示复杂的函数）</p>
+<img alt="../_images/sl.png" src="../_images/sl.png" />
+<p>DL的实质，是通过构建具有很多隐层的机器学习模型和海量的训练数据，来学习更有用的特征，从而最终提升分类或预测的准确性。因此，“深度模型”是手段，“特征学习”是目的。区别于传统的浅层学习，DL的不同在于：</p>
+<ol class="loweralpha simple">
+<li><p>强调了模型结构的深度，通常有5层、6层，甚至10多层的隐层节点；</p></li>
+<li><p>明确突出了特征学习的重要性，也就是说，通过逐层特征变换，将样本在原空间的特征表示变换到一个新特征空间，从而使分类或预测更加容易。</p></li>
+</ol>
+<p>与人工规则造特征的方法相比，利用大数据来学习特征，更能够刻画数据的丰富内在信息。</p>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+<div class="section" id="dl">
+<h4><a class="toc-backref" href="#id2">4.3  DL与神经网络</a><a class="headerlink" href="#dl" title="永久链接至标题">¶</a></h4>
+<p>DL是机器学习研究中的一个新的领域，其动机在于建立、模拟人脑进行分析学习的神经网络，它模仿人脑的机制来解释数据，例如图像，声音和文本。DL是无监督学习的一种，其概念源于人工神经网络的研究。含多隐层的多层感知器就是一种DL结构。DL通过组合低层特征形成更加抽象的高层表示属性类别或特征，以发现数据的分布式特征表示。
+DL本身算是机器学习（Machine Learning，ML）的一个分支，简单可以理解为神经网络（neural network，NN）的发展。大约二三十年前，NN曾经是ML领域特别火热的一个方向，但是后来却慢慢淡出了，原因包括以下几个方面：</p>
+<ol class="loweralpha simple">
+<li><p>比较容易过拟合，参数比较难tune，而且需要不少trick；</p></li>
+<li><p>训练速度比较慢，在层次比较少（小于等于3）的情况下效果并不比其它方法更优；</p></li>
+</ol>
+<p>所以中间有大约20多年的时间，神经网络被关注很少，这段时间基本上是SVM和boosting算法的天下。但是，一个痴心的老先生Hinton，他坚持了下来，并最终（和其它人一起Bengio、Yann.lecun等）提成了一个实际可行的DL框架。</p>
+<p>DL与传统的神经网络之间有相同的地方也有很多不同。二者的 <strong>相同</strong> 在于DL采用了神经网络相似的分层结构，系统由包括输入层、隐层（多层）、输出层组成的多层网络，只有相邻层节点之间有连接，同一层以及跨层节点之间相互无连接，每一层可以看作是一个LR模型；这种分层结构，是比较接近人类大脑的结构的。</p>
+<img alt="../_images/dp.png" src="../_images/dp.png" />
+<p>而为了克服神经网络训练中的问题，DL采用了与神经网络很不同的训练机制。传统神经网络中，采用的是back propagation的方式进行，简单来讲就是采用迭代的算法来训练整个网络，随机设定初值，计算当前网络的输出，然后根据当前输出和label之间的差去改变前面各层的参数，直到收敛（整体是一个梯度下降法）。而DL整体上是一个layer-wise的训练机制。这样做的原因是因为，如果采用back propagation的机制，对于一个deep network（7层以上），残差传播到最前面的层已经变得太小，出现所谓的gradient diffusion（梯度扩散）。这个问题我们接下来讨论。</p>
+</div>
+<div class="section" id="id16">
+<h4><a class="toc-backref" href="#id2">4.4  DL训练过程</a><a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id17">
+<h5><a class="toc-backref" href="#id2">4.4.1  传统神经网络的训练方法为什么不能用在深度神经网络</a><a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h5>
+<p>BP算法作为传统训练多层网络的典型算法，实际上对仅含几层网络，该训练方法就已经很不理想。深度结构（涉及多个非线性处理单元层）非凸目标代价函数中普遍存在的局部最小是训练困难的主要来源。
+BP算法存在的问题：</p>
+<ol class="loweralpha simple">
+<li><p>梯越来越稀疏：从顶层越往下，误差校正信号越来越小；</p></li>
+<li><p>收敛到局部最小值：尤其是从远离最优区域开始的时候（随机值初始化会导致这种情况的发生）；</p></li>
+<li><p>一般，我们只能用有标签的数据来训练：但大部分的数据是没标签的，而大脑可以从没有标签的的数据中学习；</p></li>
+</ol>
+</div>
+<div class="section" id="id18">
+<h5><a class="toc-backref" href="#id2">4.4.2 DL训练过程</a><a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h5>
+<p>如果对所有层同时训练，时间复杂度会太高；如果每次训练一层，偏差就会逐层传递。这会面临跟上面监督学习中相反的问题，会严重欠拟合（因为深度网络的神经元和参数太多了）。</p>
+<p>2006年，hinton提出了在非监督数据上建立多层神经网络的一个有效方法，简单的说，分为两步，一是每次训练一层网络，二是调优，使原始表示x、向上生成的高级表示r和该高级表示r向下生成的x’尽可能一致。方法是：</p>
+<ol class="arabic">
+<li><p>首先逐层构建单层神经元，这样每次都是训练一个单层网络。</p></li>
+<li><p>当所有层训练完后，Hinton使用wake-sleep算法进行调优。</p>
+<p>将除最顶层的其它层间的权重变为双向的，这样最顶层仍然是一个单层神经网络，而其它层则变为了图模型。向上的权重用于“认知”，向下的权重用于“生成”。然后使用Wake-Sleep算法调整所有的权重。让认知和生成达成一致，也就是保证生成的最顶层表示能够尽可能正确的复原底层的结点。比如顶层的一个结点表示人脸，那么所有人脸的图像应该激活这个结点，并且这个结果向下生成的图像应该能够表现为一个大概的人脸图像。Wake-Sleep算法分为醒（wake）和睡（sleep）两个部分。</p>
+<ol class="upperalpha simple">
+<li><p>wake阶段：认知过程，通过外的特征和向上的权重（认知权重）产生每一层的抽象表示（结点状态），并且使用梯度下降修改层间的下行权重（生成权重）。也就是“如果现实跟我想象的不一样，改变我的权重使得我想象的东西就是这样的”。</p></li>
+<li><p>sleep阶段：生成过程，通过顶层表示（醒时学得的概念）和向下权重，生成底层的状态，同时修改层间向上的权重。也就是“如果梦中的景象不是我脑中的相应概念，改变我的认知权重使得这种景象在我看来就是这个概念”。</p></li>
+</ol>
+</li>
+</ol>
+<p>deep learning训练过程具体如下：</p>
+<ol class="arabic">
+<li><p>使用自下上升非监督学习（就是从底层开始，一层一层的往顶层训练）：</p>
+<blockquote>
+<div><p>采用无标定数据（有标定数据也可）分层训练各层参数，这一步可以看作是一个无监督训练过程，是和传统神经网络区别最大的部分（这个过程可以看作是feature learning过程）：</p>
+<p>具体的, 用无标定数据训练第一层，训练时先学习第一层的参数（这一层可以看作是得到一个使得输出和输入差别最小的三层神经网络的隐层），由于模型capacity的限制以及稀疏性约束，使得得到的模型能够学习到数据本身的结构，从而得到比输入更具有表示能力的特征；在学习得到第n-1层后，将n-1层的输出作为第n层的输入，训练第n层，由此分别得到各层的参数；</p>
+</div></blockquote>
+</li>
+<li><p>自顶向下的监督学习（就是通过带标签的数据集训练，误差自顶向下传输，对网络进行微调）：</p>
+<blockquote>
+<div><p>基于第一步得到的各层参数进一步fine-tune整个多层模型的参数，这一步是一个有监督训练过程；第一步类似神经网络的随机初始化初值过程，由于DL的第一步不是随机初始化，而是通过学习输入数据的结构得到的，因而这个初值更接近全局最优，从而能够取得更好的效果；所以deep learning效果好很大程度上归功于第一步的feature learning过程。</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="deep-learning">
+<h3><a class="toc-backref" href="#id2">5 Deep Learning的常用模型或者方法</a><a class="headerlink" href="#deep-learning" title="永久链接至标题">¶</a></h3>
+<div class="section" id="autoencoder">
+<h4><a class="toc-backref" href="#id2">5.1  AutoEncoder自动编码器</a><a class="headerlink" href="#autoencoder" title="永久链接至标题">¶</a></h4>
+<p>Deep Learning最简单的一种方法利用人工神经网络的特点，人工神经网络（ANN）本身就是具有层次结构的系统，如果给定一个神经网络，我们假设其输出与输入是相同的，然后训练调整其参数，得到每一层中的权重。自然地，我们就得到了输入I的几种不同表示（每一层代表一种表示），这些表示就是特征。自动编码器就是一种尽可能复现输入信号的神经网络。为了实现这种复现，自动编码器就必须捕捉可以代表输入数据的最重要的因素，就像PCA那样，找到可以代表原信息的主要成分。具体过程简单的说明如下：</p>
+<ol class="arabic">
+<li><p>给定无标签数据，用非监督学习学习特征：</p>
+<img alt="../_images/autoen.png" src="../_images/autoen.png" />
+<p>在我们之前的神经网络中，如第一个图，我们输入的样本是有标签的，即（input, target），这样我们根据当前输出和target（label）之间的差去改变前面各层的参数，直到收敛。但现在我们只有无标签数据，也就是右边的图。那么这个误差怎么得到呢？</p>
+<img alt="../_images/autoen2.png" src="../_images/autoen2.png" />
+<p>如上图，我们将input输入一个encoder编码器，就会得到一个code，这个code也就是输入的一个表示，那么我们怎么知道这个code表示的就是input呢？我们加一个decoder解码器，这时候decoder就会输出一个信息，那么如果输出的这个信息和一开始的输入信号input是很像的（理想情况下就是一样的），那很明显，我们就有理由相信这个code是靠谱的。所以，我们就通过调整encoder和decoder的参数，使得重构误差最小，这时候我们就得到了输入input信号的第一个表示了，也就是编码code了。因为是无标签数据，所以误差的来源就是直接重构后与原输入相比得到。</p>
+<img alt="../_images/autoen3.png" src="../_images/autoen3.png" />
+</li>
+<li><p>通过编码器产生特征，然后训练下一层。这样逐层训练：
+上面我们得到了第一层的code，我们的重构误差最小让我们相信这个code就是原输入信号的良好表达了，或者牵强点说，它和原信号是一模一样的（表达不一样，反映的是一个东西）。那第二层和第一层的训练方式就没有差别了，我们将第一层输出的code当成第二层的输入信号，同样最小化重构误差，就会得到第二层的参数，并且得到第二层输入的code，也就是原输入信息的第二个表达了。其他层就同样的方法炮制就行了（训练这一层，前面层的参数都是固定的，并且他们的decoder已经没用了，都不需要了）。</p>
+<img alt="../_images/autorn4.png" src="../_images/autorn4.png" />
+</li>
+<li><p>有监督微调：
+经过上面的方法，我们就可以得到很多层了。至于需要多少层（或者深度需要多少，这个目前本身就没有一个科学的评价方法）需要自己试验调了。每一层都会得到原始输入的不同的表达。当然了，我们觉得它是越抽象越好了，就像人的视觉系统一样。
+到这里, 这个AutoEncoder还不能用来分类数据，因为它还没有学习如何去连结一个输入和一个类。它只是学会了如何去重构或者复现它的输入而已。或者说，它只是学习获得了一个可以良好代表输入的特征，这个特征可以最大程度上代表原输入信号。那么，为了实现分类，我们就可以在AutoEncoder的最顶的编码层添加一个分类器（例如逻辑回归、SVM等），然后通过标准的多层神经网络的监督训练方法（梯度下降法）去训练。</p>
+<p>也就是说，这时候，我们需要将最后层的特征code输入到最后的分类器，通过有标签样本，通过监督学习进行微调，这也分两种，一个是只调整分类器（黑色部分）：</p>
+<img alt="../_images/autoen5.png" src="../_images/autoen5.png" />
+<p>另一种：通过有标签样本，微调整个系统：（如果有足够多的数据，这个是最好的。end-to-end learning端对端学习）</p>
+<img alt="../_images/autoen6.png" src="../_images/autoen6.png" />
+<p>一旦监督训练完成，这个网络就可以用来分类了。神经网络的最顶层可以作为一个线性分类器，然后我们可以用一个更好性能的分类器去取代它。</p>
+</li>
+</ol>
+<p>在研究中可以发现，如果在原有的特征中加入这些自动学习得到的特征可以大大提高精确度，甚至在分类问题中比目前最好的分类算法效果还要好！</p>
+<p>AutoEncoder存在一些变体，这里简要介绍下两个：</p>
+<ol class="arabic">
+<li><p>Sparse AutoEncoder稀疏自动编码器：
+当然，我们还可以继续加上一些约束条件得到新的Deep Learning方法，如：如果在AutoEncoder的基础上加上L1的Regularity限制（L1主要是约束每一层中的节点中大部分都要为0，只有少数不为0，这就是Sparse名字的来源），我们就可以得到Sparse AutoEncoder法。</p>
+<img alt="../_images/autoen7.png" src="../_images/autoen7.png" />
+<p>如上图，其实就是限制每次得到的表达code尽量稀疏。因为稀疏的表达往往比其他的表达要有效（人脑好像也是这样的，某个输入只是刺激某些神经元，其他的大部分的神经元是受到抑制的）。</p>
+</li>
+<li><p>Denoising AutoEncoders降噪自动编码器：
+降噪自动编码器DA是在自动编码器的基础上，训练数据加入噪声，所以自动编码器必须学习去去除这种噪声而获得真正的没有被噪声污染过的输入。因此，这就迫使编码器去学习输入信号的更加鲁棒的表达，这也是它的泛化能力比一般编码器强的原因。DA可以通过梯度下降算法去训练。</p>
+<img alt="../_images/autoen8.png" src="../_images/autoen8.png" />
+</li>
+</ol>
+</div>
+<div class="section" id="sparse-coding">
+<h4><a class="toc-backref" href="#id2">5.2 Sparse Coding稀疏编码</a><a class="headerlink" href="#sparse-coding" title="永久链接至标题">¶</a></h4>
+<p>如果我们把输出必须和输入相等的限制放松，同时利用线性代数中基的概念，即 <span class="math notranslate nohighlight">\(O = a_1\times \phi_1 + a_2\times \phi_2+ \dots+ a_n\times \phi_n\)</span> , <span class="math notranslate nohighlight">\(\phi_i\)</span> 是基, <span class="math notranslate nohighlight">\(a_i\)</span> 是系数，我们可以得到这样一个优化问题：</p>
+<div class="math notranslate nohighlight">
+\[Min |I – O|\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(I\)</span> 表示输入， <span class="math notranslate nohighlight">\(O\)</span> 表示输出。通过求解这个最优化式子，我们可以求得系数 <span class="math notranslate nohighlight">\(a_i\)</span> 和基 <span class="math notranslate nohighlight">\(\phi_i\)</span> ，这些系数和基就是输入的另外一种近似表达。</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{x} = \sum_{i=1}^k a_i \phi_i\]</div>
+<p>因此，它们可以用来表达输入I，这个过程也是自动学习得到的。如果我们在上述式子上加上L1的Regularity限制，得到：</p>
+<div class="math notranslate nohighlight">
+\[Min |I – O| + u\times (|a_1| + |a_2| +\dots+ |a_n|)\]</div>
+<p>这种方法被称为Sparse Coding。通俗的说，就是将一个信号表示为一组基的线性组合，而且要求只需要较少的几个基就可以将信号表示出来。“稀疏性”定义为：只有很少的几个非零元素或只有很少的几个远大于零的元素。要求系数 ai 是稀疏的意思就是说：对于一组输入向量，我们只想有尽可能少的几个系数远大于零。选择使用具有稀疏性的分量来表示我们的输入数据是有原因的，因为绝大多数的感官数据，比如自然图像，可以被表示成少量基本元素的叠加，在图像中这些基本元素可以是面或者线。同时，比如与初级视觉皮层的类比过程也因此得到了提升（人脑有大量的神经元，但对于某些图像或者边缘只有很少的神经元兴奋，其他都处于抑制状态）。</p>
+<p>稀疏编码算法是一种无监督学习方法，它用来寻找一组“超完备”基向量来更高效地表示样本数据。虽然形如主成分分析技术（PCA）能使我们方便地找到一组“完备”基向量，但是这里我们想要做的是找到一组“超完备”基向量来表示输入向量（也就是说，基向量的个数比输入向量的维数要大）。超完备基的好处是它们能更有效地找出隐含在输入数据内部的结构与模式。然而，对于超完备基来说，系数ai不再由输入向量唯一确定。因此，在稀疏编码算法中，我们另加了一个评判标准“稀疏性”来解决因超完备而导致的退化（degeneracy）问题。（详细过程请参考：UFLDL Tutorial稀疏编码）</p>
+</div>
+</div>
+</div>
+<div class="section" id="id19">
+<h2><a class="toc-backref" href="#id2">数据预处理</a><a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h2>
+<p>由于数据的强相关性, 实际训练中，数据点仅会落在分布空间中很小的区域中(特别是数据维度很高时),  而随机初始化的权重落入数据内部的概率很低，需要迭代很多次才能对数据进行有效的分割。可想而知不对数据进行预处理带来了多少运算 <strong>资源的浪费</strong> ，而且大量的数据外分割面在迭代时很可能会在刚进入数据中时就遇到了一个局部最优，导致 <strong>overfit</strong> 的问题。</p>
+<p>如果我们将数据减去其均值，数据点就分散开，这时一个随机分界面落入数据分布的概率增加了多少呢？2^n倍！如果我们使用去除相关性的算法（例如PCA和ZCA白化），数据不再是一个狭长的分布，随机分界面有效的概率就又大大增加了。不过计算协方差矩阵的特征值太耗时也太耗空间，我们一般最多只用到z-score处理，即每一维度减去自身均值，再除以自身标准差，这样能使数据点在每维上具有相似的宽度，可以起到一定的增大数据分布范围，进而使更多随机分界面有意义的作用。</p>
+</div>
+<div class="section" id="conv-deconv-transpose-conv-fractionally-strided-conv">
+<h2><a class="toc-backref" href="#id2">Conv &amp; Deconv/Transpose Conv/Fractionally Strided Conv</a><a class="headerlink" href="#conv-deconv-transpose-conv-fractionally-strided-conv" title="永久链接至标题">¶</a></h2>
+<div class="section" id="conv">
+<h3><a class="toc-backref" href="#id2">Conv</a><a class="headerlink" href="#conv" title="永久链接至标题">¶</a></h3>
+<p>output size: <span class="math notranslate nohighlight">\(\frac{n+2p-f}{s}+1\)</span></p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(n\)</span> 表示原图大小，<span class="math notranslate nohighlight">\(p\)</span> 表示padding, <span class="math notranslate nohighlight">\(f\)</span> 表示filer, <span class="math notranslate nohighlight">\(s\)</span> 表示stride</p>
+</div></blockquote>
+</div>
+<div class="section" id="transpose-conv">
+<h3><a class="toc-backref" href="#id2">Transpose Conv</a><a class="headerlink" href="#transpose-conv" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>的参数只是原卷积的转置，并不原卷积的可逆运算
+逆卷积(deconv)相对于卷积在神经网络结构的正向和反向传播中做相反的运算, deconv的参数只是原卷积的转置，并不是原卷积的可逆运算，因此转置卷积(Transposed Convolution)是一个更为合适的叫法。</p>
+<p>x upsampling with 3x3 filter and stride of 2</p>
+<img alt="../_images/conv2d_transpose.png" src="../_images/conv2d_transpose.png" />
+<p><a class="reference external" href="https://github.com/vdumoulin/conv_arithmetic">更多图示</a></p>
+</div></blockquote>
+</div>
+<div class="section" id="dilated-conv">
+<h3><a class="toc-backref" href="#id2">Dilated Conv</a><a class="headerlink" href="#dilated-conv" title="永久链接至标题">¶</a></h3>
+</div>
+</div>
+<div class="section" id="maxpooling-unpooling">
+<h2><a class="toc-backref" href="#id2">Maxpooling &amp; Unpooling</a><a class="headerlink" href="#maxpooling-unpooling" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>Unpooling: In the convnet, the max pooling operation is non-invertible, however we can obtain an approximate inverse by recording the locations of the maxima within each pooling region in a set of switch variables. In the deconvnet, the unpooling operation uses these switches to place the reconstructions from the layer above into appropriate locations, preserving the structure of the stimulus.</p>
+<img alt="../_images/Pooling.png" src="../_images/Pooling.png" />
+</div></blockquote>
+</div>
+<div class="section" id="id21">
+<h2><a class="toc-backref" href="#id2">激活函数</a><a class="headerlink" href="#id21" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>When training a deep network, it is important to use a non-linear activation each hidden layer.
+This is because multiple layers of linear functions would itself compute only a linear function
+of the input (i.e., composing multiple linear functions together results in just another linear function),
+and thus be no more expressive than using just a single layer of hidden units.</p>
+<div class="figure align-center" id="id44">
+<img alt="../_images/activation_functions.png" src="../_images/activation_functions.png" />
+<p class="caption"><span class="caption-text">不同激活函数</span><a class="headerlink" href="#id44" title="永久链接至图片">¶</a></p>
+</div>
+</div></blockquote>
+<div class="section" id="sigmoid">
+<h3><a class="toc-backref" href="#id2">1、sigmoid函数</a><a class="headerlink" href="#sigmoid" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}f(x) &amp;=\frac{1}{1+e^{-x}} \\
+f'(x) &amp;= f(x)(1-f(x))\end{split}\]</div>
+<div class="figure align-center" id="id45">
+<img alt="../_images/sigmoid.png" src="../_images/sigmoid.png" />
+<p class="caption"><span class="caption-text">sigmoid 激活函数及其导数</span><a class="headerlink" href="#id45" title="永久链接至图片">¶</a></p>
+</div>
+<dl class="simple">
+<dt>sigmoid将一个实数输入映射到 <span class="math notranslate nohighlight">\([0,1]\)</span> 范围内，使用sigmoid作为激活函数存在以下几个问题：</dt><dd><ul class="simple">
+<li><p>无论是前向还是后向传播，计算量都相对大</p></li>
+<li><p>梯度饱和/梯度弥散(vanishing gradient/ gradient diffusion): 在sigmoid接近饱和区时，变换太缓慢，导数趋于0，这种情况会造成信息丢失</p></li>
+<li><p>函数输出不是以 <span class="math notranslate nohighlight">\(0\)</span> 为中心——而我们更偏向于当激活函数的输入是 <span class="math notranslate nohighlight">\(0\)</span> 时，输出也是 <span class="math notranslate nohighlight">\(0\)</span> 的函数。</p></li>
+</ul>
+</dd>
+</dl>
+<p>更适用于概率问题，如rnn 等</p>
+</div></blockquote>
+</div>
+<div class="section" id="tanh">
+<h3><a class="toc-backref" href="#id2">2、tanh函数</a><a class="headerlink" href="#tanh" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[f(x) &amp;=\frac{e^x-e^{-x}}{e^x+e^{-x}}\]</div>
+<div class="figure align-center" id="id46">
+<img alt="../_images/tanh.png" src="../_images/tanh.png" />
+<p class="caption"><span class="caption-text">tanh 激活函数及其导数</span><a class="headerlink" href="#id46" title="永久链接至图片">¶</a></p>
+</div>
+<p>tanh函数将一个实数输入映射到 <span class="math notranslate nohighlight">\([-1,1]\)</span> 范围内，当输入为0时，tanh函数输出为 <span class="math notranslate nohighlight">\(0\)</span> ，符合我们对激活函数的要求。然而，tanh函数也存在梯度饱和问题，导致训练效率低下。</p>
+</div></blockquote>
+</div>
+<div class="section" id="relu-rectified-linear-unit">
+<h3><a class="toc-backref" href="#id2">3、ReLU(Rectified Linear Unit)</a><a class="headerlink" href="#relu-rectified-linear-unit" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[f(x)=\max(0, x)\]</div>
+<div class="figure align-center" id="id47">
+<img alt="../_images/ReLU.png" src="../_images/ReLU.png" />
+<p class="caption"><span class="caption-text">ReLU 激活函数及其导数</span><a class="headerlink" href="#id47" title="永久链接至图片">¶</a></p>
+</div>
+<dl class="simple">
+<dt>相比sigmoid和tanh函数，ReLU激活函数的优点在于(因为其分段线性性质，导致其前传，后传，求导都是分段线性)：</dt><dd><ul class="simple">
+<li><p>梯度不饱和。其梯度计算公式为： <span class="math notranslate nohighlight">\(1\{x&gt;0\}\)</span> ，因此在反向传播过程中，减轻了梯度弥散的问题，神经网络前几层的参数也可以很快的更新。</p></li>
+<li><p>计算速度快。正向传播过程中，sigmoid和tanh函数计算激活值时需要计算指数，而ReLU函数仅需要设置阈值；同时，ReLU函数的导数计算更快，程序实现就是一个if-else语句，而sigmoid函数要进行浮点四则运算。因此ReLU可以极大地加快收敛速度。(相比tanh函数，收敛速度可以加快6倍。)</p></li>
+<li><p>relu函数在负半区的导数为0 ，所以一旦神经元激活值进入负半区，那么梯度就会为0，也就是说这个神经元不会经历训练，即所谓的稀疏性。(这点存疑： Learning activations that are sparse doesn’t really seem to matter either. Five years ago, people thought that part of why relus worked well was that they were sparse, but it turns out that all that matters is that they are piecewise linear. Maxout can beat relus in some contexts and performs about the same as relus in other contexts, and it’s not sparse at all, 进一步可 参考PReLU论文)</p></li>
+<li><p>在生物上的合理性，它是单边的，相比sigmoid和tanh，更符合生物神经元的特征。</p></li>
+</ul>
+</dd>
+<dt>缺点:</dt><dd><ul class="simple">
+<li><p>不能用Gradient-Based方法。同时如果de-active了，容易无法再次active。不过有办法解决，使用maxout激活函数, PReLU等。或采用Xavier初始化方法，以及避免将learning rate设置太大或使用adagrad等自动调节learning rate的算法</p></li>
+<li><p>not zero centered output</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>使用ReLU时，要注意learning rate 的设置, learning rate 不能太高，否则可能让某些神经元达到死寂状态，不可逆转，然后就再也学不到东西了。如果要克服这点，可以用 Leaky ReLU，PReLU 或 RReLU</p>
+<p>Relu配合的sparsity和dropout有何不同？</p>
+<ul class="simple">
+<li><p>Relu配合使用sparsity是为了加入非线性变换(Relu本身就会输出为0)，而dropout是为了防止过拟合，同时训练多个随机的网络。</p></li>
+<li><p>Dropout是随机的，而稀疏模型一般来说不是随机的。</p></li>
+<li><p>ReLU 的稀疏机理和droupout 的不同，droupout 等效于动态L2规范带来的稀疏，是通过打压 weight 来实现稀疏的；ReLU 则是因为输入为零导致的，这样多层输入输出更贴近于原始高维数据层的稀疏度</p></li>
+</ul>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="leaky-relu">
+<h3><a class="toc-backref" href="#id2">4、Leaky ReLU</a><a class="headerlink" href="#leaky-relu" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}f(x) = \left\{
+\begin{array}{ll}
+x &amp; \textrm{if } x \ge 0 \\
+0.01x &amp; \textrm{otherwise}
+\end{array} \right.\end{split}\]</div>
+<div class="figure align-center" id="id48">
+<img alt="../_images/LeakyReLU.png" src="../_images/LeakyReLU.png" />
+<p class="caption"><span class="caption-text">Leaky ReLU 激活函数及其导数</span><a class="headerlink" href="#id48" title="永久链接至图片">¶</a></p>
+</div>
+<p>理论上来讲，Leaky ReLU有ReLU的所有优点，外加不会有Dead ReLU问题，但是在实际操作当中，并没有完全证明Leaky ReLU总是好于ReLU</p>
+</div></blockquote>
+</div>
+<div class="section" id="prelu-parametric-rectified-linear-unit">
+<h3><a class="toc-backref" href="#id2">5、PReLU(Parametric Rectified Linear Unit)</a><a class="headerlink" href="#prelu-parametric-rectified-linear-unit" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}f(x) = \left\{
+\begin{array}{ll}
+x &amp; \textrm{if } x \ge 0 \\
+a_ix &amp; \textrm{otherwise}
+\end{array} \right.\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>更新 <span class="math notranslate nohighlight">\(a_i\)</span> 时不施加权重衰减(L2正则化)，因为这会把 <span class="math notranslate nohighlight">\(a_i\)</span> 很大程度上push到0。事实上，即使不加正则化，试验中 <span class="math notranslate nohighlight">\(a_i\)</span> 也很少有超过1的。</p>
+<p><span class="math notranslate nohighlight">\(a_i\)</span> 被初始化为0.25</p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="rrelu-randomized-relu">
+<h3><a class="toc-backref" href="#id2">6、RReLU(Randomized ReLU)</a><a class="headerlink" href="#rrelu-randomized-relu" title="永久链接至标题">¶</a></h3>
+<p>RReLU</p>
+</div>
+<div class="section" id="elu-exponential-linear-units">
+<h3><a class="toc-backref" href="#id2">7、ELU(Exponential Linear Units)</a><a class="headerlink" href="#elu-exponential-linear-units" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}f(x) = \left\{
+\begin{array}{ll}
+x &amp; \textrm{if } x \ge 0 \\
+\alpha (e^x-1) &amp; \textrm{otherwise}
+\end{array} \right.\end{split}\]</div>
+<div class="figure align-center" id="id49">
+<img alt="../_images/ELU.png" src="../_images/ELU.png" />
+<p class="caption"><span class="caption-text">ELU 激活函数及其导数</span><a class="headerlink" href="#id49" title="永久链接至图片">¶</a></p>
+</div>
+<p>ELU也是为解决ReLU存在的问题而提出，显然，ELU有ReLU的基本所有优点，以及：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>不会有Dead ReLU问题</p></li>
+<li><p>输出的均值接近0，zero-centered</p></li>
+</ul>
+</div></blockquote>
+<p>它的一个小问题在于计算量稍大。类似于Leaky ReLU，理论上虽然好于ReLU，但在实际使用中目前并没有好的证据ELU总是优于ReLU。</p>
+</div></blockquote>
+</div>
+<div class="section" id="maxout">
+<h3><a class="toc-backref" href="#id2">8、Maxout</a><a class="headerlink" href="#maxout" title="永久链接至标题">¶</a></h3>
+<dl class="simple">
+<dt>关于线性：</dt><dd><ul class="simple">
+<li><p>便于优化的优点以外，分段线性函数可以让regularize变得更加容易</p></li>
+<li><p>线性强的激活函数更容易找到全局极优, 有个日本人理论证明了纯线性激活函数的局部极优解全都是全局最优解(段放)</p></li>
+</ul>
+</dd>
+<dt>关于稀疏性的好处有：</dt><dd><ul class="simple">
+<li><p>信息解离：相当于将高度耦合的变量解耦，这样表示就能容忍噪声从而更具鲁棒性；</p></li>
+<li><p>信息容量可变的表示：如果input信息量大，那么会有很多神经元active以保存这些信息；而如果input信息量小，那么就会有很多神经元inactive。这也是variable-size data structure，机器学习模型中，变量多了怕过拟合，变量不够怕欠拟合。这里提供了一种解决思路。</p></li>
+<li><p>线性可分：低维到高维从而分类，这不正是SVM想做的？</p></li>
+<li><p>稀疏分布式表示：2个0-1变量的4种可能组合，n个0-1变量有2^n种组合。n越大，表现力就越强。</p></li>
+</ul>
+</dd>
+<dt>关于梯度变化:</dt><dd><ul class="simple">
+<li><p>你如果仔细看back propagation这个算法在深度网络中的求导，会发现大量的W相乘，如果det(W)&gt;1随着网络加深，gradient explosion，如果det(W)&lt;1随着网络加深，W连乘越来越多，gradient vanishing…所以用relu，max(0,a), 间接regularize gradient.</p></li>
+</ul>
+</dd>
+<dt>关于 zero-centered:</dt><dd><ul class="simple">
+<li><p>会导致模型训练的收敛速度变慢。举例来讲，对 <span class="math notranslate nohighlight">\(\sigma(\sum_i w_i x_i + b)\)</span> ，如果所有 <span class="math notranslate nohighlight">\(x_i\)</span> 均为正数或负数，那么其对 <span class="math notranslate nohighlight">\(w_i\)</span> 的导数总是正数或负数，这会导致如下图红色箭头所示的阶梯式更新，这显然并非一个好的优化路径。所以，总体上来讲，训练深度学习网络尽量使用zero-centered数据 (可以经过数据预处理实现) 和zero-centered输出。 <a class="reference external" href="https://zhuanlan.zhihu.com/p/25110450">参考</a></p></li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="id23">
+<h2><a class="toc-backref" href="#id2">反向传播算法</a><a class="headerlink" href="#id23" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id24">
+<h3><a class="toc-backref" href="#id2">1 公式推导</a><a class="headerlink" href="#id24" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>以下推导基于单样本</p>
+</div>
+<p>令 <span class="math notranslate nohighlight">\(w_{jk}^l\)</span> 表示第 <span class="math notranslate nohighlight">\(l−1\)</span> 层第 <span class="math notranslate nohighlight">\(k\)</span> 个单元到第 <span class="math notranslate nohighlight">\(l\)</span> 层第 <span class="math notranslate nohighlight">\(j\)</span> 个单元之间的 <strong>连接权值</strong> ， <span class="math notranslate nohighlight">\(b_j^l\)</span> 、 <span class="math notranslate nohighlight">\(a_j^l\)</span> 、<span class="math notranslate nohighlight">\(z_j^l\)</span> 分别表示第 <span class="math notranslate nohighlight">\(l\)</span> 层第 <span class="math notranslate nohighlight">\(j\)</span> 个单元的 <strong>偏置项</strong> 、 <strong>激活值</strong> 和 <strong>输入加权和</strong> ，如下图所示：</p>
+<img alt="../_images/bp1.png" src="../_images/bp1.png" />
+<img alt="../_images/bp2.png" src="../_images/bp2.png" />
+<p>则神经网络的计算步骤（前向传播步骤）如下：</p>
+<blockquote>
+<div><table class="docutils align-center">
+<colgroup>
+<col style="width: 62%" />
+<col style="width: 38%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(z_j^l=\sum_k w_{jk}^l a_k^{l-1}
++b_j^l\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(z^l=w^la^{l-1}
++b^l\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(a_j^l=\sigma(z_j^l)=\sigma\left
+(\sum_k w_{jk}^la_k^{l-1}+b_j^l\right)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(a^l=\sigma\left(
+w^la^{l-1}+b^l\right)\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>为了计算损失函数对 <span class="math notranslate nohighlight">\(w_{jk}^l\)</span> 和 <span class="math notranslate nohighlight">\(b_j^l\)</span> 的偏导，先引入 <span class="math notranslate nohighlight">\(\delta_j^l\)</span> 表示 <span class="math notranslate nohighlight">\(l\)</span> 层第 <span class="math notranslate nohighlight">\(j\)</span> 个神经元的残差： <span class="math notranslate nohighlight">\(\delta_j^l=\frac{\partial C}{\partial z_j^l}\)</span> , 根据链式法则（chain rule），输出层的误差可表示为：</p>
+<div class="math notranslate nohighlight" id="equation-bp1">
+<span class="eqno">(1)<a class="headerlink" href="#equation-bp1" title="公式的永久链接">¶</a></span>\[\begin{split}\delta_j^L &amp;=\frac{\partial C}{\partial z_j^L} \\
+&amp;=\sum_k \frac{\partial C}{\partial a_k^L} \frac{\partial a_k^L}{\partial z_j^L}\\
+&amp;=\frac{\partial C}{\partial a_j^L} \frac{\partial a_j^L}{\partial z_j^L}\\
+&amp;=\frac{\partial C}{\partial a_j^L} \sigma'(z_j^L)\\\end{split}\]</div>
+<p>上式也可以写为： <span class="math notranslate nohighlight">\(\delta^L =\nabla_a C\odot \sigma'(z^L)\)</span> ，采用不同损失函数或激活函数时, <a class="reference internal" href="#equation-bp1">(1)</a> 的表达有所不同:</p>
+<blockquote>
+<div><table class="docutils align-center">
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>C为二次代价函数</p></th>
+<th class="head"><p>C为交叉熵</p></th>
+<th class="head"><p>softmax layer</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\delta^L =(a^L-y)
+\odot \sigma'(z^L)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\delta^L
+=(a^L-y)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\delta^L
+=(a^L-y)\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>对于任意一层（非输出层），在已知其下一层误差时，其误差可表示为：</p>
+<div class="math notranslate nohighlight" id="equation-bp2">
+<span class="eqno">(2)<a class="headerlink" href="#equation-bp2" title="公式的永久链接">¶</a></span>\[\begin{split}\delta_j^l &amp;=\frac{\partial C}{\partial z_j^l} \\
+&amp;=\sum_k \frac{\partial C}{\partial z_k^{l+1}} \frac{\partial z_k^{l+1}}{\partial z_j^l}\\
+&amp;=\sum_k \frac{\partial z_k^{l+1}}{\partial z_j^l}\delta_k^{l+1}\\
+&amp;=\sum_k w_{kj}^{l+1}\delta_k^{l+1}\sigma'(z_j^l)\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>上式中 <span class="math notranslate nohighlight">\(z_k^{l+1}=\sum_j w_{kj}^{l+1}a_j^l+b_k^{l+1}=\sum_j w_{kj}^{l+1}\sigma(z_j^l)+b_k^{l+1}\)</span></p>
+</div>
+<p>上式也可表示为: <span class="math notranslate nohighlight">\(\delta^l =((w^{l+1})^T\sigma ^{l+1})\odot \sigma'(z^L)\)</span></p>
+<p>根据上述两个式子，我们从最后一层起，可以逆向计算出任意一层的误差 <span class="math notranslate nohighlight">\(\delta_j^l\)</span> 。据此可计算出损失函数对 <span class="math notranslate nohighlight">\(w_{jk}^l\)</span> 和 <span class="math notranslate nohighlight">\(b_j^l\)</span> 的偏导如下：</p>
+<div class="math notranslate nohighlight" id="equation-bp3">
+<span class="eqno">(3)<a class="headerlink" href="#equation-bp3" title="公式的永久链接">¶</a></span>\[\begin{split}\frac{\partial C}{\partial b_j^l}&amp;=\frac{\partial C}{\partial z_j^l} \frac{\partial z_j^l}{\partial b_j^l} \\&amp;=\frac{\partial C}{\partial z_j^l}\\ &amp;=\delta_j^l\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-bp4">
+<span class="eqno">(4)<a class="headerlink" href="#equation-bp4" title="公式的永久链接">¶</a></span>\[\begin{split}\frac{\partial C}{\partial w_{jk}^l}&amp;=\frac{\partial C}{\partial z_j^l} \frac{\partial z_j^l}{\partial w_{jk}^l} \\&amp;=\frac{\partial C}{\partial z_j^l} a_k^{l-1}\\ &amp;=a_k^{l-1} \delta_j^l\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>当L2规则化时， <span class="math notranslate nohighlight">\(\frac{\partial C}{\partial w_{jk}^l}=a_k^{l-1} \delta_j^l+\lambda w_{jk}^l\)</span></p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id25">
+<h3><a class="toc-backref" href="#id2">2 算法步骤</a><a class="headerlink" href="#id25" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id26">
+<h4><a class="toc-backref" href="#id2">2.1 单个样本</a><a class="headerlink" href="#id26" title="永久链接至标题">¶</a></h4>
+<blockquote>
+<div><img alt="../_images/bp_step1.png" src="../_images/bp_step1.png" />
+</div></blockquote>
+</div>
+<div class="section" id="minibatch">
+<h4><a class="toc-backref" href="#id2">2.2 minibatch</a><a class="headerlink" href="#minibatch" title="永久链接至标题">¶</a></h4>
+<blockquote>
+<div><img alt="../_images/bp_step2.png" src="../_images/bp_step2.png" />
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id27">
+<h2><a class="toc-backref" href="#id2">过饱和问题</a><a class="headerlink" href="#id27" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>过饱和，即，会造成学习速度慢。</p>
+<p>以sigmoid函数（logistic neurons）为例，当 <span class="math notranslate nohighlight">\(x\)</span> 的绝对值变大时，函数值越来越平滑，趋于饱和，这个时候函数的导数趋于 <span class="math notranslate nohighlight">\(0\)</span> 。为了让神经网络学习得快一些，我们希望激活函数sigmoid的导数较大。 从数值上，大约让sigmoid的输入在 <span class="math notranslate nohighlight">\([-4,4]\)</span> 之间即可，见 <span class="xref std std-ref">fig_1</span> 。 我们知道，一个神经元j的输入是由前一层神经元的输出的加权和，因此，我们可以通过控制权重参数初始值的范围，使得神经元的输入落在我们需要的范围内。</p>
+</div></blockquote>
+<div class="section" id="id28">
+<h3><a class="toc-backref" href="#id2">1 输出层过饱和问题</a><a class="headerlink" href="#id28" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id29">
+<h4><a class="toc-backref" href="#id2">1.1 改变损失函数</a><a class="headerlink" href="#id29" title="永久链接至标题">¶</a></h4>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[C=-\frac{1}{n}\sum_x\sum_j\left[y_j\ln a_j^L+(1-y_j)\ln (1-a_j^L)\right]\]</div>
+</div></blockquote>
+</div>
+<div class="section" id="id30">
+<h4><a class="toc-backref" href="#id2">1.2 改变激活函数</a><a class="headerlink" href="#id30" title="永久链接至标题">¶</a></h4>
+<blockquote>
+<div><p>使用 softmax output layer，ReLU</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="id31">
+<h3><a class="toc-backref" href="#id2">2 隐含层过饱和问题</a><a class="headerlink" href="#id31" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id32">
+<h4><a class="toc-backref" href="#id2">2.1 权重和偏置量的初始化方法</a><a class="headerlink" href="#id32" title="永久链接至标题">¶</a></h4>
+<blockquote>
+<div><p>1、将权重初始化为均值 <span class="math notranslate nohighlight">\(0\)</span> ，方差 <span class="math notranslate nohighlight">\(1/\sqrt{n_{in}}\)</span> 的高斯分布；偏置量为均值 <span class="math notranslate nohighlight">\(0\)</span> ，方差为 <span class="math notranslate nohighlight">\(1\)</span> 的高斯分布。（提速的同时也会改善效果？后文说明）</p>
+<p>2、权重初始化为 <span class="math notranslate nohighlight">\(\left [ -\frac{1}{\sqrt{n_{in}}}, \frac{1}{\sqrt{n_{in}}} \right]\)</span> 的均匀随机取值。（其中 <span class="math notranslate nohighlight">\(n_{in}\)</span> 是一个神经元的输入量）</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>为了说明这样取值的合理性，先简单回顾一下几点基本知识：</p>
+<ul class="simple">
+<li><p>符合均匀分布 <span class="math notranslate nohighlight">\(U(a,b)\)</span> 的随机变量的数学期望和方差分别是： <span class="math notranslate nohighlight">\(E(x)=\frac{a+b}{2}\)</span> 、 <span class="math notranslate nohighlight">\(D(x)=\frac{(b−a)^2}{12}\)</span></p></li>
+<li><p>如果随机变量 <span class="math notranslate nohighlight">\(X\)</span> 、 <span class="math notranslate nohighlight">\(Y\)</span> 是相互独立的，那么 <span class="math notranslate nohighlight">\(Var(X+Y)=Var(X)+Var(Y)\)</span> ，如果二者相互独立且均值为 <span class="math notranslate nohighlight">\(0\)</span> ，那么 <span class="math notranslate nohighlight">\(Var(X\times Y)=Var(X)\times Var(Y)\)</span></p></li>
+</ul>
+<p>因此，如果限制经元的输入信号 <span class="math notranslate nohighlight">\((x_i)\)</span> 均值为 <span class="math notranslate nohighlight">\(0\)</span> ，标准差为 <span class="math notranslate nohighlight">\(1\)</span> ，那么</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[Var(w_i)=(\frac{2}{\sqrt{n_{in}}})^2/12=\frac{1}{3n_{in}}\]</div>
+<div class="math notranslate nohighlight">
+\[Var(\sum_{i=1}^{n_{in}}w_ix_i)=n_{in}\times Var(w_i)=\frac{1}{3}\]</div>
+</div></blockquote>
+<p>也就是说，随机的 <span class="math notranslate nohighlight">\(n_{in}\)</span> 个输入信号加权——其中权重分布如上，服从均值为 <span class="math notranslate nohighlight">\(0\)</span> ，方差为 <span class="math notranslate nohighlight">\(1/3\)</span> 的正态分布，且与 <span class="math notranslate nohighlight">\(n_{in}\)</span> 无关。所以神经元的输入落在区间 <span class="math notranslate nohighlight">\([−4,4]\)</span> 的概率非常小。更一般的形式为：</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\sum_{i=0}^{n_{in}}&lt;w_ix_i&gt;=\sum_{i=0}^{n_{in}}&lt;w_i&gt;&lt;x_i&gt;=0\]</div>
+<div class="math notranslate nohighlight">
+\[\left&lt;\left(\sum_{i=0}^{n_{in}}w_ix_i\right)\left(\sum_{i=0}^{n_{in}}w_ix_i\right)\right&gt;=\sum_{i=0}^{n_{in}}&lt;w_i^2&gt;&lt;x_i^2&gt;=\sigma^2n_{in}\]</div>
+</div></blockquote>
+</div>
+<p>3、权重参数初始化从区间均匀随机取值</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Hiden layer 权重的初始化 <a class="reference external" href="http://deeplearning.net/tutorial/references.html#xavier10">Xavier10</a> ：对称区间上的均匀采样，区间的选择根据激活函数确定：</dt><dd><ul class="simple">
+<li><p>当选用tanh时， <span class="math notranslate nohighlight">\(\left [ -\sqrt{\frac{6}{n_{in}+n_{out}}}, \sqrt{\frac{6}{n_{in}+n_{out}}}\right]\)</span></p></li>
+<li><p>当选用sigmoid时， <span class="math notranslate nohighlight">\(\left [ -4\sqrt{\frac{6}{n_{in}+n_{out}}}, 4\sqrt{\frac{6}{n_{in}+n_{out}}}\right]\)</span></p></li>
+</ul>
+</dd>
+</dl>
+<p>其中， <span class="math notranslate nohighlight">\(n_{in}\)</span> 和 <span class="math notranslate nohighlight">\(n_{out}\)</span> 分别表示前一层和本层的神经元个数。这样的初始化能保证在训练初期，激活函数的信息能容易向前后传输而不至于过饱和。</p>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>theano中CNN的fan_out 怎么算的？</p>
+</div>
+</div></blockquote>
+<p>4、其他场景的初始值方法[2]（[2] Bengio, Yoshua. “Practical recommendations for gradient-based training of deep architectures.” Neural Networks: Tricks of the Trade. Springer Berlin Heidelberg, 2012. 437-478.）</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>in the case of RBMs, a zero-mean Gaussian with a small standard deviation around 0.1 or 0.01 works well (Hinton, 2010) to initialize the weights.</p></li>
+<li><p>Orthogonal random matrix initialization, i.e. W = np.random.randn(ndim, ndim); u, s, v = np.linalg.svd(W) then use u as your initialization matrix.</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="id33">
+<h4><a class="toc-backref" href="#id2">2.2 更换激励函数</a><a class="headerlink" href="#id33" title="永久链接至标题">¶</a></h4>
+<blockquote>
+<div><p>ReLU、maxout</p>
+</div></blockquote>
+</div>
+<div class="section" id="momentum">
+<h4><a class="toc-backref" href="#id2">2.3 使用基于momentum的随机梯度下降</a><a class="headerlink" href="#momentum" title="永久链接至标题">¶</a></h4>
+</div>
+<div class="section" id="id34">
+<h4><a class="toc-backref" href="#id2">2.4 近期出现的</a><a class="headerlink" href="#id34" title="永久链接至标题">¶</a></h4>
+<blockquote>
+<div><p>高速公路网络（highway network）
+深度残差学习（deep residual learning，152层）</p>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="overfitting">
+<h2><a class="toc-backref" href="#id2">解决overfitting问题</a><a class="headerlink" href="#overfitting" title="永久链接至标题">¶</a></h2>
+<div class="section" id="l1-l2-regularization">
+<h3><a class="toc-backref" href="#id2">1 L1/L2 规则化(regularization)</a><a class="headerlink" href="#l1-l2-regularization" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p><strong>基本思路</strong> 是减小不重要的参数对结果的影响而有用的权重则不会受到Weight decay的影响,这种思路与Dropout的思路原理上十分相似。</p>
+<p>给代价函数加上一项 <strong>规则化项</strong> (regularization term):</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[C=C_0+\lambda \Vert \theta \Vert_p^p\]</div>
+</div></blockquote>
+<p>其中， <span class="math notranslate nohighlight">\(\Vert \theta \Vert_p^p = \left ( \sum_{j=0}^{|\theta |} |\theta_j|^p\right)^{\frac{1}{p}}\)</span> 是 <span class="math notranslate nohighlight">\(\theta\)</span> 的 <span class="math notranslate nohighlight">\(L_p\)</span> 范数， <span class="math notranslate nohighlight">\(\lambda&gt;0\)</span> 是规则化参数(regularization parameter)，控制着规则化参数的相对重要性。这项技术其实就是对最小化损失函数与寻找小的权重这二个问题的折中(the network prefers to learn small weight, large weights will only be allowed if they considerably improve the first part of the cost function)。二者的相对重要性取决于 <span class="math notranslate nohighlight">\(\lambda\)</span> ——小的时候更希望最小化损失函数，大的时候希望取得小的权重。 <span class="math notranslate nohighlight">\(p\)</span> 通常取为1和2</p>
+</div></blockquote>
+<dl class="simple">
+<dt>为什么这种妥协可以解决过拟合？</dt><dd><p>小的权重意味着小的输入改变不会造成大的输出改变，也就是说，网络学习的是训练集中的普遍规则；而大的权重意味着小的输入改变会造成大的输出改变，也就是说，网络学习的是带有噪声影响的较为复杂的模型h。显然前者就是权重的衰减做的事，这可以强制网络学习简单规则而忽略噪声，从而减轻过拟合。这并不能完全解释，但作为一种解释。</p>
+</dd>
+<dt>为什么偏置量的大小不考虑？</dt><dd><p>偏置量的大小并不会造成输出对输入的敏感，因此不考虑。但大的偏置量会使得神经元容易饱和——这其实是我们希望的，因此一般不将其纳入规则化。</p>
+</dd>
+</dl>
+<p>这个方法还有一个优势，就是其结果的可重复性。未规则化的损失函数可能陷入极小值——这往往取决于初始权重的设置，但规则化后就可以避免这个问题，因此结果也往往相近。</p>
+<div class="section" id="weight-decay-l2">
+<h4><a class="toc-backref" href="#id2">1.1 权重衰减(weight decay)/L2规则化</a><a class="headerlink" href="#weight-decay-l2" title="永久链接至标题">¶</a></h4>
+<p>给代价函数加上一项规则化项：</p>
+<div class="math notranslate nohighlight">
+\[C=C_0+\frac{\lambda}{2n}\sum_ww^2\]</div>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>交叉熵</p></td>
+<td><p><span class="math notranslate nohighlight">\(C=-\frac{1}{n}\sum_{x_j}\left[
+y_j\ln a_j^L+(1-y_j)\ln (1-a_j^L) \right
+]+\frac{\lambda}{2n}\sum_ww^2\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>均方差</p></td>
+<td><p><span class="math notranslate nohighlight">\(C=\frac{1}{2n}\sum_x\Vert y-a^L
+\Vert ^2+\frac{\lambda}{2n}\sum_ww^2\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="l1">
+<h4><a class="toc-backref" href="#id2">1.2 L1规则化</a><a class="headerlink" href="#l1" title="永久链接至标题">¶</a></h4>
+<div class="math notranslate nohighlight">
+\[C=C_0+\frac{\lambda}{2n}\sum_w\|w\|\]</div>
+<p>其结果就是，网络会关注几个重要的连接而其余权重基本变为0</p>
+</div>
+</div>
+<div class="section" id="early-stopping">
+<h3><a class="toc-backref" href="#id2">2 early-stopping</a><a class="headerlink" href="#early-stopping" title="永久链接至标题">¶</a></h3>
+<p>通过监控模型在validation 数据集上的性能（如显著性差异（statistical significance）等）来及时停止优化过程。当模型在validation 数据上的性能不再提升，或者随着优化过程甚至降低了性能，就停止优化步骤。</p>
+<p>The validation_frequency should always be smaller than thepatience. The code should check at least two times how it performs before running out of patience.</p>
+</div>
+<div class="section" id="dropout">
+<h3><a class="toc-backref" href="#id2">3 dropout</a><a class="headerlink" href="#dropout" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id35">
+<h4><a class="toc-backref" href="#id2">3.1 原版</a><a class="headerlink" href="#id35" title="永久链接至标题">¶</a></h4>
+<p><a class="reference external" href="http://arxiv.org/pdf/1207.0580.pdf">Improving neural networks by preventing co-adaptation of feature detectors</a>  by Geoffrey Hinton, Nitish Srivastava, Alex Krizhevsky, Ilya Sutskever, and Ruslan Salakhutdinov (2012).</p>
+<p><a class="reference external" href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">ImageNet Classification with Deep Convolutional Neural Networks</a> by Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton (2012).</p>
+<p>随机抽取隐含层的一半训练网络（每个神经元被移除的概率是50%），然后不断重复这个过程。这一方法类似于对同一批数据训练不同的网络再做平均，换句话说，它是训练一个在缺少某些输入时依旧鲁棒的网络，类似L1/2 规则化的思路，因此可以消除过拟合。</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>droupout让隐含层的某些神经元权重不工作，这些神经元可以暂时认为不是网络的一部分，但权值保留下来（只是暂时不更新而已，因为下一次可能又工作了）[好像不对！]</p>
+</div>
+<p>在代码实现层面，以前我们网络的计算公式是：</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}z^l=w^la^{l-1}+b^l \\
+a^l=\sigma\left (w^la^{l-1}+b^l \right)\end{split}\]</div>
+</div></blockquote>
+<p>采用dropout后计算公式就变成了：</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}r_j^l\sim Bernoulli(p) \\
+\tilde{a}^l=r^l\odot a^l \\
+z^l=w^l\tilde{a}^{l-1}+b^l \\
+a^l=\sigma\left (w^la^{l-1}+b^l \right)\end{split}\]</div>
+</div></blockquote>
+<p>上面公式中Bernoulli函数，是为了以概率 <span class="math notranslate nohighlight">\(p\)</span> ，随机生成一个 <span class="math notranslate nohighlight">\(0\)</span> 、 <span class="math notranslate nohighlight">\(1\)</span> 的向量。算法具体实现如下：</p>
+<ol class="arabic simple">
+<li><p>让某个神经元以概率p停止工作，即让它的激活值以概率p变为0。</p></li>
+<li><p>在屏蔽掉某些神经元使其激活值为0以后，还需要对向量 <span class="math notranslate nohighlight">\(\tilde{a}^l\)</span> 进行rescale，即乘以 <span class="math notranslate nohighlight">\(1/(1−p)\)</span> 。如果在训练阶段，经过置 <span class="math notranslate nohighlight">\(0\)</span> 后没有进行rescale，那么在测试的时候，就需要对权重进行rescale，即乘以 <span class="math notranslate nohighlight">\(p\)</span>。</p></li>
+</ol>
+<p>具体可参考 <a class="reference external" href="https://github.com/fchollet/keras/tree/master/keras">keras的dropout实现源码</a> ，其dropout所在的文件为: <a class="reference external" href="https://github.com/fchollet/keras/blob/master/keras/backend/theano_backend.py">theano_backend.py</a></p>
+<dl class="simple">
+<dt>为什么经过dropout需要进行rescale？</dt><dd><p>前面说过，dropout类似于平均网络模型。假设我们在训练阶段训练了 <span class="math notranslate nohighlight">\(1000\)</span> 个网络，每个网络生成的概率为 <span class="math notranslate nohighlight">\(p_i\)</span> ，那么在测试阶段，我们肯定要把这 <span class="math notranslate nohighlight">\(1000\)</span> 个网络的输出结果都计算一遍，将这 <span class="math notranslate nohighlight">\(1000\)</span> 个输出乘以各自的概率求得期望值，这个期望值才是最后的结果。所以在测试阶段（不采用dropout），我们就需要对所有的元素网络所得到的输出做一个期望。事实上，由于我们在测试时不做任何的参数丢弃，dropout layer 把进来的东西原样输出，导致在统计意义下，测试时 每层 dropout layer的输出比训练时的输出多加了 <span class="math notranslate nohighlight">\([(1-p)\times 100]\)</span> % units 的输出。 即 <span class="math notranslate nohighlight">\([p\times 100]\)</span> % 个units 的和  是同训练时随机采样得到的子网络的输出一致，另 <span class="math notranslate nohighlight">\([(1-p)\times 100]\)</span> % 的units的和  是本来应该扔掉但是又在测试阶段被保留下来的。所以，为了使得dropout layer 下一层的输入和训练时具有相同的“意义”和“数量级”，我们要对测试时的伪dropout layer的输出（即下层的输入）做 rescale，表示最后的sum中只有这么大的概率，或者这么多的部分被保留。这样一来，只要一次测试，将原 <span class="math notranslate nohighlight">\(2^n\)</span> 个子网络的参数全部考虑进来了，并且最后的 rescale 保证了后面一层的输入仍然符合相应的物理意义和数量级。</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id36">
+<h4><a class="toc-backref" href="#id2">3.2 maxout</a><a class="headerlink" href="#id36" title="永久链接至标题">¶</a></h4>
+<p>ICML2013，by Goodfellow</p>
+<p>maxout其实是一种激发函数形式。通常情况下，如果激发函数采用sigmoid函数的话，在前向传播过程中，隐含层节点的输出表达式为：</p>
+<div class="math notranslate nohighlight">
+\[h_i(x) = sigmoid(x^T W_{\dots i} + b_i)\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\mathit{W}\)</span> 一般是 <span class="math notranslate nohighlight">\(2\)</span> 维的，这里表示取出的是第 <span class="math notranslate nohighlight">\(i\)</span> 列，下标i前的省略号表示对应第 <span class="math notranslate nohighlight">\(i\)</span> 列中的所有行。但如果是maxout激发函数，则其隐含层节点的输出表达式为：</p>
+<div class="math notranslate nohighlight">
+\[h_i(x) = \max_{j\in [1,k]} z_{ij}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(z_{ij} = x^T\mathit{W}_{\dots ij} + b_ij\)</span> ， <span class="math notranslate nohighlight">\(\mathit{W} \in \mathbb{R}^{d\times m \times k}\)</span></p>
+<p>这里的 <span class="math notranslate nohighlight">\(\mathit{W}\)</span> 是 <span class="math notranslate nohighlight">\(3\)</span> 维的，尺寸为 <span class="math notranslate nohighlight">\(d\times m\times k\)</span> ，其中 <span class="math notranslate nohighlight">\(d\)</span> 表示输入层节点的个数， <span class="math notranslate nohighlight">\(m\)</span> 表示隐含层节点的个数， <span class="math notranslate nohighlight">\(k\)</span> 表示每个隐含层节点对应了 <span class="math notranslate nohighlight">\(k\)</span> 个”隐隐含层”节点，这 <span class="math notranslate nohighlight">\(k\)</span> 个”隐隐含层”节点都是线性输出的，而maxout的每个节点就是取这 <span class="math notranslate nohighlight">\(k\)</span> 个”隐隐含层”节点输出值中最大的那个值。因为激发函数中有了max操作，所以整个maxout网络也是一种非线性的变换。因此当我们看到常规结构的神经网络时，如果它使用了maxout激发，则我们头脑中应该自动将这个”隐隐含层”节点加入。参考 <a class="reference external" href="http://www.slideshare.net/stjunya/maxout-networks">一个日文的maxout ppt</a> 中的一页ppt如下：</p>
+<blockquote>
+<div><img alt="../_images/maxout.png" src="../_images/maxout.png" />
+</div></blockquote>
+<p>maxout的拟合能力是非常强的，它可以拟合任意的的凸函数。最直观的解释就是任意的凸函数都可以由分段线性函数以任意精度拟合（学过高等数学应该能明白），而maxout又是取 <span class="math notranslate nohighlight">\(k\)</span> 个隐隐含层节点的最大值，这些”隐隐含层”节点也是线性的，所以在不同的取值范围下，最大值也可以看做是分段线性的（分段的个数与 <span class="math notranslate nohighlight">\(k\)</span> 值有关）。论文中的图1如下（它表达的意思就是可以拟合任意凸函数，当然也包括了ReLU了）：</p>
+<blockquote>
+<div><img alt="../_images/maxout2.png" src="../_images/maxout2.png" />
+</div></blockquote>
+<p>作者从数学的角度上也证明了这个结论，即只需2个maxout节点就可以拟合任意的凸函数了（相减），前提是”隐隐含层”节点的个数可以任意多，如下图所示：</p>
+<blockquote>
+<div><img alt="../_images/maxout3.png" src="../_images/maxout3.png" />
+</div></blockquote>
+</div>
+<div class="section" id="dropconnect">
+<h4><a class="toc-backref" href="#id2">3.3 DropConnect</a><a class="headerlink" href="#dropconnect" title="永久链接至标题">¶</a></h4>
+<p>ICML2013</p>
+<p>和maxout一样，DropConnect也是为了提高Deep Network的泛化能力的，两者都号称是对Dropout的改进。</p>
+<p>我们知道，Droupout是在训练过程中以一定概率 <span class="math notranslate nohighlight">\(1-p\)</span> 将隐含层节点的输出值清 <span class="math notranslate nohighlight">\(0\)</span> ，而用bp更新权值时，不再更新与该节点相连的权值。用公式描述如下：</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[r = m. \times a(Wv)\]</div>
+</div></blockquote>
+<p>其中 <span class="math notranslate nohighlight">\(v\)</span> 是 <span class="math notranslate nohighlight">\(n\times 1\)</span> 维的列向量， <span class="math notranslate nohighlight">\(W\)</span> 是 <span class="math notranslate nohighlight">\(d\times n\)</span> 维的矩阵， <span class="math notranslate nohighlight">\(m\)</span> 是个 ;math:<cite>dtimes 1</cite> 的 <span class="math notranslate nohighlight">\(01\)</span> 列向量， <span class="math notranslate nohighlight">\(a(x)\)</span> 是一个满足 <span class="math notranslate nohighlight">\(a(0)=0\)</span> 的激发函数形式。这里的 <span class="math notranslate nohighlight">\(m\)</span> 和 <span class="math notranslate nohighlight">\(a(Wv)\)</span> 相乘是对应元素的相乘。</p>
+<p>而DropConnect的思想也很简单，与Dropout不同的是，它不是随机将隐含层节点的输出清0，而是将节点中的每个与其相连的输入权值以 <span class="math notranslate nohighlight">\(1-p\)</span> 的概率清 <span class="math notranslate nohighlight">\(0\)</span> （一个是输出，一个是输入），其表达式如下：</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[r = a((M.\times W)v)\]</div>
+</div></blockquote>
+<p>两者的区别从下图基本可以看明白：</p>
+<blockquote>
+<div><img alt="../_images/dropconnect.png" src="../_images/dropconnect.png" />
+</div></blockquote>
+<p>下面主要来看DropConnect的trainning和inference两部分。</p>
+<dl>
+<dt>training部分</dt><dd><blockquote>
+<div><p>training部分和Dropout的training部分很相似，不过在使用DropConnect时，需要对每个example、 每个echo都随机sample一个 <span class="math notranslate nohighlight">\(M\)</span> 矩阵（元素值都是 <span class="math notranslate nohighlight">\(0\)</span> 或 <span class="math notranslate nohighlight">\(1\)</span> , 俗称mask矩阵）。算法流程如下：</p>
+</div></blockquote>
+<img alt="../_images/dropconnect2.png" src="../_images/dropconnect2.png" />
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>因为DropConnect只能用于全连接的网络层（和dropout一样），如果网络中用到了卷积，则用patch卷积时的隐层节点是不使用DropConnect的，因此上面的流程里有一个Extract feature步骤，该步骤就是网络前面那些非全连接层的传播过程，比如卷积+pooling.</p>
+</div>
+</dd>
+<dt>inference部分</dt><dd><blockquote>
+<div><p>DropConnect的inference部分和Dropout不同，在Dropout网络中进行inference时，是将所有的权重 :math:mathit{W} 都scale一个系数 <span class="math notranslate nohighlight">\(p\)</span> （作者证明这种近似在某些场合是有问题的，具体见其paper）。而在对DropConnect进行推理时，采用的是对每个输入（每个隐含层节点连接有多个输入）的权重进行高斯分布的采样。该高斯分布的均值与方差当然与前面的概率值 <span class="math notranslate nohighlight">\(p\)</span> 有关，满足的高斯分布为：</p>
+</div></blockquote>
+<div class="math notranslate nohighlight">
+\[u \sim \mathcal{N}(pWv, p(1-p)(W.\times W)(v.\times v))\]</div>
+</dd>
+</dl>
+<p>inference过程如下：</p>
+<blockquote>
+<div><img alt="../_images/dropconnect3.png" src="../_images/dropconnect3.png" />
+</div></blockquote>
+<p>由上面的过程可知，在进行inference时，需要对每个权重都进行sample，所以DropConnect速度会慢些。</p>
+<p>根据作者的观点，Dropout和DropConnect都类似模型平均，Dropout是 <span class="math notranslate nohighlight">\(2^|m|\)</span> 个模型的平均，而DropConnect是 <span class="math notranslate nohighlight">\(2^|M|\)</span> 个模型的平均（ <span class="math notranslate nohighlight">\(m\)</span> 是向量，<span class="math notranslate nohighlight">\(M\)</span> 是矩阵，取模表示矩阵或向量中对应元素的个数），从这点上来说，DropConnect模型平均能力更强（因为 <span class="math notranslate nohighlight">\(|M|&gt;|m|\)</span> ）。</p>
+<p>DropConnect源代码可以在作者项目主页 <a class="reference external" href="http://cs.nyu.edu/~wanli/dropc/">DropConnect project page.</a> 上下载，不过需要用到Cuda。</p>
+</div>
+</div>
+<div class="section" id="batch-normalization">
+<h3><a class="toc-backref" href="#id2">4 batch_normalization</a><a class="headerlink" href="#batch-normalization" title="永久链接至标题">¶</a></h3>
+<p>在每层 <span class="math notranslate nohighlight">\(Wx+b\)</span> 之后进行归一化, Normalization完成后，再加入了两个参数gamma和beta（这两个参数通过学习得到）</p>
+<p><a class="reference external" href="http://blog.csdn.net/happynear/article/details/44238541">参考</a></p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>像卷积层这样具有权值共享的层，Wx+b的均值和方差是对整张map求得的，在batch_size * channel * height * width这么大的一层中，对总共batch_size*height*width个像素点统计得到一个均值和一个标准差，共得到channel组参数</p>
+</div>
+<p>优点：</p>
+<ol class="arabic simple">
+<li><p>可以使用更高的学习率。如果每层的scale不一致，实际上每层需要的学习率是不一样的，同一层不同维度的scale往往也需要不同大小的学习率，通常需要使用最小的那个学习率才能保证损失函数有效下降，Batch Normalization将每层、每维的scale保持一致，那么我们就可以直接使用较高的学习率进行优化。</p></li>
+<li><p>移除或使用较低的dropout。 dropout是常用的防止overfitting的方法，而导致overfit的位置往往在数据边界处(边界处数据的损失函数相对较大，对学习的影响大于数据中心的点，但边界数据量小于数据中心的数据量，因此这个说法有待商榷)，如果初始化权重就已经落在数据内部，overfit现象就可以得到一定的缓解。论文中最后的模型分别使用10%、5%和0%的dropout训练模型，与之前的40%-50%相比，可以大大提高训练速度。</p></li>
+<li><p>降低L2权重衰减系数。 还是一样的问题，边界处的局部最优往往有几维的权重（斜率）较大，使用L2衰减可以缓解这一问题，现在用了Batch Normalization，就可以把这个值降低了，论文中降低为原来的5倍。</p></li>
+<li><p>取消Local Response Normalization层。 由于使用了一种Normalization，再使用LRN就显得没那么必要了。而且LRN实际上也没那么work。</p></li>
+<li><p>减少图像扭曲的使用。 由于现在训练epoch数降低，所以要对输入数据少做一些扭曲，让神经网络多看看真实的数据。</p></li>
+</ol>
+</div>
+<div class="section" id="id38">
+<h3><a class="toc-backref" href="#id2">5 人工增加训练集</a><a class="headerlink" href="#id38" title="永久链接至标题">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id39">
+<h2><a class="toc-backref" href="#id2">DL 中的优化方法</a><a class="headerlink" href="#id39" title="永久链接至标题">¶</a></h2>
+<p>On optimization methods for deep learning</p>
+<p>SGD优点：实现简单，当训练样本足够多时优化速度非常快。</p>
+<p>SGD缺点：需要人为调整很多参数，比如学习率，收敛准则等。另外，它是序列的方法，不利于GPU并行或分布式处理。</p>
+<p>各种deep learning中常见方法（比如说Autoencoder，RBM，DBN，ICA，Sparse coding）的区别是：目标函数形式不同。这其实才是最本质的区别，由于目标函数的不同导致了对其优化的方法也可能会不同，比如说RBM中目标函数跟网络能量有关，采用CD优化的，而Autoencoder目标函数为理论输出和实际输出的MSE，由于此时的目标函数的偏导可以直接被计算，所以可以用LBFGS，CG等方法优化，其它的类似。所以不能单从网络的结构来判断其属于Deep learning中的哪种方法。</p>
+<p>不同的优化算法有不同的优缺点，适合不同的场合，比如LBFGS算法在参数的维度比较低（一般指小于10000维）时的效果要比SGD和CG效果好，特别是带有convolution的模型。而针对高维的参数问题，CG的效果要比另2种好。也就是说一般情况下，SGD的效果要差一些，这种情况在使用GPU加速时情况一样，即在GPU上使用LBFGS和CG时，优化速度明显加快，而SGD算法优化速度提高很小。在单核处理器上，LBFGS的优势主要是利用参数之间的2阶近似特性来加速优化，而CG则得得益于参数之间的共轭信息，需要计算器Hessian矩阵。不过当使用一个大的minibatch且采用线搜索的话，SGD的优化性能也会提高。</p>
+<p>Adagrad</p>
+<p>Adadelta</p>
+<p>RMSprop</p>
+<p>Adam</p>
+</div>
+<div class="section" id="id40">
+<h2><a class="toc-backref" href="#id2">网络模型变化</a><a class="headerlink" href="#id40" title="永久链接至标题">¶</a></h2>
+<img alt="../_images/change_of_cnn.png" src="../_images/change_of_cnn.png" />
+<p>2012年AlexNet做出历史突破以来，直到GoogLeNet出来之前，主流的网络结构突破大致是网络更深（层数），网络更宽（神经元数）。所以大家调侃深度学习为“深度调参”，但是纯粹的增大网络的缺点：???</p>
+<p>那么解决上述问题的方法当然就是增加网络深度和宽度的同时减少参数，Inception就是在这样的情况下应运而生。</p>
+<div class="section" id="inception-google">
+<h3><a class="toc-backref" href="#id2">Inception (google）</a><a class="headerlink" href="#inception-google" title="永久链接至标题">¶</a></h3>
+<p>achieve very good performance at relatively low computational cost</p>
+<dl>
+<dt>V1</dt><dd><p>将1x1，3x3，5x5的conv和3x3的pooling，堆叠在一起，一方面增加了网络的width，另一方面增加了网络对尺度的适应性; 在3x3前，5x5前，max pooling后分别加上了1x1的卷积核起到了降低特征图厚度的作用</p>
+<img alt="../_images/Inception_block.png" src="../_images/Inception_block.png" />
+<img alt="../_images/GoogLeNet.jpg" src="../_images/GoogLeNet.jpg" />
+</dd>
+<dt>V2</dt><dd><p>V1 的基础上加入batch normalization(BN）层, 减少了Internal Covariate Shift（内部neuron的数据分布发生变化），使每一层的输出都规范化到一个N(0, 1)的高斯；另外一方面学习VGG用2个3x3的conv替代inception模块中的5x5，既降低了参数数量，也加速计算。</p>
+<img alt="../_images/Inception_v2_1.png" src="../_images/Inception_v2_1.png" />
+<p>使用3×3的已经很小了，那么更小的2×2呢？2×2虽然能使得参数进一步降低，但是不如另一种方式更加有效，那就是Asymmetric方式，即使用1×3和3×1两种来代替3×3的卷积核。这种结构在前几层效果不太好，但对特征图大小为12~20的中间层效果明显。</p>
+<img alt="../_images/Inception_v2_2.png" src="../_images/Inception_v2_2.png" />
+</dd>
+<dt>V3</dt><dd><p>分解(factorization) 的思路。将7x7分解成两个一维的卷积（1x7,7x1），3x3也是一样（1x3,3x1），这样的好处，既可以加速计算（多余的计算能力可以用来加深网络），又可以将1个conv拆成2个conv，使得网络深度进一步增加，增加了网络的非线性，还有值得注意的地方是网络输入从224x224变为了299x299，更加精细设计了35x35/17x17/8x8的模块。</p>
+</dd>
+<dt>V4</dt><dd><p>v4研究了Inception模块结合Residual Connection能不能有改进？发现ResNet的结构可以极大地加速训练，同时性能也有提升，得到一个Inception-ResNet v2网络，同时还设计了一个更深更优化的Inception v4模型，能达到与Inception-ResNet v2相媲美的性能</p>
+</dd>
+<dt>Inception-ResNet-v1</dt><dd><p>V3 + Residual Connection</p>
+</dd>
+<dt>Inception-ResNet-v2</dt><dd><p>V4 + Residual Connection</p>
+</dd>
+<dt>Xception</dt><dd><p>depthwise separable convolution, 这里每个block内的卷积结果不经过relu，block的结果经过relu</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="residual-microsoft">
+<h3><a class="toc-backref" href="#id2">Residual (Microsoft)</a><a class="headerlink" href="#residual-microsoft" title="永久链接至标题">¶</a></h3>
+<p>training with residual connections accelerates the training of Inception networks significantly</p>
+<p>深度残差学习</p>
+<dl class="simple">
+<dt>ResNetXt</dt><dd><p>提出来 cardinality 的概念, 卷积的group 操作</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="mobilenet-google">
+<h3><a class="toc-backref" href="#id2">MobileNet(google)</a><a class="headerlink" href="#mobilenet-google" title="永久链接至标题">¶</a></h3>
+<p>depthwise separable convolution, 卷积操作后都会跟一个Batchnorm和ReLU操作</p>
+<p>在基本不影响准确率的前提下大大减少计算时间（约为原来的1/9）和参数数量（约为原来的1/7）</p>
+</div>
+<div class="section" id="shufflenet">
+<h3><a class="toc-backref" href="#id2">ShuffleNet</a><a class="headerlink" href="#shufflenet" title="永久链接至标题">¶</a></h3>
+<p>channel shuffle、pointwise group convolutions和depthwise separable convolution来修改原来的ResNet单元来构成ShuffleNet unit, 达到了减少计算量和提高准确率的目的。channel shuffle解决了多个group convolution叠加出现的边界效应，pointwise group convolution和depthwise separable convolution主要减少了计算量。</p>
+<p><a class="reference external" href="https://www.zhihu.com/question/62478194/answer/199441791">网络变化的三个维度</a></p>
+</div>
+<div class="section" id="highway-network">
+<h3><a class="toc-backref" href="#id2">Highway Network</a><a class="headerlink" href="#highway-network" title="永久链接至标题">¶</a></h3>
+<p>解决网络深度加深，梯度信息回流受阻造成的网络训练困难</p>
+<p>方法：受LSTM技术启发，采用门技术——增加 T(Transform) 门和C(Carry) 门，控制信息的流动</p>
+</div>
+</div>
+<div class="section" id="id42">
+<h2><a class="toc-backref" href="#id2">调试经验</a><a class="headerlink" href="#id42" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="http://lamda.nju.edu.cn/weixs/project/CNNTricks/CNNTricks.html">Must Know Tips/Tricks in Deep Neural Networks</a></p>
+<ol class="arabic simple">
+<li><p>在全连接层较小的时候，使用dropout 并不会提升效果，可能导致无法学习</p></li>
+<li><p>loss 函数无法下降，可能是 lr 太小或太大。</p></li>
+<li><p>数据预处可能出现的问题：
+1) flip 等变换后标记不一致,
+2) 坐标起始看程序中运算，
+3) 坐标 out of border，
+4) 归一化参考位置,
+5) 图像长宽比过大时，resize 后rpn 问题,
+6) 前景背景及非二者,
+7) 灰度图／彩色图</p></li>
+<li><p>对程序中出现 nan 等异常的处理，eg: proposal_layer._filter_bbox 的 ws, hs 处理</p></li>
+<li><p>训练测试时的输入不一致需注意，eg：landmark 基于 rpn 而非 det</p></li>
+</ol>
+<dl class="footnote brackets">
+<dt class="label" id="id43"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
+<dd><p><a class="reference external" href="http://blog.csdn.net/zouxy09/article/details/8775360">http://blog.csdn.net/zouxy09/article/details/8775360</a></p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="meta_learning.html" class="btn btn-neutral float-right" title="元学习" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="regression.html" class="btn btn-neutral float-left" title="回归分析" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

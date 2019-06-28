@@ -1,0 +1,466 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Shell &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="C++" href="C++.html" />
+    <link rel="prev" title="开发相关" href="development.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">编程相关</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="development.html">开发相关</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Shell</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">常用命令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">替换</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">运算符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">字符串</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">数组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">重定向</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">正则表达式</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="C++.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Java.html">Java</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ruby.html">ruby</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">规范文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">关于不同编程语言</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id4">编码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">换行符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#makefile">Makefile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">一些经验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id10">当前工作记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#todo">TODO</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">编程相关</a> &raquo;</li>
+        
+      <li>Shell</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/programing/Shell.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="shell">
+<h1>Shell<a class="headerlink" href="#shell" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>常用命令<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>getconf LONG_BIT     <span class="c1"># 查看系统是几位的</span>
+cat /proc/cpiinfo    <span class="c1"># 查看CPU信息</span>
+cat /etc/issue       <span class="c1"># 查看ubuntu版本</span>
+ifconfig  －a        <span class="c1"># 查看本机ip</span>
+lspci <span class="p">|</span>grep VGA      <span class="c1"># 查看GPU信息</span>
+lspci -v -s XX:XX.X  <span class="c1"># 根据前面查到信息的编号查询具体GPU信息</span>
+
+sudo -s              <span class="c1"># 以 root 身份运行</span>
+chmod +x filename    <span class="c1"># 修改执行权限</span>
+
+<span class="nb">pwd</span>                  <span class="c1"># 获取当前文件路径</span>
+mkdir                <span class="c1"># 文创建文件夹</span>
+
+mdfind   <span class="c1"># 查找文件</span>
+<span class="nb">echo</span> <span class="nv">$0</span>  <span class="c1"># 查看当前使用的shell</span>
+<span class="nb">echo</span> <span class="nv">$ZSH_VERSION</span>  <span class="c1">#查看zsh 版本</span>
+
+grep -i -r <span class="s2">&quot;XXX&quot;</span> filename <span class="c1"># 查找包含字符串的文件</span>
+
+grep -A/-B/-C  n          <span class="c1"># A, B, C 分别表示可以显示匹配行的后、前、后前多少行内容</span>
+
+head -l   <span class="c1"># 一行一行地读数据</span>
+<span class="nb">read</span> -r   <span class="c1"># 读数据</span>
+
+<span class="nb">set</span> -e  <span class="c1"># error checking</span>
+<span class="nb">set</span> -x/+x  <span class="c1"># 开启/关闭 打印到屏幕</span>
+<span class="nb">set</span> -o  <span class="c1"># 查看</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>变量<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">readonly</span> &lt;var_name&gt;  <span class="c1"># 只读变量</span>
+<span class="nb">unset</span> &lt;var_name&gt;     <span class="c1"># 删除变量</span>
+
+<span class="c1"># 特殊变量</span>
+<span class="nv">$0</span>    <span class="c1"># 当前脚本的文件名</span>
+<span class="nv">$n</span>    <span class="c1"># 传递给脚本或函数的第 n 个参数</span>
+<span class="nv">$#</span>    <span class="c1"># 传递给脚本或函数的参数个数</span>
+<span class="nv">$*</span>    <span class="c1"># 传递给脚本或函数的所有参数。</span>
+      <span class="c1"># 被双引号(&quot; &quot;)包含时，将所有的参数作为一个整体(&quot;$1 $2 … $n&quot;)输出</span>
+<span class="nv">$@</span>    <span class="c1"># 传递给脚本或函数的所有参数。</span>
+      <span class="c1"># 被双引号(&quot; &quot;)包含时，将各个参数分开(&quot;$1&quot; &quot;$2&quot; … &quot;$n&quot;)输出</span>
+<span class="nv">$?</span>    <span class="c1"># 上个命令的退出状态，或函数的返回值</span>
+<span class="nv">$$</span>    <span class="c1"># 当前Shell进程ID。对于 Shell 脚本，就是这些脚本所在的进程ID</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>在使用变量时，推荐给所有变量加上花括号，这是个好的编程习惯。</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>替换<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -e &lt;string&gt;   <span class="c1"># -e 表示对转义字符进行替换, 不加会原样输出(单引号)</span>
+
+<span class="c1"># 命令替换</span>
+<span class="sb">`</span><span class="nb">command</span><span class="sb">`</span>          <span class="c1"># 即Shell先执行命令，将输出结果暂时保存，在适当的地方输出。</span>
+
+<span class="c1"># 变量替换</span>
+<span class="si">${</span><span class="nv">var</span><span class="si">}</span>          <span class="c1"># 变量本来的值</span>
+<span class="si">${</span><span class="nv">var</span><span class="k">:-</span><span class="nv">word</span><span class="si">}</span>    <span class="c1"># 若 var 为空或已被删除，返回 word，但不改变 var 的值</span>
+<span class="si">${</span><span class="nv">var</span><span class="p">:=word</span><span class="si">}</span>    <span class="c1"># 若 var 为空或已被删除, 返回 word，并将 var 的值设置为 word</span>
+<span class="si">${</span><span class="nv">var</span><span class="p">:?message</span><span class="si">}</span> <span class="c1"># 若 var 为空或已被删除，那么将消息 message 送到标准错误输出</span>
+                <span class="c1"># 可以用来检测变量 var 是否可以被正常赋值</span>
+                <span class="c1"># 若此替换出现在Shell脚本中，那么脚本将停止运行</span>
+<span class="si">${</span><span class="nv">var</span><span class="p">:+word</span><span class="si">}</span>    <span class="c1"># 若 var 被定义，那么返回 word，但不改变 var 的值</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>运算符<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>原生bash不支持简单的数学运算，但是可以通过其他命令来实现，例如 awk 和 expr，expr 最常用。</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>`expr 2 + 2` 和 `expr 2+2` 二者是不一样的，前者输出计算结果，后者是表达式</p>
+<p>乘法符号用 <code class="docutils literal notranslate"><span class="pre">\*</span></code></p>
+<p>条件表达式要放在方括号之间，并且要有空格 (条件表达式可用test 函数替换)</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>m..n<span class="o">}</span>
+seq m n   <span class="c1"># 生成数字 m .. n</span>
+<span class="o">{</span>a,b,c<span class="o">}{</span><span class="m">1</span>,2,3<span class="o">}</span>   <span class="c1"># 字符串排列组合，生成 a1 a2 a3 b1 b2 b3 ...</span>
+</pre></div>
+</div>
+<img alt="../_images/relaOp.png" src="../_images/relaOp.png" />
+<img alt="../_images/boolOp.png" src="../_images/boolOp.png" />
+<img alt="../_images/strOp.png" src="../_images/strOp.png" />
+<img alt="../_images/fileOp.png" src="../_images/fileOp.png" />
+</div>
+<div class="section" id="id5">
+<h2>字符串<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>字符串可以用单引号，也可以用双引号，也可以不用引号。</p>
+<ul class="simple">
+<li><p>单引号</p>
+<ul>
+<li><p>单引号里的任何字符都会原样输出，单引号字符串中的变量是无效的；</p></li>
+<li><p>单引号字串中不能出现单引号（对单引号使用转义符后也不行）。</p></li>
+</ul>
+</li>
+<li><p>双引号</p>
+<ul>
+<li><p>双引号里可以有变量</p></li>
+<li><p>双引号里可以出现转义字符</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>a..z<span class="o">}</span>         <span class="c1"># 生成字母a-z (改成大写生成A-Z)</span>
+
+<span class="si">${#</span><span class="nv">str_var</span><span class="si">}</span>    <span class="c1"># 获取字符串长度</span>
+<span class="si">${</span><span class="nv">str_var</span><span class="p">:</span><span class="nv">start</span><span class="p">:</span><span class="nv">len</span><span class="si">}</span> <span class="c1"># 提取子字符串, len 没有给出时，默认到字符串尾</span>
+<span class="sb">`</span>expr index <span class="s2">&quot;</span><span class="nv">$str_var</span><span class="s2">&quot;</span> word<span class="sb">`</span>   <span class="c1"># 查找子字符串</span>
+
+<span class="nv">IFS</span><span class="o">=</span>&lt;char&gt; <span class="nb">read</span> -ra parts <span class="o">&lt;&lt;&lt;</span> str_var  <span class="c1"># 用指定字符分割字符串, 结果放在parts 里。-r 表示读取row 数据</span>
+
+<span class="k">while</span> <span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> -rn1 c<span class="p">;</span> <span class="k">do</span>
+    <span class="nb">echo</span> <span class="nv">$c</span>
+<span class="k">done</span> <span class="o">&lt;&lt;&lt;</span> <span class="s2">&quot;</span><span class="nv">$str_var</span><span class="s2">&quot;</span>   <span class="c1"># 遍历字符串</span>
+
+<span class="si">${</span><span class="nv">var</span><span class="p">/find/replace</span><span class="si">}</span>   <span class="c1"># 字符串替换(找到的第一个匹配项)</span>
+<span class="si">${</span><span class="nv">var</span><span class="p">//find/replace</span><span class="si">}</span>  <span class="c1"># 字符串替换(全部匹配项)</span>
+
+<span class="nb">declare</span> -u str_var
+<span class="si">${</span><span class="nv">str_var</span><span class="p">^^</span><span class="si">}</span>          <span class="c1"># 字符串转大写，前一种表达式要在var定义前</span>
+<span class="nb">declare</span> -l str_var
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">str_var</span><span class="p">,,</span><span class="si">}</span>     <span class="c1"># 字符串转小写</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>数组<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>bash支持一维数组(不支持多维数组), 在Shell中，用括号来表示数组，数组元素用“空格”符号分割开。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">array_name</span><span class="p">[index]</span><span class="si">}</span>   <span class="c1"># 数组第 index 个元素</span>
+<span class="si">${</span><span class="nv">array_name</span><span class="p">[*]</span><span class="si">}</span>
+<span class="si">${</span><span class="nv">array_name</span><span class="p">[@]</span><span class="si">}</span>       <span class="c1"># 数组的所有元素</span>
+<span class="si">${#</span><span class="nv">array_name</span><span class="p">[@]</span><span class="si">}</span>
+<span class="si">${#</span><span class="nv">array_name</span><span class="p">[*]</span><span class="si">}</span>      <span class="c1"># 数组长度</span>
+<span class="si">${#</span><span class="nv">array_name</span><span class="p">[index]</span><span class="si">}</span>  <span class="c1"># 数组某个元素长度</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>函数<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>Shell 函数必须先定义后使用。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>function_name <span class="o">()</span> <span class="o">{</span>
+    list of commands
+    <span class="o">[</span> <span class="k">return</span> value <span class="o">]</span>
+<span class="o">}</span>
+<span class="c1"># 如果你愿意，也可以在函数名前加上关键字 function</span>
+<span class="k">function</span> function_name <span class="o">()</span> <span class="o">{</span>
+    list of commands
+    <span class="o">[</span> <span class="k">return</span> value <span class="o">]</span>
+<span class="o">}</span>
+<span class="c1"># 函数返回值，可以显式增加return语句；如果不加，会将最后一条命令运行结果作为返回值。</span>
+<span class="nb">unset</span> .f function_name  <span class="c1"># 删除函数</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>Shell 函数返回值只能是整数，一般用来表示函数执行成功与否，0表示成功，其他值表示失败。如果 return 其他数据，比如一个字符串，往往会得到错误提示：“numeric argument required”。</p>
+<p>调用函数只需要给出函数名，不需要加括号</p>
+<p>传递函数直接在调用时在函数后输入即可，在函数体内部，通过 <code class="docutils literal notranslate"><span class="pre">$n</span></code> 的形式来获取参数的值</p>
+<p>函数返回值在调用该函数后通过 <code class="docutils literal notranslate"><span class="pre">$?</span></code> 来获得。</p>
+<p>如果你希望直接从终端调用函数，可以将函数定义在主目录下的 .profile 文件，这样每次登录后，在命令提示符后面输入函数名字就可以立即调用。</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>重定向<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<p>一般情况下，每个 Unix/Linux 命令运行时都会打开三个文件：</p>
+<ul class="simple">
+<li><p>标准输入文件(stdin)：stdin的文件描述符为0，Unix程序默认从stdin读取数据。</p></li>
+<li><p>标准输出文件(stdout)：stdout 的文件描述符为1，Unix程序默认向stdout输出数据。</p></li>
+<li><p>标准错误文件(stderr)：stderr的文件描述符为2，Unix程序会向stderr流中写入错误信息。</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmd &gt; file       <span class="c1"># 将命令的标准 **输出** 重定向到 file</span>
+cmd &lt; file       <span class="c1"># 将命令的标准 **输入** 重定向到 file</span>
+cmd n &gt; file     <span class="c1"># 将文件描述符为 n 的文件重定向到 file</span>
+cmd <span class="p">&amp;</span>&gt; file      <span class="c1"># 重定向命令的stdout和stderr到文件</span>
+cmd &gt; file n&gt;<span class="p">&amp;</span>m  <span class="c1"># 将文件描述符为 n 和 m 的文件重定向到 file</span>
+cmd &lt; file n&lt;<span class="p">&amp;</span>m  <span class="c1"># 将文件描述符为 n 和 m 的文件重定向到 file</span>
+cmd &gt; /dev/null  <span class="c1"># 忽略命令的标准输出</span>
+
+cmd &lt;&lt; &lt;delimiter&gt;
+    &lt;document&gt;
+&lt;delimiter&gt;        <span class="c1"># 将两个 delimiter 之间的内容(document) 作为输入</span>
+
+cmd <span class="o">&lt;&lt;&lt;</span> &lt;string&gt; <span class="c1"># 将命令的标准 **输入** 重定向到一行输入</span>
+
+cmd1 &gt;<span class="o">(</span>cmd2<span class="o">)</span>
+cmd1 &gt; &gt;<span class="o">(</span>cmd2<span class="o">)</span>
+cmd1 <span class="p">|</span> cmd2      <span class="c1"># cmd1的输出是cmd2的输入</span>
+
+tee -a filename  <span class="c1"># 重定向的同时也能在命令行输出</span>
+</pre></div>
+</div>
+<p>注：将 <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> 替换为 <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> , 表示以 <strong>追加</strong> 的方式重定向。此时会先向写入的文件加换行符，不想要 <cite>n</cite> 的话，可以在 cmd 后加 <cite>-n</cite></p>
+</div>
+<div class="section" id="id9">
+<h2>文件<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Shell 中包含脚本</span>
+. filename
+<span class="nb">source</span> filename
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>正则表达式<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
+<p>判断file是不是zip文件</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">[[</span> <span class="nv">$file</span> <span class="o">=</span> *.zip <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="c1"># do somethingfi</span>
+<span class="o">]]</span>
+</pre></div>
+</div>
+<p>匹配一个数字，一个点，一个数字。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">[[</span> <span class="nv">$str</span> <span class="o">=</span>~ <span class="o">[</span><span class="m">0</span>-9<span class="o">]</span>+.<span class="o">[</span><span class="m">0</span>-9<span class="o">]</span>+ <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="c1"># do somethingfi</span>
+<span class="o">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="C++.html" class="btn btn-neutral float-right" title="C++" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="development.html" class="btn btn-neutral float-left" title="开发相关" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

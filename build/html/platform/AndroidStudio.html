@@ -1,0 +1,1332 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Android Studio &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="XCode" href="XCode.html" />
+    <link rel="prev" title="Cmake" href="Cmake.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">平台搭建</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Cmake.html">Cmake</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Android Studio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install">Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opencv">OpenCV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#opencv-java">OpenCV 配置 (java 层)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opencv-1">使用OpenCV的三种方法 </a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opencv-with-contribe-module">OpenCV with contribe module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">在单元测试中使用OpenCV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">一些问题的解决</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#jar-aar">引用第三方项目，打包Jar包，AAR包</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">相关概念</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">引用第三方项目</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jar">关于jar包</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aar">AAR包</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">一些其他问题</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">单元测试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sdk">SDK</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id17">安装</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">降级</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#gradle">gradle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adb">adb</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#genymotion">genymotion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">手机</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#google-play">获取 Google Play 服务</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpu">CPU架构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#native-code">Native code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nkd-build">nkd-build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cmake-as2-2">Cmake (&gt;=AS2.2)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#debug">Debug</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#java-code">Java code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#native-code-as3-0-1">Native code(AS3.0.1)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">常见问题</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="XCode.html">XCode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_program.html">Web 编程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="react_native.html">React_Native</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#hadoop">Hadoop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#jenkins">Jenkins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">平台搭建</a> &raquo;</li>
+        
+      <li>Android Studio</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/platform/AndroidStudio.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="android-studio">
+<h1>Android Studio<a class="headerlink" href="#android-studio" title="永久链接至标题">¶</a></h1>
+<div class="section" id="install">
+<h2>Install<a class="headerlink" href="#install" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>mac <a class="reference internal" href="../os/mac.html#as-install-mac"><span class="std std-ref">Android Studio</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="opencv">
+<span id="opencv-with-as"></span><h2>OpenCV<a class="headerlink" href="#opencv" title="永久链接至标题">¶</a></h2>
+<div class="section" id="opencv-java">
+<h3>OpenCV 配置 (java 层)<a class="headerlink" href="#opencv-java" title="永久链接至标题">¶</a></h3>
+<ol class="arabic">
+<li><p>进入 <a class="reference external" href="http://opencv.org/">官网</a> 下载OpenCV4Android并解压。目录结构如下图所示</p>
+<div class="figure align-center">
+<img alt="../_images/android_opencv1.png" src="../_images/android_opencv1.png" />
+</div>
+<p>其中， <code class="docutils literal notranslate"><span class="pre">sdk</span></code> 目录即是我们开发opencv所需要的类库, 包括 java 层和jni 层代码； <code class="docutils literal notranslate"><span class="pre">samples</span></code> 目录中存放着若干opencv应用示例（包括人脸检测等），可为我们进行android下的opencv开发提供参考； <code class="docutils literal notranslate"><span class="pre">doc</span></code> 目录为opencv类库的使用说明及api文档等； <code class="docutils literal notranslate"><span class="pre">apk</span></code> 目录则存放着对应于各内核版本的manager应用安装包。此应用用来管理手机设备中的opencv类库，在运行opencv应用之前，必须确保手机中已经安装了OpenCV_2.4.3.2_Manager_2.4_*.apk，否则opencv应用将会因为无法加载opencv类库而无法运行（下篇文章会介绍不提前安装openCV Manager，即可运行openCV的方法）。</p>
+<p>好像不需要manager</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(!</span><span class="n">OpenCVLoader</span><span class="o">.</span><span class="na">initDebug</span><span class="o">())</span> <span class="o">{</span>
+      <span class="c1">// Handle initialization error</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p><strong>OpenCVLoader.initDebug()</strong> must be used for debugging purposes only as when you are developing locally on your machine. But for production purposes where you need to release the app on Play Store, etc. you must use <strong>OpenCVLoader.initAsync()</strong>. Actually initializing the <strong>OpenCVLoader</strong> takes some time depending upon the phone. So if you load it using <strong>initDebug()</strong>, then it would be executed in the main thread, which may block the UI for a fractional time. So it is advised to load the OpenCV in background which can be achieved using <strong>initAsync()</strong></p>
+</div>
+<ol class="arabic" start="2">
+<li><p>将OpenCV引入 <abbr title="Android studio">AS</abbr></p>
+<p>在 <abbr title="Android studio">AS</abbr> 中选择 <strong>File</strong> -&gt; <strong>Import Module</strong> ，找到OpenCV解压的路径，选择 <code class="file docutils literal notranslate"><span class="pre">sdk/java</span></code> 文件夹。</p>
+<div class="figure align-center">
+<img alt="../_images/android_opencv2.png" src="../_images/android_opencv2.png" />
+</div>
+</li>
+<li><p>更新build.gradle信息</p>
+<p>在 <abbr title="Android studio">AS</abbr> 中的左上角选择Project视图，在oepnCVLibrary2411文件夹里，打开build.gradle（有很多重名的文件，一定找对openCV库文件下的），修改文件中的1）compileSdkVersion 2）buildToolsVersion 3） minSdkVersion 4）targetSdkVersion，将其内容与app文件夹下的build.gradle中信息相一致。点击上方提示的黄色提示框内的Try Again进行更新。</p>
+<div class="figure align-center">
+<img alt="../_images/android_opencv3.png" src="../_images/android_opencv3.png" />
+</div>
+</li>
+<li><p>添加Module Dependency</p>
+<p>右键app文件夹，选择Open Module Settings，在app module的Dependencies一栏中，点击右上角的绿色加号，将openCVLibrary2411添加进去，点击确定。</p>
+<div class="figure align-center">
+<img alt="../_images/android_opencv4.png" src="../_images/android_opencv4.png" />
+</div>
+<div class="figure align-center">
+<img alt="../_images/android_opencv5.png" src="../_images/android_opencv5.png" />
+</div>
+</li>
+<li><p>复制libs文件夹到项目中</p>
+<p>在OpenCV的解压包中，将 <code class="file docutils literal notranslate"><span class="pre">sdk/native/libs</span></code> 文件夹复制到 <code class="file docutils literal notranslate"><span class="pre">&lt;module</span> <span class="pre">name&gt;/src/main</span></code> 目录下，并将其重命名为 <strong>jniLibs</strong> 。</p>
+<p>自此，OpenCV的环境就配置好了。可以将 <code class="file docutils literal notranslate"><span class="pre">OpenCV-android-sdk/samples/tutorial-1-camerapreview</span></code> 中的layout文件，java文件，放入工程中，修改 <code class="file docutils literal notranslate"><span class="pre">AndroidManifest.xml</span></code> ，添加使用摄像机的权限，即可测试是否成功了。</p>
+</li>
+</ol>
+<p>这种方法生成的apk 体积会很大，可以通过修改module的 <code class="file docutils literal notranslate"><span class="pre">build.gradle</span></code> 减小体积</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">android</span> <span class="o">{</span>
+    <span class="c1">// Some other configuration here...</span>
+
+    <span class="n">splits</span> <span class="o">{</span>
+        <span class="n">abi</span> <span class="o">{</span>
+            <span class="n">enable</span> <span class="kc">true</span>
+            <span class="nf">reset</span><span class="o">()</span>
+            <span class="n">include</span> <span class="s1">&#39;x86&#39;</span><span class="o">,</span> <span class="s1">&#39;armeabi&#39;</span><span class="o">,</span> <span class="s1">&#39;armeabi-v7a&#39;</span><span class="o">,</span> <span class="s1">&#39;mips&#39;</span>
+            <span class="n">universalApk</span> <span class="kc">false</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="opencv-1">
+<span id="usedeprecatedndk"></span><h3>使用OpenCV的三种方法 <a class="footnote-reference brackets" href="#id24" id="id2">1</a><a class="headerlink" href="#opencv-1" title="永久链接至标题">¶</a></h3>
+<p>其实OpenCV最简单的使用方式是使用manager(安装 <code class="docutils literal notranslate"><span class="pre">apk</span></code> 目录下对应的安装包，将java层代码导入，使用 <code class="xref py py-func docutils literal notranslate"><span class="pre">OpenCVLoader.initAsync()</span></code> 加载库)。但是这种方式除了安装自己的apk还需要安装manager的apk，用户体验十分不好，不推荐使用。下面的三种方式将完全脱离这个manager的apk <a class="footnote-reference brackets" href="#opencv4android" id="id3">2</a></p>
+<div class="section" id="id4">
+<h4>前期准备<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h4>
+<p>首先新建一个项目，将OpenCV sdk目录下的 <code class="file docutils literal notranslate"><span class="pre">native</span></code> 目录拷到项目根目录。然后在module的 <code class="file docutils literal notranslate"><span class="pre">src/main/</span></code> 新建 <code class="file docutils literal notranslate"><span class="pre">jni</span></code> 目录</p>
+<div class="figure align-center">
+<img alt="../_images/android_opencv7.png" src="../_images/android_opencv7.png" />
+</div>
+<p>在 <code class="file docutils literal notranslate"><span class="pre">jni</span></code> 文件夹下新建两个文件 <code class="file docutils literal notranslate"><span class="pre">Android.mk</span></code> 和 <code class="file docutils literal notranslate"><span class="pre">Application.mk</span></code></p>
+<p>Application.mk</p>
+<blockquote>
+<div><div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">APP_STL</span> <span class="o">:=</span> gnustl_static
+<span class="nv">APP_CPPFLAGS</span> <span class="o">:=</span> -frtti -fexceptions
+<span class="nv">APP_ABI</span> <span class="o">:=</span> armeabi armeabi-v7a  <span class="c1"># 指定编译平台，选择范围限制在导入的OpenCV libs</span>
+<span class="nv">APP_PLATFORM</span> <span class="o">:=</span> android-8      <span class="c1">#指定Android平台(根据自身情况而定)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Android.mk</p>
+<blockquote>
+<div><div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">LOCAL_PATH</span> <span class="o">:=</span> <span class="k">$(</span>call my-dir<span class="k">)</span>
+<span class="cp">include $(CLEAR_VARS)</span>
+<span class="nv">OpenCV_INSTALL_MODULES</span> <span class="o">:=</span> on   <span class="c1"># 作用是在打包apk时加载OpenCV的动态库</span>
+<span class="nv">OpenCV_CAMERA_MODULES</span> <span class="o">:=</span> off
+<span class="nv">OPENCV_LIB_TYPE</span> <span class="o">:=</span>STATIC       <span class="c1"># 指定OpenCV库的类型为静态库</span>
+<span class="cp">ifeq (&quot;$(wildcard $(OPENCV_MK_PATH))&quot;,&quot;&quot;)</span>
+<span class="cp">include ..\..\..\..\native\jni\OpenCV.mk</span>
+<span class="cp">else</span>
+<span class="cp">include $(OPENCV_MK_PATH)</span>
+<span class="cp">endif</span>
+<span class="nv">LOCAL_MODULE</span> <span class="o">:=</span> OpenCV         <span class="c1"># 本地so名称</span>
+<span class="nv">LOCAL_SRC_FILES</span> <span class="o">:=</span>             <span class="c1"># 指定jni目录中src文件</span>
+<span class="nv">LOCAL_LDLIBS</span> <span class="o">+=</span>  -lm -llog     <span class="c1"># 指定本地链接库</span>
+<span class="cp">include $(BUILD_SHARED_LIBRARY)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>在 <code class="docutils literal notranslate"><span class="pre">gradle.properties</span></code> 中设置:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>android.useDeprecatedNdk=true  //使用旧版的ndk功能（不添加会使用实验性的ndk构建工具)
+</pre></div>
+</div>
+<p>在 <code class="docutils literal notranslate"><span class="pre">local.properties</span></code> 中配置ndk目录:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ndk</span><span class="o">.</span><span class="n">dir</span><span class="o">=</span><span class="n">D</span>\<span class="p">:</span>\\<span class="n">AndroidSDK</span>\\<span class="n">sdk</span>\\<span class="n">ndk</span><span class="o">-</span><span class="n">bundle</span>
+</pre></div>
+</div>
+<p>在module的 <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> 中添加</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">android</span><span class="o">{</span>
+   <span class="o">...</span>
+   <span class="n">sourceSets</span><span class="o">.</span><span class="na">main</span><span class="o">.</span><span class="na">jni</span><span class="o">.</span><span class="na">srcDirs</span> <span class="o">=</span> <span class="o">[]</span>   <span class="c1">//禁止自带的ndk功能/禁止自动调用ndk-build命令,防止 :abbr:`AS (Android studio)` 自己生成Android.mk编译jni工程</span>
+   <span class="n">sourceSets</span><span class="o">.</span><span class="na">main</span><span class="o">.</span><span class="na">jniLibs</span><span class="o">.</span><span class="na">srcDirs</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;src/main/libs&#39;</span><span class="o">,</span><span class="s1">&#39;src/main/jniLibs&#39;</span><span class="o">]</span> <span class="c1">//重定向so目录为src/main/libs和src/main/jniLibs，原来为src/main/jniLibs</span>
+
+   <span class="n">task</span> <span class="nf">ndkBuild</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Exec</span><span class="o">,</span> <span class="nl">description:</span> <span class="s1">&#39;Compile JNI source with NDK&#39;</span><span class="o">)</span> <span class="o">{</span>
+       <span class="n">Properties</span> <span class="n">properties</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">()</span>
+       <span class="n">properties</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">project</span><span class="o">.</span><span class="na">rootProject</span><span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s1">&#39;local.properties&#39;</span><span class="o">).</span><span class="na">newDataInputStream</span><span class="o">())</span>
+       <span class="kt">def</span> <span class="n">ndkDir</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s1">&#39;ndk.dir&#39;</span><span class="o">)</span>
+       <span class="k">if</span> <span class="o">(</span><span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">tools</span><span class="o">.</span><span class="na">ant</span><span class="o">.</span><span class="na">taskdefs</span><span class="o">.</span><span class="na">condition</span><span class="o">.</span><span class="na">Os</span><span class="o">.</span><span class="na">isFamily</span><span class="o">(</span><span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">tools</span><span class="o">.</span><span class="na">ant</span><span class="o">.</span><span class="na">taskdefs</span><span class="o">.</span><span class="na">condition</span><span class="o">.</span><span class="na">Os</span><span class="o">.</span><span class="na">FAMILY_WINDOWS</span><span class="o">))</span> <span class="o">{</span>
+           <span class="n">commandLine</span> <span class="s2">&quot;$ndkDir/ndk-build.cmd&quot;</span><span class="o">,</span> <span class="s1">&#39;-C&#39;</span><span class="o">,</span> <span class="n">file</span><span class="o">(</span><span class="s1">&#39;src/main/jni&#39;</span><span class="o">).</span><span class="na">absolutePath</span>
+       <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+           <span class="n">commandLine</span> <span class="s2">&quot;$ndkDir/ndk-build&quot;</span><span class="o">,</span> <span class="s1">&#39;-C&#39;</span><span class="o">,</span> <span class="n">file</span><span class="o">(</span><span class="s1">&#39;src/main/jni&#39;</span><span class="o">).</span><span class="na">absolutePath</span>
+       <span class="o">}</span>
+   <span class="o">}</span>
+
+   <span class="n">tasks</span><span class="o">.</span><span class="na">withType</span><span class="o">(</span><span class="n">JavaCompile</span><span class="o">)</span> <span class="o">{</span>
+       <span class="n">compileTask</span> <span class="o">-&gt;</span> <span class="n">compileTask</span><span class="o">.</span><span class="na">dependsOn</span> <span class="n">ndkBuild</span>
+   <span class="o">}</span>
+
+   <span class="n">task</span> <span class="nf">ndkClean</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Exec</span><span class="o">,</span> <span class="nl">description:</span> <span class="s1">&#39;Clean NDK Binaries&#39;</span><span class="o">)</span> <span class="o">{</span>
+       <span class="n">Properties</span> <span class="n">properties</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">()</span>
+       <span class="n">properties</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">project</span><span class="o">.</span><span class="na">rootProject</span><span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="s1">&#39;local.properties&#39;</span><span class="o">).</span><span class="na">newDataInputStream</span><span class="o">())</span>
+       <span class="kt">def</span> <span class="n">ndkDir</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s1">&#39;ndk.dir&#39;</span><span class="o">)</span>
+       <span class="k">if</span> <span class="o">(</span><span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">tools</span><span class="o">.</span><span class="na">ant</span><span class="o">.</span><span class="na">taskdefs</span><span class="o">.</span><span class="na">condition</span><span class="o">.</span><span class="na">Os</span><span class="o">.</span><span class="na">isFamily</span><span class="o">(</span><span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">tools</span><span class="o">.</span><span class="na">ant</span><span class="o">.</span><span class="na">taskdefs</span><span class="o">.</span><span class="na">condition</span><span class="o">.</span><span class="na">Os</span><span class="o">.</span><span class="na">FAMILY_WINDOWS</span><span class="o">))</span> <span class="o">{</span>
+           <span class="n">commandLine</span> <span class="s2">&quot;$ndkDir/ndk-build.cmd&quot;</span><span class="o">,</span><span class="s1">&#39;clean&#39;</span><span class="o">,</span> <span class="s1">&#39;-C&#39;</span><span class="o">,</span> <span class="n">file</span><span class="o">(</span><span class="s1">&#39;src/main/jni&#39;</span><span class="o">).</span><span class="na">absolutePath</span>
+       <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+           <span class="n">commandLine</span> <span class="s2">&quot;$ndkDir/ndk-build&quot;</span><span class="o">,</span><span class="s1">&#39;clean&#39;</span><span class="o">,</span> <span class="s1">&#39;-C&#39;</span><span class="o">,</span> <span class="n">file</span><span class="o">(</span><span class="s1">&#39;src/main/jni&#39;</span><span class="o">).</span><span class="na">absolutePath</span>
+       <span class="o">}</span>
+   <span class="o">}</span>
+
+   <span class="n">clean</span><span class="o">.</span><span class="na">dependsOn</span> <span class="s1">&#39;ndkClean&#39;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>这时候， 使用gradle构建一下(点击 <abbr title="Android studio">AS</abbr> 右侧的gradle展开，双击ndkBuild进行构建)，如果能成功构建出so，说明配置没问题。</p>
+<div class="figure align-center">
+<img alt="../_images/android_opencv9.png" src="../_images/android_opencv9.png" />
+</div>
+<div class="figure align-center">
+<img alt="../_images/android_opencv10.png" src="../_images/android_opencv10.png" />
+</div>
+</div>
+<div class="section" id="jni">
+<h4>第一种方法(纯jni, 静态链接库)<a class="headerlink" href="#jni" title="永久链接至标题">¶</a></h4>
+<p>基于上面的所有步骤</p>
+<ol class="arabic simple">
+<li><p>声明java层的native方法</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OpenCVHelper</span> <span class="o">{</span>
+    <span class="kd">static</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span><span class="s">&quot;OpenCV&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">native</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">gray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">buf</span><span class="o">,</span> <span class="kt">int</span> <span class="n">w</span><span class="o">,</span> <span class="kt">int</span> <span class="n">h</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>使用 <strong class="command">javah</strong> 命令生成头文件，内容如下</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* DO NOT EDIT THIS FILE - it is machine generated */</span>
+<span class="cp">#include</span> <span class="cpf">&lt;jni.h&gt;</span><span class="cp"></span>
+<span class="cm">/* Header for class cn_edu_zafu_opencv_OpenCVHelper */</span>
+<span class="cp">#ifndef</span>
+<span class="n">_Included_cn_edu_zafu_opencv_OpenCVHelper</span>
+<span class="cp">#define</span>
+<span class="n">_Included_cn_edu_zafu_opencv_OpenCVHelper</span>
+<span class="cp">#ifdef __cplusplus</span>
+<span class="k">extern</span> <span class="s">&quot;C&quot;</span> <span class="p">{</span>
+<span class="cp">#endif</span>
+<span class="cm">/*</span>
+<span class="cm"> * Class:cn_edu_zafu_opencv_OpenCVHelper</span>
+<span class="cm"> * Method:    gray</span>
+<span class="cm"> * Signature: ([III)[I</span>
+<span class="cm"> */</span>
+<span class="n">JNIEXPORT</span> <span class="n">jintArray</span> <span class="n">JNICALL</span> <span class="n">Java_cn_edu_zafu_opencv_OpenCVHelper_gray</span>        <span class="p">(</span><span class="n">JNIEnv</span> <span class="o">*</span><span class="p">,</span> <span class="n">jclass</span><span class="p">,</span> <span class="n">jintArray</span><span class="p">,</span> <span class="n">jint</span><span class="p">,</span> <span class="n">jint</span><span class="p">);</span>
+<span class="cp">#ifdef __cplusplus</span>
+<span class="p">}</span>
+<span class="cp">#endif</span>
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>新建cpp文件，实现对应的方法，就是灰度处理</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;cn_edu_zafu_opencv_OpenCVHelper.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">cv</span><span class="p">;</span>
+<span class="k">extern</span> <span class="s">&quot;C&quot;</span> <span class="p">{</span>
+<span class="n">JNIEXPORT</span> <span class="n">jintArray</span> <span class="n">JNICALL</span>
+<span class="n">Java_cn_edu_zafu_opencv_OpenCVHelper_gray</span><span class="p">(</span><span class="n">JNIEnv</span> <span class="o">*</span><span class="n">env</span><span class="p">,</span> <span class="n">jclass</span> <span class="n">obj</span><span class="p">,</span> <span class="n">jintArray</span> <span class="n">buf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="kt">int</span> <span class="n">h</span><span class="p">);</span>
+<span class="n">JNIEXPORT</span> <span class="n">jintArray</span> <span class="n">JNICALL</span>
+<span class="nf">Java_cn_edu_zafu_opencv_OpenCVHelper_gray</span><span class="p">(</span><span class="n">JNIEnv</span> <span class="o">*</span><span class="n">env</span><span class="p">,</span> <span class="n">jclass</span> <span class="n">obj</span><span class="p">,</span> <span class="n">jintArray</span> <span class="n">buf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="kt">int</span> <span class="n">h</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">jint</span> <span class="o">*</span><span class="n">cbuf</span><span class="p">;</span>
+    <span class="n">cbuf</span> <span class="o">=</span> <span class="n">env</span><span class="o">-&gt;</span><span class="n">GetIntArrayElements</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">JNI_FALSE</span> <span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">cbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">Mat</span> <span class="n">imgData</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">CV_8UC4</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="n">cbuf</span><span class="p">);</span>
+    <span class="n">uchar</span><span class="o">*</span> <span class="n">ptr</span> <span class="o">=</span> <span class="n">imgData</span><span class="p">.</span><span class="n">ptr</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">w</span><span class="o">*</span><span class="n">h</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">){</span>
+        <span class="c1">//计算公式：Y(亮度) = 0.299*R + 0.587*G + 0.114*B</span>
+        <span class="c1">//对于一个int四字节，其彩色值存储方式为：BGRA</span>
+        <span class="kt">int</span> <span class="n">grayScale</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">ptr</span><span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="mf">0.299</span> <span class="o">+</span> <span class="n">ptr</span><span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mf">0.587</span> <span class="o">+</span> <span class="n">ptr</span><span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">0.114</span><span class="p">);</span>
+        <span class="n">ptr</span><span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">grayScale</span><span class="p">;</span>
+        <span class="n">ptr</span><span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">grayScale</span><span class="p">;</span>
+        <span class="n">ptr</span><span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">grayScale</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">w</span> <span class="o">*</span> <span class="n">h</span><span class="p">;</span>
+    <span class="n">jintArray</span> <span class="n">result</span> <span class="o">=</span> <span class="n">env</span><span class="o">-&gt;</span><span class="n">NewIntArray</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+    <span class="n">env</span><span class="o">-&gt;</span><span class="n">SetIntArrayRegion</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">cbuf</span><span class="p">);</span>
+    <span class="n">env</span><span class="o">-&gt;</span><span class="n">ReleaseIntArrayElements</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">cbuf</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic" start="4">
+<li><p>将cpp文件编译进去，在 <code class="file docutils literal notranslate"><span class="pre">Andorid.mk</span></code> 文件中加入</p>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">LOCAL_SRC_FILES</span> <span class="o">:=</span> cn_edu_zafu_opencv_OpenCVHelper.cpp
+</pre></div>
+</div>
+</li>
+<li><p>在java层写个测试方法测试一下是否进行灰度化了</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Bitmap</span> <span class="n">bitmap</span> <span class="o">=</span> <span class="o">((</span><span class="n">BitmapDrawable</span><span class="o">)</span> <span class="n">getResources</span><span class="o">().</span><span class="na">getDrawable</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">ic</span><span class="o">)).</span><span class="na">getBitmap</span><span class="o">();</span>
+<span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="n">bitmap</span><span class="o">.</span><span class="na">getWidth</span><span class="o">(),</span> <span class="n">h</span> <span class="o">=</span> <span class="n">bitmap</span><span class="o">.</span><span class="na">getHeight</span><span class="o">();</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">pix</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">w</span> <span class="o">*</span> <span class="n">h</span><span class="o">];</span><span class="n">bitmap</span><span class="o">.</span><span class="na">getPixels</span><span class="o">(</span><span class="n">pix</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">w</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">w</span><span class="o">,</span> <span class="n">h</span><span class="o">);</span>
+<span class="kt">int</span> <span class="o">[]</span> <span class="n">resultPixes</span><span class="o">=</span><span class="n">OpenCVHelper</span><span class="o">.</span><span class="na">gray</span><span class="o">(</span><span class="n">pix</span><span class="o">,</span><span class="n">w</span><span class="o">,</span><span class="n">h</span><span class="o">);</span>
+<span class="n">Bitmap</span> <span class="n">result</span> <span class="o">=</span> <span class="n">Bitmap</span><span class="o">.</span><span class="na">createBitmap</span><span class="o">(</span><span class="n">w</span><span class="o">,</span><span class="n">h</span><span class="o">,</span> <span class="n">Bitmap</span><span class="o">.</span><span class="na">Config</span><span class="o">.</span><span class="na">RGB_565</span><span class="o">);</span>
+<span class="n">result</span><span class="o">.</span><span class="na">setPixels</span><span class="o">(</span><span class="n">resultPixes</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">w</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span><span class="n">w</span><span class="o">,</span> <span class="n">h</span><span class="o">);</span>
+<span class="n">img</span><span class="o">.</span><span class="na">setImageBitmap</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>运行效果如下，灰度化后的结果</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/android_opencv11.png"><img alt="../_images/android_opencv11.png" src="../_images/android_opencv11.png" style="width: 200.5px; height: 317.0px;" /></a>
+</div>
+<p>上面的这种方法生成的so库的大小见下图，大约有1.4M左右</p>
+<div class="figure align-center">
+<img alt="../_images/android_opencv12.png" src="../_images/android_opencv12.png" />
+</div>
+</div>
+<div class="section" id="id5">
+<h4>第二种方法 (纯jni，动态链接库)<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h4>
+<p>在第一种基础上，修改 <code class="file docutils literal notranslate"><span class="pre">Android.mk</span></code> 文件为</p>
+<blockquote>
+<div><div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">LOCAL_PATH</span> <span class="o">:=</span> <span class="k">$(</span>call my-dir<span class="k">)</span>
+<span class="cp">include $(CLEAR_VARS)</span>
+<span class="nv">OpenCV_INSTALL_MODULES</span> <span class="o">:=</span> on
+<span class="nv">OpenCV_CAMERA_MODULES</span> <span class="o">:=</span> off
+<span class="hll"><span class="nv">OPENCV_LIB_TYPE</span> <span class="o">:=</span> SHARED   <span class="c1"># 指定OpenCV库的类型为动态库</span>
+</span><span class="cp">ifeq (&quot;$(wildcard $(OPENCV_MK_PATH))&quot;,&quot;&quot;)</span>
+<span class="cp">include ..\..\..\..\native\jni\OpenCV.mk</span>
+<span class="cp">else</span>
+<span class="cp">include $(OPENCV_MK_PATH)</span>
+<span class="cp">endif</span>
+<span class="nv">LOCAL_MODULE</span> <span class="o">:=</span> OpenCV
+<span class="nv">LOCAL_SRC_FILES</span> <span class="o">:=</span> cn_edu_zafu_opencv_OpenCVHelper.cpp
+<span class="nv">LOCAL_LDLIBS</span> <span class="o">+=</span>  -lm -llog
+<span class="cp">include $(BUILD_SHARED_LIBRARY)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>即改为动态库加载的方式，这时候再用ndkBuild一下，你会发现会输出一些警告以及一部分红色的内容</p>
+<div class="figure align-center">
+<img alt="../_images/android_opencv13.png" src="../_images/android_opencv13.png" />
+</div>
+<p>生成的so库的大小为310k，小了好几倍</p>
+<div class="figure align-center">
+<img alt="../_images/android_opencv14.png" src="../_images/android_opencv14.png" />
+</div>
+<p>这时候如果你直接取运行程序，会报错误</p>
+<div class="figure align-center">
+<img alt="../_images/android_opencv15.png" src="../_images/android_opencv15.png" />
+</div>
+<p>原因是我们使用的是动态库加载方式，还需要将依赖的so(libopencv_java3.so, 位于native目录)加进去</p>
+<div class="figure align-center">
+<img alt="../_images/android_opencv16.png" src="../_images/android_opencv16.png" />
+</div>
+<p>将其拷贝到 <code class="file docutils literal notranslate"><span class="pre">jniLibs</span></code> 目录中去，这里只拷贝armeabi和armeabi-v7a中的，至于其他的按需拷贝</p>
+<div class="figure align-center">
+<img alt="../_images/android_opencv17.png" src="../_images/android_opencv17.png" />
+</div>
+<p>这时候运行就不会报错了。</p>
+<p>既然我们使用了动态链接库，那么我们同样也可以使用java层的接口，优点是java开发速度相对快一点。</p>
+</div>
+<div class="section" id="java">
+<h4>第三种方法(基于第二种方法, 纯java)<a class="headerlink" href="#java" title="永久链接至标题">¶</a></h4>
+<p>在此之前，我们需要将sdk目录中的java代码拷到项目中去</p>
+<div class="figure align-center">
+<img alt="../_images/android_opencv18.png" src="../_images/android_opencv18.png" />
+</div>
+<p>但是 <code class="code docutils literal notranslate"><span class="pre">org.opencv.engine</span></code> 包中是一个aidl，我们需要将它剪贴到 <code class="file docutils literal notranslate"><span class="pre">aidl</span></code> 目录中去</p>
+<div class="figure align-center">
+<img alt="../_images/android_opencv19.png" src="../_images/android_opencv19.png" />
+</div>
+<p>最后还有一个资源文件 <code class="file docutils literal notranslate"><span class="pre">attrs.xml</span></code> ，拷过来</p>
+<div class="figure align-center">
+<img alt="../_images/android_opencv20.png" src="../_images/android_opencv20.png" />
+</div>
+<p>build一下项目，不出意外应该会报错，这时候找到该类，引入自己的R文件包就可以了</p>
+<div class="figure align-center">
+<img alt="../_images/android_opencv21.png" src="../_images/android_opencv21.png" />
+</div>
+<p>再次build应该就不会有什么问题了。</p>
+<p><strong>java层的测试方法</strong></p>
+<blockquote>
+<div><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">OpenCVLoader</span><span class="o">.</span><span class="na">initDebug</span><span class="o">();</span>
+<span class="n">Mat</span> <span class="n">rgbMat</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">();</span>
+<span class="n">Mat</span> <span class="n">grayMat</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">();</span>
+<span class="n">Bitmap</span> <span class="n">srcBitmap</span> <span class="o">=</span> <span class="n">BitmapFactory</span><span class="o">.</span><span class="na">decodeResource</span><span class="o">(</span><span class="n">getResources</span><span class="o">(),</span> <span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">ic</span><span class="o">);</span>
+<span class="n">Bitmap</span> <span class="n">grayBitmap</span> <span class="o">=</span> <span class="n">Bitmap</span><span class="o">.</span><span class="na">createBitmap</span><span class="o">(</span><span class="n">srcBitmap</span><span class="o">.</span><span class="na">getWidth</span><span class="o">(),</span> <span class="n">srcBitmap</span><span class="o">.</span><span class="na">getHeight</span><span class="o">(),</span> <span class="n">Bitmap</span><span class="o">.</span><span class="na">Config</span><span class="o">.</span><span class="na">RGB_565</span><span class="o">);</span>
+<span class="n">Utils</span><span class="o">.</span><span class="na">bitmapToMat</span><span class="o">(</span><span class="n">srcBitmap</span><span class="o">,</span> <span class="n">rgbMat</span><span class="o">);</span><span class="c1">//convert original bitmap to Mat, R G B.</span>
+<span class="n">Imgproc</span><span class="o">.</span><span class="na">cvtColor</span><span class="o">(</span><span class="n">rgbMat</span><span class="o">,</span> <span class="n">grayMat</span><span class="o">,</span> <span class="n">Imgproc</span><span class="o">.</span><span class="na">COLOR_RGB2GRAY</span><span class="o">);</span><span class="c1">//rgbMat to gray grayMat</span>
+<span class="n">Utils</span><span class="o">.</span><span class="na">matToBitmap</span><span class="o">(</span><span class="n">grayMat</span><span class="o">,</span> <span class="n">grayBitmap</span><span class="o">);</span> <span class="c1">//convert mat to bitmap</span>
+<span class="n">img</span><span class="o">.</span><span class="na">setImageBitmap</span><span class="o">(</span><span class="n">grayBitmap</span><span class="o">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>使用 <code class="xref py py-func docutils literal notranslate"><span class="pre">OpenCVLoader.initDebug()</span></code> ;进行初始化而不是使用 <code class="xref py py-func docutils literal notranslate"><span class="pre">OpenCVLoader.initAsync()</span></code></p>
+</div>
+<p>这种方法的特点是理都在java层，不怎么会涉及jni层的代码，除非java层完成不了的工作会转移到jni层去。</p>
+<p>三种方法各有各的优点，根据自己的情况进行选择。</p>
+<ul class="simple">
+<li><p>如果c++特别好的，建议使用第一种方法</p></li>
+<li><p>如果更习惯java代码的，并且java层的函数都能进行处理的，建议选择第三种方法</p></li>
+<li><p>第二种方法建议在第三种方法不满足条件的情况下进行辅助使用，因为使用了第三种方法的前提是使用第二种方法的动态链接库。</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>纯jni实现时</p>
+<ul class="simple">
+<li><p><code class="file docutils literal notranslate"><span class="pre">Android.mk</span></code> 文件中 <code class="code docutils literal notranslate"><span class="pre">LOCAL_SRC_FILES</span></code> 属性的设置</p></li>
+<li><p>.cpp文件和.h文件中，方法名及文件名的一致性</p></li>
+</ul>
+<p>java层实现时</p>
+<ul class="simple">
+<li><p>不需要设置 <code class="code docutils literal notranslate"><span class="pre">LOCAL_SRC_FILES</span></code> 属性</p></li>
+<li><p>不需要.cpp文件和.h文件</p></li>
+<li><p>需要配置好opencv库</p></li>
+</ul>
+</div>
+<p>最后附上 <a class="reference external" href="http://download.csdn.net/detail/sbsujjbcy/9275897">源码</a></p>
+</div>
+</div>
+<div class="section" id="opencv-with-contribe-module">
+<h3>OpenCV with contribe module<a class="headerlink" href="#opencv-with-contribe-module" title="永久链接至标题">¶</a></h3>
+<p>方法一：使用github上的一个脚本构建</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/tzutalin/build-opencv-for-android.git  //下载 build-opencv-for-android
+
+<span class="c1"># 若opencv库还未下载，直接根据readme执行，否则</span>
+<span class="c1"># 1. 将下载好的opencv 及contribe代码解压到 build-opencv-for-android 目录下</span>
+<span class="c1"># 2. 将这两个文件夹重命名为 opencv 和 opencv_contrib</span>
+<span class="c1"># 3. 按readme执行相应命令</span>
+
+<span class="c1"># 这里若不想修改环境变量，NDK路径可在命令行直接输入</span>
+./build-android-opencv.sh &lt;ndk path&gt;
+
+<span class="c1"># 若希望减少编译时间，可只保留想要的ABI进行编译，修改build-android-opencv.sh 第6 行代码：</span>
+<span class="nb">declare</span> -a <span class="nv">ANDROID_ABI_LIST</span><span class="o">=(</span><span class="s2">&quot;x86&quot;</span> <span class="s2">&quot;x86_64&quot;</span> <span class="s2">&quot;armeabi&quot;</span> <span class="s2">&quot;arm64-v8a&quot;</span> <span class="s2">&quot;armeabi-v7a&quot;</span> <span class="s2">&quot;mips&quot;</span> <span class="s2">&quot;mips64&quot;</span><span class="o">)</span>
+
+<span class="c1"># 编译得到的库在 android_opencv</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>另外说明一下 ndk最好是r10d以下的, sdk要用旧版的, 不然会报</p>
+<p>lib_target_sdk_target-NOTFOUND
+The “android” command is deprecated.
+For manual SDK, AVD, and project management, please use Android Studio.</p>
+<p>的错误。</p>
+</div>
+</div></blockquote>
+<p>方法二 <a class="footnote-reference brackets" href="#sift-surf-opencv-android" id="id7">3</a>：</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>将需要用到的include 文件从 <code class="file docutils literal notranslate"><span class="pre">&lt;opencv</span> <span class="pre">install</span> <span class="pre">path&gt;/include/opencv2</span></code> 复制到 <code class="file docutils literal notranslate"><span class="pre">&lt;opencv</span> <span class="pre">sdk</span> <span class="pre">package</span> <span class="pre">path&gt;/sdk/native/jni/include/opencv2</span></code></p></li>
+<li><p>将需要的文件复制到项目中</p></li>
+<li><p>设置 <code class="file docutils literal notranslate"><span class="pre">Android.mk</span></code></p>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="cp">include &lt;opencv sdk package path&gt;/sdk/native/jni/OpenCV.mk</span>
+<span class="nv">LOCAL_C_INCLUDES</span> <span class="o">+=</span> &lt;opencv sdk package path&gt;/sdk/native/jni/include
+</pre></div>
+</div>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="id8">
+<h3>在单元测试中使用OpenCV<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p>要先将系统级的opencv java 环境配好，设好环境变量 <code class="code docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> , 然后重启 <abbr title="Android studio">AS</abbr></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span> <span class="o">=</span> <span class="nv">$LD_LIBRARY_PATH</span>:/path/to/folder/contain/libopencv_javaxxx.so<span class="o">(</span>/usr/local/opencv/share/OpenCV/java/<span class="o">)</span>
+</pre></div>
+</div>
+<p>Use <strong class="command">java -XshowSettings:properties</strong> to show the <code class="code docutils literal notranslate"><span class="pre">java.library.path</span></code> (and others) value.</p>
+</div>
+<div class="section" id="id9">
+<h3>一些问题的解决<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<p>找不到libopencv_java300 : 将项目下相应文件夹下的 libopencv_java3改成它。</p>
+</div>
+</div>
+<div class="section" id="jar-aar">
+<h2>引用第三方项目，打包Jar包，AAR包<a class="headerlink" href="#jar-aar" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id10">
+<h3>相关概念<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id11">
+<h4>库和包<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h4>
+<div class="topic">
+<p class="topic-title first">什么是AAR包？ AAR包相比于jar包，区别在哪儿？</p>
+<p>假如我们希望提供一个带有资源文件的第三方库给别人使用，总不能直接把源代码给别人，但是我们知道eclipse打包的时候不能包含res的资源文件，于是Android在发布 <abbr title="Android studio">AS</abbr> 的时候就发布了一种独有的格式AAR，专门用于打包UI组件库。与jar相比其多了一些UI组件用到的属性、图片等一系列文件，它的好处在于你不需要再多创建一个Library Module，只需引用这个AAR文件即可，Android Sudio会自动把AAR包里的文件跟你的项目融合。</p>
+<p>aar包含所有资源，class，xml布局文件以及res资源文件全部包含。注意是全部。jar只包含了class文件与清单文件，不包含资源文件，如图片等所有res中的文件。</p>
+</div>
+<div class="topic">
+<p class="topic-title first">什么是so库？什么是ABI？相关的处理器型号在构建APP时有什么区别？</p>
+<p>Android系统目前支持 <a class="reference internal" href="#cpu-architecture"><span class="std std-ref">七种不同的CPU架构</span></a> ，每一种都关联着一个相应的 <strong>应用程序二进制接口</strong> （Application Binary Interface, ABI）。 <abbr title="Application Binary Interface">ABI</abbr> 定义了二进制文件（尤其是.so文件）如何运行在相应的系统平台上，从使用的指令集，内存对齐到可用的系统函数库。</p>
+</div>
+<p>so库的好处：</p>
+<ul class="simple">
+<li><p>so机制让开发者最大化利用已有的C和C++代码，达到重用的效果，利用软件世界积累了几十年的优秀代码；</p></li>
+<li><p>so是二进制，没有解释编译的开消，用so实现的功能比纯java实现的功能要快；</p></li>
+<li><p>so内存分配不受Dalivik/ART的单个应用限制，减少OOM；</p></li>
+<li><p>相对于java代码，二进制代码的反编译难度更大，一些核心代码可以考虑放在so中。</p></li>
+</ul>
+<p>so库的load:</p>
+<ul>
+<li><p>相对路径load: <code class="code docutils literal notranslate"><span class="pre">System.loadLibrary(&quot;media_jni&quot;)</span></code> ; 其中 <code class="docutils literal notranslate"><span class="pre">media_jni</span></code> 名字会被自动替换成 <code class="docutils literal notranslate"><span class="pre">libmedia_jni.so</span></code></p>
+<p>在使用相对路径load时，需要注意相应的so库是否被打入到 aar包的libs目录下。此处需要注意ABI类型</p>
+</li>
+<li><p>绝对路径load: <code class="code docutils literal notranslate"><span class="pre">System.load(&quot;/绝对路径/libmedia_jni.so&quot;)</span></code> ;</p>
+<p>绝对路径可以避免这个问题，但是要确保具有相应路径的访问权限，在接入AAR时候，假设合作方是厂商ROM级别的，部分路径需要提前协调。</p>
+</li>
+</ul>
+<p>jni层的方法对应关系：</p>
+<ul class="simple">
+<li><p>全路径</p></li>
+<li><p>将 <code class="docutils literal notranslate"><span class="pre">.</span></code> 置换为 <code class="docutils literal notranslate"><span class="pre">_</span></code></p></li>
+</ul>
+<p>例如，假设当前函数 <code class="xref py py-func docutils literal notranslate"><span class="pre">native_init()</span></code> 函数位于 <code class="code docutils literal notranslate"><span class="pre">android.media</span></code> 这个包中，它的全路径名应该是 <code class="code docutils literal notranslate"><span class="pre">android.media.MediaScanner.native_init</span></code> ，而JNI层函数的名字是 <code class="code docutils literal notranslate"><span class="pre">android_media_MediaScanner_native_init</span></code> 。</p>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>引用第三方项目<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<p>首先将第三方项目作为Module导入到我们的项目中，具体就是</p>
+<blockquote>
+<div><div class="figure align-center">
+<img alt="../_images/as_package1.png" src="../_images/as_package1.png" />
+</div>
+</div></blockquote>
+<p>导入之后，需要我们在 <strong>引用第三方项目的module</strong> 的 <code class="file docutils literal notranslate"><span class="pre">builg.gradle</span></code> 中设置</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">dependencies</span><span class="o">{</span>
+     <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">&#39;:这里为第三方项目名称&#39;</span><span class="o">)</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="jar">
+<h3>关于jar包<a class="headerlink" href="#jar" title="永久链接至标题">¶</a></h3>
+<div class="section" id="as-jar">
+<h4>使用 <abbr title="Android studio">AS</abbr> 打jar包<a class="headerlink" href="#as-jar" title="永久链接至标题">¶</a></h4>
+<p>如果想使用 <abbr title="Android studio">AS</abbr> 将我们的项目打成jar包，首先要明确的是 <strong>只能将java文件打包，而不能打包res等资源文件</strong>。</p>
+<ol class="arabic">
+<li><p>首先module只能是library，而不能是application，所以在module的 <code class="file docutils literal notranslate"><span class="pre">build.gradle</span></code> 中，
+将 <code class="code docutils literal notranslate"><span class="pre">app</span> <span class="pre">plugin:</span> <span class="pre">'com.android.application'</span></code> 改为 <code class="code docutils literal notranslate"><span class="pre">apply</span> <span class="pre">plugin:</span> <span class="pre">'com.android.library'</span></code></p></li>
+<li><p>然后在根节点，而不是在任何标签下，添加代码:</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">task</span> <span class="nf">makeJar</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Copy</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">delete</span> <span class="s1">&#39;build/libs/XXXXX.jar&#39;</span>
+    <span class="n">from</span><span class="o">(</span><span class="s1">&#39;build/intermediates/bundles/release/&#39;</span><span class="o">)</span>
+    <span class="n">into</span><span class="o">(</span><span class="s1">&#39;build/libs/&#39;</span><span class="o">)</span>
+    <span class="n">include</span><span class="o">(</span><span class="s1">&#39;classes.jar&#39;</span><span class="o">)</span>
+    <span class="n">rename</span> <span class="o">(</span><span class="s1">&#39;classes.jar&#39;</span><span class="o">,</span> <span class="s1">&#39;XXXXX.jar&#39;</span><span class="o">)</span>
+<span class="o">}</span>
+
+<span class="n">makeJar</span><span class="o">.</span><span class="na">dependsOn</span><span class="o">(</span><span class="n">build</span><span class="o">)</span>
+<span class="c1">//在终端执行生成JAR包</span>
+<span class="c1">// gradlew makeJar</span>
+</pre></div>
+</div>
+</li>
+<li><p>之后在终端执行 <strong class="command">gradlew makeJar</strong> ，之后就可以在module的 <code class="file docutils literal notranslate"><span class="pre">build/libs</span></code> 目录下找到打包好的jar包</p></li>
+</ol>
+</div>
+<div class="section" id="id13">
+<h4>引用jar包<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h4>
+<ol class="arabic">
+<li><p>首先将需要引用的jar包拷贝到module的 <code class="file docutils literal notranslate"><span class="pre">libs</span></code> 目录下</p></li>
+<li><p>之后在module的 <code class="file docutils literal notranslate"><span class="pre">build.gradle</span></code> 中设置</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">dependencies</span><span class="o">{</span>
+   <span class="n">compile</span> <span class="nf">files</span><span class="o">(</span><span class="s1">&#39;libs/XXXXX.jar&#39;</span><span class="o">)</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>如果不想自己在gradle中手动添加代码去关联，我们也可以使用下面的方法</p>
+<ol class="arabic simple">
+<li><p>菜单栏选择 <strong>File</strong> —&gt; <strong>Project Structure</strong></p></li>
+<li><p>在弹出的Project Structure 对话框中, 选择module, 然后点击 Dependencies 选项卡</p></li>
+<li><p>点击绿色的加号选择File dependency. 然后选择要添加的jar包即可。完成上边的操作后在module目录下的build.gradle文件中，会自动引入类库。</p></li>
+</ol>
+</div>
+<div class="section" id="so">
+<h4>so库的问题<a class="headerlink" href="#so" title="永久链接至标题">¶</a></h4>
+<p>我们在使用第三方jar的时候，常常会遇到SDK开发平台给的不同CPU架构的so文件，那么我们怎么添加这些so文件？两种方法</p>
+<div class="topic">
+<p class="topic-title first">方法一</p>
+<ol class="arabic simple">
+<li><p>在src/main/目录下新建jniLibs目录，然后将所有的so文件拷入该目录下，工程会自动加载src目录下的so动态库</p></li>
+<li><p>需要注意的是：jar和so的版本号必须一致。</p></li>
+</ol>
+</div>
+<div class="topic">
+<p class="topic-title first">方法二</p>
+<ol class="arabic simple">
+<li><p>在app/libs目录下放入对应不同CPU架构的so文件。但是这样工程并不会自动加载libs下的so文件</p></li>
+<li><p>需在gradle编译时，通过加入代码：jniLibs.srcDir ‘libs’ 来说明so的路径为该libs路径。</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="aar">
+<h3>AAR包<a class="headerlink" href="#aar" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id14">
+<h4>打aar包<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h4>
+<ol class="arabic">
+<li><p>要输出aar文件，必须将Module配置为library，首先需要我们在项目gradle中将app plugin改为</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apply</span> <span class="n">plugin</span><span class="p">:</span> <span class="s1">&#39;com.android.library&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>要输出 aar：apply plugin:’com.android.library’</p></li>
+<li><p>要输出 apk：apply plugin:’com.android.application’</p></li>
+</ul>
+</li>
+<li><p>之后在defaultConfig{}节点中去掉applicationId, versionCode, versionName 等内容</p></li>
+<li><p>还需要我们在manifest的application标签的主活动中去掉</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">intent</span><span class="o">-</span><span class="nb">filter</span><span class="o">&gt;</span>
+   <span class="o">&lt;</span><span class="n">action</span> <span class="n">android</span><span class="p">:</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;android.intent.action.MAIN&quot;</span> <span class="o">/&gt;</span>
+   <span class="o">&lt;</span><span class="n">category</span> <span class="n">android</span><span class="p">:</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;android.intent.category.LAUNCHER&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;/</span><span class="n">intent</span><span class="o">-</span><span class="nb">filter</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>删除Android Manifest中的所有权限声明，删除Application子节点，只保留四大组件的子节点？</p>
+</li>
+<li><p>一般情况下，我们还需要去掉</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">android</span><span class="p">:</span><span class="n">icon</span><span class="o">=</span><span class="s2">&quot;@mipmap/ic_launcher&quot;</span>
+<span class="n">android</span><span class="p">:</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;@string/app_name&quot;</span>
+</pre></div>
+</div>
+<p>等内容，防止在引用的时候发生冲突！ 或者在引用aar包的项目的application标签下添加:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tools</span><span class="p">:</span><span class="n">replace</span><span class="o">=</span><span class="s2">&quot;android:label,android:icon&quot;</span>
+</pre></div>
+</div>
+<p>解决冲突！</p>
+</li>
+<li><p>项目代码中的switch语句需要改为if语句</p></li>
+<li><p>Library用到的第三方依赖库，有两种加入方式</p>
+<ul>
+<li><p>打包时在build.gradle中直接compile的方式：在引用该包的新项目的gradle文件中，于引入aar文件的地方加入 transitive=false（表示当前依赖是否可以传递）</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>dependencies{
+   compile（name: &#39;aarName&#39;, ext:&#39;aar&#39;) {transitive=false}
+}
+</pre></div>
+</div>
+</li>
+<li><p>使用jar包的形式：一般来说，当你compile过一个第三方库的时候，Android Stuido会把这个库下载到本地（~/.gradle/caches/modules-2/files-2.1)，里面就含有他的jar包，将其复制到 [module_name]/libs 下就可以。（记得将gradle中原先引用包的地方注释）</p></li>
+</ul>
+</li>
+<li><p>在做了上述步骤之后，同步一下我们的项目（打开 Gradle projects，依次展开 &lt;ModuleName&gt; -&gt; &lt;ModuleName&gt; -&gt; Tasks -&gt; build，双击 assemble ），就能在app/build/outputs/aar目录下找到我们打包好的aar文件</p>
+<ul class="simple">
+<li><p>如果只想生成 mykit-release.aar，则双击 assembleRelease</p></li>
+<li><p>如果只想生成 mykit-debug.aar，则双击 assembleDebug</p></li>
+</ul>
+<p>根据渠道和 BuildType 的不同，在相应的目录下可以找到。比如对 BuildType 为 debug 的配置，输出为： [ModuleName]/build/outputs/aar/[ModuleName]-debug.aar。</p>
+<p>一份 aar 文件其实就是一份 zip 包，和 jar 不同的是，它将一些资源文件、第三方库文件、so 文件等等都打包在内，而代码文件编译后压缩在classes.jar中。</p>
+</li>
+</ol>
+</div>
+<div class="section" id="arr">
+<h4>引用arr包<a class="headerlink" href="#arr" title="永久链接至标题">¶</a></h4>
+<ul>
+<li><p>使用配置依赖的方式</p>
+<ol class="arabic">
+<li><p>首先需要将 aar 文件放入引用Module的libs目录下（一般是app/libs），和一般的jar文件类似；</p></li>
+<li><p>然后在gradle配置文件中把libs 目录放入依赖：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">repositories</span><span class="p">{</span>
+    <span class="n">flatDir</span><span class="p">{</span>
+        <span class="n">dirs</span> <span class="s1">&#39;libs&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>在gradle文件中使用依赖的方式引用aar，即在 dependencies{} 标签下进行关联：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">compile</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="s1">&#39;你引入的aar文件的名称，不包含后缀&#39;</span><span class="p">,</span> <span class="n">ext</span><span class="p">:</span><span class="s1">&#39;aar&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>重新构建一下工程，在Module的 build/intermediates/exploded-aar 目录下，既可以看到导入的aar生成的临时文件。</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>使用时注意：</p>
+<ol class="loweralpha simple">
+<li><p>在项目的Android Manifest文件中添加所有aar包用到的权限。</p></li>
+<li><p>假如aar包使用到类似推送、地图等第三方库需要根据包名生成appKey的情况，则项目的包名已经变为使用者的包名而不是原aar项目的包名。此处需要用户自行设置。</p></li>
+</ol>
+</div>
+</li>
+<li><p>import</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id15">
+<h3>一些其他问题<a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h3>
+<p>2 原有项目所依赖的jar包会被正常打包进aar中，但原项目依赖的aar则不会打包进aar
+2.1 以外部compile形式所依赖的包，也不会被打包进aar
+2.2 记得不要重复引用，避免壳工程引用的jar与打包好的aar冲突</p>
+<p>3 声明具体支持的so库类型
+3.1 最好在构建过程中声明所支持的CPU类型。
+Android系统的匹配过程为从高到低，向下兼容，例如：armeabi-v7a类型的CPU支持armeabi
+3.2 如果不在BuildType中声明，则默认支持所有类型的so库文件，通过反编译在aar中的lib目录下可以看到所支持的SO库类型
+3.3 部分so库在不声明的情况下，默认打在armeabi下，这样会导致armeabi-v7a类型的包找不到相应的so库文件。解决办法就是强制声明为armeabi类型
+3.4 注意so库存放的路径
+3.5 so库本身是含有包名的，在jni使用的时候，需要将so库方法的名称，与调用so库的代码包名一致
+3.6 外部调用aar的壳工程，一般来说，会从aar中使用DexClassLoader，拷贝aar中的so库到相应的目录中。可以使用adb shell 到壳工程指定目录下查看是否so库成功拷贝
+3.7 so库可以存放在aar的jniLibs下，也可以存放在壳工程的jniLibs和libs下。
+3.8 遇到一次so库崩溃，信息与下段信息类似：
+<a class="reference external" href="http://blog.csdn.net/tankai19880619/article/details/9004619">http://blog.csdn.net/tankai19880619/article/details/9004619</a>
+在其中有相应的解决办法，此处感谢博主，运用文中方法，定位了问题。
+4 Application参数的传递问题。
+每一个Android App都有一个application context，这个参数需要壳工程传递给我们，调试的时候可以在壳工程的Manifest.xml中指定默认的Application.
+并在默认的Application中初始化aar,
+5 混淆
+aar包也可以指定混淆方式，在提供给对方时，我们需要将代码混淆，在厂商发布时，也需要混淆，这样就存在二次混淆后，AAR包找不到相应类的问题。
+解决方法可以让厂商在二次混淆时，keep住我们aar相关代码
+6 路径获取
+留意相关路径的获取，在普通的Appliaction中，数据默认存储在 /data/data/packageName/中，当aar内嵌在其他应用中，存储路径跟随主工程，在获取数据时路径切记不能写死。
+7 Assert资源获取
+因为是内嵌在其他应用中，原本APK中的Assert目录内的资源可能找不到。解决方法是，可以将Assert目录内的资源打包成一个ZIP文件放在 /RAW目录下。
+在项目初始化的时候，解压到指定目录下。
+使用的时候在AssertManager中使用绝对路径获取资源
+在于前端页面交互上，JS相关代码及资源一般也存放在Assert目录下，在webview.load（）时，可以通过 <a class="reference external" href="file:/">file:/</a> 绝对路径 ，来加载
+PS:Assert 目录与 /raw 目录的区别：访问方式，目录结构，大小写，压缩方式等。
+8 第三方登录
+因为微信微博等三方登录需要使用PackageName申请APPID,APPKEY, 需要使用壳工程的packageName。
+9 常见BUG
+9.1 java.lang.NoClassDefFoundError NoClassDefFoundError错误的发生，是因为Java虚拟机在编译时能找到合适的类，而在运行时不能找到合适的类导致的错误。例如在运行时我们想调用某个类的方法或者访问这个类的静态成员的时候，发现这个类不可用，此时Java虚拟机就会抛出NoClassDefFoundError错误。与ClassNotFoundException的不同在于，这个错误发生只在运行时需要加载对应的类不成功，而不是编译时发生。
+9.2 jar包引用重复
+9.3 contentProvider在注册时出现重名情况
+9.4 注意不要在壳工程的Activity中传递Context,可能出现Context为NULL的情况，最好在 壳工程的Application来初始化Context
+9.5 java.lang.ExceptionInInitializerError
+原因如果你在别的类调用getInstance，就会报错ExceptionInInitializerError。这是因为类加载时不会为实例变量赋值，对象创建时不会为静态变量赋值。我们调用getInstance时，此类就开始加载，加载的时候不会为实例变量赋值，但是会按顺序给静态变量赋值。需要检查变量初始化过程。
+9.6 系统切换广播监听
+在系统配置改变时，例如横竖屏切换，会导致Activity生命周期的改变。在开发过程中碰到一个问题，在用户将应用点击home键置于后台的情况下切换语言，会导致原有的注册的receiver报错。
+排查后发现，在语言切换且应用存活的情况下，并不会走到应用的onDestory方法，而是重新走一次onCreate。
+这就导致了注册两次而报错。</p>
+</div>
+</div>
+<div class="section" id="id16">
+<h2>单元测试<a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h2>
+<p>分为androidTest(The Android NDK builds libraries for the Android platform )和test(library for HOST platform),</p>
+<blockquote>
+<div><p><a class="reference external" href="http://www.vogella.com/tutorials/AndroidTesting/article.html">difference</a></p>
+</div></blockquote>
+</div>
+<div class="section" id="sdk">
+<h2>SDK<a class="headerlink" href="#sdk" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id17">
+<h3>安装<a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h3>
+<p>在线下载需要设置代理，两种方法</p>
+<ol class="arabic simple">
+<li><p>上网找国内镜像</p></li>
+<li><p>使用影梭代理</p></li>
+</ol>
+<p>如果代理不起作用，可能是 <code class="file docutils literal notranslate"><span class="pre">/etc/host</span></code> 中设置了有关 google 的项，这些项已失效。</p>
+</div>
+<div class="section" id="id18">
+<h3>降级<a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Find your Android SDK folder</p></li>
+<li><p>Locate the “tools” subfolder and rename it to “tools1” (just to keep a backup copy of the original tools folder)</p></li>
+<li><p>Likewise, rename platform-tools to platform-tools1</p></li>
+<li><p>Download from google repository the SDK Tool version you want to downgrade to (for instance: <a class="reference external" href="http://dl-ssl.google.com/android/repository/tools_r22.6.2-macosx.zip">http://dl-ssl.google.com/android/repository/tools_r22.6.2-macosx.zip</a>) and unpack it.</p></li>
+<li><p>The ZIP file you downloaded contains a tools folder that has to be moved to your Android SDK folder.</p></li>
+<li><p>Likewise, download the platform tools (for instance: <a class="reference external" href="http://dl-ssl.google.com/android/repository/platform-tools_r19.0.1-macosx.zip">http://dl-ssl.google.com/android/repository/platform-tools_r19.0.1-macosx.zip</a>), and extract it in your SDK folder.</p></li>
+</ol>
+<p>不同平台格式如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dl</span><span class="o">-</span><span class="n">ssl</span><span class="o">.</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">android</span><span class="o">/</span><span class="n">repository</span><span class="o">/</span><span class="n">tools_rXXX</span><span class="o">-</span><span class="n">windows</span><span class="o">.</span><span class="n">zip</span>
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dl</span><span class="o">-</span><span class="n">ssl</span><span class="o">.</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">android</span><span class="o">/</span><span class="n">repository</span><span class="o">/</span><span class="n">tools_rXXX</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">zip</span>
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dl</span><span class="o">-</span><span class="n">ssl</span><span class="o">.</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">android</span><span class="o">/</span><span class="n">repository</span><span class="o">/</span><span class="n">tools_rXXX</span><span class="o">-</span><span class="n">macosx</span><span class="o">.</span><span class="n">zip</span>
+</pre></div>
+</div>
+<p>platform-tools 类似。</p>
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>tools 和 platform-tools 的版本号是不一样的，具体请参考：
+<a class="reference external" href="https://developer.android.com/studio/releases/sdk-tools.html">https://developer.android.com/studio/releases/sdk-tools.html</a>
+<a class="reference external" href="https://developer.android.com/studio/releases/platform-tools.html">https://developer.android.com/studio/releases/platform-tools.html</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="gradle">
+<h2>gradle<a class="headerlink" href="#gradle" title="永久链接至标题">¶</a></h2>
+<p>若gradle下载太慢，可以到官网下载对应版本放到 <code class="file docutils literal notranslate"><span class="pre">~/.gradle/wrapper/dists/gradle-x.x-all/xxxx/</span></code> 下</p>
+<p>build.gradle 中添加的dependencies 等可以在 <code class="file docutils literal notranslate"><span class="pre">~/.gradle/caches/modules-2/files-2.1/</span></code> 中找到</p>
+<p>Gradle的一些基本依赖配置方式如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>android {
+    defaultConfig {
+        publishNonDefault  true
+
+        externalNativeBuild {
+            ndkBuild {
+                // Passes optional arguments to ndk.
+                arguments &quot;NDK_APPLICATION_MK:=src/main/jni/Application.mk&quot; # 默认参数
+                // Sets optional flags for the C compiler.(这部分可以在mk文件中设置)
+                cFlags &quot;-Werror&quot;, &quot;-O3&quot;, &quot;-ffast-math&quot;
+                cppFlags &quot;-fexceptions&quot;, &quot;-frtti&quot; &quot;-fexceptions&quot; &quot;-std=c++11&quot;
+            }
+        }
+        ndk {
+            //.so文件依赖于硬件环境，不同的CPU架构对应不同的.so文件，abiFilters关键字能够指定Android 所支持的CPU架构
+            abiFilters &#39;armeabi&#39;, &#39;armeabi-v7a&#39;, &#39;arm64-v8a&#39;, &#39;mips&#39;, &#39;mips64&#39;, &#39;x86&#39;, &#39;x86_64&#39;
+        }
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path &#39;src/main/jni/Android.mk&#39;
+        }
+    }
+    sourceSets{
+        main{
+            jniLibs.srcDirs = [&#39;src/main/jniLibs/libs&#39;]  //动态链接库的路径地址，用于项目构建时，Native寻找和链接相关的so文件
+        }
+    }
+}
+
+
+dependencies {
+   compile fileTree(dir:&#39;xxx&#39;,include:[&#39;*.jar&#39;,&#39;*.xxx&#39;]) //将某个目录下所有符合扩展名的文件作为依赖
+   compile &#39;com.xx.xx:ProjectName:Version&#39; //配置Maven库为依赖
+   compile project(&#39;:otherModule&#39;) //配置另一个module作为本Module的依赖，被依赖的Module必须被导入到当前工程中
+   compile file(&#39;xxx.jar&#39;) // 配置某个jar包作为依赖
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="adb">
+<h2>adb<a class="headerlink" href="#adb" title="永久链接至标题">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>adb devices
+adb shell pm list packages  // 查看安装的应用
+adb uninstall &lt;package name&gt;  // 卸载应用
+</pre></div>
+</div>
+</div>
+<div class="section" id="genymotion">
+<h2>genymotion<a class="headerlink" href="#genymotion" title="永久链接至标题">¶</a></h2>
+<p>mac下genymotion的路径 <code class="file docutils literal notranslate"><span class="pre">/Applications/Genymotion.app/Contents/MacOS/player.app</span></code></p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/17831990/how-do-you-install-google-frameworks-play-accounts-etc-on-a-genymotion-virt">配置GooglePlay</a></p>
+</div>
+<div class="section" id="id19">
+<h2>手机<a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h2>
+<div class="section" id="google-play">
+<h3>获取 Google Play 服务<a class="headerlink" href="#google-play" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>先下载安装谷歌安装器</p></li>
+<li><p>安装三个文件（框架等）</p></li>
+<li><p>重启手机</p></li>
+<li><p>然后下载安装google play 服务</p></li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="cpu">
+<span id="cpu-architecture"></span><h3>CPU架构<a class="headerlink" href="#cpu" title="永久链接至标题">¶</a></h3>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 16%" />
+<col style="width: 21%" />
+<col style="width: 48%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>硬件</p></td>
+<td><p>备注</p></td>
+</tr>
+<tr class="row-even"><td><p>arm64-v8a</p></td>
+<td><p>第8代</p></td>
+<td><p>64位ARM处理器</p></td>
+<td><p>2011年15月以后的生产的大部分Android设备</p></td>
+</tr>
+<tr class="row-odd"><td><p>armeabi-v7a</p></td>
+<td><p>第7代及以上</p></td>
+<td><p>(32?)ARM 处理器</p></td>
+<td><p>2010年起</p></td>
+</tr>
+<tr class="row-even"><td><p>armeabi</p></td>
+<td><p>第5代、第6代</p></td>
+<td><p>ARM处理器</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mips64</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mips</p></td>
+<td></td>
+<td></td>
+<td><p>2012年起</p></td>
+</tr>
+<tr class="row-odd"><td><p>x86_64</p></td>
+<td></td>
+<td><p>64位的平板</p></td>
+<td><p>2014年起</p></td>
+</tr>
+<tr class="row-even"><td><p>x86</p></td>
+<td></td>
+<td><p>32位平板、模拟器</p></td>
+<td><p>2011年起</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="native-code">
+<h2>Native code<a class="headerlink" href="#native-code" title="永久链接至标题">¶</a></h2>
+<div class="section" id="nkd-build">
+<h3>nkd-build<a class="headerlink" href="#nkd-build" title="永久链接至标题">¶</a></h3>
+<div class="section" id="mk">
+<h4>mk 文件<a class="headerlink" href="#mk" title="永久链接至标题">¶</a></h4>
+<p>Android.mk</p>
+<blockquote>
+<div><div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">LOCAL_PATH</span> <span class="o">:=</span> <span class="k">$(</span>call my-dir<span class="k">)</span>     <span class="c1"># 返回当前路径</span>
+<span class="cp">include $(CLEAR_VARS)  # 让GNU MAKEFILE为你清除许多LOCAL_XXX变量（例如 LOCAL_MODULE, LOCAL_SRC_FILES, LOCAL_STATIC_LIBRARIES, 等等...),除LOCAL_PATH</span>
+<span class="nv">LOCAL_MODULE</span><span class="o">:=</span>    <span class="c1"># 必须定义，以标识你在Android.mk文件中描述的每个模块。</span>
+<span class="nv">LOCAL_SRC_FILES</span> <span class="o">:=</span>   <span class="c1"># 必须包含将要编译打包进模块中的C或C++源代码文件</span>
+<span class="nv">LOCAL_SRC_FILES</span> <span class="o">+=</span>   <span class="c1">#  += 表示在变量之前的值基础上叠加</span>
+
+<span class="c">#  eg..</span>
+<span class="cp">include $(LOCAL_PATH)/../../../../native/jni/OpenCV.mk #  相对路径</span>
+<span class="nv">LOCAL_C_INCLUDES</span> <span class="o">+=</span> <span class="k">$(</span>LOCAL_PATH<span class="k">)</span>
+<span class="nv">LOCAL_C_INCLUDES</span> <span class="o">+=</span> <span class="k">$(</span>LOCAL_PATH<span class="k">)</span>/../../../../native/jni/include
+<span class="nv">LOCAL_LDLIBS</span>     <span class="o">+=</span> -llog -ldl -latomic  <span class="c1">#  -llog 保证c++代码中可以使用 &lt;android/log.h&gt;</span>
+<span class="c"># release 使用</span>
+<span class="nv">LOCAL_CFLAGS</span>     <span class="o">:=</span> -Werror -O3 -ffast-math
+<span class="c"># debug 使用</span>
+<span class="nv">LOCAL_CFLAGS</span>     <span class="o">:=</span> -Werror -O0 -ffast-math -g2
+
+<span class="cp">include $(BUILD_SHARED_LIBRARY)  # 指向一个GNU Makefile脚本（应该就是在build/core目录下的shared_library.mk），负责收集自从上次调用&#39;include $(CLEAR_VARS)&#39;以来，定义在LOCAL_XXX变量中的所有信息，并且决定编译什么，如何正确地去做。并根据其规则生成静态库。同理对于静态库。</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Application.mk</p>
+<blockquote>
+<div><div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">APP_MUDULES</span> <span class="o">:=</span> xocr
+<span class="nv">APP_STL</span> <span class="o">:=</span> gnustl_static <span class="c1">#c++_shared #</span>
+<span class="nv">APP_CPPFLAGS</span> <span class="o">:=</span> -frtti -fexceptions -std<span class="o">=</span>c++11
+<span class="nv">APP_ABI</span> <span class="o">:=</span> armeabi-v7a arm64-v8a armeabi mips mips64 x86_64 x86
+<span class="nv">APP_PLATFORM</span> <span class="o">:=</span> android-21
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>mk 文件先于gradle起作用，所以gradle中的配置参数会覆盖mk中的配置</p>
+</div>
+</div>
+<div class="section" id="id20">
+<h4>useDeprecatedNdk<a class="headerlink" href="#id20" title="永久链接至标题">¶</a></h4>
+<p><a class="reference internal" href="#usedeprecatedndk"><span class="std std-ref">使用OpenCV的三种方法 1</span></a></p>
+</div>
+<div class="section" id="externalnativebuild">
+<h4>externalNativeBuild<a class="headerlink" href="#externalnativebuild" title="永久链接至标题">¶</a></h4>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span>android {
+    ...
+    defaultConfig {
+        ...
+        publishNonDefault  true
+
+        externalNativeBuild { // 这部分可以不要
+            ndkBuild {
+                // Passes optional arguments to ndk.
+                arguments &quot;NDK_APPLICATION_MK:=src/main/jni/Application.mk&quot; # 默认参数
+                // Sets optional flags for the C compiler.(这部分可以在mk文件中设置)
+                cFlags &quot;-Werror&quot;, &quot;-O3&quot;, &quot;-ffast-math&quot;
+                cppFlags &quot;-fexceptions&quot;, &quot;-frtti&quot; &quot;-fexceptions&quot; &quot;-std=c++11&quot;
+            }
+        }
+        ndk {// 此时，Application.mk 中的 APP_ABI 不起作用，需要使用module 的build.gradle 进行配置
+            //moduleName &quot;xocr&quot;
+            // externalNativeBuild 形式时，Application.mk中的APP_ABI不起作用，所以使用这里的abiFilters
+            abiFilters &#39;armeabi&#39;, &#39;armeabi-v7a&#39;, &#39;arm64-v8a&#39;, &#39;mips&#39;, &#39;mips64&#39;, &#39;x86&#39;, &#39;x86_64&#39;
+        }
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path &#39;src/main/jni/Android.mk&#39;
+        }
+    }
+}
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>使用 externalNativeBuild 模式时，生成的so文件在 <code class="file docutils literal notranslate"><span class="pre">&lt;module&gt;/build/intermediates/ndkBuild/</span></code> 下</p></li>
+<li><p>生成module library的时候，使用 <strong>gradle</strong> -&gt; build -&gt; assembleRelease</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="cmake-as2-2">
+<h3>Cmake (&gt;=AS2.2)<a class="headerlink" href="#cmake-as2-2" title="永久链接至标题">¶</a></h3>
+<p>配置</p>
+<p><a class="reference external" href="http://blog.csdn.net/u010097644/article/details/56849758">opencv for android</a></p>
+<p><a class="reference external" href="https://blog.csdn.net/CV_Jason/article/details/79758823?utm_source=blogxgwz4">opencv_for_android2</a></p>
+<p>使用时只需在java层用native关键字声明native层的函数，然后按ALT+ENTER选第一项即可在cpp文件里自动生成函数头，而不再需要像老方法一样使用javah来获得正确的函数头。</p>
+</div>
+</div>
+<div class="section" id="debug">
+<h2>Debug<a class="headerlink" href="#debug" title="永久链接至标题">¶</a></h2>
+<div class="section" id="java-code">
+<h3>Java code<a class="headerlink" href="#java-code" title="永久链接至标题">¶</a></h3>
+</div>
+<div class="section" id="native-code-as3-0-1">
+<h3>Native code(AS3.0.1)<a class="headerlink" href="#native-code-as3-0-1" title="永久链接至标题">¶</a></h3>
+<div class="section" id="ndk-build">
+<h4>ndk-build <a class="footnote-reference brackets" href="#ndk-build-debug" id="id21">4</a><a class="headerlink" href="#ndk-build" title="永久链接至标题">¶</a></h4>
+<ul>
+<li><p>在主module的 <code class="file docutils literal notranslate"><span class="pre">build.gradle</span></code> 中设置</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">dependencies</span><span class="o">{</span>
+    <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="nl">path:</span><span class="s1">&#39;:&lt;module name&gt;&#39;</span><span class="o">,</span> <span class="nl">configuration:</span> <span class="s1">&#39;debug&#39;</span><span class="o">)</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>在library module 中</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">android</span><span class="o">{</span>
+    <span class="o">...</span>
+    <span class="n">defaultConfig</span><span class="o">{</span>
+        <span class="n">publishNonDefault</span> <span class="kc">true</span>
+    <span class="o">}</span>
+
+    <span class="n">buildTypes</span> <span class="o">{</span>
+        <span class="n">debug</span> <span class="o">{</span>
+            <span class="n">jniDebuggable</span> <span class="kc">true</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>运行调试</p>
+<ol class="upperalpha simple">
+<li><p><strong>Run</strong> -&gt; <strong>Edit Configurations…</strong> -&gt; Android App -&gt; app -&gt; Debugger -&gt; Native, 然后debug</p></li>
+<li><p><strong>Run</strong> , 然后 <strong>Attach debugger to Android process</strong>, 选Native</p></li>
+</ol>
+</li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">Android.mk</span></code> 设置 <code class="code docutils literal notranslate"><span class="pre">LOCAL_CFLAGS</span> <span class="pre">+=</span> <span class="pre">-O0</span> <span class="pre">-g2</span></code> 否则lldb 无法查看 变量值</p></li>
+<li><p>将native code 中变量的值打印到LogCat</p>
+<blockquote>
+<div><p><a class="reference external" href="https://stackoverflow.com/questions/4629308/any-simple-or-easy-way-to-debug-android-ndk-code">any-simple-or-easy-way-to-debug-android-ndk-code</a></p>
+<p><a class="reference external" href="https://stackoverflow.com/questions/10274920/how-to-get-printf-messages-written-in-ndk-application">how-to-get-printf-messages-written-in-ndk-application</a></p>
+<p><a class="reference external" href="https://stackoverflow.com/questions/8870174/is-stdcout-usable-in-android-ndk">is-stdcout-usable-in-android-ndk</a></p>
+<ol class="arabic simple">
+<li><p><code class="file docutils literal notranslate"><span class="pre">Android.mk</span></code> 设置 <code class="code docutils literal notranslate"><span class="pre">LOCAL_LDLIBS</span> <span class="pre">+=</span> <span class="pre">-llog</span></code></p></li>
+<li><p>代码中使用 <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">__android_log_print()</span></code> , <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">__android_log_write()</span></code></p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p><a class="reference external" href="https://stackoverflow.com/questions/47952638/using-android-log-print-to-print-the-contents-of-an-opencv-mat-android-ndk">打印cv::Mat</a></p>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="cmake">
+<h4>Cmake<a class="headerlink" href="#cmake" title="永久链接至标题">¶</a></h4>
+<p>在library module 中</p>
+<blockquote>
+<div><div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">android</span><span class="o">{</span>
+    <span class="o">...</span>
+    <span class="n">defaultConfig</span><span class="o">{</span>
+        <span class="n">publishNonDefault</span> <span class="kc">true</span>
+    <span class="o">}</span>
+
+    <span class="n">buildTypes</span> <span class="o">{</span>
+        <span class="n">debug</span> <span class="o">{</span>
+            <span class="n">jniDebuggable</span> <span class="kc">true</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>直接debug即可</p>
+</div>
+</div>
+</div>
+<div class="section" id="id22">
+<h2>常见问题<a class="headerlink" href="#id22" title="永久链接至标题">¶</a></h2>
+<ol class="arabic">
+<li><p>Error:failed to find Build Tools revision 19.1.0</p>
+<p>该类问题属SDK问题，实在连接不上镜像服务器的，SDK管理器里也改了很多配置都无法解决，只能自己手动更新SDK，而此处问题首先下载 <a class="reference external" href="http://mirrors.neusoft.edu.cn/android/repository/">build-tools_r19.1-windows.zip</a> ，注意不同版本的不一样。然后接到 <code class="docutils literal notranslate"><span class="pre">&lt;SDK目录&gt;\build-tools</span></code> ，最终会形成这样的目录 <code class="docutils literal notranslate"><span class="pre">&lt;SDK目录&gt;\build-tools\android-4.4.2</span></code> ，然后重新打开 <abbr title="Android studio">AS</abbr> 问题解决。至于缺什么该放到什么文件夹， <a class="reference external" href="http://lzw.me/a/android-sdk-update-package.html">参考这里</a></p>
+</li>
+<li><p>Activity class {} does not exit</p>
+<p>很可能是旧版应用没删干净， 到手机的 <strong>设置</strong> -&gt; <strong>应用程序</strong> 中卸载；
+此外可采取的措施就是清理工程，重新编译，重启IDE等</p>
+</li>
+</ol>
+<dl class="footnote brackets">
+<dt class="label" id="id24"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p><a class="reference external" href="http://blog.csdn.net/sbsujjbcy/article/details/49520791">http://blog.csdn.net/sbsujjbcy/article/details/49520791</a></p>
+</dd>
+<dt class="label" id="opencv4android"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><p><a class="reference external" href="http://blog.csdn.net/yanzi1225627/article/details/27863615">http://blog.csdn.net/yanzi1225627/article/details/27863615</a></p>
+</dd>
+<dt class="label" id="sift-surf-opencv-android"><span class="brackets"><a class="fn-backref" href="#id7">3</a></span></dt>
+<dd><p><a class="reference external" href="https://sites.google.com/site/wghsite/technical-notes/sift_surf_opencv_android">https://sites.google.com/site/wghsite/technical-notes/sift_surf_opencv_android</a></p>
+</dd>
+<dt class="label" id="ndk-build-debug"><span class="brackets"><a class="fn-backref" href="#id21">4</a></span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/41822747/debugging-c-native-library-modules-not-working-with-android-studio-cmake-used">https://stackoverflow.com/questions/41822747/debugging-c-native-library-modules-not-working-with-android-studio-cmake-used</a></p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="XCode.html" class="btn btn-neutral float-right" title="XCode" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Cmake.html" class="btn btn-neutral float-left" title="Cmake" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

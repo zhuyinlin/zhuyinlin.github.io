@@ -1,0 +1,640 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Attention &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="斯坦福课程笔记" href="stanford_notes.html" />
+    <link rel="prev" title="NLP" href="NLP.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">算法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="image_process.html">图像处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine_learning.html">机器学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html">回归分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html">深度学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta_learning.html">元学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RNN.html">RNN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GAN.html">GAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GCN.html">GCN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NLP.html">NLP</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Attention</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Attention mechanism </a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#todo">TODO</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformer">Transformer </a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#motivation">Motivation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#works">Works</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model-architecture">Model Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">TODO</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">问题</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bert"><abbr title="Bidirectional Encoder Representations from Transformers">BERT</abbr> </a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id14">Motivation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">Works</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">Model Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pretrain">Pretrain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fine-tune">Fine-tune</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">应用到我们的项目中</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="stanford_notes.html">斯坦福课程笔记</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">算法</a> &raquo;</li>
+        
+      <li>Attention</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/algorithm/Transformer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="attention">
+<span id="attention-mechanism"></span><h1>Attention<a class="headerlink" href="#attention" title="永久链接至标题">¶</a></h1>
+<p>Attention可以分成hard与soft两种模型:</p>
+<ul class="simple">
+<li><p>hard: Attention每次移动到一个固定大小的区域</p></li>
+<li><p>soft: Attention每次是所有区域的一个加权和</p></li>
+</ul>
+<div class="contents local topic" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#id3" id="id19">Attention mechanism </a></p>
+<ul>
+<li><p><a class="reference internal" href="#todo" id="id20">TODO</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#transformer" id="id21">Transformer </a></p>
+<ul>
+<li><p><a class="reference internal" href="#motivation" id="id22">Motivation</a></p></li>
+<li><p><a class="reference internal" href="#works" id="id23">Works</a></p></li>
+<li><p><a class="reference internal" href="#model-architecture" id="id24">Model Architecture</a></p>
+<ul>
+<li><p><a class="reference internal" href="#self-intra-attention" id="id25">self/intra attention</a></p></li>
+<li><p><a class="reference internal" href="#multi-head-attention" id="id26">Multi-head attention</a></p></li>
+<li><p><a class="reference internal" href="#position-wise-feed-forward-networks" id="id27">Position-wise Feed-Forward Networks</a></p></li>
+<li><p><a class="reference internal" href="#position-embedding" id="id28">Position Embedding</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id11" id="id29">TODO</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id30">问题</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#bert" id="id31"><abbr title="Bidirectional Encoder Representations from Transformers">BERT</abbr> </a></p>
+<ul>
+<li><p><a class="reference internal" href="#id14" id="id32">Motivation</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id33">Works</a></p></li>
+<li><p><a class="reference internal" href="#id16" id="id34">Model Architecture</a></p></li>
+<li><p><a class="reference internal" href="#pretrain" id="id35">Pretrain</a></p>
+<ul>
+<li><p><a class="reference internal" href="#mlm" id="id36"><abbr title="masked language model">MLM</abbr></a></p></li>
+<li><p><a class="reference internal" href="#nsp" id="id37"><abbr title="Next sentence prediction">NSP</abbr></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#fine-tune" id="id38">Fine-tune</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id17" id="id39">应用到我们的项目中</a></p></li>
+</ul>
+</div>
+<div class="figure align-center" id="fig-attention-timeline">
+<img alt="../_images/attention_timeline.png" src="../_images/attention_timeline.png" />
+<p class="caption"><span class="caption-text">attention timeline</span><a class="headerlink" href="#fig-attention-timeline" title="永久链接至图片">¶</a></p>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id1">Attention mechanism <a class="footnote-reference brackets" href="#bahdanau2014neural" id="id2">1</a></a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 45%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-center" id="fig-attention-based-model">
+<img alt="../_images/attention_based_model.png" src="../_images/attention_based_model.png" />
+<p class="caption"><span class="caption-text">Attention-based model</span><a class="headerlink" href="#fig-attention-based-model" title="永久链接至图片">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-center" id="fig-attention">
+<a class="reference internal image-reference" href="../_images/attention.png"><img alt="../_images/attention.png" src="../_images/attention.png" style="width: 243.0px; height: 219.75px;" /></a>
+<p class="caption"><span class="caption-text">Attention mechanism</span><a class="headerlink" href="#fig-attention" title="永久链接至图片">¶</a></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Attention机制的物理含义: 输出Target句子中某个单词和输入Source句子每个单词的对齐模型</p>
+<div class="figure align-center" id="fig-general-attention">
+<a class="reference internal image-reference" href="../_images/general_attention.jpg"><img alt="../_images/general_attention.jpg" src="../_images/general_attention.jpg" style="width: 557.0px; height: 233.5px;" /></a>
+<p class="caption"><span class="caption-text">Attention 机制的本质</span><a class="headerlink" href="#fig-general-attention" title="永久链接至图片">¶</a></p>
+</div>
+<p>本质上Attention机制是对Source中元素的Value值进行加权求和，而Query和Key用来计算对应Value的权重系数。</p>
+<ol class="arabic simple">
+<li><p>根据Query和每个Key进行相似度计算得到权重</p>
+<ul class="simple">
+<li><p>根据Query和Key计算两者的相似性或者相关性；</p></li>
+<li><p>对前一步的值进行归一化处理</p></li>
+</ul>
+</li>
+<li><p>根据权重系数对Value进行加权求和</p></li>
+</ol>
+<div class="figure align-center" id="fig-attention-cal">
+<img alt="../_images/general_attention2.png" src="../_images/general_attention2.png" />
+<p class="caption"><span class="caption-text">Attention calculation</span><a class="headerlink" href="#fig-attention-cal" title="永久链接至图片">¶</a></p>
+</div>
+<ul>
+<li><p>相似度计算方法(scoring function)：</p>
+<ol class="arabic simple">
+<li><p>感知机(perceptron/additive attention) <a class="footnote-reference brackets" href="#bahdanau2014neural" id="id4">1</a> : <span class="math notranslate nohighlight">\(\alpha = \upsilon_a^Ttanh(W_1 Q + W_2 K)\)</span></p></li>
+<li><p>矩阵变换(general/multiplicative attention) <a class="footnote-reference brackets" href="#luong2015effective" id="id5">4</a> : <span class="math notranslate nohighlight">\(\alpha=Q^TWK\)</span></p></li>
+<li><p>点积(dot/multiplicative attention): <span class="math notranslate nohighlight">\(\alpha = Q^TK\)</span></p></li>
+<li><p>拼接(concat): <span class="math notranslate nohighlight">\(\alpha = \upsilon_a^Ttanh(W[Q;K])\)</span></p></li>
+<li><p>余弦相似度: <span class="math notranslate nohighlight">\(\alpha = \frac{Q^TK}{ |Q||K|}\)</span></p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>Luong et al. <a class="footnote-reference brackets" href="#luong2015effective" id="id6">4</a> improved upon Bahdanau et al. <a class="footnote-reference brackets" href="#bahdanau2014neural" id="id7">1</a> ’s groundwork by creating “ <strong>Global attention</strong> ”. The key difference is that with “ <strong>Global attention</strong> ”, we consider all of the encoder’s hidden states, as opposed to Bahdanau et al.’s “ <strong>Local attention</strong> ”, which only considers the encoder’s hidden state from the current time step. Another difference is that with “ <strong>Global attention</strong> ”, we calculate attention weights, or energies, using the hidden state of the decoder from the current time step only. Bahdanau et al.’s attention calculation requires knowledge of the decoder’s state from the previous time step.</p>
+</div>
+</li>
+<li><p>attention function: context vector 和 target hidden vector 的结合方法也可以采用不同的方法</p></li>
+<li><p>whether the previous state <span class="math notranslate nohighlight">\(h_{t-1}\)</span> is used instead of <span class="math notranslate nohighlight">\(h_t\)</span> in the scoring function as originally suggested in (Bahdanau et al., 2015)</p></li>
+</ul>
+<div class="section" id="todo">
+<h3><a class="toc-backref" href="#id1">TODO</a><a class="headerlink" href="#todo" title="永久链接至标题">¶</a></h3>
+<p>t-1和 j 的问题； 双向 rnn</p>
+</div>
+</div>
+<div class="section" id="transformer">
+<h2><a class="toc-backref" href="#id1">Transformer <a class="footnote-reference brackets" href="#vaswani2017attention" id="id8">2</a></a><a class="headerlink" href="#transformer" title="永久链接至标题">¶</a></h2>
+<div class="section" id="motivation">
+<h3><a class="toc-backref" href="#id1">Motivation</a><a class="headerlink" href="#motivation" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>RNNs inherently sequential nature precludes parallelization within training examples。(这里的并行指的是train的时候？)</p></li>
+<li><p>RNN要逐步递归才能获得全局信息，因此一般要双向RNN才比较好;(RNN无法很好地学习到全局的结构信息，因为它本质是一个马尔科夫决策过程。???)</p></li>
+<li><p>CNN(ByteNet, ConvS2S <a class="footnote-reference brackets" href="#gehring2017convolutional" id="id9">3</a> )虽然能并行，但事实上只能获取局部信息，是通过层叠来增大感受野</p></li>
+</ul>
+</div>
+<div class="section" id="works">
+<h3><a class="toc-backref" href="#id1">Works</a><a class="headerlink" href="#works" title="永久链接至标题">¶</a></h3>
+<ol class="arabic">
+<li><p>用attention机制代替了RNN搭建了整个模型框架。</p>
+<ul class="simple">
+<li><p>total computational complexity per layer</p></li>
+<li><p>parallelized</p></li>
+<li><p>path length between long-range dependencies in the network</p></li>
+</ul>
+</li>
+<li><p>提出了多头注意力（Multi-headed attention），在encoder和decoder中大量的使用了多头自注意力机制（Multi-headed self-attention）。</p>
+<p>Multi-headed attention能够从不同的表示子空间里学习相关信息</p>
+</li>
+<li><p>在WMT2014语料中的英德(4.5M, 37k tokens)和英法(36M, 32k word-piece)任务上取得了new state-of-art，并且训练速度比主流模型更快(8 P00 GPU)。</p>
+<ul class="simple">
+<li><p>base model: 12h (0.4s/step, 100k)</p></li>
+<li><p>big model: 3.5d (1.0s/step, 300k)</p></li>
+</ul>
+<div class="figure align-center">
+<img alt="../_images/transformer_result.png" src="../_images/transformer_result.png" />
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="model-architecture">
+<h3><a class="toc-backref" href="#id1">Model Architecture</a><a class="headerlink" href="#model-architecture" title="永久链接至标题">¶</a></h3>
+<div class="figure align-center" id="fig-transformer">
+<a class="reference internal image-reference" href="../_images/transformer.png"><img alt="../_images/transformer.png" src="../_images/transformer.png" style="width: 720.0px; height: 496.79999999999995px;" /></a>
+<p class="caption"><span class="caption-text">transformer model architecture</span><a class="headerlink" href="#fig-transformer" title="永久链接至图片">¶</a></p>
+</div>
+<ul class="simple">
+<li><p>base model: <span class="math notranslate nohighlight">\(N=6\)</span>, <span class="math notranslate nohighlight">\(d_{\mathrm{model}}=512\)</span> , <span class="math notranslate nohighlight">\(d_{ff}=2048\)</span> , <span class="math notranslate nohighlight">\(h=8\)</span> , <span class="math notranslate nohighlight">\(d_k=d_v=64\)</span> ,  100M param for encoder</p></li>
+<li><p>big model: <span class="math notranslate nohighlight">\(N=6\)</span>, <span class="math notranslate nohighlight">\(d_{\mathrm{model}}=1024\)</span> , <span class="math notranslate nohighlight">\(d_{ff}=4096\)</span> , <span class="math notranslate nohighlight">\(h=16\)</span> , <span class="math notranslate nohighlight">\(d_k=d_v=64\)</span></p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>屏蔽未来信息(decoder 中的self attention)</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>解码层的query</p>
+<p>按 soft attention 的思路, 解码层的关键是如何得到s(即用来和编码层做attention的query)，在rnn + attention 的模型中，s与上个位置的真实label y，上个位置的s，以及当前位置的attention输出c有关，换句话说，位置i的s利用了所有它之前的真实label y信息，和所有它之前位置的attention的输出c信息。label y信息是已知的，而之前位置的c信息虽然也可以利用，但是出于并行考虑, 不能用（因为当前位置的c信息必须等它之前的c信息都计算出来）。于是我们只能用真实label y来模拟解码层的rnn。做一个masked attention(mask实现每个位置的y只与它之前的y有关)，对真实label y做self-attention，这样，self-attention之后每个位置的输出综合了当前位置和它之前位置的所有y信息，即可做为s（query）。</p>
+</div>
+<div class="section" id="self-intra-attention">
+<h4><a class="toc-backref" href="#id1">self/intra attention</a><a class="headerlink" href="#self-intra-attention" title="永久链接至标题">¶</a></h4>
+<p>An attention mechanism relating different positions of a single sequence in order to compute a representation of the sequence.</p>
+<p>=&gt;Self Attention可以捕获同一个句子中单词之间的一些 <em>句法特征</em> 或者 <em>语义特征</em></p>
+<div class="figure align-center">
+<img alt="../_images/self_attention1.png" src="../_images/self_attention1.png" />
+</div>
+<p>引入Self Attention后</p>
+<div class="topic">
+<p class="topic-title first">更容易捕获句子中长距离的相互依赖的特征</p>
+<p>如果是RNN或者LSTM，需要依序列次序计算，对于远距离的相互依赖的特征，要经过若干 timestep 的信息累积才能将两者联系起来，距离越远，有效捕获的可能性越小。而Self Attention是每个词和所有词都要计算attention，所以不管他们中间有多长距离，最大的路径长度也都只是1，可以捕获长距离依赖关系。</p>
+<p>self-attention layers are <em>faster</em> than recurrent layers when the sequence length <span class="math notranslate nohighlight">\(n\)</span> is smaller than the representation dimensionality <span class="math notranslate nohighlight">\(d\)</span> 。当 <span class="math notranslate nohighlight">\(n\)</span> 比较大时，作者也给出了一种解决方案self-attention（restricted）, 即每个词不是和所有词计算attention，而是只与邻近的 <span class="math notranslate nohighlight">\(r\)</span> 个词去计算attention。</p>
+</div>
+</div>
+<div class="section" id="multi-head-attention">
+<h4><a class="toc-backref" href="#id1">Multi-head attention</a><a class="headerlink" href="#multi-head-attention" title="永久链接至标题">¶</a></h4>
+<p>Multi-head attention allows the model to jointly attend to information from <em>different representation subspaces at different positions</em> .</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 56%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-center" id="fig-scale-dot-product-attention">
+<img alt="../_images/scale_dot_product_attention.png" src="../_images/scale_dot_product_attention.png" />
+</div>
+</td>
+<td><div class="figure align-center" id="fig-multihead-attention">
+<a class="reference internal image-reference" href="../_images/multihead_attention.png"><img alt="../_images/multihead_attention.png" src="../_images/multihead_attention.png" style="width: 254.70000000000002px; height: 333.0px;" /></a>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathrm{Attention}(Q, K, V) = \mathrm{softmax}(\frac{QK^T}{\sqrt{d_k}})V\)</span></p></td>
+<td><div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{MultiHead}(Q, K, V) &amp;= \mathrm{Concat}(\mathrm{head}_1, \dots, \mathrm{head}_h)W^O \\
+\mathrm{head}_i &amp;=\mathrm{Attention}(QW_i^Q, KW_i^K, VW_i^V)\end{split}\]</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center">
+<img alt="../_images/multihead_attention1.png" src="../_images/multihead_attention1.png" />
+</div>
+<div class="figure align-center">
+<img alt="../_images/multihead_attention2.png" src="../_images/multihead_attention2.png" />
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>dot-product vs additive attention</p>
+<p>While the two are similar in theoretical complexity, dot-product attention is much faster and more space-efficient in practice, since it can be implemented using highly optimized matrix multiplication code.</p>
+<p>原文还讨论了不同大小 <span class="math notranslate nohighlight">\(d_k\)</span> 情况下二者的表现及原因  <a class="reference external" href="https://daiwk.github.io/posts/platform-tensor-to-tensor.html#422-attention">验证</a></p>
+</div>
+</div>
+<div class="section" id="position-wise-feed-forward-networks">
+<h4><a class="toc-backref" href="#id1">Position-wise Feed-Forward Networks</a><a class="headerlink" href="#position-wise-feed-forward-networks" title="永久链接至标题">¶</a></h4>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\mathrm{FFN}(X) = \max(0, xW_1+b_1)W_2+b_2\)</span></p>
+</div></blockquote>
+<p>意思是每个位置权重一样？</p>
+</div>
+<div class="section" id="position-embedding">
+<h4><a class="toc-backref" href="#id1">Position Embedding</a><a class="headerlink" href="#position-embedding" title="永久链接至标题">¶</a></h4>
+<p><strong>这样的模型并不能捕捉序列的顺序！</strong> &lt;== 如果将K,V按行打乱顺序（相当于句子中的词序打乱），那么Attention的结果还是一样的。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}PE_{(pos, 2i)} &amp;= \sin(pos/10000^{2i/d_{\mathrm{model}}}) \\
+PE_{(pos, 2i+1)} &amp;= \cos(pos/10000^{2i/d_{\mathrm{model}}})\end{split}\]</div>
+<div class="topic">
+<p class="topic-title first">why</p>
+<ul class="simple">
+<li><p>it would allow the model to easily learn to attend by relative positions, since for any fixed offset <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(PE_{pos+k}\)</span> can be represented as a linear function of <span class="math notranslate nohighlight">\(PE_{pos}\)</span> .</p></li>
+<li><p>公式 vs 训练: 效果相当</p></li>
+</ul>
+</div>
+<p>结合位置向量和词向量有几个可选方案，</p>
+<ul class="simple">
+<li><p>拼接起来作为一个新向量</p></li>
+<li><p>把位置向量定义为跟词向量一样大小，然后两者加起来。(chosen by Google and Facebook)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id1">TODO</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<p>share param between embedding layer and pre-softmax linear transformation</p>
+<div class="topic">
+<p class="topic-title first">代码中Multi-head attention 按Q、K、V最后一维分解怎么理解？</p>
+<p>这里其实是为了实现做h次attention,每次先将Q、K、V映射到d_k = d_v = d_model/h维，然后进行attention计算。这种写法只是为了方便，将 h 次映射的参数放在一起实现</p>
+</div>
+<div class="topic">
+<p class="topic-title first">理解</p>
+<p>encoder 通过self attention 获得能够体现 <em>句法特征</em> 或者 <em>语义特征</em> 的表征，decoder做语法对齐，同时也要考虑自身的*句法特征* 或者 <em>语义特征</em> 。多层即从低层向高层抽象</p>
+</div>
+</div>
+<div class="section" id="id12">
+<h3><a class="toc-backref" href="#id1">问题</a><a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>无法对位置信息进行很好地建模</p></li>
+<li><p>并非所有问题都需要长程的、全局的依赖的，也有很多问题只依赖于局部结构，这时候用纯Attention也不大好。(restrict 版本)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="bert">
+<h2><a class="toc-backref" href="#id1"><abbr title="Bidirectional Encoder Representations from Transformers">BERT</abbr> <a class="footnote-reference brackets" href="#id18" id="id13">5</a></a><a class="headerlink" href="#bert" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id14">
+<h3><a class="toc-backref" href="#id1">Motivation</a><a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="https://baijiahao.baidu.com/s?id=1605509936010416597&amp;wfr=spider&amp;for=pc">NLP 的 ImageNet时代</a></p>
+<p>NLP领域通常只会使用预训练词嵌入向量编码词汇间的关系，因此也就没有一个能用于整体模型的预训练方法(–&gt; 需要大量示例)。而语言模型有作为整体预训练模型的潜质，它能由浅到深抽取语言的各种特征，并用于机器翻译、问答系统和自动摘要等广泛的 NLP 任务。</p>
+<p>预训练的语言模型可以在一大批 NLP 任务中达到当前最优水平</p>
+<p>ULMFiT、ELMo 和 OpenAI transformer 最新进展的核心是一个关键的范式转变：从仅仅初始化模型的第一层到用分层表示对整个模型进行预处理。</p>
+<p>局限在于标准语言模型是单向的, 无法泛化使用到各种不同的NLP task 中</p>
+</div>
+<div class="section" id="id15">
+<h3><a class="toc-backref" href="#id1">Works</a><a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h3>
+<ol class="arabic simple">
+<li><p>BERT (Bidirectional Encoder Representations from Transformers): a multi-layer bidirectional Transformer encoder</p></li>
+<li><p>预训练目标</p>
+<ul class="simple">
+<li><p>MLM(masked language model) :deep bidirectionality</p></li>
+<li><p>NSP(next sentence prediction): understanding the relationship between two text sentences</p></li>
+</ul>
+</li>
+<li><p>预训练的BERT可以通过fine-tune，适用于广泛任务的最先进模型的构建; 也可以用于feature-based approach</p></li>
+</ol>
+</div>
+<div class="section" id="id16">
+<h3><a class="toc-backref" href="#id1">Model Architecture</a><a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>BASE: L=12, H=768, A=12, Total Parameters=110M</p></li>
+<li><p>LARGE: L=24, H=1024, A=16, Total Parameters=340M</p></li>
+</ul>
+<div class="figure align-center" id="fig-bert-input">
+<img alt="../_images/BERT_input.png" src="../_images/BERT_input.png" />
+</div>
+<ul class="simple">
+<li><p>token: wordpiece embedding</p></li>
+<li><p>segment: A, B</p></li>
+<li><p>position: learned positional embedding, 512</p></li>
+</ul>
+</div>
+<div class="section" id="pretrain">
+<h3><a class="toc-backref" href="#id1">Pretrain</a><a class="headerlink" href="#pretrain" title="永久链接至标题">¶</a></h3>
+<dl class="simple">
+<dt>Data</dt><dd><p>BooksCorpus (800M words) +  English Wikipedia (2,500M words)</p>
+</dd>
+</dl>
+<p>batch size of 256 sequences (256 sequences * 512 tokens = 128,000 tokens/batch), 1M step</p>
+<ul class="simple">
+<li><p>BASE: 4 Cloud TPUs in Pod configuration (16 TPU chipstotal), 4d</p></li>
+<li><p>LARGE: 16 Cloud TPUs (64 TPU chips total), 4d</p></li>
+</ul>
+<div class="section" id="mlm">
+<h4><a class="toc-backref" href="#id1"><abbr title="masked language model">MLM</abbr></a><a class="headerlink" href="#mlm" title="永久链接至标题">¶</a></h4>
+<p>Masking some percentage(15%) of the input tokens at random, and then predicting only those masked tokens.</p>
+<ol class="arabic">
+<li><p>a mismatch between pre-training and fine-tuning</p>
+<ul class="simple">
+<li><p>80% of the time: Replace the word with the [MASK] token</p></li>
+<li><p>10% of the time: Replace  the  word  with  a random word</p></li>
+<li><p>10% of the time: Keep the word un-changed</p></li>
+</ul>
+<p>=&gt; distributional contextual representation of every token</p>
+<p><a class="reference external" href="https://zhuanlan.zhihu.com/p/22386230">difference between distributed representation and distributional representation</a></p>
+</li>
+<li><p>15% mask =&gt; more pre-training steps may be required for the model to converge.</p></li>
+</ol>
+</div>
+<div class="section" id="nsp">
+<h4><a class="toc-backref" href="#id1"><abbr title="Next sentence prediction">NSP</abbr></a><a class="headerlink" href="#nsp" title="永久链接至标题">¶</a></h4>
+<p>50% of the time B is the actual next sentence that follows A , and 50% of the time it is a random sentence from the corpus.</p>
+</div>
+</div>
+<div class="section" id="fine-tune">
+<h3><a class="toc-backref" href="#id1">Fine-tune</a><a class="headerlink" href="#fine-tune" title="永久链接至标题">¶</a></h3>
+<div class="figure align-center" id="fig-bert-finetune">
+<img alt="../_images/BERT_finetune.png" src="../_images/BERT_finetune.png" />
+<p class="caption"><span class="caption-text">BERT_finetune</span><a class="headerlink" href="#fig-bert-finetune" title="永久链接至图片">¶</a></p>
+</div>
+<div class="figure align-center" id="fig-bert-finetune-model">
+<img alt="../_images/BERT_finetune_model.png" src="../_images/BERT_finetune_model.png" />
+<p class="caption"><span class="caption-text">BERT_finetune_model</span><a class="headerlink" href="#fig-bert-finetune-model" title="永久链接至图片">¶</a></p>
+</div>
+<div class="figure align-center">
+<img alt="../_images/BERT_GLUE.png" src="../_images/BERT_GLUE.png" />
+</div>
+<div class="figure align-center">
+<img alt="../_images/BERT_QA.png" src="../_images/BERT_QA.png" />
+</div>
+<div class="figure align-center">
+<img alt="../_images/BERT_NER.png" src="../_images/BERT_NER.png" />
+</div>
+<div class="figure align-center">
+<img alt="../_images/BERT_SWAG.png" src="../_images/BERT_SWAG.png" />
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">we</span> <span class="n">believe</span> <span class="n">that</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">first</span> <span class="n">work</span> <span class="n">to</span> <span class="n">demonstrate</span> <span class="n">that</span> <span class="n">scaling</span> <span class="n">to</span> <span class="n">extreme</span> <span class="n">model</span> <span class="n">sizes</span> <span class="n">also</span>
+<span class="n">leads</span> <span class="n">to</span> <span class="n">large</span> <span class="n">improvements</span> <span class="n">on</span> <span class="n">very</span> <span class="n">small</span> <span class="n">scale</span> <span class="n">tasks</span><span class="p">,</span> <span class="n">provided</span> <span class="n">that</span> <span class="n">the</span> <span class="n">model</span> <span class="n">has</span> <span class="n">been</span>
+<span class="n">sufficiently</span> <span class="n">pre</span><span class="o">-</span><span class="n">trained</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id17">
+<h2><a class="toc-backref" href="#id1">应用到我们的项目中</a><a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h2>
+<p>长度</p>
+<p>order: Transformer 不使用Position embedding</p>
+<p><a class="reference external" href="https://upcommons.upc.edu/bitstream/handle/2117/117176/TFG_final_version.pdf?sequence=1&amp;isAllowed=y">一组用到 chatbot 中的实验</a></p>
+<p><a class="reference external" href="https://github.com/ricsinaruto/Seq2seqChatbots">ricsinaruto</a></p>
+<dl class="footnote brackets">
+<dt class="label" id="bahdanau2014neural"><span class="brackets">1</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id4">2</a>,<a href="#id7">3</a>)</span></dt>
+<dd><p>Bahdanau D, Cho K, Bengio Y. <a class="reference external" href="https://arxiv.org/pdf/1409.0473.pdf">Neural machine translation by jointly learning to align and translate[J]</a> . arXiv preprint arXiv:1409.0473, 2014.</p>
+</dd>
+<dt class="label" id="vaswani2017attention"><span class="brackets"><a class="fn-backref" href="#id8">2</a></span></dt>
+<dd><p>Vaswani A, Shazeer N, Parmar N, et al. <a class="reference external" href="https://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf">Attention is all you need[J]</a> . Advances in Neural Information Processing Systems, 2017: 5998-6008.</p>
+</dd>
+<dt class="label" id="gehring2017convolutional"><span class="brackets"><a class="fn-backref" href="#id9">3</a></span></dt>
+<dd><p>Gehring J, Auli M, Grangier D, et al. <a class="reference external" href="https://arxiv.org/pdf/1705.03122.pdf">Convolutional sequence to sequence learning[J]</a> . arXiv preprint arXiv:1705.03122, 2017.</p>
+</dd>
+<dt class="label" id="luong2015effective"><span class="brackets">4</span><span class="fn-backref">(<a href="#id5">1</a>,<a href="#id6">2</a>)</span></dt>
+<dd><p>Luong M T, Pham H, Manning C D. <a class="reference external" href="https://arxiv.org/pdf/1508.04025.pdf">Effective approaches to attention-based neural machine translation[J]</a> . arXiv preprint arXiv:1508.04025, 2015.</p>
+</dd>
+<dt class="label" id="id18"><span class="brackets"><a class="fn-backref" href="#id13">5</a></span></dt>
+<dd><p><a class="reference external" href="https://arxiv.org/pdf/1810.04805.pdf">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a></p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="stanford_notes.html" class="btn btn-neutral float-right" title="斯坦福课程笔记" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="NLP.html" class="btn btn-neutral float-left" title="NLP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

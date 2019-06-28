@@ -1,0 +1,604 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mac &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="windows" href="windows.html" />
+    <link rel="prev" title="ubuntu" href="ubuntu.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">OS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ubuntu.html">ubuntu</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mac</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">软件安装</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#macports">MacPorts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#homebrew">Homebrew</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vim">vim</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cmake">CMake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#python">python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opencv">OpenCV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#matlab">matlab</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eclipse">Eclipse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#android-studio">Android Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">小技巧</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">快捷键</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">终端</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#iterm2-zsh-oh-my-zsh-solarized-monaco-for-powerline">iTerm2 + Zsh + Oh-my-zsh + Solarized + Monaco for Powerline</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">错误解决办法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">清理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html">windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">OS</a> &raquo;</li>
+        
+      <li>mac</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/os/mac.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mac">
+<h1>mac<a class="headerlink" href="#mac" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>软件安装<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="section" id="macports">
+<h3>MacPorts<a class="headerlink" href="#macports" title="永久链接至标题">¶</a></h3>
+<p>卸载</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo port -f uninstall instalzled
+$ sudo port clean all
+$ sudo rm -rf <span class="se">\</span>
+/opt/local <span class="se">\</span>
+/Applications/DarwinPorts <span class="se">\</span>
+/Applications/MacPorts <span class="se">\</span>
+/Library/LaunchDaemons/org.macports.* <span class="se">\</span>
+/Library/Receipts/DarwinPorts*.pkg <span class="se">\</span>
+/Library/Receipts/MacPorts*.pkg <span class="se">\</span>
+/Library/StartupItems/DarwinPortsStartup <span class="se">\</span>
+/Library/Tcl/darwinports1.0 <span class="se">\</span>
+/Library/Tcl/macports1.0 <span class="se">\</span>
+~/.macports
+</pre></div>
+</div>
+</div>
+<div class="section" id="homebrew">
+<h3>Homebrew<a class="headerlink" href="#homebrew" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="http://brew.sh/index_zh-cn.html">Homebrew</a> 类似Ubuntu的 <code class="docutils literal notranslate"><span class="pre">apt-get</span></code> ，Fedora的 <code class="docutils literal notranslate"><span class="pre">yum</span></code> ，简单来说就是为了方便安装软件而生的。</p>
+<p>安装命令(ruby):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ruby -e <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL  https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>安装完后，输入</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew update
+brew upgrade
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>安装过程中会先检测系统中是否已经安装了Homebrew，如果已经安装，会有提示命令行让你先删除已安装的Homebrew。同时安装过程中需要按回车键授权同意安装，安装结束之后，最好运行以下命令，用于检测是否有冲突，同时它会提示一些已失效的库链接</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew doctor
+</pre></div>
+</div>
+<p>Homebrew安装在 <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code> 目录下，同时它会创建 <code class="docutils literal notranslate"><span class="pre">/user/local/Cellar</span></code> 目录用于存放通过Homebrew安装的程序，运行</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew -v
+</pre></div>
+</div>
+<p>查看安装版本</p>
+<p>Homebrew都是在 <code class="docutils literal notranslate"><span class="pre">--prefix=/usr/local/Cellar/NAME/VERSION/</span><span class="pre">--enable-shared</span> <span class="pre">--enable-static</span></code> 配置下编译包， <strong>prefix</strong> 代表安装路径， <strong>shared</strong> 代表创建的 <code class="docutils literal notranslate"><span class="pre">./lib</span></code> 下的动态库文件（ <code class="docutils literal notranslate"><span class="pre">dylib</span></code> ）， <strong>static</strong> 代表编译的时创建静态库文件（ <code class="docutils literal notranslate"><span class="pre">a</span></code> ），二者都会生成二进制（ <code class="docutils literal notranslate"><span class="pre">bin</span></code> ）可执行文件（UNIX可执行文件格式为空）。但是值得注意的是 <code class="docutils literal notranslate"><span class="pre">/usr/local/Cellar/NAME/VERSION/</span></code> 原本并不会被作为搜索目录，也就是说安装后是无法在终端直接调用，必须输入完成的路径，Homebrew的解决方案是：将安装路径下的 <code class="docutils literal notranslate"><span class="pre">lib、bin、header</span></code> 都做一个软链接到 <code class="docutils literal notranslate"><span class="pre">/usr/local/</span></code> 中。</p>
+<dl>
+<dt>Homebrew常用命令</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew search &lt;package name&gt; <span class="c1"># 搜索程序</span>
+brew install &lt;package name&gt; <span class="c1"># 安装程序</span>
+brew uninstall &lt;package name&gt; <span class="c1"># 卸载程序</span>
+brew link &lt;package name&gt; <span class="c1"># 配置到环境变量?</span>
+brew list <span class="c1"># 列举通过Homebrew安装的程序</span>
+brew update <span class="c1"># 更新Homebrewbrew</span>
+brew upgrade <span class="o">[</span>&lt;package name&gt;<span class="o">]</span> <span class="c1"># 更新某个具体程序，或者更新所有程序</span>
+<span class="c1"># 更新完后根据命令行提示对相应包做更新配置</span>
+brew cleanup <span class="o">[</span>&lt;package name&gt;<span class="o">]</span> <span class="c1"># 删除某个具体程序，或者删除所有老版程序, 不要随便运行，后果可能很严重</span>
+brew outdated <span class="c1"># 查看哪些程序需要更新</span>
+</pre></div>
+</div>
+</dd>
+<dt>其他命令</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew home &lt;package name&gt; <span class="c1"># 用浏览器打开</span>
+brew info &lt;package name&gt; <span class="c1"># 显示软件内容信息, 如安装vim时可以查看有哪些编译选项</span>
+brew deps &lt;package name&gt; <span class="c1"># 显示包依赖</span>
+brew server &lt;package name&gt; <span class="c1"># 启动web服务器，可以通过浏览器访问http://localhost:4567/ 来同网页来管理包</span>
+brew -h <span class="c1"># 查看帮助</span>
+</pre></div>
+</div>
+</dd>
+<dt>删除Homebrew</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="sb">`</span>brew –prefix<span class="sb">`</span>
+rm -rf Cellar
+brew prune
+rm -rf Library .git .gitignore bin/brew README.md share/man/man1/brewrm
+-rf ~/Library/Caches/Homebrew
+</pre></div>
+</div>
+</dd>
+<dt>权限问题</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sudoing homebrew is a bad idea (and doesn&#39;t work either) we have to reset the permissions within /usr/local</span>
+sudo chown -R <span class="k">$(</span>whoami<span class="k">)</span> /usr/local
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="vim">
+<h3>vim<a class="headerlink" href="#vim" title="永久链接至标题">¶</a></h3>
+<p>系统自带的vim 不要去动它，通过homebrew 装自己想要的版本</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew install vim --with-cscope --with-python --with-lua --override-system-vim
+<span class="c1"># 参数自己选择</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cmake">
+<span id="cmake-install-mac"></span><h3>CMake<a class="headerlink" href="#cmake" title="永久链接至标题">¶</a></h3>
+<p>安装Homebrew之后输入</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew install cmake
+</pre></div>
+</div>
+<p>这样等待一会cmake就安装好了。安装路径为 <code class="docutils literal notranslate"><span class="pre">/usr/local/Cellar/cmake/3.4.1/bin/</span></code></p>
+</div>
+<div class="section" id="python">
+<span id="python-install-mac"></span><h3>python<a class="headerlink" href="#python" title="永久链接至标题">¶</a></h3>
+<p>Mac系统自带的python路径： <code class="file docutils literal notranslate"><span class="pre">/System/Library/Frameworks/Python.framework/Version/x.x</span></code></p>
+<p>自己安装的python路径： <code class="file docutils literal notranslate"><span class="pre">/Library/Frameworks/Python.framework/Version/x.x</span></code></p>
+<p>homebrew 安装:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>路径：  <code class="file docutils literal notranslate"><span class="pre">/usr/local/Cellar/pythonx</span></code></p></li>
+<li><p>Frameworks路径： <code class="file docutils literal notranslate"><span class="pre">/usr/local/Frameworks/Python.framework/Versions</span></code></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="opencv">
+<span id="opencv-install-mac"></span><h3>OpenCV<a class="headerlink" href="#opencv" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew tap homebrew/science
+brew install opencv
+brew install opencv --with-contrib  // with contrib
+</pre></div>
+</div>
+</div>
+<div class="section" id="matlab">
+<h3>matlab<a class="headerlink" href="#matlab" title="永久链接至标题">¶</a></h3>
+<p>mac中的路径分隔符与win中不一样，为“／”</p>
+</div>
+<div class="section" id="eclipse">
+<h3>Eclipse<a class="headerlink" href="#eclipse" title="永久链接至标题">¶</a></h3>
+<p><strong>错误解决</strong></p>
+<ol class="arabic">
+<li><p>dyld: Library not loaded: XXX.dylib</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dyld</span><span class="p">:</span> <span class="n">Library</span> <span class="ow">not</span> <span class="n">loaded</span><span class="p">:</span> <span class="n">XXX</span><span class="o">.</span><span class="n">dylib</span>
+<span class="n">Referenced</span> <span class="n">from</span><span class="p">:</span>
+<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">pdl</span><span class="o">/</span><span class="n">Development</span><span class="o">/</span><span class="n">HelloWorld</span><span class="o">/</span><span class="n">Hello</span><span class="o">/</span><span class="n">Debug</span><span class="o">/</span><span class="n">Hello</span>
+<span class="n">Reason</span><span class="p">:</span> <span class="n">image</span> <span class="ow">not</span> <span class="n">found</span>
+</pre></div>
+</div>
+<p>This means that your program is using a dynamic library called libWorld.dylib, although you linked your dynamic library to your program during compiling. But you have to tell your program where is the dylib in run-time. There are two solutions:</p>
+<p><strong>Solution 1: set up dynamic library environment variables for your project in Eclipse</strong> :</p>
+<ol class="loweralpha simple">
+<li><p>Right click your <code class="docutils literal notranslate"><span class="pre">project</span> <span class="pre">name</span></code> , select <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">As-&gt;Run</span> <span class="pre">Configuration</span></code></p></li>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Environment</span></code> tab click <code class="docutils literal notranslate"><span class="pre">New</span></code></p></li>
+<li><p>Put <code class="docutils literal notranslate"><span class="pre">DYLD_LIBRARY_PATH</span></code> or <code class="docutils literal notranslate"><span class="pre">DYLD_FALLBACK_LIBRARY_PATH</span></code> in <code class="docutils literal notranslate"><span class="pre">Name</span></code> box</p></li>
+<li><p>.Put the path where your <code class="docutils literal notranslate"><span class="pre">libWorld.dylib</span></code> file is in <code class="docutils literal notranslate"><span class="pre">Value</span></code> box</p></li>
+</ol>
+<p>For example: if <code class="docutils literal notranslate"><span class="pre">libWorld.dylib</span></code> file is in <code class="docutils literal notranslate"><span class="pre">/opt/local/lib/my_dylib</span></code> folder, than put the path in the <code class="docutils literal notranslate"><span class="pre">Name</span></code> box</p>
+<p><strong>Solution 2: set DYLD_LIBRARY_PATH in your bash configuration file</strong> :</p>
+<ol class="loweralpha">
+<li><p>Normally in Mac OS, configuration file is <code class="docutils literal notranslate"><span class="pre">.profile</span></code> under <code class="docutils literal notranslate"><span class="pre">~/</span></code> folder, if you don’t have this file than create a new file with the same name</p></li>
+<li><p>Edit that file:
+Add this line in your <code class="docutils literal notranslate"><span class="pre">.profile</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export DYLD_LIBRARY_PATH=PATH_TO_YOUR_DYLIB:$DYLD_LIBRARY_PATH
+</pre></div>
+</div>
+<p>in my example the <code class="docutils literal notranslate"><span class="pre">PATH_TO_YOUR_DYLIB</span></code> is <code class="docutils literal notranslate"><span class="pre">opt/local/lib/my_dylib</span></code>, so you just add:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export DYLD_LIBRARY_PATH=/opt/local/lib/my_dylib:$DYLD_LIBRARY_PATH
+</pre></div>
+</div>
+<p>in <code class="docutils literal notranslate"><span class="pre">.profile</span></code> file</p>
+</li>
+<li><p>Problem solved, in this solution, you don’t have to set up dylib path for all eclipse project</p></li>
+</ol>
+<p>PS. <code class="docutils literal notranslate"><span class="pre">DYLD_LIBRARY_PATH</span></code> is an environment variable to specify the path of your dynamic library</p>
+<p>Difference between <code class="docutils literal notranslate"><span class="pre">DYLD_LIBRARY_PATH</span></code> and <code class="docutils literal notranslate"><span class="pre">DYLD_FALLBACK_LIBRARY_PATH</span></code> please refer to <a class="reference external" href="http://stackoverflow.com/questions/3146274/is-it-ok-to-use-dyld-library-path-on-mac-os-x-and-whats-the-dynamic-library-s">this</a> post</p>
+</li>
+<li><p>可执行文件运行出错 dyld: Library not loaded:</p>
+<p>在eclipse 上运行成功，但运行生成的可执行文件依旧提示找不到动态链接库</p>
+<p>解决方法：将库文件放到目录 <code class="docutils literal notranslate"><span class="pre">/usr/local/lib</span></code> 下</p>
+</li>
+</ol>
+</div>
+<div class="section" id="android-studio">
+<span id="as-install-mac"></span><h3>Android Studio<a class="headerlink" href="#android-studio" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id3">
+<h4>完全删除android studio<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// 卸载
+rm -Rf /Applications/Android<span class="se">\ </span>Studio.app
+rm -Rf ~/Library/Preferences/AndroidStudio*   // 配置文件
+rm ~/Library/Preferences/com.google.android.studio.plist
+rm -Rf ~/Library/Application<span class="se">\ </span>Support/AndroidStudio*
+rm -Rf ~/Library/Logs/AndroidStudio*
+rm -Rf ~/Library/Caches/AndroidStudio*
+
+//删除全部项目
+rm -Rf ~/AndroidStudioProjects
+
+//删除gradle关联文件 <span class="o">(</span>caches <span class="p">&amp;</span> wrapper<span class="o">)</span>
+rm -Rf ~/.gradle
+
+//删除模拟器
+rm -Rf ~/.android
+
+//删除android 工具
+rm -Rf ~/Library/Android*
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>小技巧<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id5">
+<h3>快捷键<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<p>系统:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CMD+Option+Esc      //任务管理器
+fn＋Ctrl＋f3        //快速锁定到dock
+Ctrl ＋backspace    //打开Spotlight
+Option ＋backspace  //打开Alfred
+</pre></div>
+</div>
+<p>终端:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Ctrl + d  //删除一个字符，相当于通常的Delete键（命令行若无所有字符，则相当于exit；处理多行标准输入时也表示eof）
+Ctrl + h  //退格删除一个字符，相当于通常的Back space键
+Ctrl + u  //删除整行
+Ctrl + k  //删除光标后到行尾的字符
+Ctrl + w  //删除光标前到当前所处单词（Word）的开头
+
+Ctrl + p  //调出命令历史中的前一条（Previous）命令，相当于通常的上箭头
+Ctrl + n  //调出命令历史中的下一条（Next）命令，相当于通常的上箭头
+Ctrl + c  //取消当前行输入的命令, 相当于Ctrl + Break
+Ctrl + l  //清屏，相当于执行clear命令
+
+Ctrl + a  //光标移动到行首（Ahead of line），相当于通常的Home键
+Ctrl + e  //光标移动到行尾（End of line）
+Alt + left   //光标向前(Forward）移动到下一个单词
+Alt + right   //光标往回（Backward)移动到前一个单词
+Ctrl + f  //光标向前(Forward)移动一个字符位置
+Ctrl + b  //光标往回(Backward)移动一个字符位置
+Ctrl + r  //显示：号提示，根据用户输入查找相关历史命令（reverse-i-search）&lt;/p&gt; &lt;p&gt;次常用快捷键：
+Ctrl + y 粘贴最后一次被删除的单词
+comman+d 上下分屏
+</pre></div>
+</div>
+<p>Finder:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CMD＋Z        //撤销前次的操作
+CMD＋up/down    //上下级文件夹跳转
+CMD＋ ［ ／］ //Finder 回退／前进
+option＋［／］//前后打开的文件夹间切换
+</pre></div>
+</div>
+<p>OneNote:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Ctrl ＋ ＝  //插入公式
+</pre></div>
+</div>
+<p>浏览文档:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>fn ＋ up/down   //表示page up／down
+</pre></div>
+</div>
+<p>字典:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ctrl</span> <span class="o">+</span> <span class="n">CMD</span> <span class="o">+</span> <span class="n">d</span>  <span class="o">//</span><span class="n">划词翻译</span>
+<span class="n">选词后按下option</span> <span class="o">+</span> <span class="n">Esc</span> <span class="n">可以朗读</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>终端<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<div class="section" id="iterm2-zsh-oh-my-zsh-solarized-monaco-for-powerline">
+<h3>iTerm2 + Zsh + Oh-my-zsh + Solarized + Monaco for Powerline<a class="headerlink" href="#iterm2-zsh-oh-my-zsh-solarized-monaco-for-powerline" title="永久链接至标题">¶</a></h3>
+<ol class="arabic">
+<li><p><a class="reference external" href="http://www.iterm2.com/">iTerm2</a></p></li>
+<li><p>zsh mac 自带，但我们可以用 brew install 安装最新的</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ brew install zsh
+$ sudo rm /bin/zsh    <span class="c1"># 替换系统自带 zsh</span>
+$ sudo ln -s <span class="sb">`</span>brew --prefix zsh<span class="sb">`</span>/bin/zsh /bin/zsh
+$ chsh -s <span class="k">$(</span>which zsh<span class="k">)</span>  <span class="c1"># 切换系统当前用户的默认 shell 为 zsh, 重启生效</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>chsh 命令加sudo 会对root用户的shell做修改，因此此处不可加root</p>
+</div>
+</li>
+<li><p><a class="reference external" href="http://ethanschoonover.com/solarized">Solarized Dark</a> ，配色方案集合，下载后找到iTerm的配色方案，按照该文件夹下的readme操作，Vim 的配色最好和终端的配色保持一致(直接使用vundle安装)，不然在 Terminal/iTerm2 里使用命令行 Vim 会很别扭:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>syntax <span class="nb">enable</span>
+<span class="nb">set</span> <span class="nv">background</span><span class="o">=</span>dark
+<span class="nb">let</span> g:solarized_termcolors<span class="o">=</span><span class="m">256</span>
+colorscheme solarized
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><a class="reference external" href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a> Zsh 的现成配置方案，方便你管理自己的zsh，可使用以下命令安装：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh <span class="p">|</span> sh
+</pre></div>
+</div>
+<p>编辑 .zshrc 文件:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ZSH_THEME=&quot;agnoster&quot; # 使用 agnoster 主题，很好很强大
+DEFAULT_USER=&quot;你的用户名&quot;     # 增加这一项，可以隐藏掉路径前面那串用户名
+plugins=(git brew node npm)   # 自己按需把要用的 plugin 写上
+
+# 关于 ls, Mac OS X 是基于 FreeBSD 的，所以一些工具 ls, top 等都是 BSD 那一套，ls 不是 GNU ls，
+# 所以即使 Terminal/iTerm2 配置了颜色，但是在 Mac 上敲入 ls 命令也不会显示高亮，
+# 可以通过安装 coreutils 来解决( brew install coreutils),
+#不过如果对 ls 颜色不挑剔的话有个简单办法就是在 .bash_profile 里输出 CLICOLOR=1：
+export CLICOLOR=1
+
+#另外，建议把末尾的 export PATH 稍微调整一下，
+#比如 Homebrew 就建议 /usr/local/bin 应该优先于 /usr/bin；
+#另外也可以自己加上比如 Ruby Gems 目录 /usr/local/opt/ruby/bin、Node.js NPM 目录 ~/bin 等。
+export PATH=/usr/local/bin:/usr/local/sbin/:$HOME/bin:$PATH
+
+#关于 Homebrew 的路径，比如 zsh 这个包可以通过 brew --prefix zsh 知道它的目录是 /usr/local/opt/zsh，
+#关于这些链接：
+#/usr/local/opt/zsh 目录 -&gt; /usr/local/Cellar/zsh/版本号 目录
+#/usr/local/bin/zsh 文件 -&gt; /usr/local/Cellar/zsh/版本号/bin/zsh 文件
+#所以就有了上面那条 chsh -s 命令的写法。
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>注意：vim的补全时可能会报错_arguments:450: _vim_files: function definition file not found，此时只需要删掉 ~/.zcompdump，关闭shell窗口，重新进入即可。</p>
+</div>
+</li>
+<li><p><a class="reference external" href="https://github.com/mneorr/powerline-fonts/blob/bfcb152306902c09b62be6e4a5eec7763e46d62d/Monaco/Monaco%20for%20Powerline.otf">Monaco-Powerline</a> 字体补丁，下载后双击安装，在 iTerm2 的 Preference/Profiles/Text 中将 Regular Font 和 Non-ASCII Font 都换成此字体，否则出现乱码</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>错误解决办法<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>解决桌面上方任务栏消失的问题:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>//杀死任务栏（控制面板）进程，系统会自动重新启动任务栏
+$ pkill gnome-panel
+//如果上一条命令未能解决问题，那就执行下一条命令杀死图形界面吧，
+//系统会帮我们重新启动图形界面，其实就是注销按钮调用的功能
+$ pkill gnome-session
+</pre></div>
+</div>
+<p>通过 sshfs 挂载的目录断开后，出现 <cite>Input/Outout error</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>原因是连接失效，但sshfs仍在运行并占用该目录
+pgrep -lf sshf  //Find the culprit sshfs process
+sudo kill -9 &lt;PID of sshfs&gt;
+sudo umount -f &lt;mounted_dir&gt; //sudo force unmount the &quot;unavailable&quot; directory
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>清理<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<p>慎用</p>
+<ol class="arabic">
+<li><p>Remove the Python 2.7 framework</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">2.7</span>
+<span class="n">sudo</span> <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="n">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">2.7</span>
+</pre></div>
+</div>
+</li>
+<li><p>Remove the Python 2.7 applications directory</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="s2">&quot;/Applications/Python 2.7&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Remove the symbolic links</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span>  <span class="c1"># 这个路径根据 which &lt;command name&gt; 查找</span>
+<span class="n">ls</span> <span class="o">-</span><span class="n">l</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span> <span class="o">|</span> <span class="n">grep</span> <span class="s1">&#39;../Library/Frameworks/Python.framework/Versions/2.7&#39;</span> <span class="o">|</span> <span class="n">awk</span> <span class="s1">&#39;{print $9}&#39;</span> <span class="o">|</span> <span class="n">tr</span> <span class="o">-</span><span class="n">d</span> <span class="o">@</span> <span class="o">|</span> <span class="n">xargs</span> <span class="n">rm</span>
+</pre></div>
+</div>
+</li>
+<li><p>If necessary, edit your shell profile file(s) to remove adding PATH</p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="windows.html" class="btn btn-neutral float-right" title="windows" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ubuntu.html" class="btn btn-neutral float-left" title="ubuntu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

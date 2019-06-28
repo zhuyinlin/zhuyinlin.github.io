@@ -1,0 +1,603 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>算法 &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="图像处理" href="image_process.html" />
+    <link rel="prev" title="线性代数" href="../math/linear_algebra.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">算法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="image_process.html">图像处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine_learning.html">机器学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html">回归分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html">深度学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta_learning.html">元学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RNN.html">RNN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GAN.html">GAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GCN.html">GCN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NLP.html">NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Transformer.html">Attention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stanford_notes.html">斯坦福课程笔记</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>算法</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/algorithm/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>算法<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="image_process.html">图像处理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="image_process.html#id2">医学图像处理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="image_process.html#id3">配准</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="machine_learning.html">机器学习</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="machine_learning.html#generative-approach">生成方法（generative approach）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="machine_learning.html#gan">GAN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="machine_learning.html#vae-variational-autoencoders">变分自编码器（VAE，Variational Autoencoders）</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning.html#ebgan">EBGAN</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="machine_learning.html#autoregressive-models">自回归模型（Autoregressive models）</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="machine_learning.html#discriminative-approach">判别方法（discriminative approach）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine_learning.html#reinforcement-learning">增强学习(Reinforcement Learning)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="regression.html">回归分析</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="regression.html#linear-regression">线性回归（Linear Regression）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="regression.html#id3">1 引言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="regression.html#id4">2 线性回归</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="regression.html#id5">2.1 一般模型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="regression.html#j-theta">2.2 最小化 <span class="math notranslate nohighlight">\(J(\theta)\)</span> 的方法</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="regression.html#id6">3 局部加权线性回归</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html#id7">逻辑回归</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="regression.html#id8">1 引言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="regression.html#id9">2 算法介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="regression.html#id10">2.1 基本原理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="regression.html#theta">2.2 求 <span class="math notranslate nohighlight">\(\theta\)</span> 的方法</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="regression.html#id11">2.2.1 梯度下降法</a></li>
+<li class="toctree-l5"><a class="reference internal" href="regression.html#id12">2.2.2  牛顿法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html#ch-pla">感知器算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html#ch-glm">广义线性模型</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="regression.html#id15">1 介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="regression.html#gml">2 GML 举例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="regression.html#ordinary-least-squares">2.1 最小二乘（Ordinary Least Squares ）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="regression.html#id16">2.2 逻辑回归</a></li>
+<li class="toctree-l4"><a class="reference internal" href="regression.html#softmax-regression">2.3 Softmax Regression</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html#ch-efd">指数分布簇</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html#ch-ne">正则方程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html#ch-sgd">梯度下降法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="regression.html#id20">1 引言</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="regression.html#id22">1.1 基本思想 </a></li>
+<li class="toctree-l4"><a class="reference internal" href="regression.html#id23">1.2 函数凹凸性讨论</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="regression.html#id25">2 算法介绍 </a></li>
+<li class="toctree-l3"><a class="reference internal" href="regression.html#id28">3 细节讨论</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="regression.html#id30">3.1  停止条件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="regression.html#id31">3.2 学习率的更新</a></li>
+<li class="toctree-l4"><a class="reference internal" href="regression.html#id32">3.3 缺点</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="regression.html#id33">4 代码</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="regression.html#id34">4.1  编程思路</a></li>
+<li class="toctree-l4"><a class="reference internal" href="regression.html#id35">4.2 实现代码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html#id36">牛顿法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="regression.html#id37">1 引言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="regression.html#id38">2 算法介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="regression.html#quasi-newton-methods">3 拟牛顿法（Quasi-Newton Methods)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="regression.html#bfgs-broyden-fletcher-goldfarb-shanno">3.1  BFGS (Broyden Fletcher Goldfarb Shanno)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="regression.html#id39">3.1.1基本思想</a></li>
+<li class="toctree-l5"><a class="reference internal" href="regression.html#lbfgs">3.2  LBFGS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html#conjugate-gradient-cg">共轭梯度法（Conjugate Gradient,CG）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html#id40">优化方法比较</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="regression.html#id41">1 梯度下降与牛顿法的比较</a></li>
+<li class="toctree-l3"><a class="reference internal" href="regression.html#lbfgsscgcg">2 LBFGS、SCG和CG的比较</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deep_learning.html">深度学习</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html#id4">综述 </a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#id5">1 引言</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#id6">1.1 概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#id7">1.2  背景</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#id8">2 人脑视觉机理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#id9">3 关于特征</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#id10">3.1 特征表示的粒度</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#id11">3.2  初级（浅层）特征表示</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#id12">3.3  结构性特征表示</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#id13">3.4  需要有多少个特征</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#id14">4 算法介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#id15">4.1 基本思想</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#shallow-learning-dl">4.2  浅层学习（Shallow Learning）和DL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#dl">4.3  DL与神经网络</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#id16">4.4  DL训练过程</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="deep_learning.html#id17">4.4.1  传统神经网络的训练方法为什么不能用在深度神经网络</a></li>
+<li class="toctree-l5"><a class="reference internal" href="deep_learning.html#id18">4.4.2 DL训练过程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#deep-learning">5 Deep Learning的常用模型或者方法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#autoencoder">5.1  AutoEncoder自动编码器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#sparse-coding">5.2 Sparse Coding稀疏编码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html#id19">数据预处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html#conv-deconv-transpose-conv-fractionally-strided-conv">Conv &amp; Deconv/Transpose Conv/Fractionally Strided Conv</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#conv">Conv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#transpose-conv">Transpose Conv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#dilated-conv">Dilated Conv</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html#maxpooling-unpooling">Maxpooling &amp; Unpooling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html#id21">激活函数</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#sigmoid">1、sigmoid函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#tanh">2、tanh函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#relu-rectified-linear-unit">3、ReLU(Rectified Linear Unit)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#leaky-relu">4、Leaky ReLU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#prelu-parametric-rectified-linear-unit">5、PReLU(Parametric Rectified Linear Unit)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#rrelu-randomized-relu">6、RReLU(Randomized ReLU)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#elu-exponential-linear-units">7、ELU(Exponential Linear Units)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#maxout">8、Maxout</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html#id23">反向传播算法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#id24">1 公式推导</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#id25">2 算法步骤</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#id26">2.1 单个样本</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#minibatch">2.2 minibatch</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html#id27">过饱和问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#id28">1 输出层过饱和问题</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#id29">1.1 改变损失函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#id30">1.2 改变激活函数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#id31">2 隐含层过饱和问题</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#id32">2.1 权重和偏置量的初始化方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#id33">2.2 更换激励函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#momentum">2.3 使用基于momentum的随机梯度下降</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#id34">2.4 近期出现的</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html#overfitting">解决overfitting问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#l1-l2-regularization">1 L1/L2 规则化(regularization)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#weight-decay-l2">1.1 权重衰减(weight decay)/L2规则化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#l1">1.2 L1规则化</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#early-stopping">2 early-stopping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#dropout">3 dropout</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#id35">3.1 原版</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#id36">3.2 maxout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deep_learning.html#dropconnect">3.3 DropConnect</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#batch-normalization">4 batch_normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#id38">5 人工增加训练集</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html#id39">DL 中的优化方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html#id40">网络模型变化</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#inception-google">Inception (google）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#residual-microsoft">Residual (Microsoft)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#mobilenet-google">MobileNet(google)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#shufflenet">ShuffleNet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deep_learning.html#highway-network">Highway Network</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html#id42">调试经验</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="meta_learning.html">元学习</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="meta_learning.html#id3">综述</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RNN.html">RNN</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="RNN.html#id2">普通RNN的问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RNN.html#long-short-term-memory-lstm">Long Short Term Memory(LSTM)  </a><ul>
+<li class="toctree-l3"><a class="reference internal" href="RNN.html#motivation">Motivation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="RNN.html#id4">应用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="GAN.html">GAN</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="GAN.html#id3">基础知识</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="GAN.html#id4">结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GAN.html#id5">存在的问题</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="GAN.html#id7">GAN的变形</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="GAN.html#cgan">CGAN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GAN.html#dcgan">DCGAN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GAN.html#acgan-gan">ACGAN（辅助类别的GAN）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GAN.html#infogan">infoGAN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GAN.html#lsgan">LSGAN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GAN.html#lapgan">LAPGAN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GAN.html#pix2pix">pix2pix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GAN.html#wgan">WGAN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GAN.html#bgan-boundary-seeking-gan">BGAN（Boundary-Seeking GAN）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GAN.html#gan-stacked-gan">GAN(Stacked GAN)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="GAN.html#gan-nlg-ntg">GAN 在NLG/NTG中的应用</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="GAN.html#id9">GAN为何不能直接用于文本生成 </a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="GCN.html">GCN</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="GCN.html#id2">入门</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GCN.html#todo">TODO</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="NLP.html">NLP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="NLP.html#word-representation">Word Representation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="NLP.html#word2vec">word2vec </a><ul>
+<li class="toctree-l4"><a class="reference internal" href="NLP.html#motivation">Motivation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="NLP.html#id6">基本思想</a></li>
+<li class="toctree-l4"><a class="reference internal" href="NLP.html#id7">模型</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="NLP.html#cbow-continuous-bag-of-words">CBOW(Continuous Bag-of-Words)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="NLP.html#skip-gram">Skip-Gram</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="NLP.html#id9">训练</a></li>
+<li class="toctree-l4"><a class="reference internal" href="NLP.html#id10">实现</a></li>
+<li class="toctree-l4"><a class="reference internal" href="NLP.html#id11">优缺点</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="NLP.html#glove">GloVe</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="NLP.html#id12">基本思想</a></li>
+<li class="toctree-l4"><a class="reference internal" href="NLP.html#id13">实现</a></li>
+<li class="toctree-l4"><a class="reference internal" href="NLP.html#id14">优缺点</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="NLP.html#word2vec-glove">Word2Vec 和 Glove 的对比</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NLP.html#sentence-embedding">Sentence Embedding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NLP.html#id15">评价</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="NLP.html#keyword-extraction">keyword extraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="NLP.html#automatic-summarization">自动文摘（Automatic Summarization）</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="NLP.html#textrank">TextRank </a></li>
+<li class="toctree-l4"><a class="reference internal" href="NLP.html#learning-phrases">Learning Phrases</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="NLP.html#nlg">NLG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="NLP.html#seq2seq">Seq2Seq</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="NLP.html#code-tutorial">Code Tutorial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="NLP.html#training-tricks">Training tricks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="NLP.html#decoding">Decoding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="NLP.html#id26">缺点</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="NLP.html#image-caption">Image Caption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NLP.html#attention">Attention 机制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NLP.html#id29">术语</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer.html">Attention</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Transformer.html#id3">Attention mechanism </a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Transformer.html#todo">TODO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Transformer.html#transformer">Transformer </a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Transformer.html#motivation">Motivation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Transformer.html#works">Works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Transformer.html#model-architecture">Model Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Transformer.html#self-intra-attention">self/intra attention</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Transformer.html#multi-head-attention">Multi-head attention</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Transformer.html#position-wise-feed-forward-networks">Position-wise Feed-Forward Networks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Transformer.html#position-embedding">Position Embedding</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Transformer.html#id11">TODO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Transformer.html#id12">问题</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Transformer.html#bert"><abbr title="Bidirectional Encoder Representations from Transformers">BERT</abbr> </a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Transformer.html#id14">Motivation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Transformer.html#id15">Works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Transformer.html#id16">Model Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Transformer.html#pretrain">Pretrain</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Transformer.html#mlm"><abbr title="masked language model">MLM</abbr></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Transformer.html#nsp"><abbr title="Next sentence prediction">NSP</abbr></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Transformer.html#fine-tune">Fine-tune</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Transformer.html#id17">应用到我们的项目中</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stanford_notes.html">斯坦福课程笔记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="stanford_notes.html#cs231">cs231</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="stanford_notes.html#chapter-1">chapter 1</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="stanford_notes.html#todo">TODO</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="stanford_notes.html#chapter-2">chapter 2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="stanford_notes.html#id2">预处理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="stanford_notes.html#id3">损失函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="stanford_notes.html#softmax">softmax</a></li>
+<li class="toctree-l4"><a class="reference internal" href="stanford_notes.html#id4">TODO</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="figure align-center" id="id2">
+<img alt="../_images/AI.jpg" src="../_images/AI.jpg" />
+<p class="caption"><span class="caption-text">人工智能技术演变</span><a class="headerlink" href="#id2" title="永久链接至图片">¶</a></p>
+</div>
+<p>在深度学习的大框架下，</p>
+<ul class="simple">
+<li><p>终生学习Life Long Learning</p></li>
+<li><p>少样本学习Few Shot Learning</p></li>
+<li><p>多任务学习Multi Task Learning</p></li>
+<li><p>多智能体学习Multi Agent Learning</p></li>
+<li><p>学会学习Meta Learning/Learning to Learn</p></li>
+<li><p>迁移学习Transfer Learning</p></li>
+</ul>
+<p>Multi-class, Multi-label 以及 Multi-task 问题</p>
+<dl>
+<dt>Multiclass classification</dt><dd><p>means a classification task with more than two classes; e.g., classify a set of images of fruits which may be oranges, apples, or pears. Multiclass classification makes the assumption that each sample is assigned to one and only one label: a fruit can be either an apple or a pear but not both at the same time.</p>
+</dd>
+<dt>Multilabel classification</dt><dd><p>assigns to each sample a set of target labels. This can be thought as predicting properties of a data-point that are not mutually exclusive, such as topics that are relevant for a document. A text might be about any of religion, politics, finance or education at the same time or none of these.</p>
+</dd>
+<dt>Multioutput-multiclass / multi-task classification</dt><dd><p>means that a single estimator has to handle several joint classification tasks. This is a generalization of the multi-label classification task, where the set of classification problem is restricted to binary classification, and of the multi-class classification task. The output format is a 2d numpy array or sparse matrix.</p>
+<p>The set of labels can be different for each output variable. For instance a sample could be assigned “pear” for an output variable that takes possible values in a finite set of species such as “pear”, “apple”, “orange” and “green” for a second output variable that takes possible values in a finite set of colors such as “green”, “red”, “orange”, “yellow”…</p>
+<p>This means that any classifiers handling multi-output multiclass or multi-task classification task supports the multi-label classification task as a special case. Multi-task classification is similar to the multi-output classification task with different model formulations. For more information, see the relevant estimator documentation.</p>
+</dd>
+</dl>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="image_process.html" class="btn btn-neutral float-right" title="图像处理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../math/linear_algebra.html" class="btn btn-neutral float-left" title="线性代数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

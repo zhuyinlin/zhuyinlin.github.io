@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ruby &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="常用第三方包" href="../packages/index.html" />
+    <link rel="prev" title="Python" href="Python.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">编程相关</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="development.html">开发相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Shell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="C++.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Java.html">Java</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Python.html">Python</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ruby</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">语法规则</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gemfile">Gemfile 语法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rails">rails</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">常用命令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scaffold">使用scaffold</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">自己创建</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">规范文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">关于不同编程语言</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id4">编码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">换行符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#makefile">Makefile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">一些经验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id10">当前工作记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#todo">TODO</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">编程相关</a> &raquo;</li>
+        
+      <li>ruby</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/programing/ruby.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ruby">
+<h1>ruby<a class="headerlink" href="#ruby" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>安装<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<ol class="arabic">
+<li><p>安装 RVM
+RVM 能在系统中安装和管理多个 Ruby 版本。同时还能管理不同的 gem 集。</p></li>
+<li><p>安装ruby</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> ~/.rvm/scripts/rvm  //载入 RVM 环境（新开 Termal 就不用这么做了，会自动重新载入的）
+rvm -v  // 检查一下是否安装正确
+rvm list known  // 列出已知的 ruby 版本
+rvm install &lt;x.x.x&gt;  // 选择现有的 ruby 版本来进行安装
+rvm &lt;x.x.x&gt; --default  // 将指定版本的 Ruby 设置为系统默认版本
+
+ruby -v
+gem -v
+
+<span class="c1"># 替换源</span>
+gem <span class="nb">source</span> -r https://rubygems.org/
+gem <span class="nb">source</span> -a https://gems.ruby-china.org
+gem sources -l
+
+gem install rails  <span class="c1"># 安装rails</span>
+
+bundle config mirror.https://rubygems.org https://gems.ruby-china.org  <span class="c1">#</span>
+</pre></div>
+</div>
+<p>rvm 常用命令</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rvm list  //查询已经安装的 ruby
+rvm remove &lt;x.x.x&gt;  // 卸载一个已安装ruby版本
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="id2">
+<h2>语法规则<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>class name: CamelCase
+filename: snake case</p>
+</div>
+<div class="section" id="gemfile">
+<h2>Gemfile 语法<a class="headerlink" href="#gemfile" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;=</span> <span class="o">&lt;</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">&gt;</span>  <span class="c1"># 安装最新版本</span>
+<span class="o">~&gt;</span> <span class="o">&lt;</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">&gt;</span>  <span class="c1"># 仅最后一位不同</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rails">
+<h2>rails<a class="headerlink" href="#rails" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id3">
+<h3>常用命令<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rails new
+rails g<span class="o">(</span>enerate<span class="o">)</span> <span class="o">[</span>scaffold <span class="p">|</span> controller <span class="p">|</span> model<span class="o">]</span>
+rails c<span class="o">(</span>onsole<span class="o">)</span>
+rails s<span class="o">(</span>erver<span class="o">)</span>
+rails t<span class="o">(</span>est<span class="o">)</span>
+rails destroy
+
+rails db:setup
+rails db:migrate
+rails db:rollback <span class="o">[</span><span class="nv">VERSION</span><span class="o">=</span><span class="m">0</span><span class="o">]</span>
+
+bundle <span class="o">(</span>install<span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scaffold">
+<h3>使用scaffold<a class="headerlink" href="#scaffold" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bundle install --without production
+rails g scaffold &lt;res_name&gt; &lt;res_item...&gt;
+rails db:migrate  <span class="c1"># update the database with our new data model</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>自己创建<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rails g controller &lt;C_name&gt; &lt;action_name...&gt;  <span class="c1"># create contoller</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../packages/index.html" class="btn btn-neutral float-right" title="常用第三方包" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Python.html" class="btn btn-neutral float-left" title="Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

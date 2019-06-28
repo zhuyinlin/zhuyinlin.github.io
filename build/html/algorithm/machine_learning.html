@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>机器学习 &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="回归分析" href="regression.html" />
+    <link rel="prev" title="图像处理" href="image_process.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">算法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="image_process.html">图像处理</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">机器学习</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generative-approach">生成方法（generative approach）</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gan">GAN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vae-variational-autoencoders">变分自编码器（VAE，Variational Autoencoders）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autoregressive-models">自回归模型（Autoregressive models）</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#discriminative-approach">判别方法（discriminative approach）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reinforcement-learning">增强学习(Reinforcement Learning)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html">回归分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html">深度学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta_learning.html">元学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RNN.html">RNN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GAN.html">GAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GCN.html">GCN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NLP.html">NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Transformer.html">Attention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stanford_notes.html">斯坦福课程笔记</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">算法</a> &raquo;</li>
+        
+      <li>机器学习</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/algorithm/machine_learning.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>机器学习<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>machine learning的算法分为两类： 生成式模型、判别式模型；其区别在于： 对于输入x，类别标签y，在生成式模型中估计其联合概率分布，而判别式模型估计其属于某类的条件概率分布。</p>
+<div class="section" id="generative-approach">
+<h2>生成方法（generative approach）<a class="headerlink" href="#generative-approach" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>有监督学习
+1. 朴素贝叶斯(Naive Bayes)
+2. 混合高斯模型(GMM)
+3. 隐马尔科夫模型(MRF)</p></li>
+<li><p>无监督学习
+无监督深度学习
+1. 受限玻尔兹曼机（Restricted Boltzmann Machine, RBM）
+2. 深度信念网络（Deep Belief Network, DBN）
+3. 深度玻尔兹曼机（Deep Boltzmann Machine, DBM）
+4. 广义除噪自编码器（Generalized Denoising Autoencoders）</p></li>
+</ul>
+<div class="section" id="gan">
+<h3>GAN<a class="headerlink" href="#gan" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p><a class="reference internal" href="GAN.html#gan"><span class="std std-ref">GAN</span></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="vae-variational-autoencoders">
+<h3>变分自编码器（VAE，Variational Autoencoders）<a class="headerlink" href="#vae-variational-autoencoders" title="永久链接至标题">¶</a></h3>
+<p>相比于 GAN，AE 的优点：</p>
+<ol class="arabic simple">
+<li><p>使用GAN来生成图片使用的是随机高斯噪声，这意味着我们并不能生成任意我们指定类型的图片；但是使用 auto-encoder 我们就能够通过输出图片的编码过程得到这种类型图片的编码之后的分布，相当于我们是知道每种图片对应的噪声分布，我们就能够通过选择特定的噪声来生成我们想要生成的图片。</p></li>
+<li><p>这既是生成网络的优点同时又有着一定的局限性，这就是生成网络通过对抗过程来区分“真”的图片和“假”的图片，然而这样得到的图片只是尽可能像真的，但是这并不能保证图片的内容是我们想要的，换句话说，有可能生成网络尽可能的去生成一些背景图案使得其尽可能真，但是里面没有实际的物体。</p></li>
+</ol>
+<p>在AE中我们没有办法自己去构造隐藏向量，而是需要通过一张图片输入编码我们才知道得到的隐含向量是什么，这时我们就可以通过变分自动编码器（VAE，Variational Autoencoders）来解决这个问题: 只需要在编码过程给它增加一些限制，迫使其生成的隐含向量能够粗略的遵循一个标准正态分布，这就是其与一般的自动编码器最大的不同。</p>
+<p>VAE 与 GANs 的不同是，VAE 中我们知道图像的密度函数（或者说，是我们设定的），而 GAN 中我们并不知道图像的分布。</p>
+<p>另外变分编码器除了可以让我们随机生成隐含变量，还能够提高网络的泛化能力。</p>
+<div class="section" id="ebgan">
+<h4>EBGAN<a class="headerlink" href="#ebgan" title="永久链接至标题">¶</a></h4>
+<p>EBGAN在边缘的生成效果上更流畅, 而且加了特殊的正则项, 在生成的类别上, EBGAN更倾向于生成不同的脸型和人种</p>
+<p>VAE的缺点也很明显，它是直接计算生成图片和原始图片的均方误差而不是像GAN那样去对抗来学习，这就使得生成的图片会有点模糊。现在已经有一些工作是将VAE和GAN结合起来，使用VAE的结构，但是使用对抗网络来进行训练，</p>
+</div>
+</div>
+<div class="section" id="autoregressive-models">
+<h3>自回归模型（Autoregressive models）<a class="headerlink" href="#autoregressive-models" title="永久链接至标题">¶</a></h3>
+</div>
+</div>
+<div class="section" id="discriminative-approach">
+<h2>判别方法（discriminative approach）<a class="headerlink" href="#discriminative-approach" title="永久链接至标题">¶</a></h2>
+<p>LogisticRegression，
+SVM,
+Neural Network</p>
+<p>machine learning 的算法也可以分为三类：监督学习、非监督学习、增强学习</p>
+</div>
+<div class="section" id="reinforcement-learning">
+<h2>增强学习(Reinforcement Learning)<a class="headerlink" href="#reinforcement-learning" title="永久链接至标题">¶</a></h2>
+<p>在AlphaGo Zero出现之前，基于深度学习的增强学习方法按照使用的网络模型数量可以分为两类:</p>
+<ul class="simple">
+<li><p>一类使用一个DNN”端到端”地完成全部决策过程(比如DQN, Deep Q-Learning)，这类方法比较轻便，对于离散动作决策更适用;</p></li>
+<li><p>另一类使用多个DNN分别学习policy和value等(比如之前战胜李世石的AlphaGoGo)，这类方法比较复杂，对于各种决策更通用。</p></li>
+<li><p>此次的AlphaGo Zero综合了二者长处，采用类似DQN的一个DNN网络实现决策过程，并利用这个DNN得到两种输出policy和value，然后利用一个蒙特卡罗搜索树完成当前步骤选择。</p></li>
+</ul>
+<p>专业名词
+～～～～～～</p>
+<p>Total reword: <span class="math notranslate nohighlight">\(R=r_1 + r_2 + ... + r_n\)</span></p>
+<p>Total future reword : <span class="math notranslate nohighlight">\(R_t = r_t + ... + r_n\)</span></p>
+<p>discounted future reword: <span class="math notranslate nohighlight">\(R_t + \gamma R_{t+1} + ... + \gamma_{n-t} R_{t+n}  \gamma \in [0, 1]\)</span></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="regression.html" class="btn btn-neutral float-right" title="回归分析" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="image_process.html" class="btn btn-neutral float-left" title="图像处理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

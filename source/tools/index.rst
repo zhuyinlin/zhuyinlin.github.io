@@ -7,7 +7,7 @@
    browser.rst
    git.rst
    vim.rst
-   reStructuredText.rst
+   documents.rst
 
 tmux
 ------

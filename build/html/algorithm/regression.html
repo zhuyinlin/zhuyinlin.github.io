@@ -1,0 +1,1124 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>回归分析 &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="深度学习" href="deep_learning.html" />
+    <link rel="prev" title="机器学习" href="machine_learning.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">算法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="image_process.html">图像处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine_learning.html">机器学习</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">回归分析</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#linear-regression">线性回归（Linear Regression）</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1 引言</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">2 线性回归</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">3 局部加权线性回归</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">逻辑回归</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">1 引言</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">2 算法介绍</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ch-pla">感知器算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ch-glm">广义线性模型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id15">1 介绍</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gml">2 GML 举例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ch-efd">指数分布簇</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ch-ne">正则方程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ch-sgd">梯度下降法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id20">1 引言</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">2 算法介绍 </a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28">3 细节讨论</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id33">4 代码</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id36">牛顿法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id37">1 引言</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id38">2 算法介绍</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quasi-newton-methods">3 拟牛顿法（Quasi-Newton Methods)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conjugate-gradient-cg">共轭梯度法（Conjugate Gradient,CG）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id40">优化方法比较</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id41">1 梯度下降与牛顿法的比较</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lbfgsscgcg">2 LBFGS、SCG和CG的比较</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html">深度学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta_learning.html">元学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RNN.html">RNN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GAN.html">GAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GCN.html">GCN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NLP.html">NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Transformer.html">Attention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stanford_notes.html">斯坦福课程笔记</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">算法</a> &raquo;</li>
+        
+      <li>回归分析</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/algorithm/regression.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><a class="toc-backref" href="#id48">回归分析</a><a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="contents topic" id="id2">
+<p class="topic-title first">目录</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id1" id="id48">回归分析</a></p>
+<ul>
+<li><p><a class="reference internal" href="#linear-regression" id="id49">线性回归（Linear Regression）</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id50">1 引言</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id51">2 线性回归</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id5" id="id52">2.1 一般模型</a></p></li>
+<li><p><a class="reference internal" href="#j-theta" id="id53">2.2 最小化 <span class="math notranslate nohighlight">\(J(\theta)\)</span> 的方法</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id6" id="id54">3 局部加权线性回归</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id7" id="id55">逻辑回归</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id8" id="id56">1 引言</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id57">2 算法介绍</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id10" id="id58">2.1 基本原理</a></p></li>
+<li><p><a class="reference internal" href="#theta" id="id59">2.2 求 <span class="math notranslate nohighlight">\(\theta\)</span> 的方法</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id11" id="id60">2.2.1 梯度下降法</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id61">2.2.2  牛顿法</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#ch-pla" id="id62">感知器算法</a></p></li>
+<li><p><a class="reference internal" href="#ch-glm" id="id63">广义线性模型</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id15" id="id64">1 介绍</a></p></li>
+<li><p><a class="reference internal" href="#gml" id="id65">2 GML 举例</a></p>
+<ul>
+<li><p><a class="reference internal" href="#ordinary-least-squares" id="id66">2.1 最小二乘（Ordinary Least Squares ）</a></p></li>
+<li><p><a class="reference internal" href="#id16" id="id67">2.2 逻辑回归</a></p></li>
+<li><p><a class="reference internal" href="#softmax-regression" id="id68">2.3 Softmax Regression</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#ch-efd" id="id69">指数分布簇</a></p></li>
+<li><p><a class="reference internal" href="#ch-ne" id="id70">正则方程</a></p></li>
+<li><p><a class="reference internal" href="#ch-sgd" id="id71">梯度下降法</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id20" id="id72">1 引言</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id22" id="id73">1.1 基本思想 </a></p></li>
+<li><p><a class="reference internal" href="#id23" id="id74">1.2 函数凹凸性讨论</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id25" id="id75">2 算法介绍 </a></p></li>
+<li><p><a class="reference internal" href="#id28" id="id76">3 细节讨论</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id30" id="id77">3.1  停止条件</a></p></li>
+<li><p><a class="reference internal" href="#id31" id="id78">3.2 学习率的更新</a></p></li>
+<li><p><a class="reference internal" href="#id32" id="id79">3.3 缺点</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id33" id="id80">4 代码</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id34" id="id81">4.1  编程思路</a></p></li>
+<li><p><a class="reference internal" href="#id35" id="id82">4.2 实现代码</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id36" id="id83">牛顿法</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id37" id="id84">1 引言</a></p></li>
+<li><p><a class="reference internal" href="#id38" id="id85">2 算法介绍</a></p></li>
+<li><p><a class="reference internal" href="#quasi-newton-methods" id="id86">3 拟牛顿法（Quasi-Newton Methods)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#bfgs-broyden-fletcher-goldfarb-shanno" id="id87">3.1  BFGS (Broyden Fletcher Goldfarb Shanno)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id39" id="id88">3.1.1基本思想</a></p></li>
+<li><p><a class="reference internal" href="#lbfgs" id="id89">3.2  LBFGS</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#conjugate-gradient-cg" id="id90">共轭梯度法（Conjugate Gradient,CG）</a></p></li>
+<li><p><a class="reference internal" href="#id40" id="id91">优化方法比较</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id41" id="id92">1 梯度下降与牛顿法的比较</a></p></li>
+<li><p><a class="reference internal" href="#lbfgsscgcg" id="id93">2 LBFGS、SCG和CG的比较</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="linear-regression">
+<span id="ch-lr"></span><h2><a class="toc-backref" href="#id49">线性回归（Linear Regression）</a><a class="headerlink" href="#linear-regression" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id3">
+<h3><a class="toc-backref" href="#id50">1 引言</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>回归在数学上来说是给定一个点集，能够用一条曲线去拟合之，如果这个曲线是一条直线，那就被称为线性回归，如果曲线是一条二次曲线，就被称为二次回归。回归还有很多变种，如locally weighted回归，logistic回归，等等。</p>
+<p>用一个很简单的例子来说明回归(这个例子来自很多的地方，也在很多的open source的软件中看到，比如说weka），大概就是，做一个房屋价值的评估系统，一个房屋的价值来自很多地方，比如说面积、房间的数量（几室几厅）、地段、朝向等等，这些影响房屋价值的变量被称为 <strong>特征</strong> (feature)，feature在机器学习中是一个很重要的概念，有很多的论文专门探讨这个东西。在此处，为了简单，假设我们的房屋就是一个变量影响的，就是房屋的面积。我们可以做出一个图，x轴是房屋的面积，y轴是房屋的售价，如果来了一个新的面积，假设在销售价钱的记录中没有的，我们怎么办呢？我们可以用一条曲线去尽量准地拟合这些数据，那么对于新的输入数据，我们可以将曲线上这个点对应的值返回。</p>
+<p>首先给出一些概念和常用的符号，在不同的机器学习书籍中可能有一定的差别。</p>
+<ul class="simple">
+<li><p>房屋销售记录表—— <strong>训练集</strong> (training set)或者 <strong>训练数据</strong> (training data), 即输入数据，一般称为x</p></li>
+<li><p>房屋销售价钱 - 输出数据，一般称为y</p></li>
+<li><p>拟合的函数（或者称为 <strong>假设</strong> 或者 <strong>模型</strong> ），一般写做 <span class="math notranslate nohighlight">\(y=h(x)\)</span></p></li>
+<li><p>训练数据的条目数(#training set), 一条训练数据是由一对输入数据和输出数据组成的 <span class="math notranslate nohighlight">\((x^{(i)},y^{(i)})\)</span></p></li>
+<li><p>输入数据的维度(特征的个数，#features)， <span class="math notranslate nohighlight">\(n\)</span></p></li>
+</ul>
+<p>下面是一个典型的机器学习的过程，首先给出一个输入数据，我们的算法会通过训练得到一个估计函数 <span class="math notranslate nohighlight">\(h\)</span> ，这个函数能够对新加入的数据给出一个新的估计，也被称为构建一个模型，就如同上面的线性回归函数。</p>
+<div class="figure align-center" id="classic-ml">
+<a class="reference internal image-reference" href="../_images/machine_learning.png"><img alt="../_images/machine_learning.png" src="../_images/machine_learning.png" style="width: 263.5px; height: 227.5px;" /></a>
+<p class="caption"><span class="caption-text">典型的机器学习过程</span><a class="headerlink" href="#classic-ml" title="永久链接至图片">¶</a></p>
+</div>
+</div>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id51">2 线性回归</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id5">
+<h4><a class="toc-backref" href="#id52">2.1 一般模型</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h4>
+<p>用 <span class="math notranslate nohighlight">\(x_1,x_2,…,x_n\)</span> 描述feature里面的分量，比如 <span class="math notranslate nohighlight">\(x_1=\)</span> 房间的面积， <span class="math notranslate nohighlight">\(x_2=\)</span> 房间的朝向等等，我们可以做出一个估计函数：</p>
+<div class="math notranslate nohighlight" id="equation-e1">
+<span class="eqno">(1)<a class="headerlink" href="#equation-e1" title="公式的永久链接">¶</a></span>\[h(x)=h_{\theta}(x)=\theta_0+\theta_1 x_1+\theta_2 x_2+\cdots\]</div>
+<p><span class="math notranslate nohighlight">\(\theta_j\)</span> 在这儿称为 <strong>参数</strong> （或者 <strong>权重</strong> ），用于调整feature中每个分量的影响力，就是到底是房屋的面积更重要还是房屋的地段更重要。令 <span class="math notranslate nohighlight">\(x_0= 1\)</span> ，则上式可以用向量的方式来表示为（其中 <span class="math notranslate nohighlight">\(\theta_0\)</span> 为 <cite>截距项</cite> (intercept term ））：</p>
+<div class="math notranslate nohighlight" id="equation-e2">
+<span class="eqno">(2)<a class="headerlink" href="#equation-e2" title="公式的永久链接">¶</a></span>\[h_{\theta}(x)=\sum_{j=0}^n\theta _j x_j=\theta^T x\]</div>
+<p>为了评估学习得到的 <span class="math notranslate nohighlight">\(\theta\)</span> 是否比较好，我们通过比较 <span class="math notranslate nohighlight">\(h\)</span> 函数与 <span class="math notranslate nohighlight">\(y\)</span> 的接近程度来评估。这个函数称为 <strong>代价函数</strong> (cost function）、 <strong>损失函数</strong> (loss function）或者 <strong>错误函数</strong> (error function)，描述 <span class="math notranslate nohighlight">\(h\)</span> 函数 <strong>不好</strong> 的程度：</p>
+<div class="math notranslate nohighlight" id="equation-e3">
+<span class="eqno">(3)<a class="headerlink" href="#equation-e3" title="公式的永久链接">¶</a></span>\[\begin{split}\begin{split}
+&amp;J(\theta)= \frac{1}{2}\sum_{i=1}^m (h_{\theta}(x^{(i)})-y^{(i)})^2\\
+&amp;\min_{\theta} J_{\theta}
+\end{split}\end{split}\]</div>
+<p>这个错误估计函数是将对 <span class="math notranslate nohighlight">\(x^{(i)}\)</span> 的估计值与真实值 <span class="math notranslate nohighlight">\(y^{(i)}\)</span> 差的平方和作为错误估计函数，前面乘上的 <span class="math notranslate nohighlight">\(1/2\)</span> 是为了在求导的时候，将这个系数抵消。</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>这里的 <span class="math notranslate nohighlight">\(m\)</span> 表示记录条数（#training set), <a class="reference internal" href="#equation-e2">(2)</a> 的 <span class="math notranslate nohighlight">\(n\)</span> 则表示特征数（#features）</p>
+</div>
+</div>
+<div class="section" id="j-theta">
+<h4><a class="toc-backref" href="#id53">2.2 最小化 <span class="math notranslate nohighlight">\(J(\theta)\)</span> 的方法</a><a class="headerlink" href="#j-theta" title="永久链接至标题">¶</a></h4>
+<p>调整 <span class="math notranslate nohighlight">\(\theta\)</span> 以使得 <span class="math notranslate nohighlight">\(J(\theta)\)</span> 取得最小值的方法有很多，其中有：</p>
+<ol class="lowerroman simple">
+<li><p>最小二乘法(Least  squares，LS)，是一种完全是数学描述的方法， <a class="reference internal" href="#id18">正则方程</a> （normal equations ）</p></li>
+<li><p>最小均方算法(least mean square，LMS Algorithm), <a class="reference internal" href="#id19">梯度下降法</a> （steepest descent ／gradient descent)）</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id54">3 局部加权线性回归</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<p>模型的不同选择（如线性、二阶、三阶等）会造成欠拟合和过拟合，因此特征的选择对于学习算法的性能起着很重要的作用（当我们讲到模型选择时，我们也期望算法能自动选择好的特征集合）。局部加权线性回归(Locally weighted linear regression，LWR) 的中心思想是在对参数进行求解的过程中，令每个样本对当前参数值的影响享有不同权重，即在预测一个点的值时，选择和这个点相近的点而不是全部的点做线性回归。</p>
+<p>在前述的线性回归中，预测输出的步骤如下：</p>
+<ol class="arabic simple">
+<li><p>Fits <span class="math notranslate nohighlight">\(\theta\)</span> to minimize <span class="math notranslate nohighlight">\(\sum_i(y^{(i)}-\theta^Tx^{(i)})^2\)</span></p></li>
+<li><p>Output <span class="math notranslate nohighlight">\(\theta^Tx\)</span></p></li>
+</ol>
+<p>而LWR的步骤如下：</p>
+<ol class="arabic simple">
+<li><p>Fits <span class="math notranslate nohighlight">\(\theta\)</span> to minimize <span class="math notranslate nohighlight">\(\sum_iw^{(i)}(y^{(i)}-\theta^Tx^{(i)})^2\)</span></p></li>
+<li><p>Output <span class="math notranslate nohighlight">\(\theta^Tx\)</span></p></li>
+</ol>
+<p>其中， <span class="math notranslate nohighlight">\(w^{(i)}\)</span> 是非负值权重，显然，当某个 <span class="math notranslate nohighlight">\(i\)</span> 的 <span class="math notranslate nohighlight">\(w^{(i)}\)</span> 较大时，就要花很多精力选择其对应的 <span class="math notranslate nohighlight">\(\theta\)</span> 值以使得代价函数变小，反之则对应项造成的误差几乎可以忽略。 <span class="math notranslate nohighlight">\(w^{(i)}\)</span> 一般设置为：</p>
+<div class="math notranslate nohighlight" id="equation-e4">
+<span class="eqno">(4)<a class="headerlink" href="#equation-e4" title="公式的永久链接">¶</a></span>\[w^{(i)}=\exp{\left(-\frac{(x^{(i)}-x)^2}{2\tau ^2}\right)}\]</div>
+<p>显然，权重的大小取决于要预测的点 <span class="math notranslate nohighlight">\(x\)</span> 的位置，如果 <span class="math notranslate nohighlight">\(|x^{(i)}−x|\)</span> 的值很小（即离 <span class="math notranslate nohighlight">\(x\)</span> 很近）， <span class="math notranslate nohighlight">\(w^{(i)}\)</span> 接近 <span class="math notranslate nohighlight">\(1\)</span> ；相反，距离越大 <span class="math notranslate nohighlight">\(w^{(i)}\)</span> 越小。<span class="math notranslate nohighlight">\(\tau\)</span> 被称为 <strong>波长参数</strong> (bandwidth parameter），控制权重随距离下降的速率。</p>
+<p>这个方法的问题在于，对于每一个要计算的点，都要重新估计一个线性回归模型，这样似的计算代价极高。Andrew Moore的kd－tree算法可以对该问题进行优化。</p>
+<p>LWR是 <strong>非参算法</strong> (non-parametric algorithm ），而前述的线性回归是 <strong>参数算法</strong> (parametric algorithm ），因为后者有固定的、有限个的参数θ_i，一旦确定了就不需要再为未来的预测重新计算，而前者则需要保留训练参数为每一次预测计算新的参数。non-parametric 的意思就是用于表达 <span class="math notranslate nohighlight">\(h\)</span> 的参数 <span class="math notranslate nohighlight">\(\theta_i\)</span> 的个数随着训练集的大小线性变化。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id55">逻辑回归</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id56">1 引言</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p>对于目标值是连续变量的问题来说，线性回归可能会解决得很好，即便不能用线性模型，也能使用局部加权回归解决。但对于目标值是离散变量的分类问题来说，线性回归的鲁棒性很差，如图1.b所示，因最右边噪点的存在，使回归模型在训练集上表现都很差。另外，以二分类问题为例（设目标值为 <span class="math notranslate nohighlight">\({0,1}\)</span> ),超过目标值的预测结果是没有意义的，因此就有了 <strong>逻辑回归</strong> (Logistic Regression, LR)，LR模型其实仅在线性回归的基础上，套用了一个逻辑函数，但也就由于这个逻辑函数，使得逻辑回归模型成为了机器学习领域一颗耀眼的明星，更是计算广告学的核心。</p>
+<div class="figure align-center" id="id45">
+<img alt="../_images/LR.gif" src="../_images/LR.gif" />
+<p class="caption"><span class="caption-text">线性回归示例</span><a class="headerlink" href="#id45" title="永久链接至图片">¶</a></p>
+</div>
+</div>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id57">2 算法介绍</a><a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id10">
+<h4><a class="toc-backref" href="#id58">2.1 基本原理</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h4>
+<p>以二分类问题为例，假设目标值为 <span class="math notranslate nohighlight">\({0,1}\)</span> ，LR将估计函数 <span class="math notranslate nohighlight">\(h_{\theta}(x)\)</span> 改为：</p>
+<div class="math notranslate nohighlight" id="equation-eq-hypotheses">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eq-hypotheses" title="公式的永久链接">¶</a></span>\[h_{\theta}(x)=g(\theta ^T x)=\frac{1}{1+e^{-\theta ^T x}}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\theta^T x=\theta_0 + \sum_{j=1}^n\theta_j x_j\)</span>
+,</p>
+<div class="math notranslate nohighlight" id="equation-eq-sigmoid">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eq-sigmoid" title="公式的永久链接">¶</a></span>\[g(z)=\frac{1}{1+e^{-z}}\]</div>
+<p>称为 <strong>逻辑函数</strong> （logistic function ）或（sigmoid function ），其曲线如下图所示：</p>
+<div class="figure align-center" id="id46">
+<img alt="../_images/sigmoid1.png" src="../_images/sigmoid1.png" />
+<p class="caption"><span class="caption-text">逻辑曲线</span><a class="headerlink" href="#id46" title="永久链接至图片">¶</a></p>
+</div>
+<p>由于 <span class="math notranslate nohighlight">\(g(z)\)</span> 在 <span class="math notranslate nohighlight">\(z\rightarrow \infty\)</span> 时趋于 <span class="math notranslate nohighlight">\(1\)</span> ，在 <span class="math notranslate nohighlight">\(z\rightarrow\infty\)</span> 时趋于 <span class="math notranslate nohighlight">\(0\)</span> ， <span class="math notranslate nohighlight">\(h_{\theta}(x)\)</span> 就被限制在 <span class="math notranslate nohighlight">\(0\)</span> 和 <span class="math notranslate nohighlight">\(1\)</span> 之间。至于为什么选择这个函数，原因在 <a class="reference internal" href="#ch-glm"><span class="std std-ref">GLMs讨论</span></a> 。</p>
+<hr class="docutils" />
+<p id="rule1">逻辑函数具有如下性质：</p>
+<div class="math notranslate nohighlight" id="equation-eq-sigmoid-der">
+<span class="eqno">(7)<a class="headerlink" href="#equation-eq-sigmoid-der" title="公式的永久链接">¶</a></span>\[\begin{split}\begin{split}
+g'(z) &amp; =\frac{d}{dz}\frac{1}{1+e^{-z}} \\
+&amp; =\frac{1}{(1+e^{-z})^2} (e^{-z})\\
+&amp; =\frac{1}{1+e^{-z}}\left(1-\frac{1}{1+e^{-z}}\right)\\
+&amp; =g(z)(1-g(z))
+\end{split}\end{split}\]</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="theta">
+<h4><a class="toc-backref" href="#id59">2.2 求 <span class="math notranslate nohighlight">\(\theta\)</span> 的方法</a><a class="headerlink" href="#theta" title="永久链接至标题">¶</a></h4>
+<p>有了这个回归模型，接下来怎么计算 <span class="math notranslate nohighlight">\(\theta\)</span> 呢？就像推导出最小二乘能作为最大似然估计，我们也给定一些概率假设来通过最大似然估计参数。假设：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+P(y=1|x;\theta) &amp; =h_{\theta}(x)\\
+P(y=0|x;\theta) &amp;=1-h_{\theta}(x)
+\end{split}\end{split}\]</div>
+<p>上式也可以写成:</p>
+<div class="math notranslate nohighlight">
+\[p(y|x;\theta)=(h_{\theta}(x))^y(1-h_{\theta}(x))^{1-y}\]</div>
+<p>假设 <span class="math notranslate nohighlight">\(m\)</span> 个训练样本相互独立，则参数在整个数据集上的似然函数（likelihood ）如下：</p>
+<div class="math notranslate nohighlight" id="equation-eq-likelihood">
+<span class="eqno">(8)<a class="headerlink" href="#equation-eq-likelihood" title="公式的永久链接">¶</a></span>\[\begin{split}\begin{split}
+L(\theta)&amp;=p(\vec{y}|X;\theta)\\
+&amp;=\prod_{i=1}^mp(x^{(i)}|y^{(i)};\theta)\\
+&amp;=\prod_{i=1}^m(h_{\theta}(x^{(i)}))^{y^{(i)}}\left(1-h_{\theta}(x^{(i)})\right)^{(1-y^{(i)})}
+\end{split}\end{split}\]</div>
+<p>为了计算方便，对似然函数取对数：</p>
+<div class="math notranslate nohighlight" id="equation-eq-log-likelihood">
+<span class="eqno">(9)<a class="headerlink" href="#equation-eq-log-likelihood" title="公式的永久链接">¶</a></span>\[\begin{split}\begin{split}
+\ell(\theta)&amp;=\log{L(\theta)}\\
+&amp;=\sum_{i=1}^m\left[y^{(i)}\log{h_{\theta}(x^{(i)})}+(1-y^{(i)})\log{(1-h_{\theta}(x^{(i)}))}\right]
+\end{split}\end{split}\]</div>
+<div class="section" id="id11">
+<h5><a class="toc-backref" href="#id60">2.2.1 梯度下降法</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h5>
+<p>为了取得最大值，对其使用更新规则如下的梯度下降法（因为这里是为了最大化，因此使用＋而非－）：</p>
+<div class="math notranslate nohighlight" id="equation-eq-sgd">
+<span class="eqno">(10)<a class="headerlink" href="#equation-eq-sgd" title="公式的永久链接">¶</a></span>\[\theta :=\theta+\alpha \nabla_{\theta}\ell(\theta)\]</div>
+<p>假设只有一个样本，对 <span class="math notranslate nohighlight">\(\ell (\theta)\)</span> 求导（其中使用了 <span class="math notranslate nohighlight">\(g(z)\)</span> 的 <a class="reference internal" href="#rule1"><span class="std std-ref">求导性质</span></a> ）:</p>
+<div class="math notranslate nohighlight" id="equation-eq-loss-der">
+<span class="eqno">(11)<a class="headerlink" href="#equation-eq-loss-der" title="公式的永久链接">¶</a></span>\[\begin{split}\begin{split}
+\frac{\partial}{\partial \theta_j}\ell(\theta)
+&amp;=\frac{\partial}{\partial \theta_j}\left[ y\log{h_{\theta}(x)}+(1-y)\log{(1-h_{\theta}(x))}\right]\\
+&amp;=\left(y\frac{1}{g(\theta ^Tx)}-(1-y)\frac{1}{1-g(\theta ^Tx)} \right)\frac{\partial}{\partial \theta_j}g(\theta ^Tx)\\
+&amp;=\left(y\frac{1}{g(\theta ^Tx)}-(1-y)\frac{1}{1-g(\theta ^Tx)} \right)\frac{e^{-\theta ^Tx}}{(1+e^{-\theta ^Tx})^2}\frac{\partial}{\partial \theta_j}\theta ^Tx\\
+&amp;=\left(y\frac{1}{g(\theta ^Tx)}-(1-y)\frac{1}{1-g(\theta ^Tx)} \right)g(\theta ^Tx)(1-g(\theta ^Tx))\frac{\partial}{\partial \theta_j}\theta ^Tx\\
+&amp;=(y(1-g(\theta ^Tx))-(1-y)g(\theta ^Tx))x_j\\
+&amp;=(y-h_{\theta}(x))x_j\end{split}\end{split}\]</div>
+<p>则 <strong>随机梯度下降</strong> 规则如下：</p>
+<div class="math notranslate nohighlight" id="equation-eq-sgd-2">
+<span class="eqno">(12)<a class="headerlink" href="#equation-eq-sgd-2" title="公式的永久链接">¶</a></span>\[\theta_j :=\theta_j+\alpha(y^{(i)}-h_{\theta}(x^{(i)}))x_j^{(i)}\]</div>
+<p>上式与 <a class="reference internal" href="#ch-sgd"><span class="std std-ref">LMS的形式</span></a> 一样，但实际上是不一样的，因为这里的 <span class="math notranslate nohighlight">\(h_{\theta}(x)\)</span> 不一样，它是关于 <span class="math notranslate nohighlight">\(\theta ^T x^{(i)}\)</span> 的非线性函数。但这种相同形式的更新规则并不是巧合，而几乎是一种通用的规则，你可以选择不同的假设，但如果使用梯度下降法的话，更新规则都如上式，具体解释在GLM模型部分给出(??)。</p>
+</div>
+<div class="section" id="id12">
+<h5><a class="toc-backref" href="#id61">2.2.2  牛顿法</a><a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h5>
+<p>求最大似然函数的解可以转化为求其一阶导数为 <span class="math notranslate nohighlight">\(0\)</span> 的方程的解，即令牛顿法中的函数 <span class="math notranslate nohighlight">\(f\)</span> 为 <span class="math notranslate nohighlight">\(\ell '(\theta)\)</span> ,则更新规则如下：</p>
+<div class="math notranslate nohighlight" id="equation-eq-update-1">
+<span class="eqno">(13)<a class="headerlink" href="#equation-eq-update-1" title="公式的永久链接">¶</a></span>\[\theta:=\theta-\frac{\ell'(\theta)}{\ell''(\theta)}\]</div>
+<hr class="docutils" />
+<p>如果目标函数求的是最小值的话，更新规则依旧不变，因此要判断得到的参数是使得目标函数最大化还是最小化，可以通过判断二阶导的值来判断：小于 <span class="math notranslate nohighlight">\(0\)</span> 为最大值，大于 <span class="math notranslate nohighlight">\(0\)</span> 为最小值。</p>
+<hr class="docutils" />
+<p>上面是当参数 <span class="math notranslate nohighlight">\(\theta\)</span> 为实数的情况，而实际上逻辑回归中的参数为向量，因此更新规则为：</p>
+<div class="math notranslate nohighlight" id="equation-eq-update-2">
+<span class="eqno">(14)<a class="headerlink" href="#equation-eq-update-2" title="公式的永久链接">¶</a></span>\[\begin{split}\theta&amp;:=\theta-H^{-1}\nabla_{\theta}\ell(\theta) \\
+H_{ij}&amp;=\frac{\partial^2 \ell(\theta)}{\partial\theta_i\partial\theta_j}\end{split}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(H\)</span> 是个 <span class="math notranslate nohighlight">\(n\times n\)</span> 的Hessian矩阵（实际上应该是 <span class="math notranslate nohighlight">\((n+1)\times (n+1)\)</span> ，因为包含 <strong>截距项</strong> ), <span class="math notranslate nohighlight">\(n\)</span> 为参数向量的长度。</p>
+<p>牛顿法相对于（批量）梯度下降法的优点是收敛速度快，通常几十次迭代就可以收敛。它也被称为二次收敛（quadratic convergence），因为当迭代到距离收敛比较近的时候，每次迭代都能使误差变为原来的平方。缺点是当参数向量较大时，每次迭代比梯度下降更expensive，因为要计算 <span class="math notranslate nohighlight">\(n\times n\)</span> 的Hessian矩阵的逆。</p>
+<p>When Newton’s method is applied to maximize the logistic regression log likelihood function <span class="math notranslate nohighlight">\(\ell (\theta)\)</span> , the resulting method is also called <strong>Fisher scoring</strong> .</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ch-pla">
+<span id="id13"></span><h2><a class="toc-backref" href="#id62">感知器算法</a><a class="headerlink" href="#ch-pla" title="永久链接至标题">¶</a></h2>
+<p>考虑改善逻辑回归方法，将其输出强制变为 <span class="math notranslate nohighlight">\(0\)</span> 或者 <span class="math notranslate nohighlight">\(1\)</span> 的离散值而非概率，那么很自然能想到将上面的 <span class="math notranslate nohighlight">\(g\)</span> 替代为阈值函数:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}g(z) = \left\{
+\begin{array}{ll}
+1 &amp; \textrm{if } z \ge 0\\
+0 &amp; \textrm{if } z&lt; 0
+\end{array} \right.\end{split}\]</div>
+<p>使用上述函数构造的得到的 <span class="math notranslate nohighlight">\(h_{\theta}(x)\)</span> 并使用 <a class="reference internal" href="#equation-eq-sgd-2">(12)</a> 所示的更新规则，得到的就是 <strong>感知器学习算法</strong> （perceptron learning algorithm，PLA）。感知器学习算法是人工神经网络的基础。</p>
+<p>Note however that even though the perceptron may be cosmetically similar to the other algorithms we talked about, it is actually a very different type of algorithm than logistic regression and least squares linear regression; in particular, it is difficult to endow the perceptron’s predic- tions with meaningful probabilistic interpretations, or derive the perceptron as a maximum likelihood estimation algorithm.</p>
+</div>
+<div class="section" id="ch-glm">
+<span id="id14"></span><h2><a class="toc-backref" href="#id63">广义线性模型</a><a class="headerlink" href="#ch-glm" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id15">
+<h3><a class="toc-backref" href="#id64">1 介绍</a><a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h3>
+<p>在了解广义线性模型（Generalized Linear Models ，GLMs）前，先要了解 <a class="reference internal" href="#ch-efd"><span class="std std-ref">指数分布族</span></a> （exponential family distributions），通过指数分布族我们可以构建 GLM。</p>
+<p>注意指数数布族中 <a class="reference internal" href="#equation-ch-efd-2">(30)</a> 与 <a class="reference internal" href="#equation-ch-efd-4">(32)</a> 的 <span class="math notranslate nohighlight">\(\eta\)</span> 变量，前者的 <span class="math notranslate nohighlight">\(\eta\)</span> 与伯努利分布中的参数 <span class="math notranslate nohighlight">\(\phi\)</span> 的关系是 <strong>logistic 函数</strong> ，通过推导可以得到 <strong>逻辑回归</strong> ；后者的 <span class="math notranslate nohighlight">\(\eta\)</span> 与正态分布的参数 <span class="math notranslate nohighlight">\(\mu\)</span> 的关系是二者相等，可以推导出 <strong>最小二乘模型</strong> (Ordinary Least Squares)。通过这两个例子，我们大致可以得到结论： <span class="math notranslate nohighlight">\(\eta\)</span> 以不同的映射函数与其他概率分布函数中的参数发生联系，从而得到不同的模型，GLM正是将指数分布族中的所有成员（每个成员正好有一个这样的联系）都作为线性模型的扩展，通过各种非线性的连接函数将线性函数映射到其他空间从而大大扩大了线性模型可解决的问题。</p>
+<p>下面们看 GLM 的形式化定义，GLM 有三个假设：</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(y|x; \theta \sim ExponentialFamily(\eta)\)</span> ,即给定样本 <span class="math notranslate nohighlight">\(x\)</span> 与参数 <span class="math notranslate nohighlight">\(\theta\)</span> , <span class="math notranslate nohighlight">\(y\)</span> 的分布以参数 <span class="math notranslate nohighlight">\(\eta\)</span> 服从指数分布族中的某个分布；</p></li>
+<li><p>给定一个 <span class="math notranslate nohighlight">\(x\)</span> ，我们的目的是预测 <span class="math notranslate nohighlight">\(T(y)\)</span> 的值。在我们的大多数例子中 <span class="math notranslate nohighlight">\(T(y) = y\)</span> , 这意味着我们希望预期输出 <span class="math notranslate nohighlight">\(h(x)\)</span> 通过满足 <span class="math notranslate nohighlight">\(h_{\theta}(x)= E[T(y)|x]\)</span> 得到；</p></li>
+<li><p><span class="math notranslate nohighlight">\(\eta = \theta ^Tx\)</span></p></li>
+</ol>
+<p>基于上述假设构建的模型对于模拟 <span class="math notranslate nohighlight">\(y\)</span> 的不同分布也是有效的。例如逻辑回归和最小二乘都可以作为GLM推导得到。</p>
+</div>
+<div class="section" id="gml">
+<h3><a class="toc-backref" href="#id65">2 GML 举例</a><a class="headerlink" href="#gml" title="永久链接至标题">¶</a></h3>
+<div class="section" id="ordinary-least-squares">
+<h4><a class="toc-backref" href="#id66">2.1 最小二乘（Ordinary Least Squares ）</a><a class="headerlink" href="#ordinary-least-squares" title="永久链接至标题">¶</a></h4>
+<p>最小二乘是GLM的特例。假设目标变量 <span class="math notranslate nohighlight">\(y\)</span> 是连续的，我们model给定 <span class="math notranslate nohighlight">\(x\)</span> 时 <span class="math notranslate nohighlight">\(y\)</span> 的条件分布为高斯分布 <span class="math notranslate nohighlight">\(N(\mu, \sigma ^2)\)</span> (这里 <span class="math notranslate nohighlight">\(\mu\)</span> 决定于 <span class="math notranslate nohighlight">\(x\)</span> ）,根据“指数分布族”部分高斯分布的内容可知，其对应指数分布族时 <span class="math notranslate nohighlight">\(\mu =\eta\)</span> ，因此最小二乘模型的推导过程如下:</p>
+<div class="math notranslate nohighlight" id="equation-eq-ch-glm-1">
+<span class="eqno">(15)<a class="headerlink" href="#equation-eq-ch-glm-1" title="公式的永久链接">¶</a></span>\[h_{\theta}(x)=E[y|x;\theta]=\mu=\eta=\theta^Tx\]</div>
+</div>
+<div class="section" id="id16">
+<h4><a class="toc-backref" href="#id67">2.2 逻辑回归</a><a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h4>
+<p>现在考虑逻辑回归，这里讨论二分类问题，因此 <span class="math notranslate nohighlight">\(y\in {0,1}\)</span> 。因为 <span class="math notranslate nohighlight">\(y\)</span> 是binary-valued，所以很自然地可以想到使用伯努利分布来model给定 <span class="math notranslate nohighlight">\(x\)</span> 时 <span class="math notranslate nohighlight">\(y\)</span> 的条件分布，所以，Logistic 模型的推导过程如下:</p>
+<div class="math notranslate nohighlight" id="equation-eq-ch-glm-2">
+<span class="eqno">(16)<a class="headerlink" href="#equation-eq-ch-glm-2" title="公式的永久链接">¶</a></span>\[h_{\theta}(x)=E[y|x;\theta]=\phi=\frac{1}{1+e^{-\eta}}=\frac{1}{1+e^{-\theta^T x}}\]</div>
+<p>So, this gives us hypothesis functions of the form <span class="math notranslate nohighlight">\(h_{\theta}(x) = 1/(1 + e^(−\theta^T x))\)</span> . If you are previously wondering how we came up with the form of the logistic function <span class="math notranslate nohighlight">\(1/(1 + e^(−z))\)</span> , this gives one answer: Once we assume that <span class="math notranslate nohighlight">\(y\)</span> conditioned on <span class="math notranslate nohighlight">\(x\)</span> is Bernoulli, it arises as a consequence of the definition of GLMs and exponential family distributions.</p>
+<p>其中，给出分布的均值的 <span class="math notranslate nohighlight">\(\eta\)</span> 的函数 <span class="math notranslate nohighlight">\(g\)</span> ( <span class="math notranslate nohighlight">\(g(\eta) = E[T(y);\eta]\)</span> ) (即将 <span class="math notranslate nohighlight">\(\eta\)</span> 与原始概率分布中的参数联系起来的函数 ) 称为 <strong>正则响应函数</strong> (canonical response function)，如 <span class="math notranslate nohighlight">\(\phi = 1/(1 + e^(−\eta))\)</span> 、 <span class="math notranslate nohighlight">\(\mu = \eta\)</span> 即是正则响应函数。正则响应函数的逆称为 <strong>正则关联函数</strong> (canonical link function)。</p>
+<p>对于广义线性模型，需要决策的是选用什么样的分布，当选取高斯分布时，我们就得到最小二乘模型；当选取伯努利分布时，我们得到 logistic 模型（这里所说的模型是假设函数 <span class="math notranslate nohighlight">\(h\)</span> 的形式）。 所以总结一下，广义线性模型通过假设一个概率分布，得到不同的模型，而之前所讨论的梯度下降、牛顿方法都是为了求取模型中的线性部分( <span class="math notranslate nohighlight">\(\theta ^Tx\)</span> )的参数 <span class="math notranslate nohighlight">\(\theta\)</span> 的。</p>
+</div>
+<div class="section" id="softmax-regression">
+<h4><a class="toc-backref" href="#id68">2.3 Softmax Regression</a><a class="headerlink" href="#softmax-regression" title="永久链接至标题">¶</a></h4>
+<p>多项式分布推导出的 GLM 可以解决多类分类问题，是 logistic 模型的扩展。 应用的问题比如邮件分类、预测病人疾病等。</p>
+<hr class="docutils" />
+<p>Softmax回归模型是logistic回归模型在多分类问题上的推广      有监督学习</p>
+<p>学习课程： <a class="reference external" href="http://deeplearning.stanford.edu/wiki/index.php/Softmax%E5%9B%9E%E5%BD%92">UFLDL_Softmax回归</a></p>
+<hr class="docutils" />
+<p>多项式分布的目标值 <span class="math notranslate nohighlight">\(y\in {1,2,3,\dots,k}\)</span> ，其概率分布为:</p>
+<div class="math notranslate nohighlight" id="equation-eq-ch-glm-3">
+<span class="eqno">(17)<a class="headerlink" href="#equation-eq-ch-glm-3" title="公式的永久链接">¶</a></span>\[\phi_i=p(y=i|x;\theta)\]</div>
+<p>由于所有参数满足 <span class="math notranslate nohighlight">\(\sum \phi _i=1\)</span> , 所以将全部 <span class="math notranslate nohighlight">\(k\)</span> 个 <span class="math notranslate nohighlight">\(\phi _i\)</span> 作为参数是有冗余的，因此仅保留其中 <span class="math notranslate nohighlight">\(k−1\)</span> 个参数，使得 <span class="math notranslate nohighlight">\(\phi _k=p(y=k|x;\theta)=1−\sum_{i=1}^{k−1}\phi _i\)</span> ，为了将多项式表达为指数分布族的形式，首先定义 <span class="math notranslate nohighlight">\(T(y)\in R^{k−1}\)</span> 如下：</p>
+<div class="math notranslate nohighlight" id="equation-eq-ch-glm-4">
+<span class="eqno">(18)<a class="headerlink" href="#equation-eq-ch-glm-4" title="公式的永久链接">¶</a></span>\[\begin{split}T(1)=\left[\begin{array}{cccc}1\\0\\0\\\vdots\\0\end{array} \right],
+T(2)=\left[\begin{array}{cccc}0\\1\\0\\\vdots\\0\end{array}\right],
+T(3)=\left[\begin{array}{cccc}0\\0\\1\\\vdots\\0\end{array} \right],\cdots,
+T(k-1)=\left[\begin{array}{cccc}0\\0\\0\\\vdots\\1\end{array} \right],
+T(k)=\left[\begin{array}{cccc}0\\0\\0\\\vdots\\0\end{array} \right]\end{split}\]</div>
+<p>因为 <span class="math notranslate nohighlight">\(T(y)\)</span> 是个 <span class="math notranslate nohighlight">\(k−1\)</span> 维的向量，所以用 <span class="math notranslate nohighlight">\((T(y))_i\)</span> 表示其中的第 <span class="math notranslate nohighlight">\(i\)</span> 个元素。我们还可以引入指示函数(indicator function) <span class="math notranslate nohighlight">\(I\)</span> ( <span class="math notranslate nohighlight">\(I(True) = 1, I(False) = 0\)</span> ），这样，<span class="math notranslate nohighlight">\(T(y)\)</span> 向量中的某个元素还可以表示成：</p>
+<div class="math notranslate nohighlight" id="equation-eq-ch-glm-5">
+<span class="eqno">(19)<a class="headerlink" href="#equation-eq-ch-glm-5" title="公式的永久链接">¶</a></span>\[(T(y))_i=I\{y=i\}\]</div>
+<p>因此，</p>
+<div class="math notranslate nohighlight" id="equation-eq-ch-glm-6">
+<span class="eqno">(20)<a class="headerlink" href="#equation-eq-ch-glm-6" title="公式的永久链接">¶</a></span>\[\begin{split}\begin{split}
+E[(T(y))_i]&amp;=P(y=i)=\sum_{y=1}^k (T(y))_i \phi_i\\
+&amp;=\sum_{y=1}^k I\{ y=i\} \phi_i\\
+&amp;=\phi_i
+\end{split}\end{split}\]</div>
+<p>于是，二项分布转变为指数分布族的推导如下：</p>
+<div class="math notranslate nohighlight" id="equation-eq-ch-glm-7">
+<span class="eqno">(21)<a class="headerlink" href="#equation-eq-ch-glm-7" title="公式的永久链接">¶</a></span>\[\begin{split}\begin{split}
+p(y;\phi) &amp; = \phi_1^{I\{y=1\}} \phi_2^{I\{y=2\}} \cdots \phi_k^{I\{y=k\}} \\
+&amp; = \phi_1^{I\{y=1\}} \phi_2^{I\{y=2\}} \cdots \phi_k^{1-\sum_{i=1}^{k-1}I\{y=i\}} \\
+&amp; = \phi_1^{(T(y))_1} \phi_2^{(T(y))_2} \cdots \phi_k^{1-\sum_{i=1}^{k-1}(T(y))_i} \\
+&amp; =\exp((T(y))_1\log(\phi_1)+(T(y))_2\log(\phi_2)+\cdots +(1-\sum_{i=1}^{k-1}(T(y))_i)\log(\phi_k))\\
+&amp; = \exp(\sum_{i=1}^{k-1}(T(y))_i\log(\phi_i)+(1-\sum_{i=1}^{k-1}(T(y))_i)\log(\phi_k))\\
+&amp; = \exp(\sum_{i=1}^{k-1}(T(y))_i\log(\frac{\phi_i}{\phi_k})+\log(\phi_k))
+\end{split}\end{split}\]</div>
+<p>其中</p>
+<div class="math notranslate nohighlight" id="equation-eq-ch-glm-8">
+<span class="eqno">(22)<a class="headerlink" href="#equation-eq-ch-glm-8" title="公式的永久链接">¶</a></span>\[\begin{split}\begin{split}
+\eta &amp; =\left[ \begin{array}{ll}
+\log(\phi_1/\phi_k)\\
+\log(\phi_2/\phi_k)\\
+\vdots\\
+\log(\phi_k-1/\phi_k)
+\end{array}\right]\\
+a(\eta)&amp; =-\log(\phi_k)\\
+b(y)&amp;=1
+\end{split}\end{split}\]</div>
+<p>关联函数 <span class="math notranslate nohighlight">\(\eta\)</span> 可表示为：</p>
+<div class="math notranslate nohighlight" id="equation-eq-ch-glm-9">
+<span class="eqno">(23)<a class="headerlink" href="#equation-eq-ch-glm-9" title="公式的永久链接">¶</a></span>\[\eta_i=\log\frac{\phi_i}{\phi_k},\quad i=1,\dots,k\]</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>为了方便，定义 <span class="math notranslate nohighlight">\(\eta _k=\log \frac{\phi_k}{\phi_k} = 0\)</span></p>
+</div>
+<p>对关联函数求逆的过程如下：</p>
+<div class="math notranslate nohighlight" id="equation-eq-ch-glm-10">
+<span class="eqno">(24)<a class="headerlink" href="#equation-eq-ch-glm-10" title="公式的永久链接">¶</a></span>\[\begin{split}\begin{split}
+e^{\eta_i}&amp;=\frac{\phi_i}{\phi_k}\\
+\phi_i&amp;=\phi_k e^{\eta_i}\\
+\phi_k \sum_{i=1}^k e^{\eta_i}=\sum_{i=1}^k\phi_i=1 &amp; \Rightarrow
+\phi_k=\frac{1}{\sum_{i=1}^k e^{\eta_i}}
+\end{split}\end{split}\]</div>
+<p>得到响应函数 <span class="math notranslate nohighlight">\(\phi _i\)</span> (这个函数也称为 <strong>softmax  function</strong> )</p>
+<div class="math notranslate nohighlight" id="equation-eq-ch-glm-11">
+<span class="eqno">(25)<a class="headerlink" href="#equation-eq-ch-glm-11" title="公式的永久链接">¶</a></span>\[\phi_i=\frac{e^{\eta_i}}{\sum_{j=1}^k e^{\eta_j}}=\frac{e^{\eta_i}}{1+\sum_{j=1}^{k-1} e^{\eta_j}}\]</div>
+<p>根据GLM的第3条假设，就有 <span class="math notranslate nohighlight">\(\eta _i= \theta_i^Tx (i=1,\dots,k−1)\)</span> 为了方便，定义 <span class="math notranslate nohighlight">\(\theta_k=0\)</span> ， 则有 <span class="math notranslate nohighlight">\(\eta_k=\theta_k^T x=0\)</span> ，因此多项式分布的概率分布为：</p>
+<div class="math notranslate nohighlight" id="equation-eq-ch-glm-12">
+<span class="eqno">(26)<a class="headerlink" href="#equation-eq-ch-glm-12" title="公式的永久链接">¶</a></span>\[p(y=i|x;\theta)=\phi_i=\frac{e^{\eta_i}}{\sum_{j=1}^k e^{\eta_j}}=\frac{e^{\theta_i^Tx}}{\sum_{j=1}^k e^{\theta_j^Tx}}\]</div>
+<p>因此，假设函数 <span class="math notranslate nohighlight">\(h\)</span> 为：</p>
+<div class="math notranslate nohighlight" id="equation-eq-ch-glm-13">
+<span class="eqno">(27)<a class="headerlink" href="#equation-eq-ch-glm-13" title="公式的永久链接">¶</a></span>\[\begin{split}\begin{split}
+h_{\theta}(x)&amp;=E[T(y)|x;\theta]\\
+&amp;=E\left[ \begin{array}{cccc}
+I\{y=1\}\\I\{y=2\}\\\vdots\\I\{y=k-1\}
+\end{array} \middle\vert x;\theta \right]\\
+&amp;=\left[ \begin{array}{cccc}
+\phi_1\\\phi_2\\\vdots\\\phi_{k-1}\end{array} \right]
+=\left[ \begin{array}{cccc}
+\frac{\exp{(\theta_1^Tx)}}{\sum_{j=1}^k \exp{(\theta_j^Tx)}}\\
+\frac{\exp{(\theta_2^Tx)}}{\sum_{j=1}^k \exp{(\theta_j^Tx)}}\\
+\vdots\\
+\frac{\exp{(\theta_{k-1}^Tx)}}{\sum_{j=1}^k \exp{(\theta_j^Tx)}}
+\end{array} \right]
+\end{split}\end{split}\]</div>
+<p>那么如何根据假设函数 <span class="math notranslate nohighlight">\(h\)</span> 求得参数 <span class="math notranslate nohighlight">\(\theta\)</span> ，当然还是最大似然函数的方法，log 最大似然函数如下（if we have a training set of m examples <span class="math notranslate nohighlight">\({(x^{(i)}, y^{(i)}); i = 1,\dots, m}\)</span> ):</p>
+<div class="math notranslate nohighlight" id="equation-eq-ch-glm-14">
+<span class="eqno">(28)<a class="headerlink" href="#equation-eq-ch-glm-14" title="公式的永久链接">¶</a></span>\[\begin{split}\begin{split}
+\ell(\theta)&amp;=\log \prod_{i=1}^m p(y^{(i)}|x^{(i)};\theta)\\
+&amp;=\sum_{i=1}^m\log p(y^{(i)}|x^{(i)};\theta)\\
+&amp;=\sum_{i=1}^m\log \prod_{l=1}^k \phi_l^{I\{y^{(i)}=l\}}\\
+&amp;=\sum_{i=1}^m \sum_{l=1}^k I\{y^{(i)}=l\} \log \phi_l\\
+&amp;=\sum_{i=1}^m \sum_{l=1}^kI\{y^{(i)}=l\} \log \left(\frac{e^{\theta_l^Tx^{(i)}}}{\sum_{j=1}^k e^{\theta_j^Tx^{(i)}}}\right)
+\end{split}\end{split}\]</div>
+<p>接下来使用梯度下降算法或者牛顿方法求得参数后，使用假设函数 <span class="math notranslate nohighlight">\(h\)</span> 对新的样例进行预测，即可完成多类分类任务。这种多种分类问题的解法被称为 softmax regression。</p>
+<p>代码：</p>
+<p><a class="reference external" href="http://blog.csdn.net/zc02051126/article/details/9866347">http://blog.csdn.net/zc02051126/article/details/9866347</a></p>
+<p><a class="reference external" href="http://www.bubuko.com/infodetail-601263.html">http://www.bubuko.com/infodetail-601263.html</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="ch-efd">
+<span id="id17"></span><h2><a class="toc-backref" href="#id69">指数分布簇</a><a class="headerlink" href="#ch-efd" title="永久链接至标题">¶</a></h2>
+<p><strong>指数分布族</strong> （exponential family distributions）是指可以表示为指数形式的概率分布。指数分布的形式如下:</p>
+<div class="math notranslate nohighlight" id="equation-ch-efd-1">
+<span class="eqno">(29)<a class="headerlink" href="#equation-ch-efd-1" title="公式的永久链接">¶</a></span>\[p(y;\eta)=b(y)\exp{(\eta^T T(y)-a(\eta))}\]</div>
+<p>其中， <span class="math notranslate nohighlight">\(\eta\)</span> 称为分布的 <strong>自然参数</strong> (nature parameter／canonical parameter )； <span class="math notranslate nohighlight">\(T(y)\)</span> 是 <strong>充分统计量</strong> (sufficient statistic)，通常 <span class="math notranslate nohighlight">\(T(y)=y\)</span> ； <span class="math notranslate nohighlight">\(a(\eta)\)</span> 是log partition function ，The quantity e− <span class="math notranslate nohighlight">\(a(\eta)\)</span> essentially plays the role of a nor- malization constant, that makes sure the distribution <span class="math notranslate nohighlight">\(p(y;\eta)\)</span> sums/integrates over y to <span class="math notranslate nohighlight">\(1\)</span> .</p>
+<p>当参数 <span class="math notranslate nohighlight">\(a, b, T\)</span> 都固定的时候，就定义了一个以 <span class="math notranslate nohighlight">\(\eta\)</span> 为参数的函数族。实际上，大多数概率分布都可以表示成 <a class="reference internal" href="#equation-ch-efd-1">(29)</a> 的形式。比如：</p>
+<ol class="arabic simple">
+<li><p>伯努利分布(Bernoulli)：对 <span class="math notranslate nohighlight">\(0, 1\)</span> 问题进行建模；</p></li>
+<li><p>多项式分布(Multinomial)：对有 <span class="math notranslate nohighlight">\(K\)</span> 个离散结果的事件j建模；</p></li>
+<li><p>泊松分布(Poisson)：对计数过程进行建模，比如网站访问量的计数问题、放射性衰变的数目、商店顾客数量等问题；</p></li>
+<li><p>伽马分布(gamma)与指数分布(exponential)：对有间隔的正数进行建模，比如公交车的到站时间问题；</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> 分布：对小数建模；</p></li>
+<li><p>Dirichlet 分布：对概率分布进建模；</p></li>
+<li><p>Wishart 分布：协方差矩阵的分布；</p></li>
+<li><p>高斯分布(Gaussian)；</p></li>
+</ol>
+<p>现在，我们将高斯分布与伯努利分布表示成为指数分布族的形式。伯努利分布是对 <span class="math notranslate nohighlight">\(0,1\)</span> 问题进行建模的分布,它可以用如下形式表示（ <span class="math notranslate nohighlight">\(y\in {0,1}\)</span> ）：</p>
+<div class="math notranslate nohighlight" id="equation-ch-efd-2">
+<span class="eqno">(30)<a class="headerlink" href="#equation-ch-efd-2" title="公式的永久链接">¶</a></span>\[\begin{split}\begin{split}
+p(y;\phi)&amp;=\phi^y(1-\phi)^{1-y}\\
+&amp;=\exp{(\log\phi^y(1-\phi)^{1-y})}\\
+&amp;=\exp{(y\log\phi+(1-y)\log{(1-\phi}))}\\
+&amp;=\exp\left(\left(\log \left( \frac{\phi}{1-\phi} \right) \right) y+\log(1-\phi)\right)
+\end{split}\end{split}\]</div>
+<p>由上式，伯努利分布表示成了 <a class="reference internal" href="#equation-ch-efd-1">(29)</a> 的形式，其中：</p>
+<div class="math notranslate nohighlight" id="equation-ch-efd-3">
+<span class="eqno">(31)<a class="headerlink" href="#equation-ch-efd-3" title="公式的永久链接">¶</a></span>\[\begin{split}\begin{array}{cccc}
+b(y)=1\\T(y)=y\\
+\eta=\log\frac{\phi}{1-\phi}\Rightarrow \phi=\frac{1}{1+e^{-\eta}}\\
+a(\eta)=-\log(1-\phi)=\log(1+e^\eta)
+\end{array}\end{split}\]</div>
+<p>可以看到， <span class="math notranslate nohighlight">\(\phi\)</span> 的形式与 <a class="reference internal" href="#ch-lr"><span class="std std-ref">逻辑回归</span></a> 中的 logistic 函数一致，这是因为 logistic 模型对问题的 <strong>前置概率估计</strong> 是伯努利分布的缘故。</p>
+<p>再来看高斯分布。由线性回归的概率推导可知，高斯分布的方差 <span class="math notranslate nohighlight">\(\sigma ^2\)</span> 与 <span class="math notranslate nohighlight">\(\theta\)</span> 和 <span class="math notranslate nohighlight">\(h_{\theta}(x)\)</span> 无关，因而为了简便计算，我们取 <span class="math notranslate nohighlight">\(\sigma ^2=1\)</span> ，高斯分布转换为指数分布族形式的推导过程如下：</p>
+<div class="math notranslate nohighlight" id="equation-ch-efd-4">
+<span class="eqno">(32)<a class="headerlink" href="#equation-ch-efd-4" title="公式的永久链接">¶</a></span>\[\begin{split}\begin{split}
+p(y;\mu)&amp;=\frac{1}{\sqrt{2\pi}}\exp{\left(-\frac{1}{2}(y-\mu)^2\right)}\\
+&amp;=\frac{1}{\sqrt{2\pi}}\exp{\left(-\frac{1}{2}y^2\right)}\cdot \exp{\left(\mu y-\frac{1}{2}\mu^2 \right)}
+\end{split}\end{split}\]</div>
+<p>其中</p>
+<div class="math notranslate nohighlight" id="equation-ch-efd-5">
+<span class="eqno">(33)<a class="headerlink" href="#equation-ch-efd-5" title="公式的永久链接">¶</a></span>\[\begin{split}\begin{array}{cccc}
+b(y)=(1/\sqrt{2\pi})\exp(-y^2/2)\\
+T(y)=y\\
+\eta=\mu\\
+a(\eta)=\mu^2/2=\eta^2/2
+\end{array}\end{split}\]</div>
+<p>推导的关键在于将指数内部的纯 <span class="math notranslate nohighlight">\(y\)</span> 项移到外面，纯非 <span class="math notranslate nohighlight">\(y\)</span> 项作为函数 <span class="math notranslate nohighlight">\(a\)</span> ，混杂项为 <span class="math notranslate nohighlight">\(\eta^T T(y)\)</span> 。</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="ch-ne">
+<span id="id18"></span><h2><a class="toc-backref" href="#id70">正则方程</a><a class="headerlink" href="#ch-ne" title="永久链接至标题">¶</a></h2>
+<p>正则方程（normal equations ）将 <a class="reference internal" href="#ch-lr"><span class="std std-ref">回归问题</span></a> 转换为矩阵方式表达，并通过将 <span class="math notranslate nohighlight">\(J\)</span> 对 <span class="math notranslate nohighlight">\(\theta _j\)</span> 的偏导数置零求解。</p>
+<p>给定训练集，定义设计矩阵(design matrix) <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> ( <span class="math notranslate nohighlight">\(m\times n\)</span> ,实际应该是 <span class="math notranslate nohighlight">\(m\times (n+1)\)</span> ，因为加入 <span class="math notranslate nohighlight">\(x_0=1\)</span> ）和向量 <span class="math notranslate nohighlight">\(\vec{y}\)</span> ：</p>
+<div class="math notranslate nohighlight" id="equation-ch-ne-1">
+<span class="eqno">(34)<a class="headerlink" href="#equation-ch-ne-1" title="公式的永久链接">¶</a></span>\[\begin{split}\mathbf{X} =
+\left[ \begin{array}{ccc}
+- &amp; (x^{(1)})^T &amp; - \\
+- &amp; (x^{(2)})^T&amp; -\\
+  &amp; \vdots &amp; \\
+- &amp;  (x^{(m)})^T &amp; - \\
+\end{array} \right]\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-ch-en-2">
+<span class="eqno">(35)<a class="headerlink" href="#equation-ch-en-2" title="公式的永久链接">¶</a></span>\[\begin{split}\vec{y} =
+\left[ \begin{array}{ccc}
+y^{(1)} \\
+y^{(2)} \\
+\vdots  \\
+y^{(m)} \\
+\end{array} \right]\end{split}\]</div>
+<p>由 <span class="math notranslate nohighlight">\(h_{\theta}(x^{(i)}) = (x^{(i)})^T\theta\)</span> , 我们很容易得到：</p>
+<div class="math notranslate nohighlight" id="equation-ch-en-3">
+<span class="eqno">(36)<a class="headerlink" href="#equation-ch-en-3" title="公式的永久链接">¶</a></span>\[\begin{split}\mathbf{X}\theta-\vec{y} =
+\left[ \begin{array}{ccc}
+(x^{(1)})^T \theta \\
+\vdots\\
+(x^{(m)})^T \theta \\
+\end{array} \right] -
+\left[ \begin{array}{ccc}
+y^{(1)} \\
+y^{(2)} \\
+\vdots  \\
+y^{(m)} \\
+\end{array} \right]
+=\left[ \begin{array}{ccc}
+h_{\theta}(x^{(1)})-y^{(1)} \\
+\vdots  \\
+h_{\theta}(x^{(m)})-y^{(m)} \\
+\end{array} \right]\end{split}\]</div>
+<p>又因为</p>
+<div class="math notranslate nohighlight" id="equation-ch-en-4">
+<span class="eqno">(37)<a class="headerlink" href="#equation-ch-en-4" title="公式的永久链接">¶</a></span>\[\frac{1}{2}(\mathbf{X}\theta-\vec{y})^T(\mathbf{X}\theta-\vec{y}) =\frac{1}{2}\sum_{i=1}^m (h_{\theta}(x^{(i)})-y^{(i)})^2=J(\theta)\]</div>
+<p>根据矩阵导数运算规则， <span class="math notranslate nohighlight">\(J\)</span> 对 <span class="math notranslate nohighlight">\(\theta\)</span> 的偏导数如下</p>
+<div class="math notranslate nohighlight" id="equation-ch-en-5">
+<span class="eqno">(38)<a class="headerlink" href="#equation-ch-en-5" title="公式的永久链接">¶</a></span>\[\nabla_{\theta}J(\theta)=\nabla_{\theta}\frac{1}{2}(\mathbf{X}\theta-\vec{y})^T(\mathbf{X}\theta-\vec{y}) =\mathbf{X}^T\mathbf{X}\theta-\mathbf{X}^T\vec{y}\]</div>
+<p>令导数为 <span class="math notranslate nohighlight">\(0\)</span> 则得到如下正则方程：</p>
+<div class="math notranslate nohighlight" id="equation-ch-en-6">
+<span class="eqno">(39)<a class="headerlink" href="#equation-ch-en-6" title="公式的永久链接">¶</a></span>\[\mathbf{X}^T\mathbf{X}\theta=\mathbf{X}^T\vec{y}\]</div>
+<p>因此</p>
+<div class="math notranslate nohighlight" id="equation-ch-en-7">
+<span class="eqno">(40)<a class="headerlink" href="#equation-ch-en-7" title="公式的永久链接">¶</a></span>\[\theta=(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\vec{y}\]</div>
+</div>
+<div class="section" id="ch-sgd">
+<span id="id19"></span><h2><a class="toc-backref" href="#id71">梯度下降法</a><a class="headerlink" href="#ch-sgd" title="永久链接至标题">¶</a></h2>
+<p>梯度下降、牛顿法、拟牛顿法都是求解无约束最优化问题的常用方法，且均是迭代算法。</p>
+<div class="section" id="id20">
+<h3><a class="toc-backref" href="#id72">1 引言</a><a class="headerlink" href="#id20" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id22">
+<h4><a class="toc-backref" href="#id73">1.1 基本思想 <a class="footnote-reference brackets" href="#id43" id="id21">2</a></a><a class="headerlink" href="#id22" title="永久链接至标题">¶</a></h4>
+<p>梯度下降法又叫最速下降法（steepest descend method），用来求解表达式最大或者最小值的，属于无约束优化问题。它利用负梯度方向来决定每次迭代的新的搜索方向，使得每次迭代能使待优化的目标函数逐步减小。梯度下降法是2范数下的最速下降法。 最速下降法的一种简单形式是: <span class="math notranslate nohighlight">\(x_{k+1}=x_k−a\times g(k)\)</span> ，其中 ;math:<cite>a</cite> 称为 <strong>学习速率</strong> ，可以是较小的常数。 <span class="math notranslate nohighlight">\(g(k)\)</span> 是 <span class="math notranslate nohighlight">\(x_k\)</span> 的梯度。</p>
+<p>首先我们应该清楚，一个多元函数的梯度方向是该函数值增大最陡的方向。具体化到一元函数中时，梯度方向首先是沿着曲线的切线的，然后取切线向上增长的方向为梯度方向；二元或者多元函数中，梯度向量为函数值f⁆对每个变量的导数，该向量的方向就是梯度的方向，当然向量的大小也就是梯度的大小。</p>
+<p>现在假设我们要求函数 <span class="math notranslate nohighlight">\(f\)</span> 的最小值，采用梯度下降法，如下图所示：</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/sgd.png"><img alt="../_images/sgd.png" src="../_images/sgd.png" style="width: 511.0px; height: 387.0px;" /></a>
+</div>
+<p>首先选取一个初始点，下一个点的产生是沿着梯度直线方向，这里是沿着梯度的反方向(因为求的是最小值，如果是求最大值的话则沿梯度的方向即可)。梯度下降法的迭代公式为：</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-1">
+<span class="eqno">(41)<a class="headerlink" href="#equation-ch-sgd-1" title="公式的永久链接">¶</a></span>\[a_{k+1} = a_k + \rho _k \hat{s}^{(k)}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\hat{s}^{(k)}\)</span> 表示的是梯度的负方向, <span class="math notranslate nohighlight">\(\rho_k\)</span> 表示的是在梯度方向上的搜索步长。梯度方向我们可以通过对函数求导得到，步长的确定比较麻烦，太大了的话可能会发散，太小收敛速度又太慢。一般确定步长的方法是由线性搜索算法来确定，即把下一个点的坐标 <span class="math notranslate nohighlight">\(a_{k+1}\)</span> 看做是 <span class="math notranslate nohighlight">\(\rho_k\)</span> 的函数，然后求满足 <span class="math notranslate nohighlight">\(f(a_{k+1})\)</span> 的最小值的 <span class="math notranslate nohighlight">\(\rho_k\)</span> 即可。采用梯度下降算法进行最优化求解时，算法迭代的终止条件是梯度向量的幅值接近 <span class="math notranslate nohighlight">\(0\)</span> 即可，可以设置个非常小的常数阈值。</p>
+</div>
+<div class="section" id="id23">
+<h4><a class="toc-backref" href="#id74">1.2 函数凹凸性讨论</a><a class="headerlink" href="#id23" title="永久链接至标题">¶</a></h4>
+<ol class="loweralpha simple">
+<li><p>当目标函数是凸函数时，梯度下降法的解释全局最优解。一般情况下，其解不保证是全局最优解。</p></li>
+<li><p>当目标函数不是凸函数时，可以将目标函数近似转化成凸函数。或者用一些智能优化算法例如模拟退火，以一定的概率跳出局部极值，但是这些算法都不保证能找到最小值。</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="id25">
+<h3><a class="toc-backref" href="#id75">2 算法介绍 <a class="footnote-reference brackets" href="#id42" id="id24">1</a></a><a class="headerlink" href="#id25" title="永久链接至标题">¶</a></h3>
+<p>根据前面 <a class="reference external" href="ch_LR">回归部分</a> 的学习知道，为了得到较好的 <span class="math notranslate nohighlight">\(\theta\)</span> ，通过最小化 <span class="math notranslate nohighlight">\(J(\theta)\)</span> 来实现。其中一种是梯度下降法（gradient descent），其流程如下：</p>
+<p>1）首先对 <span class="math notranslate nohighlight">\(\theta\)</span> 赋值，这个值可以是随机的，也可以让 <span class="math notranslate nohighlight">\(\theta\)</span> 是一个全零的向量。
+2）改变 <span class="math notranslate nohighlight">\(\theta\)</span> 的值，使得 <span class="math notranslate nohighlight">\(J(\theta)\)</span> 按梯度下降的方向进行减少。</p>
+<p>为了更清楚，给出下面的图：</p>
+<div class="figure align-center" id="id47">
+<img alt="../_images/sgd2.png" src="../_images/sgd2.png" />
+<p class="caption"><span class="caption-text">参数 <span class="math notranslate nohighlight">\(\theta\)</span> 与误差函数 <span class="math notranslate nohighlight">\(J(\theta)\)</span> 的关系图</span><a class="headerlink" href="#id47" title="永久链接至图片">¶</a></p>
+</div>
+<p>这是一个表示参数 <span class="math notranslate nohighlight">\(\theta\)</span> 与误差函数 <span class="math notranslate nohighlight">\(J(\theta)\)</span> 的关系图，红色的部分是表示 ;math:<cite>J(theta)</cite> 有着比较高的取值，我们需要的是，能够让 <span class="math notranslate nohighlight">\(J(\theta)\)</span> 的值尽量的低，也就是深蓝色的部分。 <span class="math notranslate nohighlight">\(\theta_0\)</span> ， <span class="math notranslate nohighlight">\(\theta_1\)</span> 表示 <span class="math notranslate nohighlight">\(\theta\)</span> 向量的两个维度。</p>
+<p>梯度下降法的第一步是给 <span class="math notranslate nohighlight">\(\theta\)</span> 一个初值，假设随机给的初值是在图上的十字点。然后我们将 <span class="math notranslate nohighlight">\(\theta\)</span> 按照梯度下降的方向进行调整，就会使得 <span class="math notranslate nohighlight">\(J(\theta)\)</span> 往更低的方向进行变化，如 <code class="xref std std-numref docutils literal notranslate"><span class="pre">fig_sgd2_a</span></code> 所示，算法的结束将是在 <span class="math notranslate nohighlight">\(\theta\)</span> 下降到无法继续下降为止。当然，可能梯度下降的最终点并非是全局最小点，可能是一个局部最小点，如 <code class="xref std std-numref docutils literal notranslate"><span class="pre">fig_sgd2_b</span></code> 所示：这是我们重新选择了一个初始点得到的，看来我们这个算法将会在很大的程度上被初始点的选择影响而陷入局部最小点 。</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-center" id="fig-sgd2-a">
+<img alt="../_images/sgd3.png" src="../_images/sgd3.png" />
+<p class="caption"><span class="caption-text">梯度下降法示意(a)</span><a class="headerlink" href="#fig-sgd2-a" title="永久链接至图片">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-center" id="fig-sgd2-b">
+<img alt="../_images/sgd4.png" src="../_images/sgd4.png" />
+<p class="caption"><span class="caption-text">梯度下降法示意(b)</span><a class="headerlink" href="#fig-sgd2-b" title="永久链接至图片">¶</a></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>下面我将用一个例子描述一下梯度减少的过程 <a class="footnote-reference brackets" href="#id44" id="id27">3</a> ，为了方便计算， <strong>假设只有一条训练数据</strong> ，则对 <span class="math notranslate nohighlight">\(J(\theta)\)</span> 求偏导有：</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-2">
+<span class="eqno">(42)<a class="headerlink" href="#equation-ch-sgd-2" title="公式的永久链接">¶</a></span>\[\begin{split}\begin{split}
+\frac{\partial}{\partial \theta_j}J(\theta)
+&amp;= \frac{\partial}{\partial \theta_j} \frac{1}{2} (h_{\theta}(x)-y)^2 \\
+&amp;= 2 \cdot \frac{1}{2}(h_{\theta}(x)-y) \cdot \frac{\partial}{\partial \theta_j} (h_{\theta}(x)-y) \\
+&amp;=(h_{\theta}(x)-y)\cdot \frac{\partial}{\partial \theta_j} ( \sum_{j=0}^n \theta_j x_j-y )\\
+&amp;=(h_{\theta}(x)-y) x_j
+\end{split}\end{split}\]</div>
+<p>式 <a class="reference internal" href="#equation-ch-sgd-3">(43)</a> 是更新的过程，也就是 <span class="math notranslate nohighlight">\(\theta_j\)</span> 会向着梯度最小的方向改变。 <span class="math notranslate nohighlight">\(\theta_j\)</span> 表示更新之前的值，－后面的部分表示按梯度方向减少的量， <span class="math notranslate nohighlight">\(\alpha\)</span> 称为 <strong>学习速率</strong> (learning rate )，也就是每次按照梯度减少的方向变化多少，其值的大小需要在实践中进行调整，过小会导致迭代多次才能收敛，过大则会导致越过最优点发生振荡。</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-3">
+<span class="eqno">(43)<a class="headerlink" href="#equation-ch-sgd-3" title="公式的永久链接">¶</a></span>\[\theta_j :=\theta_j-\alpha\frac{\partial}{\partial \theta_j}J(\theta)=\theta_j-\alpha(h_{\theta}(x^{(i)})-y^{(i)})x_j^{(i)}\]</div>
+<p>上式就是 <strong>LMS更新规则，也称为 Widrow-Hoff 学习规则</strong> 。一个很重要的地方值得注意的是，梯度是有方向的，对于一个向量 <span class="math notranslate nohighlight">\(\theta\)</span> ，每一维分量 <span class="math notranslate nohighlight">\(\theta_j\)</span> 都可以求出一个梯度的方向，我们就可以找到一个整体的方向，在变化的时候，我们就朝着下降最多的方向进行变化就可以达到一个最小点，不管它是局部的还是全局的。用更简单的数学语言进行描述步骤2）是这样的：</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-4">
+<span class="eqno">(44)<a class="headerlink" href="#equation-ch-sgd-4" title="公式的永久链接">¶</a></span>\[\begin{split}\begin{split}
+\nabla_{\theta}J&amp;=\left[ \begin{array}{cccc}\frac{\partial}{\partial \theta_0}J\\
+\vdots \\
+\frac{\partial}{\partial \theta_n}J
+\end{array}\right] \\
+\theta &amp;=\theta-\alpha \nabla_{\theta}J
+\end{split}\end{split}\]</div>
+<p>倒三角形表示梯度，按这种方式来表示， <span class="math notranslate nohighlight">\(\theta_j\)</span> 就不见了。运用这个规则直到收敛，收敛的判断有两种规则：一是判断两次迭代后参数的变化，二是判断迭代后目标函数的变化。</p>
+<p>上面根据单训练样本推导出了LMS更新规则，将其推广到多训练样本有两种方法：</p>
+<ol class="arabic">
+<li><p>批量梯度下降（batch gradient descent ，BGD）</p>
+<div class="figure align-center">
+<img alt="../_images/bgd.png" src="../_images/bgd.png" />
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">weights_grad</span> <span class="o">=</span> <span class="n">evaluate_gradient</span><span class="p">(</span><span class="n">loss_fun</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+        <span class="n">weights</span> <span class="o">+=</span> <span class="o">-</span> <span class="n">step_size</span> <span class="o">*</span> <span class="n">weights_grad</span> <span class="c1"># perform parameter update</span>
+</pre></div>
+</div>
+</li>
+<li><p>随机／增量梯度下降（stochastic gradient descent ／incremental gradient descent，SGD）</p>
+<div class="figure align-center">
+<img alt="../_images/sgd5.png" src="../_images/sgd5.png" />
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">data_batch</span> <span class="o">=</span> <span class="n">sample_training_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># use a single example</span>
+    <span class="n">weights_grad</span> <span class="o">=</span> <span class="n">evaluate_gradient</span><span class="p">(</span><span class="n">loss_fun</span><span class="p">,</span> <span class="n">data_batch</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+    <span class="n">weights</span> <span class="o">+=</span> <span class="o">-</span> <span class="n">step_size</span> <span class="o">*</span> <span class="n">weights_grad</span> <span class="c1"># perform parameter update</span>
+</pre></div>
+</div>
+<p>在训练集比较大时，批量梯度下降每迭代一次就要遍历全部数据一次，因此随机梯度下降要优于批量梯度下降，它在更新参数时，只需要一个实例便足够，因此会更快地靠近最小值（但会导致遍历次数增多，不能精确收敛到最优值。即可能永远不收敛于最小值，而是在附近震荡）。</p>
+<p>梯度下降法会可能陷入局部极值点，解决方法是随机初始化，寻找多个最优解，然后在这些最优解中找最终结果。
+批量梯度下降和随机梯度下降的收敛条件相似，但是：In fact, in machine learning tasks, one only uses ordinary gradient descent instead of SGD when the function to minimize cannot be decomposed as above (as a mean)</p>
+</li>
+<li><p>小批量随机梯度下降法（Minibatch Stochastic Gradient Descent，MSGD）</p>
+<p>简单来说，就是每遍历完一个batch的样本才计算梯度和更新参数，一个batch一般有几十到几百的单个样本。PS：随机梯度下降则是一个样本更新一次。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">data_batch</span> <span class="o">=</span> <span class="n">sample_training_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span> <span class="c1"># sample 256 examples</span>
+    <span class="n">weights_grad</span> <span class="o">=</span> <span class="n">evaluate_gradient</span><span class="p">(</span><span class="n">loss_fun</span><span class="p">,</span> <span class="n">data_batch</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+    <span class="n">weights</span> <span class="o">+=</span> <span class="o">-</span> <span class="n">step_size</span> <span class="o">*</span> <span class="n">weights_grad</span> <span class="c1"># perform parameter update</span>
+</pre></div>
+</div>
+<p>相比于SGD噪声的影响减小，但更新／收敛速度减小。</p>
+</li>
+<li><p>Momentum</p>
+<ul>
+<li><p>提出原因：</p>
+<p>随机梯度下降，有时候解决问题太慢了</p>
+<ol class="loweralpha simple">
+<li><p>可能进入了一个平坦地区，下降好多步，也走不到头</p></li>
+<li><p>进入了一个泥石流区域，向左1步，向右1步，走半天也走不出去</p></li>
+</ol>
+<p>冲量就是解类似的问题的</p>
+</li>
+<li><p>思路：</p>
+<p>如果把要优化的目标函数看成山谷的话，可以把要优化的参数看成滚下山的石头，参数随机化为一个随机数可以看做在山谷的某个位置以 <span class="math notranslate nohighlight">\(0\)</span> 速度开始往下滚。目标函数的梯度可以看做给石头施加的力，由力学定律知： <span class="math notranslate nohighlight">\(F=m\times a\)</span> ，所以梯度与石头下滚的加速度成正比。因而，梯度直接影响速度，速度的累加得到石头的位置，对这个物理过程进行建模，可以得到参数更新过程为：</p>
+</li>
+<li><p>具体方法：</p>
+<p>每一步的梯度下降的量和方向，要参考前面的步骤，要是方向一致，就大步走；</p>
+<p>要是忽左忽右，就中和一下，往前走</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-5">
+<span class="eqno">(45)<a class="headerlink" href="#equation-ch-sgd-5" title="公式的永久链接">¶</a></span>\[v=\gamma v-\alpha \nabla J(\theta)\]</div>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-6">
+<span class="eqno">(46)<a class="headerlink" href="#equation-ch-sgd-6" title="公式的永久链接">¶</a></span>\[\theta=\theta+v\]</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">momentum</span> <span class="o">*</span> <span class="n">v</span> <span class="o">-</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">dx</span> <span class="c1"># integrate velocity x</span>
+<span class="o">+=</span> <span class="n">v</span> <span class="c1"># integrate position</span>
+</pre></div>
+</div>
+<p><span class="math notranslate nohighlight">\(v\)</span> 代表速率向量，由于梯度比常规方法更大， <span class="math notranslate nohighlight">\(\alpha\)</span> 需要更小。 <span class="math notranslate nohighlight">\(\gamma\in(0,1]\)</span> 即动量，该参数确定上一次梯度对当前更新的贡献率，虽然名字为动量，其物理意义更接近于摩擦，其可以降低速度值，降低了系统的动能，防止石头在山谷的最底部不能停止情况的发生。动量的取值范围通常为 <span class="math notranslate nohighlight">\([0.5, 0.9, 0.95, 0.99]\)</span> ，一种常见的做法是在迭代开始时将其设为 <span class="math notranslate nohighlight">\(0.5\)</span> ，在一定的迭代次数（epoch）后，将其值更新为 <span class="math notranslate nohighlight">\(0.99\)</span> 。</p>
+<p>式 <a class="reference internal" href="#equation-ch-sgd-5">(45)</a> 也可以表达为：</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-7">
+<span class="eqno">(47)<a class="headerlink" href="#equation-ch-sgd-7" title="公式的永久链接">¶</a></span>\[\Delta \theta ^{k+1} = \alpha \Delta \theta^k + (1-\alpha)\frac{\partial L(\theta ^k,z)}{\partial \theta ^k}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is a hyper-parameter that controls the how much weight is given in this average to older vs most recent gradients.</p>
+<p><strong>在实践中，一般采用SGD+momentum的配置，相比普通的SGD方法，这种配置通常能极大地加快收敛速度。</strong></p>
+</li>
+</ul>
+</li>
+<li><p>（Averaged Stochastic Gradient Descent ，ASGD)</p>
+<blockquote>
+<div><p>在SGD的基础上计算了权值的平均值。因此在SGD的基础上增加参数$t_0$</p>
+<dl>
+<dt>ASGD优缺点</dt><dd><p>运算花费 second order stochastic gradient descent (2SGD)一样小。</p>
+<p>比SGD的训练速度更为缓慢。</p>
+<p>$t_0$的设置十分困难</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="id28">
+<h3><a class="toc-backref" href="#id76">3 细节讨论</a><a class="headerlink" href="#id28" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id30">
+<h4>3.1  <a class="reference external" href="http://blog.csdn.net/silence1214/article/details/22263969/">停止条件</a><a class="headerlink" href="#id30" title="永久链接至标题">¶</a></h4>
+</div>
+<div class="section" id="id31">
+<h4><a class="toc-backref" href="#id78">3.2 学习率的更新</a><a class="headerlink" href="#id31" title="永久链接至标题">¶</a></h4>
+<p>在算法迭代过程中逐步降低学习率（step_size）通常可以加快算法的收敛速度。常用的用来更新学习率的方法有三种：
+- 逐步降低（Step decay），即经过一定迭代次数后将学习率乘以一个小的衰减因子。典型的做法包括经过5次迭代（epoch）后学习率乘以 <span class="math notranslate nohighlight">\(0.5\)</span> ，或者 <span class="math notranslate nohighlight">\(20\)</span> 次迭代后乘以 <span class="math notranslate nohighlight">\(0.1\)</span> 。
+- 指数衰减（Exponential decay），其数学表达式可以表示为： <span class="math notranslate nohighlight">\(\alpha=\alpha_0 e^{−kt}\)</span> ，其中， <span class="math notranslate nohighlight">\(\alpha_0\)</span> 和 <span class="math notranslate nohighlight">\(k\)</span> 是需要设置的超参数，一般取 <span class="math notranslate nohighlight">\(10^{−3}\)</span> 或更小， <span class="math notranslate nohighlight">\(t\)</span> 是迭代次数。
+- 倒数衰减( <span class="math notranslate nohighlight">\(1/t\)</span> decay），其数学表达式可以表示为： <span class="math notranslate nohighlight">\(\alpha = \alpha_0/(1+kt)\)</span> ，其中， <span class="math notranslate nohighlight">\(\alpha_0\)</span> 和 <span class="math notranslate nohighlight">\(k\)</span> 是需要设置的超参数， <span class="math notranslate nohighlight">\(t\)</span> 是迭代次数。 <span class="math notranslate nohighlight">\(\alpha_0\)</span> 要足够小，这样能保证收敛，但超参数选的不好时会收敛得很慢。</p>
+<p>实践中发现逐步衰减的效果优于另外两种方法，一方面在于其需要设置的超参数数量少，另一方面其可解释性也强于另两种方法。</p>
+</div>
+<div class="section" id="id32">
+<h4><a class="toc-backref" href="#id79">3.3 缺点</a><a class="headerlink" href="#id32" title="永久链接至标题">¶</a></h4>
+<p>由于处理的数据有不同的量纲和量纲单位，导致不同维度的数据之间尺度差异很大，如下图（左）所示，目标函数的等高线是椭圆形的。这样在通过最小化目标函数寻找最优解的过程中，梯度下降法所走的路线是锯齿状的，需要经过的迭代次数过多，严重影响了算法的效率。</p>
+<div class="figure align-center">
+<img alt="../_images/momentum.png" src="../_images/momentum.png" />
+</div>
+<p>解决这个问题有两个方法：</p>
+<ol class="arabic">
+<li><p>数据归一化（从数据预处理的角度考虑)</p>
+<p>可以对数据进行归一化，例如采用min-max标准化将输入数据范围统一到 <span class="math notranslate nohighlight">\([0,1]\)</span> 之间：</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-8">
+<span class="eqno">(48)<a class="headerlink" href="#equation-ch-sgd-8" title="公式的永久链接">¶</a></span>\[x^*=\frac{x-min}{max-min}\]</div>
+<p>处理后的结果如上图（右）所示，经过很少次数的迭代就可以达到目标函数的最低点，极大提高算法的执行效率。</p>
+</li>
+<li><p>二阶更新方法（从目标函数优化的角度考虑）</p>
+<p>提升梯度下降法收敛速度的方法还包括将其由一阶提升为二阶，也就是牛顿法或者拟牛顿法（如常用的 L-BFGS）。然而，牛顿法和L-BFGS不适用于解决大规模训练数据集和大规模问题。
+比如，常用的深度网络包括数百万个参数，每次迭代都要计算大小为 <span class="math notranslate nohighlight">\([1,000,000 x 1,000,000]\)</span> 的Hessian矩阵，需要占用3G多的内存，严重影响了计算效率。L-BFGS法不需要计算完全的Hessian矩阵，虽然没有了内存的担忧，但这种方法通常类似于批量梯度下降法，需要在计算整个训练集（通常为几百万个样本）的梯度后才能更新一次参数，严重影响了收敛速度。因而在深度神经网络领域很少使用L-BFGS来优化目标函数。</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="id33">
+<h3><a class="toc-backref" href="#id80">4 代码</a><a class="headerlink" href="#id33" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id34">
+<h4><a class="toc-backref" href="#id81">4.1  编程思路</a><a class="headerlink" href="#id34" title="永久链接至标题">¶</a></h4>
+<p>假设做回归问题。选取libsvm包里的例子数据heart_scale.mat作为分析数据。虽然是分类问题，但也可以看做回归，有些原理也相似。数据中heart_scale_inst包括270个13维的样本，label全部是+-1，这里看做回归。</p>
+<p>假设要学习如式（1) 所示的函数，那么损失函数可以定义成：</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-9">
+<span class="eqno">(49)<a class="headerlink" href="#equation-ch-sgd-9" title="公式的永久链接">¶</a></span>\[\boldsymbol{J}(\boldsymbol{\Theta})= \frac{1}{2}\Vert \boldsymbol{X} \boldsymbol{\Theta}-\boldsymbol{Y}\Vert ^2\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> 可以看成一行一行的样本向量，那么 <span class="math notranslate nohighlight">\(\theta\)</span> 就是一列一列的了。这其实就是比较常用的square loss，for least squares regression or classification。那么我们的目标很简单，就是求使得损失达到最小值时的解：</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-10">
+<span class="eqno">(50)<a class="headerlink" href="#equation-ch-sgd-10" title="公式的永久链接">¶</a></span>\[\boldsymbol{\Theta}^*=\mathrm{arg}\min_{\Theta}\boldsymbol{J}(\boldsymbol{\Theta})\]</div>
+<p>像这种优化问题有很多求解方法，那咱们先直接求导吧，对于求导过程，好多同学还是不理解，可以用这种方法：首先定义损失变量</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-11">
+<span class="eqno">(51)<a class="headerlink" href="#equation-ch-sgd-11" title="公式的永久链接">¶</a></span>\[r_i=\sum_{j=1}^n X_{ij}\theta_j-y_i\]</div>
+<p>那么损失函数就可以表示成</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-12">
+<span class="eqno">(52)<a class="headerlink" href="#equation-ch-sgd-12" title="公式的永久链接">¶</a></span>\[J=\frac{1}{2}\sum_{i=1}^m r_i^2\]</div>
+<p>一步一步地求导</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-13">
+<span class="eqno">(53)<a class="headerlink" href="#equation-ch-sgd-13" title="公式的永久链接">¶</a></span>\[\frac{\partial J}{\partial \theta_j}=\sum_{i=1}^m r_i\frac{\partial r_i}{\partial \theta_j}(j=1,2,\dots,n)\]</div>
+<p>再求：</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-14">
+<span class="eqno">(54)<a class="headerlink" href="#equation-ch-sgd-14" title="公式的永久链接">¶</a></span>\[\frac{\partial r_i}{\partial \theta_j}=X_{ij}\]</div>
+<p>那么把分步骤合起来就是使</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-15">
+<span class="eqno">(55)<a class="headerlink" href="#equation-ch-sgd-15" title="公式的永久链接">¶</a></span>\[\frac{\partial J}{\partial \theta_j}=\sum_{i=1}^m (\sum_{k=1}^n X_{ik}\theta_k-y_i)X_{ij} (j=1,2,\dots,n)\]</div>
+<p>的导数为 <span class="math notranslate nohighlight">\(0\)</span> ，即</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-16">
+<span class="eqno">(56)<a class="headerlink" href="#equation-ch-sgd-16" title="公式的永久链接">¶</a></span>\[\sum_{i=1}^m (\sum_{k=1}^n X_{ik}\hat{\theta}_k-y_i)X_{ij}=0 (j=1,2,\dots,n)\]</div>
+<p>整理一下：</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-17">
+<span class="eqno">(57)<a class="headerlink" href="#equation-ch-sgd-17" title="公式的永久链接">¶</a></span>\[\sum_{i=1}^m \sum_{k=1}^n X_{ij}X_{ik}\hat{\theta}_k=\sum_{i=1}^m X_{ij}y_i (j=1,2,\dots,n)\]</div>
+<p>用矩阵符号将上面的细节运算抽象一下：</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-18">
+<span class="eqno">(58)<a class="headerlink" href="#equation-ch-sgd-18" title="公式的永久链接">¶</a></span>\[\frac{\partial J(\Theta)}{\partial \Theta}=X^TX\Theta-X^TY=0\]</div>
+<p>让导数为 <span class="math notranslate nohighlight">\(0\)</span> ，那么求得的解为：</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-19">
+<span class="eqno">(59)<a class="headerlink" href="#equation-ch-sgd-19" title="公式的永久链接">¶</a></span>\[\Theta=(X^TX)^{-1}X^TY\]</div>
+<p>但是我们知道求矩阵 ( <span class="math notranslate nohighlight">\(X^T X\)</span> )的逆复杂度有点儿高， <span class="math notranslate nohighlight">\(O(n^3)\)</span> ，如果 <span class="math notranslate nohighlight">\(n\)</span> 很大，计算量很大。</p>
+<p>可以用最小二乘或者梯度下降来求解，这里我们看看梯度下降的实现，梯度下降的思想不难，只要确定好梯度以及梯度的方向就ok，因为是梯度的反方向去下降，所以在对参数更新的时候要注意：</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-20">
+<span class="eqno">(60)<a class="headerlink" href="#equation-ch-sgd-20" title="公式的永久链接">¶</a></span>\[\Theta ^i=\Theta ^{i-1}-\gamma \nabla J(\Theta)=\Theta ^{i-1}-\gamma \frac{\partial J(\Theta)}{\partial \Theta}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\gamma\)</span> 就是下降的速度了，这个很敏感的，一般是一个小的数值，可以从 <span class="math notranslate nohighlight">\(0.01\)</span> 开始尝试，越大下降越快，收敛越快。当然下降的速率可以改成自适应的，就是根据梯度的强弱适当调整步伐，这样效果还好一点儿。</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/sgd_code.png"><img alt="../_images/sgd_code.png" src="../_images/sgd_code.png" style="width: 347.0px; height: 268.0px;" /></a>
+</div>
+<p>上图就是迭代目标函数值的情况，迭代终止的条件有很多种，这里取得：</p>
+<div class="math notranslate nohighlight" id="equation-ch-sgd-21">
+<span class="eqno">(61)<a class="headerlink" href="#equation-ch-sgd-21" title="公式的永久链接">¶</a></span>\[\Vert \Theta ^i-\Theta ^{i-1}\Vert&lt;\epsilon\]</div>
+<p>代码也很简单，如果用matlab的话，矩阵计算就容易很多。</p>
+</div>
+<div class="section" id="id35">
+<h4><a class="toc-backref" href="#id82">4.2 实现代码</a><a class="headerlink" href="#id35" title="永久链接至标题">¶</a></h4>
+<p>matlab:</p>
+<p><a class="reference external" href="http://www.cnblogs.com/tornadomeet/archive/2012/04/10/2441148.html">fs2steep</a></p>
+<p><a class="reference external" href="http://www.zhizhihu.com/html/y2011/3632.html">fs1steep</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="id36">
+<h2><a class="toc-backref" href="#id83">牛顿法</a><a class="headerlink" href="#id36" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id37">
+<h3><a class="toc-backref" href="#id84">1 引言</a><a class="headerlink" href="#id37" title="永久链接至标题">¶</a></h3>
+<p>最常见的迭代法是牛顿法。其他还包括最速下降法 、共轭迭代法、变尺度迭代法 、最小二乘法、线性规划、非线性规划、单纯型法 、惩罚函数法 、斜率投影法 、遗传算法、模拟退火等等。</p>
+<p>牛顿法（Newton’s method）又称为牛顿-拉夫逊方法（Newton-Raphson method），它是一种在实数域和复数域上近似求解方程的方法。方法使用函数 <span class="math notranslate nohighlight">\(f(x)\)</span> 的泰勒级数的前面几项来寻找方程 <span class="math notranslate nohighlight">\(f(x)=0\)</span> 的根。</p>
+<p>牛顿法最初由艾萨克·牛顿于1736年在 Method of Fluxions 中公开提出。而事实上方法此时已经由Joseph Raphson于1690年在Analysis Aequationum中提出，与牛顿法相关的章节《流数法》在更早的1671年已经完成了。</p>
+</div>
+<div class="section" id="id38">
+<h3><a class="toc-backref" href="#id85">2 算法介绍</a><a class="headerlink" href="#id38" title="永久链接至标题">¶</a></h3>
+<p>首先，选择一个接近函数 <span class="math notranslate nohighlight">\(f(x)\)</span> 零点的 <span class="math notranslate nohighlight">\(x_0\)</span> ，计算相应的 <span class="math notranslate nohighlight">\(f(x_0)\)</span> 和切线斜率 <span class="math notranslate nohighlight">\(f′(x_0)\)</span> （这里 <span class="math notranslate nohighlight">\(f′\)</span> 表示函数 <span class="math notranslate nohighlight">\(f\)</span> 的导数）。然后我们计算穿过点 <span class="math notranslate nohighlight">\((x_0,f(x_0))\)</span> 并且斜率为 <span class="math notranslate nohighlight">\(f′(x_0)\)</span> 的直线和 <span class="math notranslate nohighlight">\(x\)</span> 轴的交点的 <span class="math notranslate nohighlight">\(x\)</span> 坐标，也就是求如下方程的解：</p>
+<div class="math notranslate nohighlight">
+\[x\cdot f'(x_0)+f(x_0)-x_0\cdot f'(x_0) = 0\]</div>
+<p>我们将新求得的点的x⁆坐标命名为 <span class="math notranslate nohighlight">\(x_1\)</span> ，通常 <span class="math notranslate nohighlight">\(x_1\)</span> 会比 <span class="math notranslate nohighlight">\(x_0\)</span> 更接近方程 <span class="math notranslate nohighlight">\(f(x_0 )=0\)</span> 的解。因此我们现在可以利用 <span class="math notranslate nohighlight">\(x_1\)</span> 开始下一轮迭代。迭代公式可化简为：</p>
+<div class="math notranslate nohighlight">
+\[x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}\]</div>
+<p>已经证明，如果 <span class="math notranslate nohighlight">\(f′\)</span> 是连续的，并且待求的零点 <span class="math notranslate nohighlight">\(x\)</span> 是孤立的，那么在零点 <span class="math notranslate nohighlight">\(x\)</span> 周围存在一个区域，只要初始值 <span class="math notranslate nohighlight">\(x_0\)</span> 位于这个邻近区域内，那么牛顿法必定收敛。 并且，如果 <span class="math notranslate nohighlight">\(f′(x)\)</span> 不为 <span class="math notranslate nohighlight">\(0\)</span> ，那么牛顿法将具有平方收敛的性能。粗略的说，这意味着每迭代一次，牛顿法结果的有效数字将增加一倍。下图为一个牛顿法执行过程的例子：</p>
+<div class="figure align-center">
+<img alt="../_images/nt1.png" src="../_images/nt1.png" />
+</div>
+<div class="figure align-center">
+<img alt="../_images/nt2.png" src="../_images/nt2.png" />
+</div>
+<p>上面是当参数x⁆为实数的情况，但参数为向量时，迭代公式为：
+牛顿法的特点是：收敛速度快，迭代次数少，但是当Hessian矩阵很稠密时，每次迭代的计算量很大。随着数据规模的增大，Hessian矩阵会增大，所需存储空间、计算量随之增大，有时候大到不可计算，所以针对海量数据的计算，牛顿法不再适用。</p>
+<p>PS:Quake III公开源码后，有人在game/code/q_math.c里发现了这样一段代码。它的作用是将一个数开平方并取倒，经测试这段代码比(float)(1.0/sqrt(x))快4倍，有兴趣的可以研究一下</p>
+</div>
+<div class="section" id="quasi-newton-methods">
+<h3><a class="toc-backref" href="#id86">3 拟牛顿法（Quasi-Newton Methods)</a><a class="headerlink" href="#quasi-newton-methods" title="永久链接至标题">¶</a></h3>
+<p>考虑到牛顿法的缺点，拟牛顿法在其基础上引入了Hessian矩阵的近似矩阵，避免每次迭代都计算Hessian矩阵的逆，它的收敛速度介于梯度下降法和牛顿法之间，因此拟牛顿法跟牛顿法一样，也是不能处理太大规模的数据。</p>
+<p>拟牛顿法虽然每次迭代不像牛顿法那样保证是最优化的方向，但是近似矩阵始终是正定的，因此算法始终是朝着最优化的方向在搜索。</p>
+<div class="section" id="bfgs-broyden-fletcher-goldfarb-shanno">
+<h4><a class="toc-backref" href="#id87">3.1  BFGS (Broyden Fletcher Goldfarb Shanno)</a><a class="headerlink" href="#bfgs-broyden-fletcher-goldfarb-shanno" title="永久链接至标题">¶</a></h4>
+<p>BFGS算法被认为是数值效果最好的拟牛顿法，并且具有全局收敛性和超线性收敛速度。</p>
+<div class="section" id="id39">
+<h5><a class="toc-backref" href="#id88">3.1.1基本思想</a><a class="headerlink" href="#id39" title="永久链接至标题">¶</a></h5>
+<p>在牛顿法中用Hessian矩阵的某个近似矩阵来代替它。在高数中，学过泰勒公式，如下</p>
+</div>
+<div class="section" id="lbfgs">
+<h5><a class="toc-backref" href="#id89">3.2  LBFGS</a><a class="headerlink" href="#lbfgs" title="永久链接至标题">¶</a></h5>
+<p>BFGS(Limited-memory Broyden-Fletcher-Goldfarb-Shanno)对于普通的牛顿迭代法有很大的改进，但仍然有缺陷，比如当优化问题规模很大时，矩阵B_k 的存储和计算将变得不可行。为了解决这个问题，就有了L-BFGS算法。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="conjugate-gradient-cg">
+<h2><a class="toc-backref" href="#id90">共轭梯度法（Conjugate Gradient,CG）</a><a class="headerlink" href="#conjugate-gradient-cg" title="永久链接至标题">¶</a></h2>
+<p>介于最速下降法与牛顿法之间的一个方法，它仅仅需要利用一阶导数的信息，克服了GD方法收敛慢的特点。</p>
+</div>
+<div class="section" id="id40">
+<h2><a class="toc-backref" href="#id91">优化方法比较</a><a class="headerlink" href="#id40" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id41">
+<h3><a class="toc-backref" href="#id92">1 梯度下降与牛顿法的比较</a><a class="headerlink" href="#id41" title="永久链接至标题">¶</a></h3>
+<p>第一个不同之处在于梯度法中需要选择学习速率，而牛顿法不需要选择任何参数；</p>
+<p>第二个不同之处在于梯度法需要大量的迭代次数才能找到最小值，而牛顿法只需要少量的次数便可完成。对比这两中方法的参数更新公式可以发现，两种方法不同在于牛顿法中多了一项二阶导数，这项二阶导数对参数更新的影响主要体现在 <strong>改变参数更新方向</strong> 上。如下图所示，红色是牛顿法参数更新的方向，绿色为梯度下降法参数更新方向，因为牛顿法考虑了二阶导数，因而可以找到更优的参数更新方向，在每次更新的步幅相同的情况下，可以比梯度下降法节省很多的迭代次数。</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/opt_comp.png"><img alt="../_images/opt_comp.png" src="../_images/opt_comp.png" style="width: 200.0px; height: 230.25px;" /></a>
+</div>
+<p>但是梯度法中的每一次迭代的代价要小，其复杂度为 <span class="math notranslate nohighlight">\(O(n)\)</span> ，而牛顿法的每一次迭代的代价要大，为 <span class="math notranslate nohighlight">\(O(n^3)\)</span> 。因此当特征的数量n比较小时适合选择牛顿法，当特征数 <span class="math notranslate nohighlight">\(n\)</span> 比较大时，最好选梯度法。</p>
+</div>
+<div class="section" id="lbfgsscgcg">
+<h3><a class="toc-backref" href="#id93">2 LBFGS、SCG和CG的比较</a><a class="headerlink" href="#lbfgsscgcg" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>LBFGS算法在参数的维度比较低（一般指小于10000维）时的效果要比SGD和CG效果好，特别是带有convolution的模型。</p></li>
+<li><p>针对高维的参数问题，CG的效果要比另2种好。也就是说一般情况下，SGD的效果要差一些，这种情况在使用GPU加速时情况一样，即在GPU上使用LBFGS和CG时，优化速度明显加快，而SGD算法优化速度提高很小。</p></li>
+<li><p>在单核处理器上，LBFGS的优势主要是利用参数之间的2阶近视特性来加速优化，而CG则得得益于参数之间的共轭信息，需要计算器Hessian矩阵。</p></li>
+</ul>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="id42"><span class="brackets"><a class="fn-backref" href="#id24">1</a></span></dt>
+<dd><p><a class="reference external" href="http://www.cnblogs.com/LeftNotEasy/archive/2010/12/05/mathmatic_in_machine_learning_1_regression_and_gradient_descent.html">http://www.cnblogs.com/LeftNotEasy/archive/2010/12/05/mathmatic_in_machine_learning_1_regression_and_gradient_descent.html</a></p>
+</dd>
+<dt class="label" id="id43"><span class="brackets"><a class="fn-backref" href="#id21">2</a></span></dt>
+<dd><p><a class="reference external" href="http://www.cnblogs.com/tornadomeet/archive/2012/04/10/2441148.html">http://www.cnblogs.com/tornadomeet/archive/2012/04/10/2441148.html</a></p>
+</dd>
+<dt class="label" id="id44"><span class="brackets"><a class="fn-backref" href="#id27">3</a></span></dt>
+<dd><p><a class="reference external" href="http://deepfuture.iteye.com/blog/1593259">http://deepfuture.iteye.com/blog/1593259</a></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="deep_learning.html" class="btn btn-neutral float-right" title="深度学习" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="machine_learning.html" class="btn btn-neutral float-left" title="机器学习" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

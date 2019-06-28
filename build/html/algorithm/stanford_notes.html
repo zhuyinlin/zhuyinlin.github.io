@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>斯坦福课程笔记 &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="文献资料" href="../research/index.html" />
+    <link rel="prev" title="Attention" href="Transformer.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">算法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="image_process.html">图像处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine_learning.html">机器学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html">回归分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html">深度学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta_learning.html">元学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RNN.html">RNN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GAN.html">GAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GCN.html">GCN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NLP.html">NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Transformer.html">Attention</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">斯坦福课程笔记</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cs231">cs231</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#chapter-1">chapter 1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chapter-2">chapter 2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">算法</a> &raquo;</li>
+        
+      <li>斯坦福课程笔记</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/algorithm/stanford_notes.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>斯坦福课程笔记<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="cs231">
+<h2>cs231<a class="headerlink" href="#cs231" title="永久链接至标题">¶</a></h2>
+<div class="section" id="chapter-1">
+<h3>chapter 1<a class="headerlink" href="#chapter-1" title="永久链接至标题">¶</a></h3>
+<div class="section" id="todo">
+<h4>TODO<a class="headerlink" href="#todo" title="永久链接至标题">¶</a></h4>
+<p>Approximate Nearest Neighbor (ANN)
+FLANN
+k-mean
+kdtree</p>
+</div>
+</div>
+<div class="section" id="chapter-2">
+<h3>chapter 2<a class="headerlink" href="#chapter-2" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id2">
+<h4>预处理<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h4>
+<dl class="simple">
+<dt>图像：</dt><dd><ol class="arabic simple">
+<li><p>0 均值–&gt; zero mean centering is arguably more important but we will have to wait for its justification until we understand the dynamics of gradient descent.</p></li>
+<li><p>1方差</p></li>
+</ol>
+</dd>
+</dl>
+</div>
+<div class="section" id="id3">
+<h4>损失函数<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h4>
+<p>include the regularization penalty:</p>
+<ol class="arabic simple">
+<li><p>the set of W is not necessarily unique: if some parameters W correctly classify all examples (so loss is zero for each example), then any multiple of these parameters λW where λ&gt;1 will also give zero loss because this transformation uniformly stretches all score magnitudes and hence also their absolute differences. this methos encode some preference for a certain set of weights W over others to remove this ambiguity</p></li>
+<li><p>including the L2 penalty leads to the appealing max margin property in SVMs</p></li>
+<li><p>penalizing large weights tends to improve generalization, because it means that no input dimension can have a very large influence on the scores all by itself since the L2 penalty prefers smaller and more diffuse weight vectors –&gt;  lead to less overfitting.</p></li>
+</ol>
+</div>
+<div class="section" id="softmax">
+<h4>softmax<a class="headerlink" href="#softmax" title="永久链接至标题">¶</a></h4>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}a_j &amp;= \frac{e^{z_j}}{\sum_k e^{z_k}}\\\frac{\partial a_j}{\partial z_i} &amp;= a_j(1-a_j)  if j == i:\\\frac{\partial a_j}{\partial z_i} &amp;= -a_j a_i  if j \neq i:\end{aligned}\end{align} \]</div>
+</div>
+<div class="section" id="id4">
+<h4>TODO<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h4>
+<p>kernels, duals, the SMO algorithm
+One-Vs-All (OVA) SVM, All-vs-All (AVA) SVM
+Structured SVM
+Leaky ReLU</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../research/index.html" class="btn btn-neutral float-right" title="文献资料" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Transformer.html" class="btn btn-neutral float-left" title="Attention" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

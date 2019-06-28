@@ -1,0 +1,556 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NLP &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Attention" href="Transformer.html" />
+    <link rel="prev" title="GCN" href="GCN.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">算法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="image_process.html">图像处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine_learning.html">机器学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html">回归分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html">深度学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta_learning.html">元学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RNN.html">RNN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GAN.html">GAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GCN.html">GCN</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">NLP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#word-representation">Word Representation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#word2vec">word2vec </a></li>
+<li class="toctree-l4"><a class="reference internal" href="#glove">GloVe</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#word2vec-glove">Word2Vec 和 Glove 的对比</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sentence-embedding">Sentence Embedding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">评价</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#keyword-extraction">keyword extraction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#automatic-summarization">自动文摘（Automatic Summarization）</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#nlg">NLG</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#seq2seq">Seq2Seq</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#image-caption">Image Caption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#attention">Attention 机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id29">术语</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Transformer.html">Attention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stanford_notes.html">斯坦福课程笔记</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">算法</a> &raquo;</li>
+        
+      <li>NLP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/algorithm/NLP.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nlp">
+<h1>NLP<a class="headerlink" href="#nlp" title="永久链接至标题">¶</a></h1>
+<p><a class="reference external" href="http://web.stanford.edu/class/cs224n/">cs224n</a></p>
+<div class="contents local topic" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#word-representation" id="id30">Word Representation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#word2vec" id="id31">word2vec </a></p>
+<ul>
+<li><p><a class="reference internal" href="#motivation" id="id32">Motivation</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id33">基本思想</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id34">模型</a></p>
+<ul>
+<li><p><a class="reference internal" href="#cbow-continuous-bag-of-words" id="id35">CBOW(Continuous Bag-of-Words)</a></p></li>
+<li><p><a class="reference internal" href="#skip-gram" id="id36">Skip-Gram</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id9" id="id37">训练</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id38">实现</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id39">优缺点</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#glove" id="id40">GloVe</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id12" id="id41">基本思想</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id42">实现</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id43">优缺点</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#word2vec-glove" id="id44">Word2Vec 和 Glove 的对比</a></p></li>
+<li><p><a class="reference internal" href="#sentence-embedding" id="id45">Sentence Embedding</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id46">评价</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#keyword-extraction" id="id47">keyword extraction</a></p>
+<ul>
+<li><p><a class="reference internal" href="#automatic-summarization" id="id48">自动文摘（Automatic Summarization）</a></p>
+<ul>
+<li><p><a class="reference internal" href="#textrank" id="id49">TextRank </a></p></li>
+<li><p><a class="reference internal" href="#learning-phrases" id="id50">Learning Phrases</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#nlg" id="id51">NLG</a></p>
+<ul>
+<li><p><a class="reference internal" href="#seq2seq" id="id52">Seq2Seq</a></p>
+<ul>
+<li><p><a class="reference internal" href="#code-tutorial" id="id53">Code Tutorial</a></p></li>
+<li><p><a class="reference internal" href="#training-tricks" id="id54">Training tricks</a></p></li>
+<li><p><a class="reference internal" href="#decoding" id="id55">Decoding</a></p></li>
+<li><p><a class="reference internal" href="#id26" id="id56">缺点</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#image-caption" id="id57">Image Caption</a></p></li>
+<li><p><a class="reference internal" href="#attention" id="id58">Attention 机制</a></p></li>
+<li><p><a class="reference internal" href="#id29" id="id59">术语</a></p></li>
+</ul>
+</div>
+<div class="section" id="word-representation">
+<h2><a class="toc-backref" href="#id1">Word Representation</a><a class="headerlink" href="#word-representation" title="永久链接至标题">¶</a></h2>
+<p>fMRI-imaging of the brain suggests that word embeddings are related to how the human brain encodes meaning <a class="footnote-reference brackets" href="#mitchell2008predicting" id="id2">1</a></p>
+<p><a class="reference external" href="http://www.offconvex.org/2015/12/12/word-embeddings-1/">原理1</a></p>
+<p><a class="reference external" href="http://www.offconvex.org/2016/02/14/word-embeddings-2/">原理2</a></p>
+<div class="section" id="word2vec">
+<h3><a class="toc-backref" href="#id1">word2vec <a class="footnote-reference brackets" href="#mikolov2013efficient" id="id5">2</a></a><a class="headerlink" href="#word2vec" title="永久链接至标题">¶</a></h3>
+<p>无监督学习</p>
+<div class="section" id="motivation">
+<h4><a class="toc-backref" href="#id1">Motivation</a><a class="headerlink" href="#motivation" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>直接的文字表达信息稀疏，不足以提供文字单元间的关系，因此会造成需要更大量的数据来学习</p></li>
+<li><p>one-hot representation 存在的问题：维数灾难和稀疏（sparse）会导致计算上的问题; 忽略了词之间的关系</p></li>
+<li><p>低维特征在套用DL 更合适</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h4><a class="toc-backref" href="#id1">基本思想</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>we have a large corpus of text</p></li>
+<li><p>Every word in a fixed vocabulary is represented by a vector</p></li>
+<li><p>Go through each position t in the text, which has a center word c and context (“outside”) words o</p></li>
+<li><p>Use the similarity of the word vectors for c and o to calculate the probability of o given c (or vice versa)</p></li>
+<li><p>Keep adjusting the word vectors to maximize this probability</p></li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h4><a class="toc-backref" href="#id1">模型</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h4>
+<div class="section" id="cbow-continuous-bag-of-words">
+<h5><a class="toc-backref" href="#id1">CBOW(Continuous Bag-of-Words)</a><a class="headerlink" href="#cbow-continuous-bag-of-words" title="永久链接至标题">¶</a></h5>
+<p>通过上下文来预测中心词</p>
+<p>CBOW smoothes over a lot of the distributional information (by treating an entire context as one observation). For the most part, <strong>this turns out to be a useful thing for smaller datasets</strong> .</p>
+</div>
+<div class="section" id="skip-gram">
+<h5><a class="toc-backref" href="#id1">Skip-Gram</a><a class="headerlink" href="#skip-gram" title="永久链接至标题">¶</a></h5>
+<p>用目标词（中心词）预测上下文中的词</p>
+<p>Skip-gram treats each context-target pair as a new observation, and <strong>this tends to do better when we have larger datasets</strong>.</p>
+<p>推荐阅读 <a class="reference download internal" download="" href="../_downloads/1d03e0036e411ba6510511f7f05e35f3/Word2Vec_Skip-Gram.pdf"><code class="xref download docutils literal notranslate"><span class="pre">skip-gram</span></code></a> (<a class="reference external" href="https://zhuanlan.zhihu.com/p/27234078">中文版</a> 原文 <a class="reference external" href="http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/">patr1</a> <a class="reference external" href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/">part2</a>)</p>
+</div>
+</div>
+<div class="section" id="id9">
+<h4><a class="toc-backref" href="#id1">训练</a><a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h4>
+<p>这个训练过程的参数规模非常巨大，一般来说，有Hierarchical Softmax、Negative Sampling等方式来解决。</p>
+<ul class="simple">
+<li><p>Word pairs and “phases”</p></li>
+<li><p>对高频词抽样</p></li>
+<li><p>negative sampling:随机（跟概率有关）选择k个negative 单词, 仅更新positive 及 k 个 negative 词的权重；works better for frequent words and lower dimensional vectors</p></li>
+<li><p>hierarchical softmax(Huffman Tree): tends to be better for infrequent words</p></li>
+</ul>
+</div>
+<div class="section" id="id10">
+<h4><a class="toc-backref" href="#id1">实现</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h4>
+<p><a class="reference external" href="https://radimrehurek.com/gensim/">gensim</a></p>
+</div>
+<div class="section" id="id11">
+<h4><a class="toc-backref" href="#id1">优缺点</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h4>
+<p>没有充分利用所有的语料</p>
+</div>
+</div>
+<div class="section" id="glove">
+<h3><a class="toc-backref" href="#id1">GloVe</a><a class="headerlink" href="#glove" title="永久链接至标题">¶</a></h3>
+<p>TODO: Some ideas from Glove paper have been shown to improve skip-gram (SG) model also (eg. sum both vectors)</p>
+<p>GloVe(Global Vectors for Word Representation)是一个基于全局词频统计（count-based &amp; overall statistics）的词表征工具,非神经网络方法，其得到的词向量捕捉到了单词之间一些语义特性，比如相似性（similarity）、类比性（analogy）</p>
+<div class="section" id="id12">
+<h4><a class="toc-backref" href="#id1">基本思想</a><a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>根据语料库（corpus）构建一个共现矩阵（Co-ocurrence Matrix）:math:<cite>X</cite></p></li>
+<li><p>构建词向量（Word Vector）和共现矩阵（Co-ocurrence Matrix）之间的近似关系</p></li>
+<li><p>训练</p></li>
+</ul>
+</div>
+<div class="section" id="id13">
+<h4><a class="toc-backref" href="#id1">实现</a><a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h4>
+<p><a class="reference external" href="https://github.com/maciejkula/glove-python">glove-python</a></p>
+</div>
+<div class="section" id="id14">
+<h4><a class="toc-backref" href="#id1">优缺点</a><a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h4>
+<p>更容易并行化</p>
+</div>
+</div>
+<div class="section" id="word2vec-glove">
+<h3><a class="toc-backref" href="#id1">Word2Vec 和 Glove 的对比</a><a class="headerlink" href="#word2vec-glove" title="永久链接至标题">¶</a></h3>
+<p>word2vec仍然是state-of-the-art的，相比之下GloVe略逊一筹(performance上差别不大?)</p>
+<p>两个模型在并行化上有一些不同，即GloVe更容易并行化，所以对于较大的训练数据，GloVe更快。</p>
+</div>
+<div class="section" id="sentence-embedding">
+<h3><a class="toc-backref" href="#id1">Sentence Embedding</a><a class="headerlink" href="#sentence-embedding" title="永久链接至标题">¶</a></h3>
+</div>
+<div class="section" id="id15">
+<h3><a class="toc-backref" href="#id1">评价</a><a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Intrinsic Evaluation（内部评测）:</p>
+<ul class="simple">
+<li><p>similarity task</p></li>
+<li><p>analogy task</p></li>
+</ul>
+</li>
+</ol>
+<p>WordSim-353, SimLex-999, Word analogy task, Embedding visualization等。不仅要评测pair-wise的相似度，还考虑词向量用于推理的实际效果(Analogical Reasoning)</p>
+<ol class="arabic simple" start="2">
+<li><p>Extrinsic Evaluation（外部评测）：</p></li>
+</ol>
+<p>评估训练出的词向量在其它任务上的效果，即其通用性。(Task-specific）</p>
+<ol class="arabic simple" start="3">
+<li><p>其他直接方式</p>
+<ul class="simple">
+<li><p>Evaluation of Word Vector Representations by Subspace Alignment (Tsvetkov et al.)</p></li>
+<li><p>Evaluation methods for unsupervised word embeddings (Schnabel et al.)</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="keyword-extraction">
+<h2><a class="toc-backref" href="#id1">keyword extraction</a><a class="headerlink" href="#keyword-extraction" title="永久链接至标题">¶</a></h2>
+<div class="section" id="automatic-summarization">
+<h3><a class="toc-backref" href="#id1">自动文摘（Automatic Summarization）</a><a class="headerlink" href="#automatic-summarization" title="永久链接至标题">¶</a></h3>
+<div class="section" id="textrank">
+<h4><a class="toc-backref" href="#id1">TextRank <a class="footnote-reference brackets" href="#mihalcea2004textrank" id="id16">3</a></a><a class="headerlink" href="#textrank" title="永久链接至标题">¶</a></h4>
+</div>
+<div class="section" id="learning-phrases">
+<h4><a class="toc-backref" href="#id1">Learning Phrases</a><a class="headerlink" href="#learning-phrases" title="永久链接至标题">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="section" id="nlg">
+<h2><a class="toc-backref" href="#id1">NLG</a><a class="headerlink" href="#nlg" title="永久链接至标题">¶</a></h2>
+<p>turotial:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">char-rnn</a></p></li>
+</ul>
+<div class="figure align-center" id="fig-nlg-survey">
+<img alt="../_images/NLP_survey.png" src="../_images/NLP_survey.png" />
+</div>
+<div class="section" id="seq2seq">
+<h3><a class="toc-backref" href="#id1">Seq2Seq</a><a class="headerlink" href="#seq2seq" title="永久链接至标题">¶</a></h3>
+<p>cho2014learning <a class="footnote-reference brackets" href="#cho2014learning" id="id17">4</a> 提出 Encoder-Decoder 结构, 以及 <abbr title="Gated Recurrent Unit">GRU</abbr> 这个 RNN 结构。</p>
+<p>Cho etl <a class="footnote-reference brackets" href="#cho2014learning" id="id18">4</a> 的模型结构中，语义向量c（整个句子的）需要作用到每个时刻t, 而在sutskever2014sequence <a class="footnote-reference brackets" href="#sutskever2014sequence" id="id19">5</a> 中Encoder 最后输出的中间语义只作用于 Decoder 的第一个时刻，这样子模型理解起来更容易一些。 另外，作者使用了一个trick: 将源句子顺序颠倒后再输入 Encoder 中，使得性能得到提升。 Google 的机器对话 <a class="footnote-reference brackets" href="#vinyals2015neural" id="id20">6</a> 用的就是这个 seq2seq 模型。 <a class="reference external" href="https://blog.csdn.net/Jerr__y/article/details/53749693">文中参数量计算过程</a></p>
+<div class="figure align-center" id="fig-seq2seq">
+<a class="reference internal image-reference" href="../_images/seq2seq.jpg"><img alt="../_images/seq2seq.jpg" src="../_images/seq2seq.jpg" style="width: 451.0px; height: 141.0px;" /></a>
+<p class="caption"><span class="caption-text">基础seq2seq模型</span><a class="headerlink" href="#fig-seq2seq" title="永久链接至图片">¶</a></p>
+</div>
+<p>Cho etl <a class="footnote-reference brackets" href="#cho2014learning" id="id22">4</a> 的 decoder 中，每次预测下一个词都会用到中间语义c，而这个c主要就是最后一个时刻的隐藏状态。bahdanau2014neural <a class="footnote-reference brackets" href="#bahdanau2014neural" id="id23">7</a> 提出了attention模型(详情查看 <a class="reference internal" href="Transformer.html#attention-mechanism"><span class="std std-ref">Attention</span></a>)，在Decoder进行预测的时候，Encoder 中每个时刻的隐藏状态都被利用上了。这样子，Encoder 就能利用多个语义信息（隐藏状态）来表达整个句子的信息了。此外，Encoder用的是双端的 :abbr:GRU (Gated Recurrent Unit)`  <a class="reference external" href="https://blog.csdn.net/malefactor/article/details/78767781">深度学习中的注意力机制(2017版)</a></p>
+<div class="figure align-center" id="fig-seq2seq-attention">
+<a class="reference internal image-reference" href="../_images/seq2seq_attention.jpg"><img alt="../_images/seq2seq_attention.jpg" src="../_images/seq2seq_attention.jpg" style="width: 587.0px; height: 286.5px;" /></a>
+<p class="caption"><span class="caption-text">attention 机制的 seq2seq模型</span><a class="headerlink" href="#fig-seq2seq-attention" title="永久链接至图片">¶</a></p>
+</div>
+<p>jean2014using <a class="footnote-reference brackets" href="#jean2014using" id="id25">8</a> 提出sampled_softmax 用于解决词表太大的问题</p>
+<p><a class="reference external" href="http://www.cnblogs.com/robert-dlut/p/8638283.html">self attention</a></p>
+<p><a class="reference external" href="https://kexue.fm/archives/4765">attention is all you need</a></p>
+<div class="section" id="code-tutorial">
+<h4><a class="toc-backref" href="#id1">Code Tutorial</a><a class="headerlink" href="#code-tutorial" title="永久链接至标题">¶</a></h4>
+<blockquote>
+<div><p><a class="reference external" href="https://github.com/tensorflow/nmt">tensorflow nmt</a></p>
+</div></blockquote>
+</div>
+<div class="section" id="training-tricks">
+<h4><a class="toc-backref" href="#id1">Training tricks</a><a class="headerlink" href="#training-tricks" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><dl class="simple">
+<dt>teacher forcing</dt><dd><p>At some probability, we use the current target word as the decoder’s next input rather than using the decoder’s current guess. This technique acts as training wheels for the decoder, aiding in more efficient training. However, teacher forcing can <strong>lead to model instability during inference</strong> , as the decoder may not have a sufficient chance to truly craft its own output sequences during training. Thus, we must be mindful of how we are setting the teacher_forcing_ratio, and not be fooled by fast convergence.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>gradient clipping</dt><dd><p>This is a commonly used technique for countering the “exploding gradient” problem. In essence, by clipping or thresholding gradients to a maximum value, we prevent the gradients from growing exponentially and either overflow (NaN), or overshoot steep cliffs in the cost function.</p>
+</dd>
+</dl>
+</li>
+<li><p>loss 函数average 到 batch就可，不用到timestep， <a class="reference external" href="https://github.com/tensorflow/nmt#loss">which plays down the errors made on short sentences</a> .</p></li>
+</ul>
+</div>
+<div class="section" id="decoding">
+<h4><a class="toc-backref" href="#id1">Decoding</a><a class="headerlink" href="#decoding" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>ancestral/random sampling</p></li>
+<li><p>greedy decoding/search (1-best)</p></li>
+<li><p>beam-search decoding (n-best)</p></li>
+<li><p>门特卡罗搜索?</p></li>
+</ul>
+</div>
+<div class="section" id="id26">
+<h4><a class="toc-backref" href="#id1">缺点</a><a class="headerlink" href="#id26" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>只能计算前缀部分的概率（改进可用recursive neural network）</p></li>
+<li><p>使用最大似然估计模型参数</p></li>
+</ul>
+<p>第一个缺点使seq2seq <strong>不容易理解文本</strong> ，因为AI-requires being able to understand bigger things from knowing about small parts.</p>
+<p>第二个缺点使seq2seq的 <strong>对话不像真实的对话</strong> ，只考虑当前对话最大似然忽略了对话对未来的影响:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>- 容易出现“I don’t know”（因为其概率最大，其他方向的相互抵消）；
+- 对话重复（不考虑上下文的关系）等问题。
+</pre></div>
+</div>
+<p>针对第二个缺点，我们了解到概率最高的输出不一定等于好的输出，好的对话需要考虑长久的信息。可以引入强化学习，人为设计相关的reward让机器更好地学习。</p>
+</div>
+</div>
+</div>
+<div class="section" id="image-caption">
+<h2><a class="toc-backref" href="#id1">Image Caption</a><a class="headerlink" href="#image-caption" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://blog.csdn.net/m0_37731749/article/details/80520144">综述</a></p>
+<p><a class="reference external" href="https://blog.csdn.net/xiaxuesong666/article/details/79176572">综述2</a></p>
+</div>
+<div class="section" id="attention">
+<h2><a class="toc-backref" href="#id1">Attention 机制</a><a class="headerlink" href="#attention" title="永久链接至标题">¶</a></h2>
+<p>详情查看 <a class="reference internal" href="Transformer.html#attention-mechanism"><span class="std std-ref">Attention</span></a></p>
+</div>
+<div class="section" id="id29">
+<h2><a class="toc-backref" href="#id1">术语</a><a class="headerlink" href="#id29" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>Copus: 语料库</p></li>
+<li><p>stemming: 词干化</p></li>
+<li><p>Word Embedding: 词嵌入</p></li>
+<li><p>Distributed Representation</p></li>
+<li><p>Distributional Representation</p></li>
+<li><p>Information Retrieval (IR)</p></li>
+<li><p>Natural Language Processing (NLP)</p></li>
+<li><p>Natural Language Inference(NLI)</p></li>
+<li><p>Out of Vacabulary(OOV)</p></li>
+</ul>
+<dl class="footnote brackets">
+<dt class="label" id="mitchell2008predicting"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>Mitchell T M, Shinkareva S V, Carlson A, et al. <a class="reference external" href="http://www.cs.cmu.edu/~tom/pubs/science2008.pdf">Predicting human brain activity associated with the meanings of nouns[J]</a> . science, 2008, 320(5880): 1191-1195.</p>
+</dd>
+<dt class="label" id="mikolov2013efficient"><span class="brackets"><a class="fn-backref" href="#id5">2</a></span></dt>
+<dd><p>Mikolov T, Chen K, Corrado G, et al. <a class="reference external" href="http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf">Efficient estimation of word representations in vector space[J]</a> . arXiv preprint arXiv:1301.3781, 2013.</p>
+</dd>
+<dt class="label" id="mihalcea2004textrank"><span class="brackets"><a class="fn-backref" href="#id16">3</a></span></dt>
+<dd><p>Mihalcea R, Tarau P. Textrank: <a class="reference external" href="http://www.aclweb.org/anthology/W04-3252">Bringing order into text[C]</a> //Proceedings of the 2004 conference on empirical methods in natural language processing. 2004.</p>
+</dd>
+<dt class="label" id="cho2014learning"><span class="brackets">4</span><span class="fn-backref">(<a href="#id17">1</a>,<a href="#id18">2</a>,<a href="#id22">3</a>)</span></dt>
+<dd><p>Cho K, Van Merriënboer B, Gulcehre C, et al. <a class="reference external" href="https://arxiv.org/abs/1406.1078">Learning phrase representations using RNN encoder-decoder for statistical machine translation[J]</a> . arXiv preprint arXiv:1406.1078, 2014.</p>
+</dd>
+<dt class="label" id="sutskever2014sequence"><span class="brackets"><a class="fn-backref" href="#id19">5</a></span></dt>
+<dd><p>Sutskever I, Vinyals O, Le Q V. <a class="reference external" href="http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf">Sequence to sequence learning with neural networks[J]</a> . Advances in neural information processing systems, 2014: 3104-3112.</p>
+</dd>
+<dt class="label" id="vinyals2015neural"><span class="brackets"><a class="fn-backref" href="#id20">6</a></span></dt>
+<dd><p>Vinyals O, Le Q. <a class="reference external" href="https://arxiv.org/pdf/1506.05869.pdf">A neural conversational model[J]</a> . arXiv preprint arXiv:1506.05869, 2015.</p>
+</dd>
+<dt class="label" id="bahdanau2014neural"><span class="brackets"><a class="fn-backref" href="#id23">7</a></span></dt>
+<dd><p>Bahdanau D, Cho K, Bengio Y. <a class="reference external" href="https://arxiv.org/pdf/1409.0473.pdf">Neural machine translation by jointly learning to align and translate[J]</a> . arXiv preprint arXiv:1409.0473, 2014.</p>
+</dd>
+<dt class="label" id="jean2014using"><span class="brackets"><a class="fn-backref" href="#id25">8</a></span></dt>
+<dd><p>Jean S, Cho K, Memisevic R, et al. <a class="reference external" href="https://arxiv.org/pdf/1412.2007.pdf">On using very large target vocabulary for neural machine translation[J]</a> . arXiv preprint arXiv:1412.2007, 2014.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Transformer.html" class="btn btn-neutral float-right" title="Attention" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="GCN.html" class="btn btn-neutral float-left" title="GCN" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

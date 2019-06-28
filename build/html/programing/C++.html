@@ -1,0 +1,580 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>C++ &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Java" href="Java.html" />
+    <link rel="prev" title="Shell" href="Shell.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">编程相关</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="development.html">开发相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Shell.html">Shell</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">C++</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#macc">mac下终端调试C程序</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ubuntuopencv">ubuntu下运行opencv程序的两种方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gcc">gcc生成及使用静态库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">gcc生成及使用动态库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lldb">lldb 调试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gdb">gdb调试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">编译说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">代码习惯</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Java.html">Java</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ruby.html">ruby</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">规范文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">关于不同编程语言</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id4">编码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">换行符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#makefile">Makefile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">一些经验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id10">当前工作记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#todo">TODO</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">编程相关</a> &raquo;</li>
+        
+      <li>C++</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/programing/C++.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="c">
+<h1>C++<a class="headerlink" href="#c" title="永久链接至标题">¶</a></h1>
+<div class="section" id="macc">
+<h2>mac下终端调试C程序<a class="headerlink" href="#macc" title="永久链接至标题">¶</a></h2>
+<div class="figure align-center" id="mac-c-debug">
+<img alt="../_images/mac_c_debug.png" src="../_images/mac_c_debug.png" />
+</div>
+</div>
+<div class="section" id="ubuntuopencv">
+<h2>ubuntu下运行opencv程序的两种方式<a class="headerlink" href="#ubuntuopencv" title="永久链接至标题">¶</a></h2>
+<ol class="arabic">
+<li><p>命令行</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++ &lt;script name&gt; -o &lt;target name&gt; <span class="sb">`</span>pkg-config  --cflags --libs opencv<span class="sb">`</span>
+</pre></div>
+</div>
+<p>在上面的编译命令中我们其实用到了一个工具“pkg-config”，它主要有以下几个功能：</p>
+<ul class="simple">
+<li><p>检查库的版本号。如果所需要的库的版本不满足要求，它会打印出错误信息，避免链接错误版本的库文件。</p></li>
+<li><p>获得编译预处理参数，如宏定义，头文件的位置。</p></li>
+<li><p>获得链接参数，如库及依赖的其它库的位置，文件名及其它一些连接参数。</p></li>
+<li><p>自动加入所依赖的其它库的设置</p></li>
+</ul>
+<p>所有有了这个工具之后我们的编译就很方便了（不过在此之前你要确保你安装的OpenCV的安装链接库文件的目录下有一个pkgconfig文件夹，在该文件夹里面有个opencv.pc的文件，其实这就是pkg-config下OpenCV的配置文件）。</p>
+</li>
+</ol>
+<p>　 使用pkg-config时，选项–cflags 它是用来指定程序在编译时所需要头文件所在的目录,选项 –libs则是指定程序在链接时所需要的动态链接库的目录。例如我下面这张图就显示了我电脑上OpenCV的相关目录。</p>
+<blockquote>
+<div><p>安装多版本opencv时，需要修改默认的pkg-config路径:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">PKG_CONFIG_PATH</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">opencv</span><span class="o">/</span><span class="mf">3.1</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">pkgconfig</span>
+<span class="n">export</span> <span class="n">LD_LIBRARY_PATH</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">opencv</span><span class="o">/</span><span class="mf">3.1</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">lib</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://blog.csdn.net/qq_34952119/article/details/71501652">Ubuntu 多版本Opencv安装配置教程</a></p>
+</div></blockquote>
+<ol class="arabic" start="2">
+<li><p>cmake 方式</p>
+<ol class="arabic">
+<li><p>新建一个目录用于存放我们的代码和程序中要处理的相关图片</p></li>
+<li><p>添加cmake工具编译时所需的文件CMakeLists.txt (注：这个文件你可以到你的OpenCV源代码解压出来的文件夹下的/samples/c/example_cmake/文件夹下拷过来，然后再做修改)</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span>PROJECT(OpenCV_Example)           //这是建立一个工程项目（类似于我们VS中建立C++项目一样），括号里面时工程名,工程名我们可以任意给，最后程序编译出来的可执行文件就是这个名字
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)　　　　//这是对CMake工具最低版本要求，这里我们要检查下我们的CMake工具的版本信息，我们可以使用命令“cmake --version”查看
+if(COMMAND cmake_policy)
+      cmake_policy(SET CMP0003 NEW)
+endif(COMMAND cmake_policy)
+
+FIND_PACKAGE( OpenCV REQUIRED )   //这是cmake用来查找opencv包用的，不用改
+
+# Declare the target (an executable)
+ADD_EXECUTABLE(OpenCV_Example  Image_show.c)      //这里括号里面的两个参数分别是工程项目名和我们要编译文件名的意思，记住中间一空格键隔开
+
+TARGET_LINK_LIBRARIES(OpenCV_Example ${OpenCV_LIBS})  //这是我们链接到OpenCV库的环节，我们只要更改前面第一个参数位我们的工程项目名即可
+
+#MESSAGE(STATUS &quot;OpenCV_LIBS: ${OpenCV_LIBS}&quot;)     //好了，就修改这么点东西，保存，关闭。
+</pre></div>
+</div>
+<p>若找不到OpenCV_DIR，添加设置:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="n">OpenCV_DIR</span> <span class="s2">&quot;~/opencv-2.4.13/release&quot;</span><span class="p">)</span>  <span class="c1"># 这个路径是安装时，自己建的release文件</span>
+</pre></div>
+</div>
+<p>若安装了多个版本，在使用时需要在项目的CMakeList.txt中添加OpenCVConfig.cmake的路径:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="n">CMAKE_PREFIX_PATH</span> <span class="s2">&quot;/usr/local/opencv/opencv2.4.13/share/OpenCV&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>输入命令”cmake .”对当前的工程进行编译</p></li>
+<li><p>make 生成可执行文件</p></li>
+</ol>
+</li>
+</ol>
+</div>
+<div class="section" id="gcc">
+<h2>gcc生成及使用静态库<a class="headerlink" href="#gcc" title="永久链接至标题">¶</a></h2>
+<ol class="arabic">
+<li><p>生成 test.o 目标文件</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc -c test.c -o test.o
+</pre></div>
+</div>
+</li>
+<li><p>使用 <code class="code docutils literal notranslate"><span class="pre">ar</span></code> 将 test.o 打包成 libtest.a 静态库</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ar rcs -o libtest.a test.o
+</pre></div>
+</div>
+</li>
+<li><p>可以使用 <code class="code docutils literal notranslate"><span class="pre">ar</span> <span class="pre">t</span></code> 参数查看 libtest.a 文件中包含哪些文件</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ar t libtest.a
+</pre></div>
+</div>
+</li>
+<li><p>编译 main.c ，并使用 libtest.a 静态。链接时 <code class="code docutils literal notranslate"><span class="pre">-l</span></code> 参数后不加空格指定所需链接的库， <code class="code docutils literal notranslate"><span class="pre">ld</span></code> 会以 libtest 作为库的实际名字（例如 <code class="code docutils literal notranslate"><span class="pre">-lm</span></code> 参数，实际表示链接 libm 库，也就是数学库）</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc -o app_static main.c -L. -ltest
+<span class="c1"># 或着</span>
+gcc -o app_static main.c libtest.a
+</pre></div>
+</div>
+</li>
+<li><p>运行app_static</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./app_static
+</pre></div>
+</div>
+</li>
+<li><p>使用 <code class="code docutils literal notranslate"><span class="pre">readelf</span></code> 查看app_static的符号表，观察各函数是否处于 app_static 的 <strong>.text</strong> 段中</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>readelf -a app_static
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>对比 <cite>section headers</cite> 中指出的 <strong>.text</strong> 代码段的编号与 <cite>symbol table</cite> 的 <strong>.symtab</strong> 中各函数所处编号，确认其是否在 <strong>.text</strong> 代码段中。从而确定静态库经过链接后对应的函数代码是否已加入可执行程序代码段中。</p>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>gcc生成及使用动态库<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<ol class="arabic">
+<li><p>生成 test.o 目标文件</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc -c -o test.o -fPIC test.c
+</pre></div>
+</div>
+<p>此处需要添加 <code class="code docutils literal notranslate"><span class="pre">-fPIC</span></code> 参数，该参数用于生成位置无关代码以供生成动态库使用</p>
+</li>
+<li><p>使用 <code class="code docutils literal notranslate"><span class="pre">-shared</span></code> 参数生成动态库</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc -shared -o libmyshare.so test.o
+</pre></div>
+</div>
+</li>
+</ol>
+<p>上述两个命令可以合在一块 <code class="code docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">-shared</span> <span class="pre">-fPIC</span> <span class="pre">-o</span> <span class="pre">libmyshare.so</span> <span class="pre">test.c</span></code></p>
+<ol class="arabic" start="3">
+<li><p>编译main.c，使用 libmyshare.so动态库</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc -o app_share main.c -L. -lmyshare
+</pre></div>
+</div>
+</li>
+<li><p>使用 <code class="code docutils literal notranslate"><span class="pre">ldd</span></code> 命令查看app_share使用的动态库</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ldd app_share
+</pre></div>
+</div>
+<p>若提示 <cite>libXXX无法找到</cite> ，则使用 <code class="code docutils literal notranslate"><span class="pre">export</span> <span class="pre">LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH</span></code> 将当前目录加入 <code class="code docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> 变量中</p>
+</li>
+<li><p>执行app_share</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./app_share
+</pre></div>
+</div>
+</li>
+</ol>
+<p>另一种编译main.c，并链接libXXX.so的方式如下（该方式通过./libmyshare.so直接指定使用当前目录下的libmyshare.so文件)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc -o app_share main.c ./libmyshare.so
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first"><code class="docutils literal notranslate"><span class="pre">-l</span></code> 参数和 <code class="docutils literal notranslate"><span class="pre">-L</span></code> 参数</p>
+<p><code class="docutils literal notranslate"><span class="pre">-l</span></code> 参数就是用来指定程序要链接的库， <code class="docutils literal notranslate"><span class="pre">-l</span></code> 参数紧接着就是 <strong>库名</strong> 。</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>那么库名跟真正的 <strong>库文件名</strong> 有什么关系呢？就拿数学库来说，他的库名是m，他的库文件名是libm.so，很容易看出，把库文件名的头lib和尾.so去掉就是库名了。</p>
+</div>
+<p>当需要用到第三方库libtest.so时，只要把libtest.so拷贝到 <code class="docutils literal notranslate"><span class="pre">/usr/lib</span></code> 里，编译时加上 <code class="docutils literal notranslate"><span class="pre">-ltest</span></code> 参数，我们就能用上libtest.so库了（当然要用libtest.so库里的函数，我们还需要与 libtest.so配套的头文件）。</p>
+<p>放在 <code class="docutils literal notranslate"><span class="pre">/lib</span></code> 和 <code class="docutils literal notranslate"><span class="pre">/usr/lib</span></code> 和 <code class="docutils literal notranslate"><span class="pre">/usr/local/lib</span></code> 里的库直接用 <code class="docutils literal notranslate"><span class="pre">-l</span></code> 参数就能链接了，但如果库文件没放在这三个目录里，而是放在其他目录里，这时我们只用-l参数的话，链接还是会出错，出错信息大概是：“/usr/bin/ld: cannot find -lxxx”，也就是链接程序ld在那3个目录里找不到libxxx.so，这时另外一个参数 <code class="docutils literal notranslate"><span class="pre">-L</span></code> 就派上用场了，比如常用的X11的库，它在 <code class="docutils literal notranslate"><span class="pre">/usr/X11R6/lib</span></code> 目录下，我们编译时就要用 <code class="docutils literal notranslate"><span class="pre">-L</span> <span class="pre">/usr/X11R6/lib</span> <span class="pre">-lX11</span></code> 参数， <code class="docutils literal notranslate"><span class="pre">-L</span></code> 参数跟着的是库文件所在的目录名。再比如我们把libtest.so放在/aaa/bbb/ccc目录下，那链接参数就是-L /aaa/bbb/ccc -ltest。</p>
+<p>另外，大部分libxxxx.so只是一个链接，以RH9为例，比如libm.so它链接到/lib/libm.so.x，/lib/libm.so.6又链接到/lib/libm-2.3.2.so，如果没有这样的链接，还是会出错，因为ld只会找libxxxx.so，所以如果你要用到xxxx库，而只有libxxxx.so.x或者libxxxx-x.x.x.so，做一个链接就可以了 <code class="docutils literal notranslate"><span class="pre">ln</span> <span class="pre">-s</span> <span class="pre">libxxxx-x.x.x.so</span> <span class="pre">libxxxx.so</span></code> 。</p>
+</div>
+<div class="topic">
+<p class="topic-title first"><code class="docutils literal notranslate"><span class="pre">-include</span></code> 和 <code class="docutils literal notranslate"><span class="pre">-I</span></code> 参数</p>
+<p><code class="docutils literal notranslate"><span class="pre">-include</span></code> 用来包含 <strong>头文件</strong> ，但一般情况下包含头文件都在源码里用 <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">xxxxxx</span></code> 实现， <code class="docutils literal notranslate"><span class="pre">-include</span></code> 参数很少用。</p>
+<p><code class="docutils literal notranslate"><span class="pre">-I</span></code> 参数是用来指定 <strong>头文件目录</strong> ， <code class="docutils literal notranslate"><span class="pre">/usr/include</span></code> 目录一般是不用指定的，gcc知道去那里找，但是如果头文件不在/usr/include里我们就要用 <code class="docutils literal notranslate"><span class="pre">-I</span></code> 参数指定了，比如头文件放在 <code class="docutils literal notranslate"><span class="pre">/myinclude</span></code> 目录里，那编译命令行就要加上 <code class="docutils literal notranslate"><span class="pre">-I</span> <span class="pre">/myinclude</span></code> 参数了，如果不加你会得到一个 <cite>“xxxx.h: No such file or directory”</cite> 的错误。 <code class="docutils literal notranslate"><span class="pre">-I</span></code> 参数可以用相对路径，比如头文件在当前目录，可以用 <code class="docutils literal notranslate"><span class="pre">-I.</span></code> 来指定。</p>
+</div>
+</div>
+<div class="section" id="lldb">
+<h2>lldb 调试<a class="headerlink" href="#lldb" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="http://www.cocoachina.com/ios/20150819/11558.html">使用LLDB调试程序</a></p>
+<ul>
+<li><p>常用命令</p>
+<p><code class="docutils literal notranslate"><span class="pre">std::vector</span></code> 查看单个元素不能直接用 <code class="docutils literal notranslate"><span class="pre">[i]</span></code> –&gt; <a class="reference external" href="http://stackoverflow.com/questions/39680320/printing-debugging-libc-stl-with-xcode-lldb">原因</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>expr &lt;vec_name&gt;
+frame var &lt;vec_name&gt;<span class="o">[</span>i<span class="o">]</span>
+frame var -L &lt;vec_name&gt;<span class="o">[</span>i<span class="o">]</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="gdb">
+<h2>gdb调试<a class="headerlink" href="#gdb" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p>调试步骤</p>
+<ol class="arabic">
+<li><p>生成可执行文件</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++ -g -o &lt;exe_name&gt; &lt;filename.cc&gt;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>必须使用 <code class="docutils literal notranslate"><span class="pre">-g</span></code> 参数，编译会加入调试信息，否则无法调试执行文件, 因为你将看不见程序的函数名、变量名，所代替的全是运行时的内存地址。</p>
+</div>
+</li>
+<li><p>启动调试</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gdb &lt;exe_name&gt;
+gdb &lt;exe_name&gt; core      // 用gdb同时调试一个运行程序和core文件，core是程序非法执行后core dump后产生的文件。
+gdb &lt;exe_name&gt; &lt;PID&gt;     // 如果程序是一个服务程序，那么可以指定这个服务程序运行时的进程ID。gdb会自动attach上去，并调试他。exe_name应该在PATH环境变量中搜索得到。
+                         // 可用于调试已运行的程序。先用gdb &lt;program&gt;关联上源代码，并进行gdb，在gdb中用attach命令来挂接进程的PID。并用detach来取消挂接的进程。
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p>常用调试命令</p>
+<p>可参考 <a class="reference external" href="http://blog.csdn.net/haoel/article/details/2880">本篇博客</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> args <span class="nb">help</span>  //加上可执行文件需要的参数
+show args  //看argc<span class="o">[</span><span class="m">1</span><span class="o">]</span>到argc<span class="o">[</span>N<span class="o">]</span>的参数
+
+// 直接回车表示，重复上一次命令
+l<span class="o">(</span>ist<span class="o">)</span> <span class="c1"># 查看源文件</span>
+
+b<span class="o">(</span>reak<span class="o">)</span> &lt;line number&gt;  &lt;condition&gt; <span class="c1"># 设置断点</span>
+i<span class="o">(</span>nfo<span class="o">)</span> b<span class="o">(</span>reak<span class="o">)</span>  <span class="c1"># 查看断点信息</span>
+disable &lt;breakpoint num&gt;   <span class="c1"># 使断点无效</span>
+<span class="nb">enable</span> &lt;breakpoint num&gt;  <span class="c1"># 使断点有效</span>
+clear &lt;breakpoint num&gt;  <span class="c1"># 取消断点</span>
+
+watch &lt;var_name&gt;  <span class="c1"># 对变量设置断点，当变量变化时暂停运行</span>
+watch &lt;var_name&gt; &lt;condition&gt;
+
+r<span class="o">(</span>un<span class="o">)</span>  <span class="c1"># 运行</span>
+s<span class="o">(</span>tep<span class="o">)</span>  <span class="c1"># 单步调试</span>
+
+p<span class="o">(</span>rint<span class="o">)</span> &lt;var_name&gt;   <span class="c1"># 查看变量</span>
+whatis &lt;var_name&gt;  <span class="c1"># 查看变量数据类型</span>
+<span class="nb">set</span> variable &lt;var_name&gt; <span class="o">=</span> &lt;value&gt; <span class="c1"># 设置变量值</span>
+
+bt  <span class="c1"># 查看函数堆栈</span>
+finish  <span class="c1"># 退出函数</span>
+c<span class="o">(</span>ontinue<span class="o">)</span>  <span class="c1"># 继续运行到下一个断点或主函数结束</span>
+q<span class="o">(</span>uit<span class="o">)</span>  <span class="c1"># 退出调试</span>
+
+
+
+shell &lt;cmd&gt;  // 调用UNIX的shell来执行&lt;cmd&gt;
+make &lt;make-args&gt;     // 重新build自己的程序。
+
+// 程序运行参数
+<span class="nb">set</span> args     // 指定运行时参数
+show args   // 查看设置好的运行参数
+
+// 运行环境
+path &lt;dir&gt;  // 设定程序的运行路径
+show paths  // 查看程序的运行路径
+
+<span class="nb">set</span> environment varname <span class="o">[=</span>value<span class="o">]</span>  // 设置环境变量
+show environment <span class="o">[</span>varname<span class="o">]</span>        // 查看环境变量
+
+// 工作目录
+<span class="nb">cd</span> &lt;dir&gt;    // 相当于shell的cd命令
+<span class="nb">pwd</span> 显示当前的所在目录
+
+// 程序的输入输出
+info terminal 显示你程序用到的终端的模式
+tty // 指写输入输出的终端设备
+</pre></div>
+</div>
+</li>
+<li><p>一些技巧</p>
+<ul>
+<li><p>gdb的命令可以使用help命令来查看，gdb的命令很多，gdb把之分成许多个种类。help命令只是例出gdb的命令种类，如果要看种类中的命令，可以使用help &lt;class&gt; 命令，如：help breakpoints，查看设置断点的所有命令。也可以直接help &lt;command&gt;来查看命令的帮助。</p></li>
+<li><p>在Linux下，你可以敲击两次TAB键来补齐命令的全称，如果有重复的，那么gdb会把其例出来。</p></li>
+<li><p>设置显示选项</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>set print address &lt;on/off&gt;   // 打开地址输出, 当程序显示函数信息时，GDB会显出函数的参数地址。默认on
+set print array &lt;on/off&gt;     // 打开数组显示，打开后当数组显示时，每个元素占一行;如果不打开的话，每个元素则以逗号分隔。默认off
+set print elements &lt;number-of-elements&gt;   // 指定一个&lt;number-of-elements&gt;来指定数据（数组）显示的最大长度，当到达这个长度时，GDB就不再往下显示了。如果设置为0，则表示不限制。
+set print null-stop &lt;on/off&gt;  //显示字符串时，遇到结束符则停止显示。默认off
+set print pretty &lt;on/off&gt;      // 如果打开printf pretty这个选项，那么当GDB显示结构体时会比较漂亮
+set print sevenbit-strings &lt;on/off&gt;    // 设置字符显示，是否按“/nnn”的格式显示，如果打开，则字符串或字符数据按/nnn显示，如“/065”。
+set print union &lt;on/off&gt;       // 设置显示构体时，是否显式其内的联合体数据。
+set print object &lt;on/off&gt;      // 在C++中，如果一个对象指针指向其派生类，如果打开这个选项，GDB会自动按照虚方法调用的规则显示输出，如果关闭这个选项的话，GDB就不管虚函数表了。默认off
+set print static-members &lt;on/off&gt;   // 当显示一个C++对象中的内容时，是否显示其中的静态数据成员。默认on
+set print vtbl &lt;on/off&gt;        // 当此选项打开时，GDB将用比较规整的格式来显示虚函数表。默认off
+
+show print &lt;cmd&gt;         // 查看&lt;cmd&gt;显示选项是否打开, 可用于查看以上选项
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>遇到问题</p>
+<ul>
+<li><p>Unable to find Mach task port for process-id 77584: (os/kern) failure (0x5). (please check g
+db is codesigned - see taskgated(8))</p>
+<p>这个问题是由于Mac OS X在使用gdb的时候必须要签名，而且我们安装的GDB是没有签名的，所以才会出现这个问题。要解决这个问题，我们第一步就是要创建一个签名证书。</p>
+<ol class="arabic simple">
+<li><p>在Mac OS X中有个『钥匙串』应用，选择『证书助理』-『创建证书』，创建一个签名证书</p></li>
+<li><p>在这里，我们填入自己想要的名称，在这里我就使用gdb-cert，然后在『身份类型』中选择『自签名根证书』，在『证书类型』中选择『代码签名』，并勾选『让我覆盖这些默认值』</p></li>
+<li><p>接下来，我们可以一直点击继续，直到最后一步，在『请指定钥匙串以便储存证书』选项中，一定要选择『系统』，不可选择『登陆』。然后点击创建证书，即可</p></li>
+</ol>
+<p>点击完成之后，我们就成功创建证书了，并可以在『钥匙串』-『系统』-『我的证书』下看到我们创建的证书。</p>
+<ol class="arabic simple" start="4">
+<li><p>证书创建之后，我们需要将证书设置为始终信任，在我们创建的签名证书上，点击右键，选择『显示简介』，展开『信任』节点，在『使用此证书时』选项下，选择『始终信任』。</p></li>
+</ol>
+<p>信任之后，可以在钥匙串中看到，证书图标下有个小+号，在信息中可以看到『此证书已标记为受所有用户信任』。</p>
+<ol class="arabic" start="5">
+<li><p>证书创建完成之后，我们使用如下命令，给GDB签名</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo codesign &lt;path/to/gdb&gt; -s gdb-cert
+</pre></div>
+</div>
+</li>
+<li><p>若还是出错，请先使用如下命令查看，是否签名是否成功</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>codesign -v &lt;path/to/gdb&gt;
+</pre></div>
+</div>
+<p>若无输出，表示成功。那么可重启 taskgated</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ps -e <span class="p">|</span> grep task  <span class="c1"># 先查看该进程的PID</span>
+<span class="nb">kill</span> -&lt;PIB&gt; PID  <span class="c1"># 杀死进程</span>
+</pre></div>
+</div>
+<p>还不行的话，尝试修改GDB 所在用户组和权限</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo chmod <span class="m">755</span> gdb
+sudo chgrp admin gdb
+</pre></div>
+</div>
+<p>再不行重启</p>
+</li>
+</ol>
+</li>
+<li><p>During startup program terminated with signal ?, Unknown signal.</p>
+<p>先用brew升级gdb 然后新建 <code class="docutils literal notranslate"><span class="pre">~/.gdbinit</span></code> 文件，并在其中添加 <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">startup-with-shell</span> <span class="pre">off</span></code></p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>编译说明<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>-fPIC 参数： 使代码位置无关
+-std=c++11 : 按照C++2011 标准来编译</p>
+</div>
+<div class="section" id="id6">
+<h2>代码习惯<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>在 cout 时加 endl，避免程序中断时，string留在buffer中无法输出。</p></li>
+<li><p>Don’t Mix Signed and Unsigned Types</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Java.html" class="btn btn-neutral float-right" title="Java" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Shell.html" class="btn btn-neutral float-left" title="Shell" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

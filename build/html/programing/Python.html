@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Python &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="ruby" href="ruby.html" />
+    <link rel="prev" title="Java" href="Java.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">编程相关</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="development.html">开发相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Shell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="C++.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Java.html">Java</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">包安装</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#opencv2">opencv2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pil">PIL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">其他</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#anaconda">Anaconda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">编程学习</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">基础语法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">遍历文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">管理参数配置文件 </a></li>
+<li class="toctree-l4"><a class="reference internal" href="#virtualenv">virtualenv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pipenv">pipenv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pylint">pylint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#theano">theano</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#numpy">numpy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">opencv2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">PIL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#matplotlib">matplotlib</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dlib">dlib</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#distutils">Distutils</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#logging">logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jupyter">jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">打包</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">生成文档</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">一些调试技巧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pdb">pdb 调试</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ruby.html">ruby</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">规范文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">关于不同编程语言</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id4">编码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">换行符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#makefile">Makefile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">一些经验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id10">当前工作记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#todo">TODO</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">编程相关</a> &raquo;</li>
+        
+      <li>Python</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/programing/Python.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="python">
+<h1>Python<a class="headerlink" href="#python" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>安装<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>ubuntu <a class="reference internal" href="../os/ubuntu.html#python-install-ubuntu"><span class="std std-ref">python</span></a></p></li>
+<li><p>mac <a class="reference internal" href="../os/mac.html#python-install-mac"><span class="std std-ref">python</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>包安装<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p><strong class="command">pip install &lt;pkg&gt;</strong> 和 <strong class="command">pip install &lt;pkg&gt; --user U</strong> 的安装路径不一样, 前者默认安装在 <code class="file docutils literal notranslate"><span class="pre">/usr/local/lib</span></code> 下，后者默认安装在 <code class="file docutils literal notranslate"><span class="pre">~/.local/lib</span></code> 下</p></li>
+<li><p><strong class="command">pip install -r &lt;requirements file&gt;</strong></p></li>
+<li><p><strong class="command">pip freeze</strong>, 查看当前包版本(可用于生成requirements文件)</p></li>
+<li><p>当pip 默认将包安装在 <code class="file docutils literal notranslate"><span class="pre">~/.local/lib</span></code> 下时，可能是因为系统中安装了多个版本的pip，导致混乱。通过 <strong class="command">which pip</strong> 和 <strong class="command">pip --version</strong> 查看pip 的路径，删除不必要的，仅保留 <code class="file docutils literal notranslate"><span class="pre">/usr/local/bin</span></code> 下面的。</p></li>
+<li><p>在mac上，如果提示找不到包而实际上有，查看包的后缀，若是 <code class="docutils literal notranslate"><span class="pre">.egg</span></code>  ，文件可能是通过easy_install 装的，因此找不到，卸载后用 pip 重装</p></li>
+<li><p>常用包下载地址</p>
+<blockquote>
+<div><p><a class="reference external" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/">https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</a></p>
+<p><a class="reference external" href="https://repo.continuum.io/pkgs/free/">https://repo.continuum.io/pkgs/free/</a></p>
+</div></blockquote>
+</li>
+<li><p>配置镜像源</p>
+<p>可用的镜像源包括:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>清华：https://pypi.tuna.tsinghua.edu.cn/simple
+阿里云：http://mirrors.aliyun.com/pypi/simple/
+中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/
+华中理工大学：http://pypi.hustunique.com/
+山东理工大学：http://pypi.sdutlinux.org/
+豆瓣：http://pypi.douban.com/simple/
+</pre></div>
+</div>
+<ul>
+<li><p>暂时</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -i &lt;镜像&gt;/simple &lt;package name&gt;
+</pre></div>
+</div>
+</li>
+<li><dl>
+<dt>永久</dt><dd><ul>
+<li><dl>
+<dt>ubuntu</dt><dd><p>在 <code class="docutils literal notranslate"><span class="pre">~/.pip/pip.conf</span></code> 中添加内容如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="k">global</span><span class="p">]</span>
+<span class="n">trusted</span><span class="o">-</span><span class="n">host</span><span class="o">=</span><span class="n">mirrors</span><span class="o">.</span><span class="n">aliyun</span><span class="o">.</span><span class="n">com</span>
+<span class="n">index</span><span class="o">-</span><span class="n">url</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">mirrors</span><span class="o">.</span><span class="n">aliyun</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pypi</span><span class="o">/</span><span class="n">simple</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>windows</dt><dd><p>在 <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;user</span> <span class="pre">name&gt;\</span></code> 下创建 <code class="docutils literal notranslate"><span class="pre">pip\pip.ini</span></code> , 添加内容:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="k">global</span><span class="p">]</span>
+<span class="n">trusted</span><span class="o">-</span><span class="n">host</span><span class="o">=</span><span class="n">mirrors</span><span class="o">.</span><span class="n">aliyun</span><span class="o">.</span><span class="n">com</span>
+<span class="n">index</span><span class="o">-</span><span class="n">url</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">mirrors</span><span class="o">.</span><span class="n">aliyun</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pypi</span><span class="o">/</span><span class="n">simple</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="opencv2">
+<h3>opencv2<a class="headerlink" href="#opencv2" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. 系统安装</span>
+sudo apt-get install python-opencv
+<span class="c1"># 2. pip 安装</span>
+pip install opencv-python  <span class="c1"># ?</span>
+
+pkg-config --modversion opencv <span class="c1"># 查看版本（是否与安装方式有关？）</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ul>
+<li><p>ubuntu 出现cv2.imshow() 报错的情况, 如果不是提示的问题，可尝试：</p>
+<ol class="arabic simple">
+<li><p>将 /usr/local/lib/python2.7/site-packages 或者 dist-packages 下的 cv2.so 文件复制到 /usr/lib/python2.7 的对应文件下(如果解决，步骤2可忽视)</p></li>
+<li><p>将 /usr/local/lib/python2.7/site-packages 或者 dist-packages 下的 cv2 文件删除</p></li>
+</ol>
+</li>
+<li><p>There is no module named cv2</p>
+<p>将 <code class="docutils literal notranslate"><span class="pre">opencv</span> <span class="pre">安装目录/python/cv2.pyd</span></code> 文件复制到 <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">安装目录/lib/site－packages</span></code> 文件夹中</p>
+</li>
+<li><p>mac 上安装好 opencv for python 但无法导入：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /Library/Python/2.7/site-packages/
+ln -s /usr/local/Cellar/opencv/2.4.9/lib/python2.7/site-packages/cv.py
+ln -s /usr/local/Cellar/opencv/2.4.9/lib/python2.7/site-packages/cv2.so
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="pil">
+<h3>PIL<a class="headerlink" href="#pil" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. 系统安装</span>
+sudo apt-get install python-PIL
+
+<span class="c1"># 2. pip 安装</span>
+pip install Pillow
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h3>其他<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>matplotlib</p></li>
+<li><p>virtualenv</p></li>
+<li><p>jupyter</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="anaconda">
+<h2>Anaconda<a class="headerlink" href="#anaconda" title="永久链接至标题">¶</a></h2>
+<p>conda 的使用</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 查看</span>
+conda list    <span class="c1"># 查看安装了哪些包</span>
+conda env list    <span class="c1"># 查看有哪些虚拟环境</span>
+conda -V      <span class="c1"># 查看conda的版本</span>
+
+<span class="c1"># 创建虚拟环境</span>
+conda create -n &lt;env_name&gt; &lt;package name&gt;  <span class="c1"># 必须指定一个或者几个你需要安装的package</span>
+             --clone root   <span class="c1"># 克隆创建了一个和原系统一样的python环境</span>
+
+<span class="c1"># This will create two environments, one with Python3 and the other with Python2.</span>
+conda create -n py3 <span class="nv">python</span><span class="o">=</span><span class="m">3</span>*
+conda create -n py2 <span class="nv">python</span><span class="o">=</span><span class="m">2</span>*
+
+<span class="c1"># 虚拟环境</span>
+<span class="nb">source</span> activate &lt;env_ name&gt;  <span class="c1"># 激活</span>
+<span class="nb">source</span> deactivate    <span class="c1"># 退出</span>
+conda remove -n &lt;env_name&gt; --all  <span class="c1"># 移除</span>
+
+<span class="c1"># 虚拟环境中的安装包</span>
+conda install -n &lt;env_name&gt; &lt;package_name&gt;
+conda remove --name &lt;env_name&gt; &lt;package_name&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>编程学习<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id5">
+<h3>基础语法<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<p>python 只有传引用, 但是根据对象可变/不可变可以达到传引用和传值的效果</p>
+<ul class="simple">
+<li><p>mutable: list, dict -&gt; 传引用</p></li>
+<li><p>immutable: 数字, string、tuple  -&gt; 传值</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>a[1:n］是半包围结构，即不包括n在内。下标可取负，从－1（最右边的element）开始
+
+没有花括号，只以缩近表示层次
+逻辑块如循环、判断等用冒号，表达式无需括号
+长语句可用括号括起来，这样可分行书写而不被认为是两个语句，或者在后面用 \\ 表示换行
+
+list: [］
+tuple: (） (，）
+dict:｛:，:，｝
+
+不使用 &amp;&amp;、｜｜ 、－，而是使用 and 、or、nor
+
+＃: 单行注释
+&#39;&#39;&#39; &#39;&#39;&#39;/&quot;&quot;&quot;  &quot;&quot;&quot;: 多行注释
+
+# list 之间求并集、交集、差集
+list(set(a).intersection(set(b)))
+list(set(a).union(set(b)))
+list(set(b).difference(set(a))) 或 list(set(b) - set(a))  # b-a
+</pre></div>
+</div>
+<p><a class="reference external" href="https://stackoverflow.com/questions/12179271/meaning-of-classmethod-and-staticmethod-for-beginner">&#64;classmethod和&#64;staticmethod的区别</a></p>
+</div>
+<div class="section" id="id6">
+<h3>遍历文件<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="c1"># 返回tuple(dirpath, dirnames, filenames), 包含子级</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="c1"># 路径分隔符</span>
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="c1"># 判断是否文件夹</span>
+<span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="c1"># 获取当前路径</span>
+<span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="c1"># 获取目录下的所有内容</span>
+
+<span class="c1"># 返回所有图片的文件名列表</span>
+<span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.jpg&#39;</span><span class="p">)]</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span> <span class="c1"># 当前文件所在路径，根据调用方式返回绝对／相对路径</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="c1"># 创建目录</span>
+<span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="c1"># 删除目录</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id8">
+<h3>管理参数配置文件 <a class="footnote-reference brackets" href="#id15" id="id7">1</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Using built-in data structure</p></li>
+<li><p>Using external configuration file</p>
+<ul class="simple">
+<li><p><cite>configparser</cite> for Python 3.x, <cite>ConfigParser</cite> for Python 2.x</p></li>
+<li><p><a class="reference external" href="https://cs230-stanford.github.io/logging-hyperparams.html">写一个Param类用于导入参数</a></p></li>
+</ul>
+</li>
+<li><p>Using environment variables</p></li>
+<li><p>Using dynamic loading</p></li>
+</ol>
+</div>
+<div class="section" id="virtualenv">
+<h3>virtualenv<a class="headerlink" href="#virtualenv" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// <span class="m">1</span>. create a virtualenv
+<span class="nb">cd</span> &lt;project dir&gt;/
+virtualenv --no-site-packages &lt;env name&gt; <span class="c1"># 创建一个独立的Python运行环境,</span>
+                                         <span class="c1"># 参数--no-site-packages使已经安装到系统Python环境中的所有第三方包都不会复制过来</span>
+                                         <span class="c1"># 参数-p[--python=] &lt;python dir&gt; 可以指定python版本</span>
+<span class="c1"># 或者</span>
+python3/python -m venv &lt;myenvname&gt;
+
+// <span class="m">2</span>. active
+<span class="nb">source</span> &lt;ven name&gt;/bin/activate  <span class="c1"># 进入该环境</span>
+
+// <span class="m">3</span>. <span class="k">do</span> your job
+pip install &lt;package name&gt;
+pip install -r &lt;requirements file&gt;
+
+// <span class="m">4</span>. 查看当前包版本<span class="o">(</span>可用于生成requirements文件<span class="o">)</span>
+pip freeze
+
+// <span class="m">5</span>. deactive
+deactivate  <span class="c1">#退出当前的ven环境</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="pipenv">
+<h3>pipenv<a class="headerlink" href="#pipenv" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pipenv --three     <span class="c1"># 会使用当前系统的Python3创建环境</span>
+pipenv --python <span class="m">3</span>.6    <span class="c1"># 指定某一Python版本创建环境</span>
+
+pipenv shell     <span class="c1"># 激活虚拟环境(为存在虚拟环境可自动创建)</span>
+<span class="nb">exit</span>    <span class="c1"># 退出pipenv</span>
+
+pipenv install &lt;pkg_name&gt;   <span class="c1"># 安装相关模块并加入到Pipfile</span>
+pipenv uninstall &lt;pkg_name&gt;    <span class="c1"># 卸载安装包</span>
+pipenv uninstall --all    <span class="c1"># 卸载全部包并从Pipfile中移除</span>
+piplist     <span class="c1"># 查找所有安装包</span>
+pipenv graph     <span class="c1"># 查看目前安装的库及其依赖</span>
+pipenv lock      <span class="c1"># 生成lockfile</span>
+pipenv lock -r --dev &gt; requirements.txt  <span class="c1"># 生成requirements 文件</span>
+pipenv install -r requirements.txt  <span class="c1"># 通过requirements 文件安装包</span>
+
+pipenv --where    <span class="c1"># 显示目录信息</span>
+pipenv --venv    <span class="c1"># 查找虚拟环境的路径</span>
+pipenv --rm      <span class="c1"># 删除虚拟环境</span>
+pipenv --py    <span class="c1"># 显示Python解释器信息</span>
+
+pipenv check    <span class="c1"># 检查安全漏洞</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pylint">
+<h3>pylint<a class="headerlink" href="#pylint" title="永久链接至标题">¶</a></h3>
+</div>
+<div class="section" id="theano">
+<h3>theano<a class="headerlink" href="#theano" title="永久链接至标题">¶</a></h3>
+<p>GPU 使用</p>
+</div>
+<div class="section" id="numpy">
+<h3>numpy<a class="headerlink" href="#numpy" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">*</span> <span class="n">B</span> <span class="c1"># 元素运算</span>
+<span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> <span class="c1"># 矩阵运算</span>
+
+<span class="n">numpy</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">arr1</span><span class="p">,</span><span class="n">arr2</span><span class="p">]),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">hstack</span><span class="p">(),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dstack</span><span class="p">()</span> <span class="c1"># 数组的组合1</span>
+<span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">arr1</span><span class="p">,</span><span class="n">arr2</span><span class="p">,</span><span class="o">...</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># 数组的组合2</span>
+<span class="n">numpy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arr1</span><span class="p">,</span><span class="n">arr2</span><span class="p">)</span>  <span class="c1"># 数组的扩大</span>
+<span class="n">arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">rows</span><span class="o">/</span><span class="n">height</span><span class="p">,</span> <span class="n">cols</span><span class="o">/</span><span class="n">width</span><span class="p">,</span> <span class="n">depth</span><span class="p">)</span> <span class="c1"># 数组结构变化</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id9">
+<h3>opencv2<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p><a class="reference external" href="http://opencv-python-tutroals.readthedocs.io/en/latest/">tutorial</a></p>
+<p>OpenCV for Python是通过NumPy进行绑定的, 图像就是NumPy中的数组！</p>
+<p>对图像的基本操作：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#:linenos: # 添加行号，此时窗口不自适应</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;./cat.jpg&quot;</span><span class="p">)</span> <span class="c1"># OpenCV目前支持读取bmp、jpg、png、tiff等常用格式,</span>
+                              <span class="c1"># 读进来直接是BGR 格式, 通道格式为HWC</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s2">&quot;Image&quot;</span><span class="p">)</span> <span class="c1"># 创建一个窗口</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Image&quot;</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 如果不添本句，在IDLE中执行窗口直接无响应;在命令行中执行的话，则是一闪而过。</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span> <span class="c1"># 最后释放窗口是个好习惯！</span>
+
+<span class="n">emptyImage</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+<span class="c1">#  获取原图像副本的两种方式</span>
+<span class="n">emptyImage2</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">emptyImage3</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+
+<span class="c1"># 保存图片</span>
+<span class="c1"># 第三个参数针对特定的格式：</span>
+<span class="c1">#     对于JPEG，其表示的是图像的质量，用0-100的整数表示，默认为95。</span>
+<span class="c1">#     对于PNG，其表示的是压缩级别，从0到9, 压缩级别越高，图像尺寸越小；默认为3</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;./cat2.jpg&quot;</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">IMWRITE_JPEG_QUALITY</span><span class="p">),</span> <span class="mi">5</span><span class="p">])</span> <span class="c1">#cv2.IMWRITE_JPEG_QUALITY类型为Long，必须转换成int</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;./cat2.png&quot;</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">IMWRITE_PNG_COMPRESSION</span><span class="p">),</span> <span class="mi">9</span><span class="p">])</span>
+
+<span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">cols</span><span class="o">/</span><span class="n">width</span><span class="p">,</span> <span class="n">rows</span><span class="o">/</span><span class="n">height</span><span class="p">),</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">INTER_CUBIC</span><span class="p">)</span> <span class="c1"># 注意这里shape参数的不同！！</span>
+
+<span class="c1"># 颜色空间转换</span>
+<span class="n">img1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+
+<span class="c1"># 画点、圆、线</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">),</span> <span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">B</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id10">
+<h3>PIL<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">ImageDraw</span>
+<span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">XXX</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">im</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">im</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">.</span><span class="n">rectangle</span><span class="p">((</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">),</span> <span class="n">outline</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="matplotlib">
+<h3>matplotlib<a class="headerlink" href="#matplotlib" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>‘ascii’ codec can’t decode byte</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">reload</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">setdefaultencoding</span><span class="p">(</span><span class="s1">&#39;uft-8&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>图像中文显示乱码</p>
+<p>暂时的方法</p>
+<ul>
+<li><p>查找中文字体</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fc-list :lang<span class="o">=</span>zh
+</pre></div>
+</div>
+</li>
+<li><p>代码中设置字体</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.font_manager</span> <span class="kn">import</span> <span class="n">FontProperties</span>
+<span class="n">font</span> <span class="o">=</span> <span class="n">FontProperties</span><span class="p">(</span><span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;/usr/share/fonts/truetype/arphic/ukai.ttc&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;用户数量(Y)关于游戏消费金额(X)的分布图&quot;</span><span class="p">,</span> <span class="n">fontproperties</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>一劳永逸的方法</p>
+<ul>
+<li><p>下载字体并拷贝到matplotlib的字体目录</p>
+<p>可通过以下代码查看配置文件位置</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="k">print</span> <span class="p">(</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">matplotlib_fname</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>字体文件夹与这个文件在同一级目录</p>
+</li>
+<li><p>修改配置文件</p>
+<p>修改内容如下</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>font.family         : sans-serif
+
+# 这里其实在最前面加上字体名称即可
+font.sans-serif     : &lt;字体名称&gt;, Bitstream Vera Sans, Lucida Grande, Verdana, Geneva, Lucid, Arial, Helvetica, Avant Garde, sans-serif
+axes.unicode_minus，将True改为False，作用就是解决负号&#39;-&#39;显示为方块的问题
+</pre></div>
+</div>
+<p>注意，字体名称可通过以下代码确认</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.font_manager</span> <span class="kn">import</span> <span class="n">FontManager</span>
+
+<span class="n">fm</span> <span class="o">=</span> <span class="n">FontManager</span><span class="p">()</span>
+<span class="n">mat_fonts</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fm</span><span class="o">.</span><span class="n">ttflist</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>重新构建</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.font_manager</span> <span class="kn">import</span> <span class="n">_rebuild</span>
+<span class="n">_rebuild</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="dlib">
+<h3>dlib<a class="headerlink" href="#dlib" title="永久链接至标题">¶</a></h3>
+</div>
+<div class="section" id="distutils">
+<h3>Distutils<a class="headerlink" href="#distutils" title="永久链接至标题">¶</a></h3>
+<p>用来在Python环境中构建和安装额外的模块。新的模块可以是纯Python的，也可以是用C/C++写的扩展模块，或者可以是Python包，包中包含了由C和Python编写的模块。</p>
+<p>作为模块开发者，除了编写源码之外，还需要：</p>
+<ul class="simple">
+<li><p>编写setup脚本（一般是setup.py）；</p></li>
+<li><p>编写一个setup配置文件（可选）；</p></li>
+<li><p>创建一个源码发布；</p></li>
+<li><p>创建建一个或多个构建（二进制）发布（可选）</p></li>
+</ul>
+<div class="section" id="setup-py">
+<h4>编写 setup.py 脚本<a class="headerlink" href="#setup-py" title="永久链接至标题">¶</a></h4>
+<p>setup函数的参数表示提供给Distutils的信息，这些参数分为两类：包的元数据（name、version，description, author，author_email，url…）以及包的信息(py_modules、packages)；</p>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>模块由模块名表示，而不是文件名（对于包和扩展而言也是这样）</p>
+</div>
+<ul>
+<li><p>package</p></li>
+<li><p>module</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/2/extending/building.html">Building an extension module</a></p>
+<p>在Distutils中描述扩展模块较描述纯python模块要复杂一些。对于纯python模块，仅需要列出模块或包，然后Distutils就会去寻找合适的文件，这对于扩展模块来说是不够的，你还需要指定扩展名、源码文件以及其他编译/链接需要的参数（需要包含的目录，需要连接的库等等）</p>
+<p>描述扩展模块可以由setup函数的关键字参数 <code class="docutils literal notranslate"><span class="pre">ext_modules</span></code> 实现。 <code class="docutils literal notranslate"><span class="pre">ext_modules</span></code> 是Extension实例的列表，每一个Extension实例描述了一个独立的扩展模块。</p>
+<p>底层的扩展构建机制是由 <code class="docutils literal notranslate"><span class="pre">build_ext</span></code> 命令实现的:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">build_ext</span> <span class="o">--</span><span class="n">inplace</span>  <span class="c1"># The --inplace option creates the shared object file (with .so suffix) in the current directory.</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h4>源码发布<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python setup.py sdist  <span class="c1"># 源码安装包</span>
+python setup.py bdist_wininst  <span class="c1"># Windows 下使用</span>
+python setup.py bdist_rpm  <span class="c1"># Linux 下使用</span>
+</pre></div>
+</div>
+<p>对于使用者，源码包的安装是将源码包解压后，运行 <code class="code docutils literal notranslate"><span class="pre">setup.py</span> <span class="pre">install</span></code> ；而Windows和Linux安装包则直接运行安装文件。这些操作会将相应文件复制到Python环境存放第三方模块的目录中。</p>
+</div>
+<div class="section" id="spawn">
+<h4>spawn 模块<a class="headerlink" href="#spawn" title="永久链接至标题">¶</a></h4>
+<p>find_executable(“exe_name”) 可用于检测可执行程序 exe_name 是否存在，但前提是加入了PATH</p>
+</div>
+</div>
+<div class="section" id="logging">
+<h3>logging<a class="headerlink" href="#logging" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="https://fangpenlin.com/posts/2012/08/26/good-logging-practice-in-python/">a good practice</a></p>
+<ul class="simple">
+<li><p>Write logging records everywhere with proper level</p></li>
+<li><p>Use <cite>__name__</cite> as the logger name</p></li>
+<li><p>Capture exceptions and record them with traceback</p></li>
+<li><p>Do not get logger at the module level unless disable_existing_loggers is False</p></li>
+<li><p>Use JSON or YAML logging configuration</p></li>
+<li><p>use <cite>RotatingFileHandler</cite> instead of <cite>FileHandler</cite> in production environment</p></li>
+</ul>
+</div>
+<div class="section" id="jupyter">
+<h3>jupyter<a class="headerlink" href="#jupyter" title="永久链接至标题">¶</a></h3>
+<p>(mac)When you got Warning : ‘Native kernel (python2) is not available’with jupyter notebook…</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip uninstall backports.shutil_get_terminal_size
+pip install backports.shutil_get_terminal_size
+<span class="c1"># Installed kernelspec python2 in /usr/local/share/jupyter/kernels/python2</span>
+ipython kernelspec install-self
+ipython kernel install
+</pre></div>
+</div>
+<p>使用</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter notebook
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>打包<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://docs.python.org/3/distutils/setupscript.html#installing-package-data">Installing Package Data</a></p>
+<p><a class="reference external" href="http://peak.telecommunity.com/DevCenter/PkgResources#basic-resource-access">Basic Resource Access</a></p>
+<p>项目做成package时，import 部分要做修改：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="o">&lt;</span><span class="n">member</span><span class="o">&gt;</span> <span class="o">-&gt;</span> <span class="kn">from</span> <span class="nn">.</span><span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="o">&lt;</span><span class="n">member</span><span class="o">&gt;</span>
+                              <span class="o">-&gt;</span> <span class="kn">from</span> <span class="o">&lt;</span><span class="n">package</span><span class="o">&gt;.&lt;</span><span class="n">module</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="o">&lt;</span><span class="n">member</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>第二种方法比较好，因为这种方法导入模块后，若想运行模块下的代码，只需在包的上一级目录运行</p>
+<p><code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">&lt;package&gt;/&lt;script&gt;.py</span></code></p>
+<p>或者使用 <cite>-m</cite> 方式</p>
+<p><code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">&lt;package&gt;/&lt;module&gt;</span></code></p>
+<p>而第一种方法只能使用 <cite>-m</cite> 方式运行模块下的代码</p>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>生成文档<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install Sphinx
+pip install sphinx_rtd_theme
+
+<span class="c1"># 在doc目录下运行</span>
+sphinx-quickstart
+</pre></div>
+</div>
+<p>配置 <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> 文件:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">sphinx_rtd_theme</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&lt;projectdir&gt;&quot;</span><span class="p">))</span>
+
+<span class="n">html_theme</span> <span class="o">=</span> <span class="s2">&quot;sphinx_rtd_theme&quot;</span>  <span class="c1"># 换主题</span>
+<span class="n">html_theme_path</span> <span class="o">=</span> <span class="p">[</span><span class="n">sphinx_rtd_theme</span><span class="o">.</span><span class="n">get_html_theme_path</span><span class="p">()]</span>
+</pre></div>
+</div>
+<p>配置好后，在 <cite>doc</cite> 下执行</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-apidoc -o ./source &lt;projectdir&gt;
+<span class="c1"># 若已经执行过该命令，再执行时会跳过已生成的文件，此时可以使用以下命令</span>
+<span class="c1"># sphinx-apidoc -f -o docs/source &lt;projectdir&gt;</span>
+make html
+</pre></div>
+</div>
+<p>在使用 <a class="reference external" href="https://github.com/google/styleguide/blob/gh-pages/pyguide.md">google-style comment</a> 的时候，需要使用 <a class="reference external" href="http://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html#module-sphinx.ext.napoleon">napoleon</a> 插件来让sphinx理解这些注释，</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># conf.py</span>
+
+<span class="c1"># Add napoleon to the extensions list</span>
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sphinx.ext.napoleon&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id14">
+<h2>一些调试技巧<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span> <span class="nb">type</span><span class="p">(</span><span class="n">XXX</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">XXX</span><span class="o">.</span><span class="n">shape</span>
+<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">XXX</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>当使用 <code class="code docutils literal notranslate"><span class="pre">./xx.py</span></code> 运行程序出现 <cite>permission denied</cite> ，即使加了 sudo 也无效时，有两个解决方法：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod +x xx.py  <span class="c1"># 1.赋予文件可执行性</span>
+python xx.py    <span class="c1"># 2.换一种运行方式</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pdb">
+<h2>pdb 调试<a class="headerlink" href="#pdb" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p>命令行</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m pdb xxx.py  // 相当于断点在第一行之前
+</pre></div>
+</div>
+</li>
+<li><p>python 交互环境下</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>import pdb
+pdb.run<span class="o">(</span><span class="s2">&quot;xxx.py&quot;</span><span class="o">)</span> // 或者函数
+</pre></div>
+</div>
+</li>
+<li><p>常用命令</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>h<span class="o">(</span>elp<span class="o">)</span>  // 打印当前版本Pdb可用的命令，如果要查询某个命令，可以输入 h <span class="o">[</span>command<span class="o">]</span>
+l<span class="o">(</span>ist<span class="o">)</span>  // 列出当前将要运行的代码块
+b<span class="o">(</span>reak<span class="o">)</span> // 设置断点，参数可以是行号和函数名，如果只敲b，会显示现有的全部断点
+condition bpnumber <span class="o">[</span>condition<span class="o">]</span> // 设置条件断点，对第bpnumber个断点加上条件
+cl<span class="o">(</span>ear<span class="o">)</span> // 如果后面带有参数，就是清除指定的断点<span class="p">;</span>不带参数就是清除所有的断点
+disable/enable // 禁用/激活断点
+n<span class="o">(</span>ext<span class="o">)</span>，// 运行下一行，如果当前语句有一个函数调用，用n是不会进入被调用的函数体中的
+s<span class="o">(</span>tep<span class="o">)</span>，// 跟n相似，但是如果当前有一个函数调用，那么s会进入被调用的函数体中
+c<span class="o">(</span>ont<span class="o">(</span>inue<span class="o">))</span> // 让程序正常运行，直到遇到断点
+j<span class="o">(</span>ump<span class="o">)</span>       // 让程序跳转到指定的行数
+a<span class="o">(</span>rgs<span class="o">)</span>  // 打印当前函数的参数
+p<span class="o">(</span>rint<span class="o">)</span> // 打印某个参数
+q<span class="o">(</span>uit<span class="o">)</span>  // 退出调试
+</pre></div>
+</div>
+</li>
+</ul>
+<dl class="footnote brackets">
+<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id7">1</a></span></dt>
+<dd><p><a class="reference external" href="https://hackernoon.com/4-ways-to-manage-the-configuration-in-python-4623049e841b">https://hackernoon.com/4-ways-to-manage-the-configuration-in-python-4623049e841b</a></p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ruby.html" class="btn btn-neutral float-right" title="ruby" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Java.html" class="btn btn-neutral float-left" title="Java" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,845 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>平台搭建 &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Cmake" href="Cmake.html" />
+    <link rel="prev" title="OpenCV" href="../packages/OpenCV.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">平台搭建</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Cmake.html">Cmake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AndroidStudio.html">Android Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XCode.html">XCode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_program.html">Web 编程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="react_native.html">React_Native</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker">Docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1 安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">2 常用命令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dockerfile">3 Dockerfile语法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">4 搭建私有仓库</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#a">在机器A</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-b">在机器A/B</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">管理私有仓库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">可能出现问题</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hadoop">Hadoop</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#requirement">Requirement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setup-tutorial-installation-configuration">Setup Tutorial - Installation &amp; Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">错误集锦</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#jenkins">Jenkins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install">Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>平台搭建</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/platform/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>平台搭建<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Cmake.html">Cmake</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Cmake.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Cmake.html#id1">内部编译</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Cmake.html#id2">外部编译</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Cmake.html#id3">调试</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="AndroidStudio.html">Android Studio</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="AndroidStudio.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AndroidStudio.html#opencv">OpenCV</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#opencv-java">OpenCV 配置 (java 层)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#opencv-1">使用OpenCV的三种方法 </a><ul>
+<li class="toctree-l4"><a class="reference internal" href="AndroidStudio.html#id4">前期准备</a></li>
+<li class="toctree-l4"><a class="reference internal" href="AndroidStudio.html#jni">第一种方法(纯jni, 静态链接库)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="AndroidStudio.html#id5">第二种方法 (纯jni，动态链接库)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="AndroidStudio.html#java">第三种方法(基于第二种方法, 纯java)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#opencv-with-contribe-module">OpenCV with contribe module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#id8">在单元测试中使用OpenCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#id9">一些问题的解决</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="AndroidStudio.html#jar-aar">引用第三方项目，打包Jar包，AAR包</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#id10">相关概念</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="AndroidStudio.html#id11">库和包</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#id12">引用第三方项目</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#jar">关于jar包</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="AndroidStudio.html#as-jar">使用 <abbr title="Android studio">AS</abbr> 打jar包</a></li>
+<li class="toctree-l4"><a class="reference internal" href="AndroidStudio.html#id13">引用jar包</a></li>
+<li class="toctree-l4"><a class="reference internal" href="AndroidStudio.html#so">so库的问题</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#aar">AAR包</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="AndroidStudio.html#id14">打aar包</a></li>
+<li class="toctree-l4"><a class="reference internal" href="AndroidStudio.html#arr">引用arr包</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#id15">一些其他问题</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="AndroidStudio.html#id16">单元测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AndroidStudio.html#sdk">SDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#id17">安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#id18">降级</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="AndroidStudio.html#gradle">gradle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AndroidStudio.html#adb">adb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AndroidStudio.html#genymotion">genymotion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AndroidStudio.html#id19">手机</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#google-play">获取 Google Play 服务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#cpu">CPU架构</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="AndroidStudio.html#native-code">Native code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#nkd-build">nkd-build</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="AndroidStudio.html#mk">mk 文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="AndroidStudio.html#id20">useDeprecatedNdk</a></li>
+<li class="toctree-l4"><a class="reference internal" href="AndroidStudio.html#externalnativebuild">externalNativeBuild</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#cmake-as2-2">Cmake (&gt;=AS2.2)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="AndroidStudio.html#debug">Debug</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#java-code">Java code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AndroidStudio.html#native-code-as3-0-1">Native code(AS3.0.1)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="AndroidStudio.html#ndk-build">ndk-build </a></li>
+<li class="toctree-l4"><a class="reference internal" href="AndroidStudio.html#cmake">Cmake</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="AndroidStudio.html#id22">常见问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="XCode.html">XCode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="XCode.html#xcode-opencv">为XCode 配置OpenCV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XCode.html#sdk">SDK 制作</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="XCode.html#id1">基础概念</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="XCode.html#id2">库类别</a></li>
+<li class="toctree-l4"><a class="reference internal" href="XCode.html#id3">静态库和动态库的区别</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="XCode.html#a-xcode-9-4-1">创建.a 静态库(XCode 9.4.1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XCode.html#id5">查看静态库支持的架构</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="web_program.html">Web 编程</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="web_program.html#id1">术语概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_program.html#mvc-model-view-controller-pattern">MVC(Model View Controller) pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_program.html#rest-representational-state-transfer-architecture">REST(REpresentational State Transfer) architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_program.html#ucrd">UCRD</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="react_native.html">React_Native</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="react_native.html#id1">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="react_native.html#id2">开发</a></li>
+<li class="toctree-l2"><a class="reference internal" href="react_native.html#id3">打包</a></li>
+<li class="toctree-l2"><a class="reference internal" href="react_native.html#reactotron">调试工具 reactotron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="react_native.html#ignite">脚手架 ignite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="react_native.html#id4">一些包</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="react_native.html#realm">realm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="react_native.html#react-navigation">react navigation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="react_native.html#react-native-maps">react-native-maps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="react_native.html#ui">UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="react_native.html#id5">坑</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="docker">
+<h2>Docker<a class="headerlink" href="#docker" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://yeasy.gitbooks.io/docker_practice/content/image/dockerfile/copy.html">教程</a></p>
+<div class="section" id="id3">
+<h3>1 安装<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>参照官网，安装完后必须要 <code class="docutils literal notranslate"><span class="pre">sudo</span></code> , 通过以下方法解决</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo groupadd docker
+sudo usermod -aG docker <span class="nv">$USER</span>
+newgrp - docker
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>2 常用命令<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull <span class="o">[</span>选项<span class="o">]</span> <span class="o">[</span>Docker Registry地址<span class="o">]</span>&lt;仓库名&gt;:&lt;标签&gt;  <span class="c1"># 获取镜像, 下载的镜像文件存放在本地</span>
+                                                         <span class="c1"># ubuntu: /var/lib/docker/graph/&lt;image id&gt;</span>
+                                                         <span class="c1"># mac: /Users/Emily/Library/Containers/com.docker.docker/Data</span>
+<span class="c1"># --help  帮助</span>
+
+docker run -it --rm ubuntu:14.04 bash  <span class="c1"># 运行</span>
+<span class="c1"># -it：这是两个参数，一个是 -i：交互式操作，一个是 -t 终端。</span>
+<span class="c1"># --rm：容器退出后随之将其删除。默认情况下，为了排障需求，退出的容器并不会立即删除，除非手动 docker rm。</span>
+<span class="c1"># --name:</span>
+<span class="c1"># -d: 容器会在后台运行, 并不会把输出的结果(STDOUT)打印到宿主机上面(输出结果可以用docker logs 查看)</span>
+<span class="c1"># -p &lt;宿主端口&gt;:&lt;容器端口&gt;</span>
+<span class="c1"># -v: volume (卷名:挂载路径, 必须是绝对路径。如果是相对路径，实际挂载的是 /var/lib/docker/volumes/ 下的文件夹)</span>
+<span class="c1"># -e: 设置环境变量</span>
+
+docker start <span class="c1"># 将一个已经终止的容器启动运行</span>
+docker stop  <span class="c1"># 终止一个运行中的容器</span>
+docker restart <span class="c1"># 将一个运行态的容器终止，然后再重新启动它</span>
+docker attach --sig-proxy<span class="o">=</span><span class="nb">false</span> <span class="nv">$CONTAINER_ID</span>  <span class="c1"># 进入正在运行的容器，--sig-proxy=false确保CTRL-D或CTRL-C不会关闭容器</span>
+docker <span class="nb">exec</span> <span class="c1"># runs a new command in a running container.</span>
+
+docker images   <span class="c1"># 列出镜像</span>
+<span class="c1"># -f: 过滤</span>
+<span class="c1"># -a: 显示包括中间层镜像在内的所有镜像</span>
+<span class="c1"># dangling=true  # 虚悬</span>
+<span class="c1"># since: 之后</span>
+<span class="c1"># before: 之前</span>
+<span class="c1"># -q: 输出格式为ID 列表</span>
+<span class="c1"># --format: Go语法指定输出格式</span>
+
+docker inspect  <span class="c1"># 查看开启容器的相关信息</span>
+
+
+docker ps <span class="c1"># 查看容器</span>
+<span class="c1"># -a: 包括终止状态的容器</span>
+
+docker commit <span class="o">[</span>选项<span class="o">]</span> &lt;容器ID或容器名&gt; <span class="o">[</span>&lt;仓库名&gt;<span class="o">[</span>:&lt;标签&gt;<span class="o">]]</span>  <span class="c1"># 保存为镜像</span>
+<span class="c1"># --author</span>
+<span class="c1"># --message</span>
+
+docker <span class="nb">history</span>  <span class="c1"># 具体查看镜像内的历史记录</span>
+
+docker build <span class="o">[</span>选项<span class="o">]</span> &lt;上下文路径/URL/-&gt;  <span class="c1"># 镜像构建</span>
+<span class="c1"># -t 指定最终镜像的名称</span>
+<span class="c1"># -f 指定dockerfile</span>
+
+docker rm <span class="c1"># 删除一个处于终止状态的容器</span>
+<span class="c1"># $(docker ps -a -q)  # 删除所有处于终止状态的容器</span>
+<span class="c1"># -v # 删除容器的同时删除挂载的数据卷，推荐</span>
+docker rmi <span class="c1"># 删除镜像</span>
+
+docker login <span class="c1"># 登录, 本地用户目录的 .dockercfg 中将保存用户的认证信息</span>
+<span class="c1"># -u：用户名</span>
+<span class="c1"># -p: 密码</span>
+
+docker search <span class="c1"># 搜索，无需登录</span>
+<span class="c1"># -s N: 指定仅显示评价为 N 星以上的镜像</span>
+
+docker tag &lt;本地repo&gt;:&lt;tag&gt; &lt;用户名&gt;/&lt;repo&gt;:&lt;tag&gt;
+docker push &lt;用户名&gt;/&lt;repo&gt;:&lt;tag&gt;   <span class="c1"># 镜像推送</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dockerfile">
+<h3>3 Dockerfile语法<a class="headerlink" href="#dockerfile" title="永久链接至标题">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>Dockerfile 中每一个指令都会建立一层, Union FS 是有最大层数限制的，比如 AUFS，曾经是最大不得超过 42 层，现在是不得超过 127 层。
+因此镜像构建时要注意层数, 一定要确保每一层只添加真正需要添加的东西，任何无关的东西都应该清理掉。</p>
+</div>
+<p>FROM 指定基础镜像</p>
+<dl class="simple">
+<dt>RUN  执行命令行命令</dt><dd><ul class="simple">
+<li><p>shell 格式：RUN &lt;命令&gt;</p></li>
+<li><p>exec 格式：RUN [“可执行文件”, “参数1”, “参数2”]</p></li>
+</ul>
+</dd>
+<dt>COPY 复制</dt><dd><ul class="simple">
+<li><p>shell 格式：COPY &lt;源路径&gt;… &lt;目标路径&gt;</p></li>
+<li><p>exec 格式：COPY [“&lt;源路径1&gt;”,… “&lt;目标路径&gt;”]”“]</p></li>
+</ul>
+</dd>
+<dt>CMD 容器启动命令</dt><dd><ul class="simple">
+<li><p>shell 格式：CMD &lt;命令&gt;</p></li>
+<li><p>exec 格式：CMD [“可执行文件”, “参数1”, “参数2”…]”“]</p></li>
+</ul>
+</dd>
+</dl>
+<p>ENTRYPOINT 入口点</p>
+<dl class="simple">
+<dt>VOLUME 定义匿名卷(注意是定义而不是挂载，Dockerfile中不能挂载)</dt><dd><ul class="simple">
+<li><p>VOLUME [“&lt;路径1&gt;”, “&lt;路径2&gt;”…]</p></li>
+<li><p>VOLUME &lt;路径&gt;</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="id5">
+<h3>4 搭建私有仓库<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<div class="section" id="a">
+<h4>在机器A<a class="headerlink" href="#a" title="永久链接至标题">¶</a></h4>
+<ul>
+<li><p>安装 registry</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull registry
+</pre></div>
+</div>
+</li>
+<li><p>运行本地的 registry</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -d -p <span class="m">5000</span>:5000 --restart<span class="o">=</span>always --name registry -v &lt;your path to registry-images&gt;:/var/lib/registry registry:latest
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>registry 的默认使用的容器内目录可以通过 docker inspect &lt;container name/ID&gt; 查看 Mounts/volume 项目查看</p>
+</div>
+</li>
+</ul>
+<p>此时在本机浏览器输入 <cite>127.0.0.1:5000/v2/_catalog</cite> 或在局域网的另一台机子输入 <cite>xxx.xxx.xxx.xxx:5000/v2/_catalog</cite> 确认服务是否正常开启</p>
+</div>
+<div class="section" id="a-b">
+<h4>在机器A/B<a class="headerlink" href="#a-b" title="永久链接至标题">¶</a></h4>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>&lt;tag&gt; 很重要，一定要加，否则容易出错</p>
+</div>
+<ul>
+<li><p>上传</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker tag &lt;<span class="nb">local</span> images&gt; &lt;repo ip&gt;:&lt;port&gt;/&lt;repo name&gt;:&lt;tag&gt;
+docker push &lt;repo ip&gt;:&lt;port&gt;/&lt;repo name&gt;:&lt;tag&gt;
+</pre></div>
+</div>
+</li>
+<li><p>下载</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull &lt;repo ip&gt;:&lt;port&gt;/&lt;repo name&gt;:&lt;tag&gt;
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h4>管理私有仓库<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h4>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -XGET http://registry:5000/v2/_catalog
+curl -XGET http://registry:5000/v2/image_name/tags/list
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id7">
+<h4>可能出现问题<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h4>
+<blockquote>
+<div><p>在局域网通信过程中，必须做以下设置</p>
+<ul>
+<li><p>修改主机 A 的 docker 配置（/etc/docker/daemon.json 文件不存在则直接创建)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;insecure-registries&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;xxx.xxx.xxx.xxx:5000&quot;</span><span class="p">]}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl daemon-reload
+sudo systemctl restart docker
+</pre></div>
+</div>
+</li>
+<li><p>修改主机 B 的 docker 配置（/etc/docker/daemon.json 文件不存在则直接创建)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;registry-mirrors&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;192.168.0.111:5000&quot;</span><span class="p">],</span>    <span class="o">//</span> <span class="n">注意这里有个逗号</span>
+    <span class="s2">&quot;insecure-registries&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;192.168.0.111:5000&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl daemon-reload
+sudo systemctl restart docker  <span class="c1"># 重启 docker 服务</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>在mac 上直接在Preference/daemon 中修改即可</p>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="hadoop">
+<h2>Hadoop<a class="headerlink" href="#hadoop" title="永久链接至标题">¶</a></h2>
+<div class="section" id="requirement">
+<h3>Requirement<a class="headerlink" href="#requirement" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>java(jdk)</p></li>
+</ul>
+</div>
+<div class="section" id="setup-tutorial-installation-configuration">
+<h3>Setup Tutorial - Installation &amp; Configuration<a class="headerlink" href="#setup-tutorial-installation-configuration" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="https://blog.csdn.net/hliq5399/article/details/78193113">TODO1</a></p>
+<p><a class="reference external" href="http://www.cnblogs.com/qingyunzong/p/8524594.html">TODO2</a></p>
+<ol class="arabic" start="0">
+<li><p>修改所有节点的 <code class="file docutils literal notranslate"><span class="pre">/etc/hosts</span></code> 文件</p>
+<p>将127.0.1.1 对应的行注释，另外添加节点主机的ip及名称:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#127.0.1.1    xshine4-Inspiron-3668</span>
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">1.5</span>  <span class="n">master</span>
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">1.113</span> <span class="n">slave1</span>
+</pre></div>
+</div>
+<p>修改完后看几台机子是否可以ping通</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ping slave1
+</pre></div>
+</div>
+</li>
+<li><p>为hadoop集群专门设置一个用户组及用户</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo addgroup hadoop_
+sudo adduser --ingroup hadoop_ hduser_
+
+//为hdusr_增加管理员权限
+sudo adduser hduser_ sudo  // 或者 usermod -G sudo hdusr_
+</pre></div>
+</div>
+</li>
+<li><p>设置ssh无密码登录子节点</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>su - hduser_  //switch user, 以下的操作都是在该用户下进行
+ssh-keygen -t rsa -P <span class="s2">&quot;&quot;</span> //create a new key.
+cat <span class="nv">$HOME</span>/.ssh/id_rsa.pub &gt;&gt; <span class="nv">$HOME</span>/.ssh/authorized_keys  //Enable SSH access to <span class="nb">local</span> machine using this key.
+
+// Now <span class="nb">test</span> SSH setup by connecting to locahost as <span class="s1">&#39;hduser_&#39;</span> user.
+ssh localhost
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>步骤0至此需要在所有节点里面都同样进行。</p>
+</div>
+<p>接下来设置ssh无密码登录子节点，假设主节点为master，子节点为slaven，分别在两个子节点的命令终端执行命令</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/.ssh
+scp hduser_@master:~/.ssh/id_rsa.pub ./master_rsa.pub
+cat master_rsa.pub &gt;&gt; authorized_keys
+</pre></div>
+</div>
+<p>执行完上述命令后，回到主节点master，输入如下命令测试能否无密码登录</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh slaven // 此处默认主节点与子节点用户名一致，若不一致，需按 username@slaven 的格式连接
+</pre></div>
+</div>
+</li>
+<li><p><a class="reference external" href="http://www.apache.org/dyn/closer.cgi/hadoop/common/">下载Hadoop</a></p>
+<p>选择stable版本下载, 解压并修改owner</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo chown -R hduser_:hadoop_ &lt;hadoop dir&gt;
+</pre></div>
+</div>
+</li>
+<li><p>设置环境变量</p>
+<ul>
+<li><p>设置 <code class="file docutils literal notranslate"><span class="pre">~/.bashrc</span></code></p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#Set HADOOP_HOME
+export HADOOP_HOME=&lt;Installation Directory of Hadoop&gt;
+#Set JAVA_HOME
+export JAVA_HOME=&lt;Installation Directory of Java&gt;
+# Add bin/ directory of Hadoop to PATH
+export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>设置 <code class="file docutils literal notranslate"><span class="pre">$HADOOP_HOME/etc/hadoop/hadoop-env.sh</span></code> 文件中的 <code class="docutils literal notranslate"><span class="pre">JAVA_HOME</span></code> 变量。</p></li>
+</ul>
+<p>此时可以通过以下命令查看java 和 hadoop 是否安装完成</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>java --version
+hadoop version
+</pre></div>
+</div>
+</li>
+</ol>
+<p>在 <code class="file docutils literal notranslate"><span class="pre">hadoop-x.x.x/etc/hadoop</span></code> 文件夹中，有5个配置文件 <code class="file docutils literal notranslate"><span class="pre">slaves</span></code> , <code class="file docutils literal notranslate"><span class="pre">core-site.xml</span></code> , <code class="file docutils literal notranslate"><span class="pre">hdfs-site.xml</span></code> , <code class="file docutils literal notranslate"><span class="pre">mapred-site.xml</span></code> , <code class="file docutils literal notranslate"><span class="pre">yarn-site.xml</span></code> 需要配置。</p>
+<ol class="arabic" start="5">
+<li><p>Configurations related to HDFS</p>
+<p>在 <code class="file docutils literal notranslate"><span class="pre">slaves</span></code> 中添加各主机的主机名:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>localhost  // 伪分布中使用，完全分布需删除
+slaven
+</pre></div>
+</div>
+<p>修改 <code class="file docutils literal notranslate"><span class="pre">core-site.xml</span></code> , Copy below line in between tags <strong>&lt;configuration&gt;</strong> and <strong>&lt;/configuration&gt;</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;!-- 指定hadoop运行时产生文件的存储目录(伪) --&gt;
+&lt;property&gt;
+    &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
+    &lt;value&gt;/home/username/hadoop_home/tmp&lt;/value&gt;  // 注意路径
+    &lt;description&gt;Parent directory for other temporary directories.&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;!-- 指定HADOOP所使用的文件系统schema（URI），HDFS的老大（NameNode）的地址(伪) --&gt;
+&lt;property&gt;
+    &lt;name&gt;fs.defaultFS &lt;/name&gt;
+    &lt;value&gt;hdfs://master:9000&lt;/value&gt;  // 注意主机名，不要用localhost，可以用主机ip, 否则可能出现connection refused的错误
+    &lt;description&gt;The name of the default file system. &lt;/description&gt;
+&lt;/property&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Map Reduce Configuration</p>
+<p>修改 <code class="file docutils literal notranslate"><span class="pre">hdfs-site.xml</span></code> , Add below lines of setting between tags <strong>&lt;configuration&gt;</strong> and <strong>&lt;/configuration&gt;</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;!-- 设置secondarynamenode的http通讯地址 --&gt;
+&lt;!--property&gt;
+    &lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;
+    &lt;value&gt;master:50090&lt;/value&gt;  //注意路径
+&lt;/property--&gt;
+
+&lt;!-- 指定HDFS副本的数量(伪) --&gt;
+&lt;property&gt;
+    &lt;name&gt;dfs.replication&lt;/name&gt;
+    &lt;value&gt;2&lt;/value&gt;  //这个数字决定备份几份
+    &lt;description&gt;Default block replication.&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;!-- (伪) --&gt;
+&lt;property&gt;
+    &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;
+    &lt;value&gt;/home/username/hadoop_home/tmp/dfs/name&lt;/value&gt;  //注意路径
+&lt;/property&gt;
+
+&lt;!-- (伪) --&gt;
+&lt;property&gt;
+    &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;
+    &lt;value&gt;/home/username/hadoop_home/tmp/dfs/data&lt;/value&gt;  //注意路径
+&lt;/property&gt;
+</pre></div>
+</div>
+<p>修改 <code class="file docutils literal notranslate"><span class="pre">mapred-site.xml</span></code> , 如果没有这个文件，先执行</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo cp <span class="nv">$HADOOP_HOME</span>/etc/hadoop/mapred-site.xml.template <span class="nv">$HADOOP_HOME</span>/etc/hadoop/mapred-site.xml
+</pre></div>
+</div>
+<p>Add below lines of setting in between tags <strong>&lt;configuration&gt;</strong> and <strong>&lt;/configuration&gt;</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;property&gt;
+    &lt;name&gt;mapreduce.jobhistory.address&lt;/name&gt;
+    &lt;value&gt;master:10020&lt;/value&gt;
+    &lt;description&gt;MapReduce job tracker runs at this host and port.
+    &lt;/description&gt;
+&lt;/property&gt;
+
+&lt;!-- 通知框架MR运行在yarn上(伪) --&gt;
+&lt;property&gt;
+    &lt;name&gt;mapreduce.framework.name&lt;/name&gt;
+    &lt;value&gt;yarn&lt;/value&gt;
+&lt;/property&gt;
+</pre></div>
+</div>
+<p>若前面配置了yarn，则配置 <code class="file docutils literal notranslate"><span class="pre">yarn-site.xml</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;!-- Site specific YARN configuration properties --&gt;
+&lt;!-- 指定YARN的老大（ResourceManager）的地址 --&gt;
+&lt;property&gt;
+    &lt;name&gt;yarn.resourcemanager.address&lt;/name&gt;
+    &lt;value&gt;master:8032&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- reducer获取数据的方式(伪) --&gt;
+&lt;property&gt;
+    &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+    &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
+&lt;/property&gt;
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>步骤4～7 只在主节点master上执行, 子节点上直接拷贝相应的文件即可。</p>
+</div>
+</li>
+<li><p>子节点配置</p>
+<p>上面的hadoop-env.sh，core-site.xml，mapred-site.xml，hdfs-site.xml等几个文件，在四台linux中都是一样的。配置完一台电脑后，可以将hadoop包，直接拷贝到其他电脑上。将第4~6步配置的环境复制到子节点中。</p>
+</li>
+<li><p>启动hadoop集群</p>
+<p>启动集群前，需先格式化 <strong>主节点</strong> namenode，只格式化一次。在主节点输入命令</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs namenode -format
+</pre></div>
+</div>
+<p>而后进入主节点master目录 <code class="file docutils literal notranslate"><span class="pre">~/&lt;hadoop</span> <span class="pre">dir&gt;</span></code> 下，执行</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>//启动/关闭NameNode 和 DataNode
+start-dfs.sh
+stop-dfs.sh
+
+//启动/关闭Yarn
+start-dfs.sh
+start-yarn.sh
+mr-jobhistory-daemon.sh start historyserver
+
+stop-dfs.sh
+stop-yarn.sh
+mr-jobhistory-daemon.sh stop historyserver
+</pre></div>
+</div>
+<p>启动命令后，输入jps命令，查看是否启动成功。主节点下应该出现以下项目:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">伪分布</span>
+<span class="n">NodeManager</span>
+<span class="n">NodeName</span>
+<span class="n">DataNode</span>
+<span class="n">ResourceManager</span>
+<span class="n">Jps</span>
+<span class="n">SecondaryNameNode</span>
+
+<span class="o">//</span> <span class="n">完全分布</span>
+<span class="n">NodeName</span>
+<span class="n">ResourceManager</span>
+<span class="n">Jps</span>
+<span class="n">SecondaryNameNode</span>
+</pre></div>
+</div>
+<p>子节点应该出现:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DataNode</span>
+<span class="n">Jps</span>
+<span class="n">NodeManager</span>
+</pre></div>
+</div>
+</li>
+<li><p>可视化</p>
+<p>可以通过主节点的浏览器访问http://localhost:50070 进入namenode 的管理界面, 访问8088 进入resourceManager的管理界面。</p>
+</li>
+<li><p>测试hadoop集群</p></li>
+</ol>
+<blockquote>
+<div><p>在主节点的hadoop 目录下执行</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs dfs -mkdir -p /data/input
+vim my_wordcount.txt
+hdfs dfs -put my_wordcount.txt /data/input
+hdfs dfs -ls /data/input
+
+hadoop jar share/hadoop/mapreduce/hadoop-mapeduce-examples-2.9.1.jar wordcount /data/input/my_wordcount.txt /data/output/my_wordcount
+hdfs dfs -cat /data/output/my_wordcount/part-r-00000
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id9">
+<h3>错误集锦<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<ol class="arabic">
+<li><p>DataNode没启动</p>
+<dl class="simple">
+<dt>原因</dt><dd><p>当我们使用hadoop namenode -format格式化namenode时，会在namenode数据文件夹（这个文件夹为自己配置文件中dfs.name.dir的路径）中保存一个current/VERSION文件，记录clusterID，datanode中保存的current/VERSION文件中的clustreID的值是上一次格式化保存的clusterID，这样，datanode和namenode之间的ID不一致。</p>
+</dd>
+<dt>解决：</dt><dd><ul class="simple">
+<li><p>如果dfs文件夹中没有重要的数据，那么删除dfs文件夹，再重新运行格式化及启动命令： （删除所有节点下的dfs文件夹，dfs目录在${HADOOP_HOME}/tmp/）</p></li>
+<li><p>如果dfs文件中有重要的数据，那么在dfs/name目录下找到一个current/VERSION文件，记录clusterID并复制。然后dfs/data目录下找到一个current/VERSION文件，将其中clustreID的值替换成刚刚复制的clusterID的值即可；</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="jenkins">
+<h2>Jenkins<a class="headerlink" href="#jenkins" title="永久链接至标题">¶</a></h2>
+<div class="section" id="install">
+<h3>Install<a class="headerlink" href="#install" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>ubuntu <a class="reference internal" href="../os/ubuntu.html#jenkins-install-ubuntu"><span class="std std-ref">jenkins</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="永久链接至标题">¶</a></h3>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">systemctl</span></code> 开启服务</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl start jenkins
+sudo systemctl status jenkins // 查看是否开启成功
+sudo systemctl stop jenkins // 停止服务
+</pre></div>
+</div>
+<p>成功开启后，在浏览器中输入 <code class="docutils literal notranslate"><span class="pre">http://localhost:8080</span></code> 登录jenkins 账号，首次登录需要输入密码，密码位于 <code class="file docutils literal notranslate"><span class="pre">/var/lib/jenkins/secrets/initialAdminPassword</span></code></p>
+<p>按提示完成设置，安装成功后在命令行输入</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo netstat -plntu
+</pre></div>
+</div>
+<p>查看</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Cmake.html" class="btn btn-neutral float-right" title="Cmake" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../packages/OpenCV.html" class="btn btn-neutral float-left" title="OpenCV" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

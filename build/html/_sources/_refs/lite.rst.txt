@@ -1,0 +1,9 @@
+
+.. [mitchell2008predicting] Mitchell T M, Shinkareva S V, Carlson A, et al. `Predicting human brain activity associated with the meanings of nouns[J] <http://www.cs.cmu.edu/~tom/pubs/science2008.pdf>`_ . science, 2008, 320(5880): 1191-1195.  
+.. [#mikolov2013efficient] Mikolov T, Chen K, Corrado G, et al. `Efficient estimation of word representations in vector space[J] <http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf>`_ . arXiv preprint arXiv:1301.3781, 2013. 
+.. [#mihalcea2004textrank] Mihalcea R, Tarau P. Textrank: `Bringing order into text[C] <http://www.aclweb.org/anthology/W04-3252>`_ //Proceedings of the 2004 conference on empirical methods in natural language processing. 2004.
+.. [#cho2014learning] Cho K, Van Merriënboer B, Gulcehre C, et al. `Learning phrase representations using RNN encoder-decoder for statistical machine translation[J] <https://arxiv.org/abs/1406.1078>`_ . arXiv preprint arXiv:1406.1078, 2014. 
+.. [#sutskever2014sequence] Sutskever I, Vinyals O, Le Q V. `Sequence to sequence learning with neural networks[J] <http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf>`_ . Advances in neural information processing systems, 2014: 3104-3112. 
+.. [#vinyals2015neural] Vinyals O, Le Q. `A neural conversational model[J] <https://arxiv.org/pdf/1506.05869.pdf>`_ . arXiv preprint arXiv:1506.05869, 2015.
+.. [#bahdanau2014neural] Bahdanau D, Cho K, Bengio Y. `Neural machine translation by jointly learning to align and translate[J] <https://arxiv.org/pdf/1409.0473.pdf>`_ . arXiv preprint arXiv:1409.0473, 2014.
+.. [#jean2014using] Jean S, Cho K, Memisevic R, et al. `On using very large target vocabulary for neural machine translation[J] <https://arxiv.org/pdf/1412.2007.pdf>`_ . arXiv preprint arXiv:1412.2007, 2014.

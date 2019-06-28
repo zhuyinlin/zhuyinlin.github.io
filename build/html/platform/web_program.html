@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Web 编程 &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="React_Native" href="react_native.html" />
+    <link rel="prev" title="XCode" href="XCode.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">平台搭建</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Cmake.html">Cmake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AndroidStudio.html">Android Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XCode.html">XCode</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Web 编程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">术语概念</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mvc-model-view-controller-pattern">MVC(Model View Controller) pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rest-representational-state-transfer-architecture">REST(REpresentational State Transfer) architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ucrd">UCRD</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="react_native.html">React_Native</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#hadoop">Hadoop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#jenkins">Jenkins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">平台搭建</a> &raquo;</li>
+        
+      <li>Web 编程</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/platform/web_program.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="web">
+<h1>Web 编程<a class="headerlink" href="#web" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>术语概念<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>URI、URL和URN 的区别
+test-driven development (TDD)</p>
+</div>
+<div class="section" id="mvc-model-view-controller-pattern">
+<h2>MVC(Model View Controller) pattern<a class="headerlink" href="#mvc-model-view-controller-pattern" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="rest-representational-state-transfer-architecture">
+<h2>REST(REpresentational State Transfer) architecture<a class="headerlink" href="#rest-representational-state-transfer-architecture" title="永久链接至标题">¶</a></h2>
+<p>资源在网络中以某种表现形式进行状态转移:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Resource：资源，即数据（网络的核心）；
+Representational：某种表现形式，比如用JSON，XML，JPEG等；
+State Transfer：状态变化。通过HTTP动词实现。
+</pre></div>
+</div>
+<p>URL定位资源，用HTTP动词（GET,POST,DELETE,DETC）描述操作</p>
+<ol class="arabic simple">
+<li><p>REST描述的是在网络中client和server的一种交互形式；REST本身不实用，实用的是如何设计 RESTful API（REST风格的网络接口）;</p></li>
+<li><p>Server提供的RESTful API中，URL中只使用名词来指定资源，原则上不使用动词。“资源”是REST架构或者说整个网络处理的核心。</p></li>
+<li><p>用HTTP协议里的动词来实现资源的添加，修改，删除等操作。即通过HTTP动词来实现资源的状态扭转：</p></li>
+<li><p>Server和Client之间传递某资源的一个表现形式，比如用JSON，XML传输文本，或者用JPG，WebP传输图片等。当然还可以压缩HTTP传输时的数据（on-wire data compression）</p></li>
+<li><p>用 HTTP Status Code传递Server的状态信息。</p></li>
+</ol>
+<p>优点：</p>
+<ol class="arabic simple">
+<li><p>RESTful可以通过一套统一的接口为 Web，iOS和Android提供服务。</p></li>
+<li><p>另外对于广大平台来说，比如Facebook platform，微博开放平台，微信公共平台等，它们不需要有显式的前端，只需要一套提供服务的接口</p></li>
+</ol>
+<p><a class="reference external" href="https://www.zhihu.com/question/27785028">best practice(覃超)</a></p>
+</div>
+<div class="section" id="ucrd">
+<h2>UCRD<a class="headerlink" href="#ucrd" title="永久链接至标题">¶</a></h2>
+<p>crud是指在做计算处理时的增加(Create)、读取查询(Retrieve)、更新(Update)和删除(Delete)几个单词的首字母简写</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="react_native.html" class="btn btn-neutral float-right" title="React_Native" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="XCode.html" class="btn btn-neutral float-left" title="XCode" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

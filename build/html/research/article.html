@@ -1,0 +1,595 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>文献阅读 &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="prev" title="性能指标" href="metrics.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">文献资料</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="datasets.html">数据集</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metrics.html">性能指标</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">文献阅读</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#face-detection">face detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#facial-keypoints-landmark">facial keypoints landmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#face-aligment">face aligment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#face-recognize-verification">face recognize/verification</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#deepface">DeepFace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deepid-deep-hidden-identity-features">DeepID(Deep hidden IDentity features)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#facenet">FaceNet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vggface">VGGFace</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#object-detection">Object Detection</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rcnn-region-cnn">RCNN(Region CNN)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fast-rcnn">fast-RCNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#faster-rcnn">faster-RCNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mask-rcnn">Mask RCNN</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#image-caption-generation">image caption generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generative-adversarial-network-gan">Generative Adversarial Network (GAN)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pedestrain-detection">Pedestrain Detection</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">评价指标</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">方法</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pedestrain-reidentification">Pedestrain reidentification</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">评价指标</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">方法</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pedestrain-tracking">Pedestrain tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#handwritten-chinese-character-recognition-hccr">Handwritten Chinese Character Recognition(HCCR)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ehr">EHR</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#concept-representation">concept representation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#nlp">NLP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#to-be-continue">To Be Continue</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">文献资料</a> &raquo;</li>
+        
+      <li>文献阅读</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/research/article.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><a class="toc-backref" href="#id8">文献阅读</a><a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="contents topic" id="id2">
+<p class="topic-title first">目录</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id1" id="id8">文献阅读</a></p>
+<ul>
+<li><p><a class="reference internal" href="#face-detection" id="id9">face detection</a></p></li>
+<li><p><a class="reference internal" href="#facial-keypoints-landmark" id="id10">facial keypoints landmark</a></p></li>
+<li><p><a class="reference internal" href="#face-aligment" id="id11">face aligment</a></p></li>
+<li><p><a class="reference internal" href="#face-recognize-verification" id="id12">face recognize/verification</a></p>
+<ul>
+<li><p><a class="reference internal" href="#deepface" id="id13">DeepFace</a></p></li>
+<li><p><a class="reference internal" href="#deepid-deep-hidden-identity-features" id="id14">DeepID(Deep hidden IDentity features)</a></p></li>
+<li><p><a class="reference internal" href="#facenet" id="id15">FaceNet</a></p></li>
+<li><p><a class="reference internal" href="#vggface" id="id16">VGGFace</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#object-detection" id="id17">Object Detection</a></p>
+<ul>
+<li><p><a class="reference internal" href="#rcnn-region-cnn" id="id18">RCNN(Region CNN)</a></p></li>
+<li><p><a class="reference internal" href="#fast-rcnn" id="id19">fast-RCNN</a></p></li>
+<li><p><a class="reference internal" href="#faster-rcnn" id="id20">faster-RCNN</a></p></li>
+<li><p><a class="reference internal" href="#mask-rcnn" id="id21">Mask RCNN</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#image-caption-generation" id="id22">image caption generation</a></p></li>
+<li><p><a class="reference internal" href="#generative-adversarial-network-gan" id="id23">Generative Adversarial Network (GAN)</a></p></li>
+<li><p><a class="reference internal" href="#pedestrain-detection" id="id24">Pedestrain Detection</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id4" id="id25">评价指标</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id26">方法</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#pedestrain-reidentification" id="id27">Pedestrain reidentification</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id6" id="id28">评价指标</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id29">方法</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#pedestrain-tracking" id="id30">Pedestrain tracking</a></p></li>
+<li><p><a class="reference internal" href="#handwritten-chinese-character-recognition-hccr" id="id31">Handwritten Chinese Character Recognition(HCCR)</a></p></li>
+<li><p><a class="reference internal" href="#ehr" id="id32">EHR</a></p>
+<ul>
+<li><p><a class="reference internal" href="#concept-representation" id="id33">concept representation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#nlp" id="id34">NLP</a></p></li>
+<li><p><a class="reference internal" href="#to-be-continue" id="id35">To Be Continue</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="face-detection">
+<h2><a class="toc-backref" href="#id9">face detection</a><a class="headerlink" href="#face-detection" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="facial-keypoints-landmark">
+<h2><a class="toc-backref" href="#id10">facial keypoints landmark</a><a class="headerlink" href="#facial-keypoints-landmark" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="face-aligment">
+<h2><a class="toc-backref" href="#id11">face aligment</a><a class="headerlink" href="#face-aligment" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="face-recognize-verification">
+<h2><a class="toc-backref" href="#id12">face recognize/verification</a><a class="headerlink" href="#face-recognize-verification" title="永久链接至标题">¶</a></h2>
+<p>测试集：LFW</p>
+<div class="section" id="deepface">
+<h3><a class="toc-backref" href="#id13">DeepFace</a><a class="headerlink" href="#deepface" title="永久链接至标题">¶</a></h3>
+<p>facebook, 97.5%,</p>
+<p>检测 -&gt; 对齐 -&gt; 人脸表示 -&gt; 分类</p>
+<p>4000人， 4M img</p>
+<p>feature：4096</p>
+</div>
+<div class="section" id="deepid-deep-hidden-identity-features">
+<h3><a class="toc-backref" href="#id14">DeepID(Deep hidden IDentity features)</a><a class="headerlink" href="#deepid-deep-hidden-identity-features" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>99.5%</p></li>
+<li><p>两步走</p></li>
+<li><p>12,000 人， 290,000 img</p></li>
+<li><p>feature: 30,000 / 50 * 512 -&gt; 300</p></li>
+</ul>
+<p>从输入patch学习到一个维的向量，多个patch学习到的多个向量。然后连接这些向量，套用各种现成的分类器分类。</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>将图片多尺度多通道多区域地切分成多个patch训练获取向量，然后将向量连接 是增大数据集的一种方法</p>
+</div>
+<dl class="simple">
+<dt>切分patch</dt><dd><p>每张人脸在一个尺度上切分10个patch，共3个尺度，另分彩图(3channel)和灰度图(1channel)，因此一张图可得 10*3*2 = 60 张patch</p>
+</dd>
+<dt>训练</dt><dd><ul class="simple">
+<li><p>网络模型跨层连接、unshared conv layer</p></li>
+<li><p>因为有200 patchs/face，因此可以训练200个网络，每个网络提取 2*512 维的特征（原图和翻转后的图像各512），这样，每图有 2*512*200 = 204,800 维特征; 但实际上这样的信息是有冗余的，因此此用前向后向贪婪算法选取25个patch 训练网络，得到 25* 512 = 12,800 维的特征，然后用PCA 降维到180</p></li>
+<li><p>训练集分为A、B两份，A用于训练DeepID vector，B 用于validate；然后B分为训练集和测试集选取特征；最后B用于训练 classifier。2 step 分训练集训练以避免过拟合。</p></li>
+<li><p>人脸识别的关键是特征要能减少类内差别、增大类间差别。因此同时使用face verification和 identification 信号进行监督学习，即两个信号的加权和作为损失函数 （注意 验证信号中m的更新方法, m 是动态调整的，调整策略是使最近的训练样本上的验证错误率最低。）</p></li>
+<li><p>每次迭代时随机抽取两个样本训练。</p></li>
+<li><p>分类采用Joint Bayesian，采用前面训练得到的 bottleneck 层特征。</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="facenet">
+<h3><a class="toc-backref" href="#id15">FaceNet</a><a class="headerlink" href="#facenet" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>google, 99.6%</p></li>
+<li><p>end-to-end</p></li>
+<li><p>8M人，2亿 img</p></li>
+<li><p>fearure: 128</p></li>
+</ul>
+<p>与其他的深度学习方法在人脸上的应用不同，FaceNet并没有用传统的softmax的方式去进行分类学习，然后抽取其中某一层作为特征，而是 directly learns a mapping from face images to a compact Euclidean space where distances directly correspond to a measure of face similarity，然后基于这个embedding再做人脸识别、人脸验证和人脸聚类等。</p>
+<ul class="simple">
+<li><p>verification simply involves thresholding the distance between the two embeddings;</p></li>
+<li><p>recognition becomes a k-NN classification problem;</p></li>
+<li><p>clustering can be achieved using off-the-shelf techniques such as k-means or agglomerative clustering.</p></li>
+</ul>
+<dl>
+<dt>FaceNet主要创新点：</dt><dd><ul class="simple">
+<li><p>去掉了最后的softmax，用元组计算距离的方式来进行模型的训练。使用这种方式学到的图像表示非常紧致，使用128位足矣。</p></li>
+<li><p>元组的选择非常重要，选得好可以很快收敛。</p></li>
+</ul>
+</dd>
+<dt>元组的选择方法：</dt><dd><p>最直接的方法就是对于每个样本，从所有样本中找出离他最近的反例和离它最远的正例，然后进行优化。这种方法有两个弊端：</p>
+<ul class="simple">
+<li><p>耗时，基本上选三元组要比训练还要耗时；</p></li>
+<li><p>容易受不好的数据的主导，导致得到的模型很差。</p></li>
+</ul>
+<p>所以论文中提出了两种策略:</p>
+<ul class="simple">
+<li><p>Generate triplets offline every n steps, using the most recent network checkpoint and computing the argmin and argmax on a subset of the data.</p></li>
+<li><p>Generate triplets online. This can be done by selecting the hard positive/negative exemplars from within a mini-batch.</p></li>
+</ul>
+<p>对于online 方法，为了使mini-batch中生成的triplet合理，生成mini-batch的时候，保证每个mini-batch中每个人平均有40张图片，然后随机加一些反例进去。在生成triplet的时候，找出所有的anchor-pos对，然后对每个anchor-pos对找出其hard neg样本。这里，并不去找hardest anchor-pos对，因为实际训练时，使用所有的anchor-pos对更稳健、收敛速度也稍快。使用hardest neg样本可能导致训练初期陷入极小值，因此除了上述策略外，还会选择一些semi-hard的样例，所谓的semi-hard即不考虑alpha因素。</p>
+</dd>
+<dt>网络模型：</dt><dd><ul class="simple">
+<li><p>ZF</p></li>
+<li><p>GoogleNet</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="vggface">
+<h3><a class="toc-backref" href="#id16">VGGFace</a><a class="headerlink" href="#vggface" title="永久链接至标题">¶</a></h3>
+</div>
+</div>
+<div class="section" id="object-detection">
+<h2><a class="toc-backref" href="#id17">Object Detection</a><a class="headerlink" href="#object-detection" title="永久链接至标题">¶</a></h2>
+<div class="section" id="rcnn-region-cnn">
+<h3><a class="toc-backref" href="#id18">RCNN(Region CNN)</a><a class="headerlink" href="#rcnn-region-cnn" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>13s/images in GPU</p></li>
+<li><p>53s/images in CPU</p></li>
+</ul>
+<dl class="simple">
+<dt>Region proposals:(selective search)</dt><dd><p>The first generates category-independent region proposals. These proposals define the set of candidate detections available to our detector.</p>
+</dd>
+<dt>Feature extraction:(4096, AlexNet)</dt><dd><p>The second module is a large convolutional neural network that extracts a <strong>fixed-length</strong> feature vector from each region.</p>
+<ul class="simple">
+<li><p>本阶段，如果候选框与物体的人工标注矩形框的重叠区域IoU大于0.5，那么我们就把这个候选框标注成正样本，否则我们就把它标注为负样本。</p></li>
+<li><p>图像缩放有各项异性、各向同性、不同padding的方法。</p></li>
+</ul>
+</dd>
+<dt>Classifier:</dt><dd><p>The third module is a set of class-specific linear SVMs.</p>
+<ul class="simple">
+<li><p>本阶段，正负样本的IoU 阈值为0.3</p></li>
+</ul>
+</dd>
+<dt>BBox Regression</dt><dd><p>为分好类的Proposal Region 校正边框</p>
+<ul class="simple">
+<li><p>训练集是BBox 的中心点及长宽（x,y,w,h）, 输入是CNN 提取到的特征（pool5）</p></li>
+<li><p>只用判定为本类的候选框中IoU大于0.6的候选框训练。</p></li>
+</ul>
+</dd>
+</dl>
+<p>问题：</p>
+<ol class="arabic">
+<li><p>CNN训练的时候，本来就是对bounding box的物体进行识别分类训练，是一个端到端的任务，在训练的时候最后一层softmax就是分类层，那么为什么要先用CNN做特征提取（提取fc7层数据），然后再把提取的特征用于训练svm分类器？</p>
+<p>这是因为svm训练和cnn训练过程的正负样本定义方式各有不同，导致最后采用CNNsoftmax输出比采用svm精度还低。cnn在训练的时候，对训练数据做了比较宽松的标注——采用这个方法的主要原因在于因为CNN容易过拟合，需要大量的训练数据；然而svm训练的时候，因为svm适用于少样本训练，所以对于训练样本数据的IOU要求比较严格。</p>
+</li>
+</ol>
+</div>
+<div class="section" id="fast-rcnn">
+<h3><a class="toc-backref" href="#id19">fast-RCNN</a><a class="headerlink" href="#fast-rcnn" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>和RCNN相比，训练时间从84小时减少为9.5小时，测试时间从47秒减少为0.32秒</p></li>
+</ul>
+<dl>
+<dt>Feature extraction &amp; Classifier &amp; BBox Regression(VGG16):</dt><dd><p>RCNN一张图像内候选框之间大量重叠，提取取特征操作冗余。 为加快速度</p>
+<ul class="simple">
+<li><p>训练时，先将一张图像送入网络，在pool5送入从这幅图像上提取出的候选区域(ROI pooling layer)。这些候选区域的前几层特征不需要再重复计算。</p></li>
+<li><p>测试时，将整张图像归一化后直接送入深度网络。在pool5 才加入候选框信息，在末尾的少数几层处理每个候选框。</p></li>
+</ul>
+<p>RCNN中独立的分类器和回归器需要大量特征作为训练样本。 本文把类别判断和位置精调统一用深度网络实现，不再需要额外存储。</p>
+<p>同时, 因为网络末端同步训练的分类和位置调整，提升准确度，因此直接输出最后一层作为分类结果。</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>pool5 将patch 均分成 H*W 的区域pool, 因此形成固定大小的特征，类似 SPP-net</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="faster-rcnn">
+<h3><a class="toc-backref" href="#id20">faster-RCNN</a><a class="headerlink" href="#faster-rcnn" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="http://blog.csdn.net/shenxiaolu1984/article/details/51152614">参考链接</a></p>
+<ul class="simple">
+<li><p>5-17 fps</p></li>
+<li><p>ZF, VGG16</p></li>
+</ul>
+<dl>
+<dt>Region proposals:(RPN)</dt><dd><p>在提取好的特征图上，对所有可能的候选框进行判别。由于后续还有位置精修步骤，所以候选框实际比较稀疏。</p>
+<ul>
+<li><p>结构：多加一层 conv ，然后时是并行的分类(object or not)和校正网络(x,y,w,h)</p></li>
+<li><p>训练样本</p>
+<ol class="loweralpha simple">
+<li><p>对每个标定的真值候选区域，IoU最大的anchor记为前景样本</p></li>
+<li><p>对a)剩余的anchor，如果其与某个标定重叠比例大于0.7，记为前景样本；如果其与任意一个标定的重叠比例都小于0.3，记为背景样本</p></li>
+<li><p>对a),b)剩余的anchor，弃去不用。</p></li>
+<li><p>跨越图像边界的anchor弃去不用</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>Note that a single ground-truth box may assign positive labels to multiple anchors.</p>
+</div>
+</li>
+</ul>
+</dd>
+<dt>训练的3种方法：</dt><dd><ul class="simple">
+<li><p>轮流训练</p></li>
+<li><p>近似联合训练</p></li>
+<li><p>联合训练</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="mask-rcnn">
+<h3><a class="toc-backref" href="#id21">Mask RCNN</a><a class="headerlink" href="#mask-rcnn" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>extends Faster R-CNN by adding a branch for predicting segmentation masks on each RoI</p></li>
+<li><p>RoIAlign</p></li>
+<li><p>decouple mask and class prediction: with a per-pixel sigmoid and a binary loss</p></li>
+<li><p>models can run at about 200ms per frame(5 fps) on a GPU</p></li>
+<li><p>human pose estimation</p></li>
+<li><p>network-depth-features: ResNet-50-C4, Feature Pyramid Network (FPN)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="image-caption-generation">
+<h2><a class="toc-backref" href="#id22">image caption generation</a><a class="headerlink" href="#image-caption-generation" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="generative-adversarial-network-gan">
+<h2><a class="toc-backref" href="#id23">Generative Adversarial Network (GAN)</a><a class="headerlink" href="#generative-adversarial-network-gan" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="pedestrain-detection">
+<h2><a class="toc-backref" href="#id24">Pedestrain Detection</a><a class="headerlink" href="#pedestrain-detection" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id25">评价指标</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>Precision Recall Curve</p></li>
+<li><p>Average Precision</p></li>
+<li><p>Log-Average Miss Rate under IoU &gt; 0.5 (0.7 is better)</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id26">方法</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>deformable Part Model, DPM</p></li>
+<li><p>Aggregated Channel Feature, ACF</p></li>
+<li><p>Locally Decorrelated Channel Feature, LDCF</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="pedestrain-reidentification">
+<h2><a class="toc-backref" href="#id27">Pedestrain reidentification</a><a class="headerlink" href="#pedestrain-reidentification" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id28">评价指标</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>mean Average Precision (mAP)</p></li>
+<li><p>rank-1, 10, 20 accuracy</p></li>
+</ul>
+<p>置信加权相似度（Confidence Weighted Similarity, CWS)
+Online Instance Matching, OIM</p>
+</div>
+<div class="section" id="id7">
+<h3><a class="toc-backref" href="#id29">方法</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>ID-discriminative Embedding, IDE</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="pedestrain-tracking">
+<h2><a class="toc-backref" href="#id30">Pedestrain tracking</a><a class="headerlink" href="#pedestrain-tracking" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="handwritten-chinese-character-recognition-hccr">
+<h2><a class="toc-backref" href="#id31">Handwritten Chinese Character Recognition(HCCR)</a><a class="headerlink" href="#handwritten-chinese-character-recognition-hccr" title="永久链接至标题">¶</a></h2>
+<p>NLP(natural language processing)</p>
+<ul class="simple">
+<li><p>2013  富士通公司的团队采用改进的CNN (Convolutional neural network)网络,获得了脱机手写汉字识别的第一名,识别率高达94.77%</p></li>
+<li><p>2015 改进的HCCR-GoogLeNet模型,在ICDAR2013比赛数据集上取得了96.74%的识别率(首次超越人类)</p></li>
+</ul>
+<p>深度学习方法的问题</p>
+<p>训练和测试时间较长,字典存储偏大等问题,</p>
+<p>ocr 识别方法：
+-
+- sequence-based model(based on HMMs, Connectionist Temporal Classification, Attention based models, etc.)
+- attention-based models :Attention就是在网络中加入关注区域的移动、缩放机制，连续部分信息的序列化输入。
+关注区域的移动、缩放采用强化学习来实现。
+- third party solutions like Abbyy(收费) or Tesseract</p>
+<p>android 方案：
+tensorflow
+caffe
+react native –&gt; tesseract 库
+云服务 –&gt; tensorflow server / docker</p>
+<p>Tesseract</p>
+<p>1. app/build.gradle 添加依赖 tess-two 依赖（tess-two 网页)
+2.</p>
+</div>
+<div class="section" id="ehr">
+<h2><a class="toc-backref" href="#id32">EHR</a><a class="headerlink" href="#ehr" title="永久链接至标题">¶</a></h2>
+<div class="section" id="concept-representation">
+<h3><a class="toc-backref" href="#id33">concept representation</a><a class="headerlink" href="#concept-representation" title="永久链接至标题">¶</a></h3>
+<p>作用：</p>
+<ul class="simple">
+<li><p>检索相关concept : 表征空间的最近邻</p></li>
+<li><p>病人相似性:</p></li>
+<li><p>电子分型</p></li>
+<li><p>一些用于预测疾病或再入院时间的机器学习算法可以使用更少的数据</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="nlp">
+<h2><a class="toc-backref" href="#id34">NLP</a><a class="headerlink" href="#nlp" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="to-be-continue">
+<h2><a class="toc-backref" href="#id35">To Be Continue</a><a class="headerlink" href="#to-be-continue" title="永久链接至标题">¶</a></h2>
+<p>价值迭代网络</p>
+<ul class="simple">
+<li><p>SA-GAN(Self-Attention GAN): 生成图片， 对生成器和判别器应用谱归一化(spectral normalization)</p></li>
+<li><p>ST-GAN(Spatial Transformer GAN):</p></li>
+<li><p>ATA-GAN(Attention-Aware GAN):生成图片， a novel attention transfer mechanism</p></li>
+<li><p>DA-GAN(Deep Attention GAN): instance-level image translation,  非监督， 可用于 text-to-image</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="metrics.html" class="btn btn-neutral float-left" title="性能指标" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

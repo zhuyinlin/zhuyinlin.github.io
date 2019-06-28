@@ -1,0 +1,565 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>性能指标 &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="文献阅读" href="article.html" />
+    <link rel="prev" title="数据集" href="datasets.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">文献资料</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="datasets.html">数据集</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">性能指标</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">分类问题</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#recall-precision">Recall &amp; Precision</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#macro-averaging-micro-averaging">Macro-averaging &amp; Micro-averaging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#map">mAP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roc-auc">ROC &amp; AUC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#frr-far-eer">FRR, FAR &amp; EER</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gini">gini系数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kappa-score">kappa score</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">目标检测问题</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#iou-intersection-over-union">IoU(intersection-over-union)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">回归分析</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mse">mse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#r2">r2拟合优度</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">聚类问题</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">海明距离</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jaccard">Jaccard 距离</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#nlg">NLG</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bleu">BLEU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nist">NIST</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rouge">ROUGE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#meteor">METEOR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cidr">CIDr</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nll">NLL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="article.html">文献阅读</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">文献资料</a> &raquo;</li>
+        
+      <li>性能指标</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/research/metrics.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><a class="toc-backref" href="#id11">性能指标</a><a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="contents topic" id="id2">
+<p class="topic-title first">目录</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id1" id="id11">性能指标</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id12">分类问题</a></p>
+<ul>
+<li><p><a class="reference internal" href="#recall-precision" id="id13">Recall &amp; Precision</a></p></li>
+<li><p><a class="reference internal" href="#macro-averaging-micro-averaging" id="id14">Macro-averaging &amp; Micro-averaging</a></p></li>
+<li><p><a class="reference internal" href="#map" id="id15">mAP</a></p></li>
+<li><p><a class="reference internal" href="#roc-auc" id="id16">ROC &amp; AUC</a></p></li>
+<li><p><a class="reference internal" href="#frr-far-eer" id="id17">FRR, FAR &amp; EER</a></p></li>
+<li><p><a class="reference internal" href="#gini" id="id18">gini系数</a></p></li>
+<li><p><a class="reference internal" href="#kappa-score" id="id19">kappa score</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id5" id="id20">目标检测问题</a></p>
+<ul>
+<li><p><a class="reference internal" href="#iou-intersection-over-union" id="id21">IoU(intersection-over-union)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id6" id="id22">回归分析</a></p>
+<ul>
+<li><p><a class="reference internal" href="#mse" id="id23">mse</a></p></li>
+<li><p><a class="reference internal" href="#r2" id="id24">r2拟合优度</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id7" id="id25">聚类问题</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id8" id="id26">海明距离</a></p></li>
+<li><p><a class="reference internal" href="#jaccard" id="id27">Jaccard 距离</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#nlg" id="id28">NLG</a></p>
+<ul>
+<li><p><a class="reference internal" href="#bleu" id="id29">BLEU</a></p></li>
+<li><p><a class="reference internal" href="#nist" id="id30">NIST</a></p></li>
+<li><p><a class="reference internal" href="#rouge" id="id31">ROUGE</a></p></li>
+<li><p><a class="reference internal" href="#meteor" id="id32">METEOR</a></p></li>
+<li><p><a class="reference internal" href="#cidr" id="id33">CIDr</a></p></li>
+<li><p><a class="reference internal" href="#nll" id="id34">NLL</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id12">分类问题</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="section" id="recall-precision">
+<h3><a class="toc-backref" href="#id13">Recall &amp; Precision</a><a class="headerlink" href="#recall-precision" title="永久链接至标题">¶</a></h3>
+<a class="reference internal image-reference" href="../_images/recall.png"><img alt="../_images/recall.png" class="align-center" src="../_images/recall.png" style="width: 380.0px; height: 230.4px;" /></a>
+<div class="figure align-center" id="id9">
+<img alt="../_images/recall2.png" src="../_images/recall2.png" />
+<p class="caption"><span class="caption-text">混淆矩阵(confusion matrix)</span><a class="headerlink" href="#id9" title="永久链接至图片">¶</a></p>
+</div>
+<ul class="simple">
+<li><p>召回率/真阳性/查全率(Recall) = 系统检索到相关文件/系统所有相关的文件总数</p></li>
+</ul>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[R = \frac{TP}{TP+FN}\]</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>准确率/查准率(Precision) = 系统检索到的相关文件/系统所有检索到的文件总数</p></li>
+</ul>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[P = \frac{TP}{TP+FP}\]</div>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>准确率和召回率是互相影响的，理想情况下肯定是做到两者都高，但是一般情况下准确率高、召回率就低，召回率低、准确率高，当然如果两者都低，那是什么地方出问题了。一般情况，用不同的阀值，统计出一组不同阀值下的精确率和召回率</p>
+<p>如果是做搜索，那就是保证召回的情况下提升准确率；如果做疾病监测、反垃圾，则是保准确率的条件下，提升召回。</p>
+</div>
+<div class="figure align-center" id="fig-pr-curve">
+<a class="reference internal image-reference" href="../_images/PR_curve.jpg"><img alt="../_images/PR_curve.jpg" src="../_images/PR_curve.jpg" style="width: 357.7px; height: 320.59999999999997px;" /></a>
+<p class="caption"><span class="caption-text">PR curve</span><a class="headerlink" href="#fig-pr-curve" title="永久链接至图片">¶</a></p>
+</div>
+<p>为了平衡精确率和召回率的影响，较为全面地评价一个分类器，引入F-score 来衡量。</p>
+<ul>
+<li><p>F-score: 权衡精度和召回率(精度和召回率的调和平均)</p>
+<div class="math notranslate nohighlight">
+\[F_{\beta} = \frac{(1+\beta^2)\times P\times R}{\beta^2 \times P + R}\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(\beta （ \beta &gt; 0 ）\)</span> 的取值反映了精确率和召回率在性能评估中的相对重要性具体，通常情况下，取值为1。</p>
+<ul>
+<li><p>当 <span class="math notranslate nohighlight">\(\beta = 1\)</span> 时，就是常用的 <span class="math notranslate nohighlight">\(F_1\)</span> 值(平衡 F 分数)，表明精确率和召回率一样重要</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\frac{2}{F_1} &amp;= \frac{1}{P} + \frac{1}{R} \\
+F_1 &amp;= \frac{2PR}{P+R}\end{split}\]</div>
+</div></blockquote>
+</li>
+<li><p>当 <span class="math notranslate nohighlight">\(\beta = 2\)</span> 时， 表明召回率的权重比精确率高；</p></li>
+<li><p>当 <span class="math notranslate nohighlight">\(\beta = 0.5\)</span> 时， 表明精确率的权重比召回率高。</p></li>
+</ul>
+</li>
+<li><p>G-mean: 评价不平衡数据的模型表现</p>
+<div class="math notranslate nohighlight">
+\[G-mean = \sqrt{\frac{TP}{TP+FN}\times\frac{TN}{TN+FP}}\]</div>
+</li>
+<li><p>accuracy</p>
+<div class="math notranslate nohighlight">
+\[acc = \frac{TP+TN}{TP+TN+FP+FN}\]</div>
+</li>
+</ul>
+</div>
+<div class="section" id="macro-averaging-micro-averaging">
+<h3><a class="toc-backref" href="#id14">Macro-averaging &amp; Micro-averaging</a><a class="headerlink" href="#macro-averaging-micro-averaging" title="永久链接至标题">¶</a></h3>
+<p>F-score 评估指标适用于二分类问题，但当我们的问题属于多分类问题时，在不同类别下综合考察分类器的优劣就要用到宏平均和微平均。</p>
+<ul>
+<li><p>宏平均(Macro-averaging): 先对每一个类统计指标值，然后再对所有类求算术平均值。</p>
+<p>一种说法：</p>
+<div class="math notranslate nohighlight">
+\[F_{macro} = \frac{1}{n} \sum_{i=1}^n F_i\]</div>
+<p>另一种说法：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P_{macro} &amp;= \frac{1}{n} \sum_{i=1}^n P_i \\
+R_{macro} &amp;= \frac{1}{n} \sum_{i=1}^n R_i \\
+F_{macro} &amp;= \frac{2\times P_{macro} \times R_{macro}}{P_{macro} + R_{macro}}\end{split}\]</div>
+</li>
+<li><p>微平均(Micro-averaging): 先对数据集中的每一个示例不分类别进行统计，建立全局混淆矩阵，然后计算相应的指标。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P_{micro} &amp;= \frac{\bar{TP}}{\bar{TP} + \bar{FP}} = \frac{\sum_{i=1}^n {TP}_i}{\sum_{i=1}^n {TP}_i + \sum_{i=1}^n {FP}_i} \\
+R_{micro} &amp;= \frac{\bar{TP}}{\bar{TP} + \bar{FN}} = \frac{\sum_{i=1}^n {TP}_i}{\sum_{i=1}^n {TP}_i + \sum_{i=1}^n {FN}_i} \\
+F_{micro} &amp;= \frac{2 \times P_{micro} \times R_{micro}}{P_{micro} + R_{micro}}\end{split}\]</div>
+</li>
+</ul>
+<p>宏平均与微平均的不同之处在于：宏平均赋予 <strong>每个类</strong> 相同的权重，然而微平均赋予 <strong>每个样本决策</strong> 相同的权重。因为从 <span class="math notranslate nohighlight">\(F_1\)</span> 值的计算公式可以看出，它忽略了被分类器正确判定为负类的样本，其大小主要由被分类器正确判定为正类的那些样本决定，在微平均评估指标中，样本数多的类别主导着样本数少的类。因而在测试数据集上，度量分类器对大类判别的有效性应该选择微平均，而度量分类器对小类判别的有效性则应该选择宏平均。</p>
+</div>
+<div class="section" id="map">
+<h3><a class="toc-backref" href="#id15">mAP</a><a class="headerlink" href="#map" title="永久链接至标题">¶</a></h3>
+<p>平均精度均值(mean average precision, mAP) 可以由它的三个部分来理解：P, AP, mAP。</p>
+<p><strong>P</strong> (Precision)即前述准确率，它只考虑了返回结果中相关文档的个数，没有考虑文档之间的序。对一个搜索引擎或推荐系统而言返回的结果必然是有序的，而且越相关的文档排的越靠前越好，于是有了 AP 的概念。</p>
+<p>对一个有序的列表，计算 <strong>AP</strong> (average Precision) 的时候要先求出每个位置上的 Precision，然后对所有的位置的 Precision 再做 average。所以 AP 也就是 <a class="reference internal" href="#fig-pr-curve"><span class="std std-ref">PR曲线</span></a> 下的面积，这里 average 是对 recall 取平均。</p>
+<p>而 <strong>mAP</strong> (mean average precision) 的 mean，是对所有类别取平均。</p>
+<p>以分类问题为例，mAP的过程如下：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>先把所有bbox找出来 并加上confidence</p></li>
+<li><p>然后每类根据confidence从大到小排列</p></li>
+<li><p>每个confidence算出其recall和precision得到每一类的ap曲线</p></li>
+<li><p>取mean</p></li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="roc-auc">
+<h3><a class="toc-backref" href="#id16">ROC &amp; AUC</a><a class="headerlink" href="#roc-auc" title="永久链接至标题">¶</a></h3>
+<p>ROC(Receiver Operating Characteristic) 和 AUC(Area Under roc Curve)是评价分类器的指标，上面第一个图的ABCD仍然使用，只是需要稍微变换。</p>
+<p>ROC关注两个指标</p>
+<ul class="simple">
+<li><p>True Positive Rate ( TPR/Recall )  = TP / [ TP + FN] ，TPR代表能将正例分对的概率</p></li>
+<li><p>False Positive Rate( FPR ) = FP / [ FP + TN] ，FPR代表将负例错分为正例的概率</p></li>
+</ul>
+<p>在 ROC 空间中，每个点的 <strong>横坐标是FPR，纵坐标是TPR</strong> ，这也就描绘了分类器在 TP（真正的正例）和 FP（错误的正例）间的trade-off。ROC 的主要分析工具是一个画在 ROC 空间的曲线—— ROC curve。我们知道，对于二值分类问题，实例的值往往是连续值，我们通过设定一个阈值，将实例分类到正类或者负类（比如大于阈值划分为正类）。因此我们可以变化阈值，根据不同的阈值进行分类，根据分类结果计算得到 ROC 空间中相应的点，连接这些点就形成 ROC curve。ROC curve经过 (0, 0) (1, 1)，实际上 (0, 0) 和 (1, 1) 连线形成的 ROC curve 实际上代表的是一个随机分类器。一般情况下，这个曲线都应该处于 (0, 0) 和 (1, 1) 连线的上方。如图所示:</p>
+<blockquote>
+<div><div class="figure align-center" id="id10">
+<a class="reference internal image-reference" href="../_images/roc.png"><img alt="../_images/roc.png" src="../_images/roc.png" style="width: 330.0px; height: 319.5px;" /></a>
+<p class="caption"><span class="caption-text">ROC curve</span><a class="headerlink" href="#id10" title="永久链接至图片">¶</a></p>
+</div>
+</div></blockquote>
+<p>用 ROC curve 来表示分类器的 performance 很直观好用。可是，人们总是希望能有一个数值来标志分类器的好坏。于是 AUC 就出现了。顾名思义，AUC 的值就是处于 ROC curve 下方的那部分面积的大小。通常，AUC 的值介于0.5到1.0之间，较大的 AUC 代表了较好的 Performance。</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>AUC 用得比较多的原因是， 实际环境中正负样本极不均衡，PR 曲线会受此影响出现较大浮动，无法很好反应出分类器性能；而ROC受此影响较小。</p>
+</div>
+<p><a class="reference external" href="http://mark.goadrich.com/programs/AUC/">AUC计算工具</a></p>
+<p>参考链接：
+<a class="reference external" href="http://www.vanjor.org/blog/2010/11/recall-precision/">http://www.vanjor.org/blog/2010/11/recall-precision/</a>
+<a class="reference external" href="http://bubblexc.com/y2011/148/">http://bubblexc.com/y2011/148/</a>
+<a class="reference external" href="http://wenku.baidu.com/view/ef91f011cc7931b765ce15ec.html">http://wenku.baidu.com/view/ef91f011cc7931b765ce15ec.html</a></p>
+</div>
+<div class="section" id="frr-far-eer">
+<h3><a class="toc-backref" href="#id17">FRR, FAR &amp; EER</a><a class="headerlink" href="#frr-far-eer" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="http://bio-metrica.com/biometrics-performance-determination">参考链接</a></p>
+<ul>
+<li><p>错误拒接率(False Rejection Rate, FRR) 的标准称谓是FNMR(False Non-Match Rate 不匹配率)，表示本该正确的样本未被识别出来的概率 = Miss/Total_True</p></li>
+<li><p>错误接受率(False Acceptance Rate, FAR)，表示本该错误的样本被错误地识别为正确的概率 = False Alarm/ Total_False</p></li>
+<li><p>相等错误率(Equal Error Rate, EER), 主要用于评价分类算法的整体性能。它将 FAR、FRR 两个参数统一为一个参数。FAR 随阈值增大而减小，FRR随阈值增大而增大，当到某一点，两条曲线相交(FRR=FAR)，这时的阈值就是等错误率阈值，有EER=FR=FA。EER 表示的是准确率和召回率的折衷，因此其也可以定义为：the Equal Error Rate (EER) is the point on the ROC curve that corresponds to have an equal probability of miss-classifying a positive or negative sample. This point is obtained by intersecting the ROC curve with a diagonal of the unit square。下面列出了两种定义下该点的位置，显然，EER 值越小的时候，分类器的整体性能越高。</p>
+<img alt="../_images/EER_1.gif" src="../_images/EER_1.gif" />
+<img alt="../_images/EER_2.jpg" src="../_images/EER_2.jpg" />
+</li>
+</ul>
+</div>
+<div class="section" id="gini">
+<h3><a class="toc-backref" href="#id18">gini系数</a><a class="headerlink" href="#gini" title="永久链接至标题">¶</a></h3>
+</div>
+<div class="section" id="kappa-score">
+<h3><a class="toc-backref" href="#id19">kappa score</a><a class="headerlink" href="#kappa-score" title="永久链接至标题">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id20">目标检测问题</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<div class="section" id="iou-intersection-over-union">
+<h3><a class="toc-backref" href="#id21">IoU(intersection-over-union)</a><a class="headerlink" href="#iou-intersection-over-union" title="永久链接至标题">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id22">回归分析</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<div class="section" id="mse">
+<h3><a class="toc-backref" href="#id23">mse</a><a class="headerlink" href="#mse" title="永久链接至标题">¶</a></h3>
+</div>
+<div class="section" id="r2">
+<h3><a class="toc-backref" href="#id24">r2拟合优度</a><a class="headerlink" href="#r2" title="永久链接至标题">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id25">聚类问题</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id26">海明距离</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+</div>
+<div class="section" id="jaccard">
+<h3><a class="toc-backref" href="#id27">Jaccard 距离</a><a class="headerlink" href="#jaccard" title="永久链接至标题">¶</a></h3>
+<p>兰德系数</p>
+<p>互信息</p>
+<p>轮廓系数</p>
+</div>
+</div>
+<div class="section" id="nlg">
+<h2><a class="toc-backref" href="#id28">NLG</a><a class="headerlink" href="#nlg" title="永久链接至标题">¶</a></h2>
+<div class="figure align-center" id="fig-nlg-metric">
+<img alt="../_images/NLG_metric.png" src="../_images/NLG_metric.png" />
+</div>
+<p><a class="reference external" href="https://medium.com/explorations-in-language-and-learning/metrics-for-nlg-evaluation-c89b6a781054">metrics for nlg</a></p>
+<div class="section" id="bleu">
+<h3><a class="toc-backref" href="#id29">BLEU</a><a class="headerlink" href="#bleu" title="永久链接至标题">¶</a></h3>
+<p>双语互译质量评估辅助工具(BiLingual Evaluation Understudy, BLEU) 通过将一句机器翻译的话与其相对应的几个参考翻译作比较，算出一个综合分数，判断两个句子的相似程度。</p>
+<p>BLEU实质是对两个句子的 <strong>共现词频率</strong> 计算。</p>
+<div class="math notranslate nohighlight" id="equation-bleu">
+<span class="eqno">(1)<a class="headerlink" href="#equation-bleu" title="公式的永久链接">¶</a></span>\[BLEU = BP \times \exp{(\sum_{n=1}^N w_i \log P_n)}\]</div>
+<div class="math notranslate nohighlight" id="equation-n-gram-precise">
+<span class="eqno">(2)<a class="headerlink" href="#equation-n-gram-precise" title="公式的永久链接">¶</a></span>\[\begin{split}P_n &amp;= \frac{\displaystyle{\sum_{c\in{\mathrm{candidates}}}} \displaystyle{\sum_{n-gram\in c}} \mathrm{Count}_{clip} (\mathrm{n-gram})}{\displaystyle{\sum_{c'\in{\mathrm{candidates}}} \displaystyle{\sum_{n-gram' \in c'}} \mathrm{Count} (\mathrm{n-gram}')}}  \\
+\mathrm{Count}_{clip} &amp;= \min\{\mathrm{Count}_{w_i}, \mathrm{Ref\_Count}_{w_i}\} \\
+\mathrm{Ref\_Count}_{w_i} &amp;= \max\{\mathrm{Ref}_j\_\mathrm{Count}_{w_i}\} j = 1,2,...\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-bp">
+<span class="eqno">(3)<a class="headerlink" href="#equation-bp" title="公式的永久链接">¶</a></span>\[\begin{split}BP = \left\{
+     \begin{array}{ll}
+     1 &amp; \textrm{if } l_c &gt; l_s \\
+     e^{1-\frac{l_s}{l_c}} &amp; \textrm{if } l_c \le l_s
+     \end{array} \right.\end{split}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(P_n\)</span> 是N-gram 精度, 一般情况1-gram反映的是这篇译文的充分性, 2-gram以上反映的是译文的流畅性; <span class="math notranslate nohighlight">\(P_n\)</span> 的分母表示candidate 中的 n-gram 个数，分子表示参考译文和candidate的截断n-gram； <span class="math notranslate nohighlight">\(BP\)</span> 是惩罚因子, <span class="math notranslate nohighlight">\(l_c\)</span> 代表表示机器翻译译文的长度， <span class="math notranslate nohighlight">\(l_s\)</span> 表示参考答案的有效长度</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathrm{Ref}_j\_\mathrm{Count}_{w_i}\)</span> : 词 <span class="math notranslate nohighlight">\(w_i\)</span> 在第 <span class="math notranslate nohighlight">\(j\)</span> 个参考译文里出现的次数</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathrm{Count}_{w_i}\)</span> : candidate 中词 <span class="math notranslate nohighlight">\(w_i\)</span> 的个数</p></li>
+</ul>
+<p>缺点:</p>
+<ol class="arabic simple">
+<li><p>不考虑语言表达（语法）上的准确性；</p></li>
+<li><p>测评精度会受 <strong>常用词</strong> 和 <strong>短译句</strong> 的干扰；</p></li>
+<li><p>没有考虑同义词或相似表达的情况，可能会导致合理翻译被否定；</p></li>
+</ol>
+</div>
+<div class="section" id="nist">
+<h3><a class="toc-backref" href="#id30">NIST</a><a class="headerlink" href="#nist" title="永久链接至标题">¶</a></h3>
+<p>weighted version of BLEU, with more importance given to less frequent n-grams</p>
+</div>
+<div class="section" id="rouge">
+<h3><a class="toc-backref" href="#id31">ROUGE</a><a class="headerlink" href="#rouge" title="永久链接至标题">¶</a></h3>
+<p>ROUGE(Recall-Oriented Understudy for Gisting Evaluation) 是从召回率的角度计算，常用于自动摘要任务和机器翻译的评价</p>
+<p>N-gram co-ccurence metrics measuring content overlaps</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{ROUGH}_n = \frac{\displaystyle{\sum_{C\in{\{Model Units\}}}} \displaystyle{\sum_{n-gram\in{C}}} Count_{match} (n-gram)}{\displaystyle{\sum_{C\in{\{Model Units\}}}} \displaystyle{\sum_{n-gram\in{C}}} Count (n-gram)}\]</div>
+</div>
+<div class="section" id="meteor">
+<h3><a class="toc-backref" href="#id32">METEOR</a><a class="headerlink" href="#meteor" title="永久链接至标题">¶</a></h3>
+<p>METEOR(Metric for Evaluation of Translation with Explicit ORdering) 的目的是解决BLEU中的固有缺陷，METEOR 还有一些其他指标不具备的功能，如同义词匹配</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>召回率基础上的指标相比于单纯基于精度的指标(如BLEU、NIST), 其结果和人工判断的结果有较高相关性
+</pre></div>
+</div>
+<p>计算METEOR 首先要对两个句子中的unigram 进行对齐，得到一组 alignment (a set of mappings between unigrams), 对齐原则如下：</p>
+<ul class="simple">
+<li><p>every unigram in the candidate translation must map to zero or one unigram in the reference</p></li>
+<li><p>If there are two alignments with the same number of mappings, the alignment is chosen with the fewest crosses</p></li>
+</ul>
+<p>据此计算unigram precision <span class="math notranslate nohighlight">\(P\)</span> 和 Unigram recall <span class="math notranslate nohighlight">\(R\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P = \frac{m}{\omega _t} \\
+R = \frac{m}{\omega _r}\end{split}\]</div>
+<p>其中，</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(m\)</span> 表示 candidate translation 与 reference translation 匹配上的unigram 个数，</p></li>
+<li><p><span class="math notranslate nohighlight">\(\omega _t\)</span> 表示 candidate translation 中unigram 的个数</p></li>
+<li><p><span class="math notranslate nohighlight">\(\omega _r\)</span> 表示 reference translation 中unigram 的个数</p></li>
+</ul>
+<p>则unigram precision <span class="math notranslate nohighlight">\(P\)</span> 和 Unigram recall <span class="math notranslate nohighlight">\(R\)</span> 的调和平均</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}F_{\mathrm{mean}} = \frac{(1 + \beta ^2)PR}{\beta ^2 P+ R} \\\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\beta\)</span> 一般取为3。以上只考虑了单个词的一致性，没有考虑大的连续块，因此这里引入惩罚因子。首先unigrams are grouped into the fewest possible chunks，penalty <span class="math notranslate nohighlight">\(p\)</span>
+定义为</p>
+<div class="math notranslate nohighlight">
+\[p = \gamma (\frac{c}{u_m})^\theta\]</div>
+<p><span class="math notranslate nohighlight">\(\gamma\)</span> 一般取为 0.5，<span class="math notranslate nohighlight">\(\theta\)</span> 一般取为3， 其中，</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(c\)</span> 表示 number of chunks</p></li>
+<li><p><span class="math notranslate nohighlight">\(u_m\)</span> 表示 number of unigrams that have been mapped.</p></li>
+</ul>
+<p>最终， METEOR的定义如下</p>
+<div class="math notranslate nohighlight">
+\[M = F_{\mathrm{mean}}(1-p)\]</div>
+</div>
+<div class="section" id="cidr">
+<h3><a class="toc-backref" href="#id33">CIDr</a><a class="headerlink" href="#cidr" title="永久链接至标题">¶</a></h3>
+</div>
+<div class="section" id="nll">
+<h3><a class="toc-backref" href="#id34">NLL</a><a class="headerlink" href="#nll" title="永久链接至标题">¶</a></h3>
+<p>(Negative log-likelihood, NNL)</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="article.html" class="btn btn-neutral float-right" title="文献阅读" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="datasets.html" class="btn btn-neutral float-left" title="数据集" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

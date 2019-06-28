@@ -1,0 +1,536 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>编程相关 &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="开发相关" href="development.html" />
+    <link rel="prev" title="vim" href="../tools/vim.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">编程相关</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="development.html">开发相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Shell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="C++.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Java.html">Java</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ruby.html">ruby</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">规范文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">关于不同编程语言</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">编码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">换行符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#makefile">Makefile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">一些经验</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">项目交接打包注意事项</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">代码移植</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">算法测试</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">当前工作记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#todo">TODO</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>编程相关</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/programing/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>编程相关<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="development.html">开发相关</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="development.html#id2">基于验证的开发</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Shell.html">Shell</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Shell.html#id1">常用命令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Shell.html#id2">变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Shell.html#id3">替换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Shell.html#id4">运算符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Shell.html#id5">字符串</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Shell.html#id6">数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Shell.html#id7">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Shell.html#id8">重定向</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Shell.html#id9">文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Shell.html#id10">正则表达式</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="C++.html">C++</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="C++.html#macc">mac下终端调试C程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="C++.html#ubuntuopencv">ubuntu下运行opencv程序的两种方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="C++.html#gcc">gcc生成及使用静态库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="C++.html#id1">gcc生成及使用动态库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="C++.html#lldb">lldb 调试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="C++.html#gdb">gdb调试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="C++.html#id5">编译说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="C++.html#id6">代码习惯</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Java.html">Java</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Java.html#id1">一些概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Java.html#gradle">关于gradle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Java.html#aar-aarjar">什么是AAR包？ AAR包相比于jar包，区别在哪儿？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Java.html#so-abi-app">什么是so库？什么是ABI？相关的处理器型号在构建APP时有什么区别？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Java.html#android-studio">Android Studio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Java.html#id2">一些常遇到的问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Java.html#id3">一些经验</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Python.html">Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Python.html#id1">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Python.html#id2">包安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#opencv2">opencv2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#pil">PIL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#id3">其他</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Python.html#anaconda">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Python.html#id4">编程学习</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#id5">基础语法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#id6">遍历文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#id8">管理参数配置文件 </a></li>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#virtualenv">virtualenv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#pipenv">pipenv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#pylint">pylint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#theano">theano</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#numpy">numpy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#id9">opencv2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#id10">PIL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#matplotlib">matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#dlib">dlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#distutils">Distutils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Python.html#setup-py">编写 setup.py 脚本</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Python.html#id11">源码发布</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Python.html#spawn">spawn 模块</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#logging">logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Python.html#jupyter">jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Python.html#id12">打包</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Python.html#id13">生成文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Python.html#id14">一些调试技巧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Python.html#pdb">pdb 调试</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ruby.html">ruby</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ruby.html#id1">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ruby.html#id2">语法规则</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ruby.html#gemfile">Gemfile 语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ruby.html#rails">rails</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ruby.html#id3">常用命令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ruby.html#scaffold">使用scaffold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ruby.html#id4">自己创建</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>规范文档<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/google/styleguide">google style guide</a></p>
+<p><a class="reference external" href="https://github.com/zh-google-styleguide/zh-google-styleguide">zh google style guide</a></p>
+<ul class="simple">
+<li><p>C++：</p>
+<ol class="arabic simple">
+<li><p>函数：首字母大写</p></li>
+<li><p>变量：全部小写，中间用_连接</p></li>
+<li><p>运算符左右空一格</p></li>
+<li><p>指针靠近数据类型</p></li>
+</ol>
+</li>
+<li><p>python：
+(未做特别声明均同上）</p>
+<ol class="arabic simple">
+<li><p>缩近两格</p></li>
+<li><p>表明 __author__ = ‘XXX’</p></li>
+<li><p>文档开头说明用连续的“＃ ”注释，末行“========”</p></li>
+<li><p>系统 import 和 第三方 import 隔一行</p></li>
+<li><p>函数说明在 def 下方的 “”” “”” 之，包含Args、Returns，其内容包含名称、数据结构、数据类型、shape等</p></li>
+<li><p>代码块说明在其上方，用“＃ ”注释</p></li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>关于不同编程语言<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>先了解一些基本概念</p>
+<dl class="simple">
+<dt>Program Errors</dt><dd><ul class="simple">
+<li><p>trapped errors: 导致程序终止执行。如除0，Java中数组越界访问</p></li>
+<li><p>untrapped errors: 出错后继续执行，但可能出现任意行为。如C里的缓冲区溢出、Jump到错误地址</p></li>
+</ul>
+</dd>
+<dt>Forbidden Behaviours</dt><dd><p>语言设计时，可以定义一组forbidden behaviors. 它必须包括所有untrapped errors, 但可能包含trapped errors.</p>
+</dd>
+<dt>Well behaved、ill behaved</dt><dd><ul class="simple">
+<li><p>well behaved: 如果程序执行不可能出现forbidden behaviors, 则为well behaved。</p></li>
+<li><p>ill behaved: 否则为ill behaved</p></li>
+</ul>
+</dd>
+</dl>
+<p>有了上面的概念，再讨论强、弱类型，静态、动态类型</p>
+<dl class="simple">
+<dt>强、弱类型</dt><dd><ul class="simple">
+<li><p>强类型(strongly typed): 如果一种语言的所有程序都是well behaved——即不可能出现forbidden behaviors，则该语言为strongly typed。</p></li>
+<li><p>弱类型(weakly typed): 否则为weakly typed。比如C语言的缓冲区溢出，属于trapped errors，即属于forbidden behaviors..故C是弱类型，弱类型语言，类型检查更不严格，如偏向于容忍隐式类型转换。譬如说C语言的int可以变成double。 这样的结果是：容易产生forbidden behaviours，所以是弱类型的</p></li>
+</ul>
+</dd>
+<dt>动态、静态类型</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>静态类型(statically): 如果在 <strong>编译</strong> 时拒绝ill behaved程序，则是statically typed;静态类型可以分为两种：</dt><dd><ul>
+<li><p>显式类型(explicitly typed): 类型是语言语法的一部分；</p></li>
+<li><p>隐式类型(implicity typed): 类型通过编译时推导，比如ML和Haskell</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>动态类型(dynamiclly): 如果在 <strong>运行</strong> 时拒绝ill behaviors, 则是dynamiclly typed。</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>Dynamic compiled and dynamically typed don’t have much to do with each other. Typing is part of the <cite>language syntax</cite>, while the compilation strategy is part of the <cite>implementation of the language</cite> .</p>
+<dl class="simple">
+<dt>Dynamic typing</dt><dd><p>means that you don’t necessarily have to declare the type when you declare a variable and that conversion between types happens automatically in most cases.</p>
+</dd>
+<dt>Dynamic compiling</dt><dd><p>means that the language is compiled to machine code while the program is being executed, not before. This allows, for example, just-in-time optimization - the code is optimized while the application is running.</p>
+</dd>
+</dl>
+</div>
+<p>一些例子</p>
+<div class="line-block">
+<div class="line">无类型： 汇编</div>
+<div class="line">弱类型、静态类型 ： C/C++ 因为允许隐式的类型转换 (国外资料说c++是强类型，因为要指定每个变量类型，so… ?) =&gt; 强弱类型似乎是一个相对的概念, 主要看你如何定义弱类型</div>
+<div class="line">弱类型、动态类型检查： Perl/PHP/VB/JavaScript</div>
+<div class="line">强类型、静态类型检查 ：Java/C#/F#/Haskell/Scala</div>
+<div class="line">强类型、动态类型检查 ：Python/Ruby/Groovy/Scheme</div>
+<div class="line">静态显式类型 ：Java/C</div>
+<div class="line">静态隐式类型 ：Ocaml, Haskell</div>
+<div class="line">动态类型检查：Smalltalk</div>
+</div>
+<img alt="../_images/languages.jpg" src="../_images/languages.jpg" />
+</div>
+<div class="section" id="id4">
+<h2>编码<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<img alt="../_images/codec.png" class="align-center" src="../_images/codec.png" />
+<dl class="simple">
+<dt>ASCII码</dt><dd><p>用 <strong>1个字节</strong> （8bit， 0-255）中的127个字母表示大小写字母，数字和一些符号。主要用来表示现代英语和西欧语言。</p>
+</dd>
+</dl>
+<p>当计算机普及到各国时，这种编码无法涵盖更多别国字符，所以各国制定了各国的标准，中国制定了GB2312，日本制定了Shift_JIS，韩国制定了Euc-kr… 因此，出现了乱码问题。为了统一，Unicode诞生了。</p>
+<dl class="simple">
+<dt>Unicode</dt><dd><p>把所有语言都统一到一套编码(通常是2个字节)里。 <code class="docutils literal notranslate"><span class="pre">在计算机内存中，统一使用Unicode编码。</span></code></p>
+</dd>
+</dl>
+<p>解决了乱码问题，但是存储和传输效率低下的问题又来了: ASCII编码是1个字节，而Unicode编码通常是2个字节，表示一个英文字母一个字节就够了，但是Unicode却不得不用两个字节来表示（另一个字节补0）。</p>
+<dl class="simple">
+<dt>UTF-8</dt><dd><p>把一个Unicode字符根据不同的数字大小编码成1-6个字节，常用的英文字母被编码成1个字节，汉字通常是3个字节，只有很生僻的字符才会被编码成4-6个字节。</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id5">
+<h2>换行符<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>linux 下的换行符为’n’(LF), windows 下的换行符为 ‘rn’ (CR LF), 所以不同系统处理其他系统生成的文本会出现问题</p>
+<p>在python中，</p>
+<ul>
+<li><p>如果不是txt文件, 读写文件时通过设置 ‘rb’/’wb’ 参数避免这个问题。(二进制读写，不会有换行问题。)</p></li>
+<li><p>如果需要明文内容</p>
+<ul class="simple">
+<li><p>Python2用 ‘rU’ 来读取，即U通用换行模式（Universal new line mode）—— 该模式会把所有的换行符（r n rn）替换为n。<strong>只支持读入</strong>。</p></li>
+<li><p>Python3不推荐用 ‘rU’模式！可通过open函数的newline参数来控制Universal new line mode</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>读取</strong> 时，不指定newline，则默认开启Universal new line mode；</p></li>
+<li><p><strong>写入</strong> 时，不指定newline，则换行符为各系统默认的换行符; 指定为newline=’n’，则都替换为n（相当于Universal new line mode）；</p></li>
+<li><p>不论读或者写时，newline=’‘都表示不转换。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="makefile">
+<h2>Makefile<a class="headerlink" href="#makefile" title="永久链接至标题">¶</a></h2>
+<p><a class="reference download internal" download="" href="../_downloads/d5a4e6145ed7278fb37bed21e814ef88/Makefile.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Makefile</span></code></a></p>
+<p>自动化变量：</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 78%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>$&#64;</p></td>
+<td><p>所有目标</p></td>
+</tr>
+<tr class="row-even"><td><p>$&lt;</p></td>
+<td><p>所有依赖文件</p></td>
+</tr>
+<tr class="row-odd"><td><p>$?</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id6">
+<h2>一些经验<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id7">
+<h3>项目交接打包注意事项<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>删除缓存文件</p></li>
+<li><p>删除git 记录</p></li>
+<li><p>删除代码中一些不必要的注释</p></li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h3>代码移植<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>使用相同的数据测试</p></li>
+<li><p>确认输入数据是否和待移植代码移植</p></li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h3>算法测试<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>同时使用规范数据和不规范数据（用于查bug）</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>当前工作记录<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
+<dl>
+<dt>roi_pooling_layer 的编译</dt><dd><ol class="upperalpha simple">
+<li><p>编译时找不到nvcc： /usr/local/cuda/bin 未添加到环境变量</p></li>
+<li><p>基于cpu 的编译通过，但在调用时出错 “undefined symbol”: 可能原因有两个</p>
+<ol class="arabic simple">
+<li><p>gcc 版本不一致，详情参考 tensorflow 的 Add an new op 章节 (只有版本不符时需要做此改动，
+否则反而会编译不通过)</p></li>
+<li><p>GPU 部分在CPU 时不应该实现，应加入判定条件，使其在条件不符时排除；GPU部分的头文件未导入</p></li>
+</ol>
+</li>
+<li><p>cpu 和 GPU 结果不同：CPU 和 GPU 的实现不同， 应该用 work_sharder</p></li>
+<li><p>作为独立代码编译时，要注意.cc 与 .cu.cc 函数的连接，通过.h 文件实现函数共享会报错，可能是编译方法的问题。在没有解决编译问题前，可以通过将声明放到 .cc 中解决。</p></li>
+</ol>
+<p>注：仅cpu 编译时，先将 CUDA 路径从环境变量注释掉，然后将 make.sh 中 CUDA_PATH 改成错的，然后编译</p>
+</dd>
+<dt>下一步</dt><dd><ol class="arabic simple">
+<li><p>register float double 是否有区别</p></li>
+<li><p>static_cast&lt;int&gt; 是否造成区别</p></li>
+<li><p>GPU 部分代码的区别</p></li>
+<li><p>是否可以以 user_op 加入</p></li>
+</ol>
+</dd>
+</dl>
+</div>
+<div class="section" id="todo">
+<h2>TODO<a class="headerlink" href="#todo" title="永久链接至标题">¶</a></h2>
+<p>静/动态编译和使用静/动态库是一个概念吗？</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="development.html" class="btn btn-neutral float-right" title="开发相关" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../tools/vim.html" class="btn btn-neutral float-left" title="vim" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

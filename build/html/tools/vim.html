@@ -1,0 +1,811 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>vim &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="编程相关" href="../programing/index.html" />
+    <link rel="prev" title="Git" href="git.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">工具</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="browser.html">浏览器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git.html">Git</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">vim</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">vim 使用技巧</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">代码整理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#normal">normal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">选取</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">插入</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">跳转</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">多窗口操作</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">搜索</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#m">删除将文件末的 ^M</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">配置文件语法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">变量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">控制结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">执行命令,键盘绑定,命令行命令和自动命令</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">插件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#neocomplete">neocomplete</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#youcompleteme">YouCompleteMe</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ultisnips">UltiSnips</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cscope">cscope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ctags">ctags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#taglist">taglist</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tagbar">tagbar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#riv">riv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#instantrst">InstantRst</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vim-multiple-cursors">vim-multiple-cursors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vim-fugitive">vim-fugitive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vim-autoformat">vim-autoformat</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#neovim">neovim 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">其它</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#tmux">tmux</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">工具</a> &raquo;</li>
+        
+      <li>vim</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tools/vim.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="vim">
+<h1>vim<a class="headerlink" href="#vim" title="永久链接至标题">¶</a></h1>
+<p><a class="reference download internal" download="" href="../_downloads/4df17964e4fa17b62f7691f34225d4cd/Practical Vim.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Practice</span> <span class="pre">Vim</span></code></a></p>
+<div class="section" id="id1">
+<h2>vim 使用技巧<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>vim 粘贴系统剪切板中的内容：Shift ＋ Insert</p></li>
+<li><p>查看插件变量值： :echo &lt;var_name&gt;</p></li>
+<li><p>不同版本vim 对语言的支持不同， 切换可使用 <code class="code docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">update-alternatives</span> <span class="pre">--config</span> <span class="pre">vim</span></code></p></li>
+</ul>
+<div class="section" id="id2">
+<h3>代码整理<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>＝＝   # 格式化当前行
+gg=G   # 格式化整个文档
+&lt;n&gt;=   # 格式当前行及接下来的n行代码
+</pre></div>
+</div>
+</div>
+<div class="section" id="normal">
+<h3>normal<a class="headerlink" href="#normal" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gJ</span>       <span class="c1"># 将下一行连接到本行末尾</span>
+<span class="n">f</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">char</span><span class="o">&gt;</span>    <span class="c1"># 找到&lt;char&gt;, 光标在该字符上</span>
+<span class="n">t</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">char</span><span class="o">&gt;</span>    <span class="c1"># 找到&lt;char&gt;, 光标在该字符前一个字符上</span>
+<span class="o">&lt;</span><span class="n">C</span><span class="o">-</span><span class="n">a</span><span class="o">&gt;</span> <span class="c1"># 数字加1</span>
+<span class="o">&lt;</span><span class="n">C</span><span class="o">-</span><span class="n">x</span><span class="o">&gt;</span> <span class="c1"># 数字减1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>选取<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vi</span> <span class="o">&lt;</span><span class="n">char</span><span class="o">&gt;</span>      <span class="c1"># 选中&lt;char&gt; 之间的文本/段落（不包括&lt;char&gt;）</span>
+<span class="n">vis</span><span class="p">(</span><span class="n">entence</span><span class="p">)</span>   <span class="c1"># 选中一个句子</span>
+<span class="n">vib</span><span class="p">(</span><span class="n">lock</span><span class="p">)</span>      <span class="c1"># 选中一个block (()之间)</span>
+<span class="n">viw</span><span class="p">(</span><span class="nb">ord</span><span class="p">)</span>       <span class="c1"># 选中一个单词</span>
+<span class="n">vip</span><span class="p">(</span><span class="n">aragraph</span><span class="p">)</span>  <span class="c1"># 选中一个段落</span>
+
+<span class="n">va</span> <span class="o">&lt;</span><span class="n">char</span><span class="o">&gt;</span>     <span class="c1"># 选中&lt;char&gt; 之间的文本（包括&lt;char&gt;）</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>插入<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>i/a    #  光标前/后位置插入
+I/A    #  行首/末插入
+:r! &lt;command&gt; # 命令行的运行结果插入到光标之后
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>跳转<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 前向跳转(大写相反)</span>
+<span class="n">f</span> <span class="o">&lt;</span><span class="n">char</span><span class="o">&gt;</span>   <span class="c1"># 跳转到字母</span>
+<span class="n">t</span> <span class="o">&lt;</span><span class="n">char</span><span class="o">&gt;</span>   <span class="c1"># 跳转到字母</span>
+
+<span class="o">%</span>  <span class="c1"># 括号匹配</span>
+
+<span class="c1"># 表示位置</span>
+<span class="n">m</span> <span class="o">&lt;</span><span class="n">char</span><span class="o">&gt;</span> <span class="c1"># 把这个地方标示成 mark</span>
+<span class="s1">&#39; &lt;char&gt; # 跳到被标为 char 的那一行</span>
+<span class="s1">&#39;&#39;</span>  <span class="c1"># 回到刚才的位置</span>
+
+<span class="c1"># 文字段落(反方向用配对符号)</span>
+<span class="p">{</span>  <span class="c1"># 跳到上一段的开头</span>
+<span class="p">(</span>  <span class="c1"># 移到这个句子的开头</span>
+<span class="p">[[</span> <span class="c1"># 跳往上一个函式</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>多窗口操作<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 打开多个文件：</span>
+<span class="n">vim</span> <span class="n">file1</span> <span class="n">file2</span> <span class="o">...</span>  <span class="c1"># 未启动时</span>
+<span class="p">:</span><span class="n">e</span> <span class="n">file</span> <span class="o">/</span> <span class="p">:</span><span class="nb">open</span> <span class="n">file</span>  <span class="c1"># - 已启动</span>
+
+<span class="c1"># 文件间切换：</span>
+<span class="n">Ctrl</span> <span class="o">+</span> <span class="mi">6</span>  <span class="c1"># next</span>
+<span class="p">:</span><span class="n">bn</span>       <span class="c1"># next</span>
+<span class="p">:</span><span class="n">bp</span>       <span class="c1"># previous</span>
+<span class="p">:</span><span class="n">b1</span><span class="o">~</span><span class="n">n</span>     <span class="c1"># go to n-th file</span>
+
+<span class="c1"># 打开多个窗口：</span>
+<span class="p">:</span><span class="n">sp</span><span class="o">/</span><span class="n">split</span><span class="o">/</span><span class="n">new</span>  <span class="c1"># 水平切分窗口</span>
+<span class="p">:</span><span class="n">vsp</span><span class="o">/</span><span class="n">vsplit</span>    <span class="c1"># 垂直切分窗口</span>
+
+<span class="c1"># 窗口间切换：</span>
+<span class="n">Ctrl</span> <span class="o">+</span> <span class="n">w</span> <span class="o">+</span> <span class="n">方向键</span>
+<span class="n">Ctrl</span> <span class="o">+</span> <span class="n">w</span> <span class="o">+</span> <span class="n">h</span><span class="o">/</span><span class="n">j</span><span class="o">/</span><span class="n">k</span><span class="o">/</span><span class="n">l</span>
+<span class="n">Ctrl</span> <span class="o">+</span> <span class="n">ww</span>      <span class="c1"># 依次向后切换到下一个窗格</span>
+
+<span class="c1"># 改变窗口大小</span>
+<span class="n">Ctrl</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">number</span><span class="o">&gt;</span> <span class="o">+/-</span>
+
+<span class="c1"># To change two vertically split windows to horizonally split</span>
+<span class="n">Ctrl</span><span class="o">-</span><span class="n">w</span> <span class="n">t</span> <span class="n">Ctrl</span><span class="o">-</span><span class="n">w</span> <span class="n">K</span>
+<span class="c1"># Horizontally to vertically:</span>
+<span class="n">Ctrl</span><span class="o">-</span><span class="n">w</span> <span class="n">t</span> <span class="n">Ctrl</span><span class="o">-</span><span class="n">w</span> <span class="n">H</span>
+<span class="c1"># Ctrl-w t makes the first (topleft) window current</span>
+<span class="c1"># Ctrl-w K moves the current window to full-width at the very top</span>
+<span class="c1"># Ctrl-w H moves the current window to full-height at far left</span>
+
+<span class="c1"># 文件浏览：</span>
+<span class="p">:</span><span class="n">Ex</span>       <span class="c1"># 打开目录浏览器</span>
+<span class="p">:</span><span class="n">Sex</span>      <span class="c1"># 水平分割且显示目录浏览器</span>
+<span class="p">:</span><span class="n">ls</span>       <span class="c1"># list 显示当前buffer情况</span>
+
+<span class="c1"># 关闭和保存：</span>
+<span class="p">:</span><span class="n">qa</span>   <span class="c1"># 关闭所有窗口</span>
+<span class="p">:</span><span class="n">wa</span>   <span class="c1"># 保存所有窗口</span>
+<span class="p">:</span><span class="n">wqa</span>  <span class="c1"># 保存并退出所有窗口</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>搜索<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 选中文字后，按y复制, 然后</span>
+<span class="o">/</span>
+<span class="o">&lt;</span><span class="n">Ctrl</span><span class="o">&gt;</span> <span class="o">+</span> <span class="n">r</span>
+<span class="s2">&quot;</span>
+
+<span class="c1"># 多文件搜索使用vimgrep</span>
+<span class="c1"># vimgrep /匹配模式/[g][j] 要搜索的文件/范围</span>
+<span class="c1"># g：表示是否把每一行的多个匹配结果都加入</span>
+<span class="c1"># j：表示是否搜索完后定位到第一个匹配位置</span>
+<span class="p">:</span><span class="n">vim</span> <span class="o">&lt;</span><span class="n">pattern</span><span class="o">&gt;</span> <span class="o">%</span>              <span class="n">在当前打开文件中查找</span>
+<span class="p">:</span><span class="n">vim</span> <span class="o">&lt;</span><span class="n">pattern</span><span class="o">&gt;</span> <span class="o">*</span>              <span class="n">在当前目录下查找所有</span>
+<span class="p">:</span><span class="n">vim</span> <span class="o">&lt;</span><span class="n">pattern</span><span class="o">&gt;</span> <span class="o">**</span>             <span class="n">在当前目录及子目录下查找所有</span>
+<span class="p">:</span><span class="n">vim</span> <span class="o">&lt;</span><span class="n">pattern</span><span class="o">&gt;</span> <span class="o">**/*.</span><span class="n">c</span>         <span class="n">在所有目录下的所有</span><span class="o">*.</span><span class="n">c文件中查找</span>
+
+<span class="p">:</span><span class="n">cn</span>                           <span class="n">查找下一个</span>
+<span class="p">:</span><span class="n">cp</span>                           <span class="n">查找上一个</span>
+<span class="p">:</span><span class="n">copen</span>                        <span class="n">打开quickfix</span>
+<span class="p">:</span><span class="n">cw</span>                           <span class="n">打开quickfix</span>
+<span class="p">:</span><span class="n">cclose</span>                       <span class="n">关闭qucikfix</span>
+
+<span class="c1"># 使用args</span>
+<span class="p">:</span><span class="n">args</span> <span class="o">*.*</span>                     <span class="n">将当前目录下的所有文件添加到搜索范围</span>
+<span class="p">:</span><span class="n">argdo</span> <span class="o">/&lt;</span><span class="n">pattern</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="m">
+<h3>删除将文件末的 ^M<a class="headerlink" href="#m" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">%</span><span class="n">s</span><span class="o">/^</span><span class="n">M</span><span class="o">//</span><span class="n">g</span>  <span class="c1"># ^ 用&lt;Ctrl V&gt;, M 用&lt;Ctrl M&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>配置文件语法<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id9">
+<h3>变量<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<ol class="arabic">
+<li><p>标量变量</p>
+<p>可以是数字或字符串，基本与perl相同。
+命名方式为：作用域:变量名</p>
+<div class="highlight-vim notranslate"><div class="highlight"><pre><span></span><span class="k">b</span>:name  <span class="c">&quot; 只对当前buffer有效的变量</span>
+<span class="k">w</span>:name  <span class="c">&quot; 只对当前窗口有效的变量</span>
+<span class="k">g</span>:name  <span class="c">&quot; 全局变量</span>
+<span class="k">v</span>:name  <span class="c">&quot; vim预定义变量</span>
+<span class="k">a</span>:name  <span class="c">&quot; 函数的参变量</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>引用标量变量的时候请包含作用域和冒号</p>
+</div>
+</li>
+<li><p>一类有特殊含义的变量</p>
+<p>命名方式：Fun Character(这个词请参看Programming Perl)加上变量名</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$NAME  &quot; 环境变量（一般变量名都是大写）
+&amp;name  &quot; 选项（vim处理某些事情的时候的默认设置）
+@r  &quot; register（寄存器，不是汇编的EAX, EBX，看第2部分vim tips）
+
+常见环境变量例子：$VIMRUNTIME  &quot; vim运行路径
+常见选项例子：&amp;ic  &quot; ignorecase
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>使用set命令可以改变选项设置，例如: set ignorecase</p>
+<p>使用一个set命令可以看到当前所有的选项及其设置。</p>
+</div>
+</li>
+<li><p>变量赋值</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:let 变量名=值  # 最前面的冒号不仅是为了表示这是一个冒号命令，而且是必须的。
+:unlet! 变量名  # 释放变量
+</pre></div>
+</div>
+</li>
+<li><p>运算符(和perl基本一样)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>数学运算：+ - * / % .
+逻辑运算：== != &gt; &gt;= &lt; &lt;= ?:
+正则匹配运算符：=~ !~
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="id10">
+<h3>控制结构<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<div class="highlight-vim notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> 条件
+   语句块
+<span class="k">elseif</span> 条件
+   语句块
+<span class="k">else</span>
+   语句块
+<span class="k">endif</span>
+
+<span class="k">while</span> 条件
+   语句块
+[<span class="k">break</span>/continue]
+<span class="k">endwhile</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h3>函数<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<div class="highlight-vim notranslate"><div class="highlight"><pre><span></span><span class="c">&quot; 定义</span>
+<span class="k">function</span> 函数名<span class="p">(</span>参数<span class="p">)</span>
+    函数体
+endfunc
+
+<span class="c">&quot; 调用</span>
+<span class="k">call</span> 函数名<span class="p">(</span>参数<span class="p">)</span>  <span class="c">&quot; 在脚本语句中使用</span>
+<span class="p">:</span><span class="k">call</span> 函数名<span class="p">(</span>参数<span class="p">)</span> <span class="c">&quot; 在vim命令中使用</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>在函数体中使用参数需要在参数变量名称前加上a:</p>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>执行命令,键盘绑定,命令行命令和自动命令<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<ol class="arabic">
+<li><p>执行命令</p>
+<div class="highlight-vim notranslate"><div class="highlight"><pre><span></span>exec <span class="s2">&quot;命令&quot;</span>  <span class="c">&quot; 用于在vim脚本中执行一系列vim命令</span>
+<span class="p">:!</span>外部命令  <span class="c">&quot; 这是一个vim命令行命令，功能是调用外部程序</span>
+</pre></div>
+</div>
+</li>
+<li><p>键盘绑定</p>
+<p>一般格式：映射命令 按键组合 命令组合</p>
+<div class="highlight-vim notranslate"><div class="highlight"><pre><span></span><span class="p">:</span>help map<span class="p">-</span>overview
+<span class="p">:</span>help keycodes  <span class="c">&quot;查看&lt;CR&gt; &lt;up&gt; &lt;lt&gt;等等分别表示什么意思</span>
+map :全模式映射
+nmap :normal模式映射
+vmap :visual模式映射
+imap :insert模式映射
+</pre></div>
+</div>
+</li>
+<li><p>命令行命令</p>
+<p>vim支持在启动的时候使用-c开关执行命令字符串</p>
+</li>
+<li><p>自动命令</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-vim notranslate"><div class="highlight"><pre><span></span>一般格式：autocmd 事件 文件类型 命令
+例子：<span class="k">au</span> <span class="nb">BufNewFile</span><span class="p">,</span><span class="nb">BufRead</span> *.pl <span class="k">setf</span> perl
+解释：当事件 <span class="nb">BufNewFile</span> 和BufRead 发生在 *.pl 文件上的时候，执行命令：<span class="k">setf</span> perl
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>插件<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h2>
+<p>我的快捷键一览(&lt;leader&gt; = ,)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># N mode</span>
+<span class="p">:</span><span class="n">Td</span>                    <span class="c1"># 显示所有 todo 位置</span>
+<span class="p">:</span><span class="n">Fx</span>                    <span class="c1"># 显示所有 fixme 位置</span>
+<span class="c1">## nerdcommenter</span>
+<span class="o">&lt;</span><span class="n">leader</span><span class="o">&gt;</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">space</span>   <span class="c1"># 注释toggle</span>
+
+<span class="c1">## easymotion</span>
+<span class="o">&lt;</span><span class="n">leader</span><span class="o">&gt;&lt;</span><span class="n">leader</span><span class="o">&gt;</span><span class="n">s</span>     <span class="c1"># 然后输入要跳转到的字母，按显示的字母就可以跳转到该位置</span>
+
+<span class="c1">## CtrlP</span>
+<span class="n">ctrl</span> <span class="o">+</span> <span class="n">p</span>        <span class="c1"># 查找</span>
+
+<span class="o">&lt;</span><span class="n">leader</span><span class="o">&gt;</span> <span class="o">+</span> <span class="n">ls</span>   <span class="c1"># NerdTree</span>
+<span class="o">&lt;</span><span class="n">leader</span><span class="o">&gt;</span> <span class="o">+</span> <span class="n">tb</span>   <span class="c1"># TagBar</span>
+
+<span class="c1">## riv</span>
+<span class="n">z</span> <span class="o">+</span> <span class="n">a</span>           <span class="c1"># fold toggle</span>
+
+<span class="c1">## vim-surround</span>
+<span class="o">&lt;</span><span class="n">leader</span><span class="o">&gt;</span> <span class="o">+</span> <span class="n">cs</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">old_s</span><span class="o">&gt;</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">new_s</span><span class="o">&gt;</span>  <span class="c1"># surround 替换</span>
+
+<span class="c1">## YCM</span>
+<span class="o">&lt;</span><span class="n">leader</span><span class="o">&gt;</span> <span class="o">+</span> <span class="n">jd</span>   <span class="c1"># 跳转到定义或声明</span>
+
+<span class="c1">## ultisnips 搭配 vim-snippets 使用(代码库shortcut在vim-snippets的UltiSnip目录下)</span>
+<span class="o">&lt;</span><span class="n">leader</span><span class="o">&gt;&lt;</span><span class="n">tab</span><span class="o">&gt;</span>  <span class="c1"># 补全, 在展开补全后下面的命令分别</span>
+<span class="o">&lt;</span><span class="n">C</span><span class="o">-</span><span class="n">b</span><span class="o">&gt;</span>          <span class="c1"># 跳转到下一个替换部分(JumpForwardTrigger)</span>
+<span class="o">&lt;</span><span class="n">C</span><span class="o">-</span><span class="n">z</span><span class="o">&gt;</span>          <span class="c1"># 跳转到上一个替换部分(JumpBackwardTrigger)</span>
+
+<span class="c1">## pymode</span>
+<span class="o">&lt;</span><span class="n">leader</span><span class="o">&gt;</span><span class="n">b</span>      <span class="c1"># insert a breakpoint</span>
+<span class="n">K</span>              <span class="c1"># 查看函数的帮助文档</span>
+
+<span class="c1">## split-manpage(View any man page in a split vim window)</span>
+<span class="o">&lt;</span><span class="n">Leader</span><span class="o">&gt;</span><span class="n">kk</span> <span class="c1"># opens the man page on a split window above the current window.</span>
+<span class="o">&lt;</span><span class="n">Leader</span><span class="o">&gt;</span><span class="n">kj</span> <span class="c1"># opens the man page on a split window below the current window.</span>
+<span class="o">&lt;</span><span class="n">Leader</span><span class="o">&gt;</span><span class="n">kh</span> <span class="c1"># opens the man page on a vertical split window to the left of the current window.</span>
+<span class="o">&lt;</span><span class="n">Leader</span><span class="o">&gt;</span><span class="n">kl</span> <span class="c1"># opens the man page on a vertical split window to the right of the current window.</span>
+
+<span class="c1"># V mode</span>
+<span class="c1">## multi-select</span>
+<span class="n">ctrl</span> <span class="o">+</span> <span class="n">n</span>        <span class="c1"># next</span>
+<span class="n">ctrl</span> <span class="o">+</span> <span class="n">p</span>        <span class="c1"># go back to previous</span>
+<span class="n">ctrl</span> <span class="o">+</span> <span class="n">x</span>        <span class="c1"># skip current and select next</span>
+
+<span class="c1">## vim-surround</span>
+<span class="n">S</span><span class="o">&lt;</span><span class="n">surround</span><span class="o">&gt;</span>           <span class="c1"># add surround</span>
+
+<span class="c1">## vim-autoformat</span>
+<span class="p">:</span><span class="n">Autoformat</span>   <span class="c1"># python 要装相应的插件</span>
+</pre></div>
+</div>
+<div class="section" id="neocomplete">
+<h3>neocomplete<a class="headerlink" href="#neocomplete" title="永久链接至标题">¶</a></h3>
+<p>设置python的omnifunc时，要根据vim的 +python 和 +python3 属性设置:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pythoncomplete</span><span class="c1">#complete  &quot;for python</span>
+<span class="n">pythonc3omplete</span><span class="c1">#complete  &quot;for python3</span>
+</pre></div>
+</div>
+<p>否则报错 unknown function pythoncomplete#complete</p>
+</div>
+<div class="section" id="youcompleteme">
+<h3>YouCompleteMe<a class="headerlink" href="#youcompleteme" title="永久链接至标题">¶</a></h3>
+<p>在 <code class="docutils literal notranslate"><span class="pre">.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py</span></code> 配置信息如下</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-isystem&#39;</span><span class="p">,</span>
+<span class="s1">&#39;/usr/include&#39;</span><span class="p">,</span>
+<span class="s1">&#39;-isystem&#39;</span><span class="p">,</span>
+<span class="s1">&#39;/usr/include/c++/4.8.4&#39;</span><span class="p">,</span>  <span class="c1"># 根据实际的/usr/include/c++/中的文件夹名称(即C++版本号)修改</span>
+<span class="s1">&#39;-isystem&#39;</span><span class="p">,</span>
+<span class="s1">&#39;/usr/include/c++/4.9.2&#39;</span><span class="p">,</span>
+<span class="s1">&#39;-isystem&#39;</span><span class="p">,</span>
+<span class="s1">&#39;/usr/include&#39;</span><span class="p">,</span>
+<span class="s1">&#39;/usr/include/x86_64-linux-gnu/c++&#39;</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>实际上以上是vim自动补全时搜索路径，如果自动补全的内容位于 <code class="docutils literal notranslate"><span class="pre">/usr/local/include</span></code> 里面，则添加以下信息</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;-isystem&#39;</span><span class="p">,</span>
+<span class="s1">&#39;/usr/local/include&#39;</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>详情参考 <a class="reference external" href="http://www.cnblogs.com/starrytales/p/6031671.html">Vim自动补全神器YouCompleteMe的配置</a></p>
+</div>
+<div class="section" id="ultisnips">
+<h3>UltiSnips<a class="headerlink" href="#ultisnips" title="永久链接至标题">¶</a></h3>
+<p>自动添加代码块，UltiSnips 更像是一个调用引擎，它本身并不提供任何 snips, 可以结合vim-snippets 使用</p>
+<p>要使用 UltiSnips，vim 需要开启对 python 的支持。</p>
+<p>打开 vim 的时候， UltiSnips 会搜寻 $VIM 路径下的所有名字为 UltiSnips 的文件夹，然后根据文档类型来寻找对应的 snips。 可以参考vim-snippets的UltiSnip目录下定义的文件写自己的配置文件</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>snippet 关键词 “说明” 设定
+内容
+endsnippet
+</pre></div>
+</div>
+<p>设定包括：</p>
+<ul class="simple">
+<li><p>b 代表只有关键词出现在行首的时候，才可以被展开</p></li>
+<li><p>A 代表自动展开</p></li>
+<li><p>w 代表可以展开这个 “词”，具体 “词” 的定义可以查看 :help iskeyword。直观感觉就是，这个关键词是单独的，和其他文字分开的。比如前后都是空格。</p></li>
+<li><p>i 代表可以忽略前后字节，直接展开关键词。（这个设定比 w 要更松）</p></li>
+</ul>
+<p>详细信息查看 :help ultisnip</p>
+<p>在snip展开后，对可替换部分进行修改，可替换部分的跳转快捷键为</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">c</span><span class="o">-</span><span class="n">b</span><span class="o">&gt;</span> <span class="c1"># 跳至下一个部分</span>
+<span class="o">&lt;</span><span class="n">c</span><span class="o">-</span><span class="n">x</span><span class="o">&gt;</span> <span class="c1"># 跳至前一个部分</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="http://vimzijun.net/2016/10/30/ultisnip/">参考链接</a></p>
+</div>
+<div class="section" id="cscope">
+<h3>cscope<a class="headerlink" href="#cscope" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>建立符号列表</p>
+<p>进入源代码目录，建立符号表： <code class="docutils literal notranslate"><span class="pre">cscope</span> <span class="pre">-R</span></code> ， Ctrl-D 退出，当前目录会多一个 <code class="docutils literal notranslate"><span class="pre">cscope.out</span></code> 文件;</p>
+</li>
+<li><p>使用指南</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>vim -t XXX``   # 进入函数
+Ctrl + ]       # 跳转到函数定义的地方
+Ctrl + \ +s    # 出现所有调用、定义该函数的地方，输入索引号，回车即可进入
+Ctrl + &lt;Space&gt; + s  # 出现所有调用、定义该函数的地方，输入索引号，回车后会以水平方式在另外一个窗口显示。
+Ctrl + t   # 回到原来跳转前的地方，连续按两下&#39;&#39;可以再回去。
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="ctags">
+<h3>ctags<a class="headerlink" href="#ctags" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>安装</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew install ctags  <span class="c1"># MacOS</span>
+sudo apt-get install exuberant-ctags  <span class="c1"># ubuntu</span>
+</pre></div>
+</div>
+</li>
+<li><p>命令</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ctags -R  <span class="c1"># 生成索引文件</span>
+</pre></div>
+</div>
+<div class="highlight-vim notranslate"><div class="highlight"><pre><span></span>Ctrl＋］  # 跳到当前光标下单词的标签
+Ctrl＋O   # 返回上一个标签
+Ctrl＋T   # 返回上一个标签
+<span class="p">:</span><span class="nb">tag</span> TagName  # 跳到TagName标签
+
+#  以上命令是在当前窗口显示标签，当前窗口的文件替代为包标签的文件，当前窗口光标跳到标签位置。如果不希望在当前窗口显示标签，可以使用以下命令
+<span class="p">:</span><span class="k">stag</span> TagName  # 新窗口显示TagName标签，光标跳到标签处
+Ctrl＋W <span class="p">+</span> ］  # 新窗口显示当前光标下单词的标签，光标跳到标签处
+# 当一个标签有多个匹配项时（函数 <span class="p">(</span>或类中的方法<span class="p">)</span> 被多次定义），<span class="s2">&quot;:tags&quot;</span> 命令会跳转到第一处。如果在当前文件中存在匹配，那它将会被首先使用。可以用这些命令在各匹配的标签间移动：
+<span class="p">:</span><span class="k">tfirst</span>    # 到第一个匹配
+<span class="p">:</span>[count]<span class="k">tprevious</span>  # 向前 [count] 个匹配
+<span class="p">:</span>[count]<span class="k">tnext</span>   # 向后 [count] 个匹配
+<span class="p">:</span><span class="k">tlast</span>    # 到最后一个匹配
+# 或者使用以下命令选择要跳转到哪一个
+<span class="p">:</span><span class="k">tselect</span> TagName # 输入以上命令后，vim会为你展示一个选择列表。然后你可以输入要跳转到的匹配代号 <span class="p">(</span>在第一列<span class="p">)</span>。其它列的信息可以让你知道标签在何处被定义过。
+
+# 以下命令将在预览窗口显示标签
+<span class="p">:</span><span class="k">ptag</span> TagName   # 预览窗口显示TagName标签，光标跳到标签处
+Ctrl＋W <span class="p">+</span> }   # 预览窗口显示当前光标下单词的标签，光标跳到标签处
+<span class="p">:</span><span class="k">pclose</span>   # 关闭预览窗口
+<span class="p">:</span><span class="k">pedit</span> <span class="k">file</span>.<span class="k">h</span>  # 在预览窗口编辑文件file.<span class="k">h</span>（在编辑头文件时很有用）
+<span class="p">:</span><span class="k">psearch</span> atoi  # 查找当前文件和任何包含文件中的单词并在预览窗口中显示匹配，在使用没有标签文件的库函数时十分有用。
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="taglist">
+<h3>taglist<a class="headerlink" href="#taglist" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>安装: 使用vundle</p></li>
+<li><p>命令</p>
+<div class="highlight-vim notranslate"><div class="highlight"><pre><span></span># 切换函数列表的开、关
+<span class="p">:</span>TlistToggle   # 在打开和关闭间切换
+<span class="p">:</span>TlistOpen  # 打开taglist窗口
+<span class="p">:</span>TlistClose  # 关闭taglist窗口
+
+# 在taglist窗口中，可以使用下面的快捷键
+<span class="p">&lt;</span>CR<span class="p">&gt;</span>   # 跳到光标下tag所定义的位置，用鼠标双击此tag功能也一样
+<span class="k">o</span>   # 在一个新打开的窗口中显示光标下tag
+<span class="p">&lt;</span>Space<span class="p">&gt;</span>   # 显示光标下的tag的原型定义
+<span class="k">u</span>   # 更新taglist窗口中的tag
+s   # 更改排序方式，在按名字排列和按出现顺序排序间切换
+<span class="k">x</span>   # taglist窗口放大和缩小，方便查看较长的tag
+*   # 打开一个折叠，同zo
+*   # 将tag折叠起来，同zc
+*   # 打开所有的折叠，同zR
+<span class="p">=</span>   # 将所有tag折叠起来，同zM
+[[  # 跳到前一个文件
+]]  # 跳到后一个文件
+<span class="k">q</span>   # 关闭taglist窗口
+<span class="p">&lt;</span>F1<span class="p">&gt;</span>   #显示帮助
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="tagbar">
+<h3>tagbar<a class="headerlink" href="#tagbar" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>安装：使用vundle</p></li>
+</ul>
+</div>
+<div class="section" id="riv">
+<h3>riv<a class="headerlink" href="#riv" title="永久链接至标题">¶</a></h3>
+<p>To make it easier to visualize and easier to edit</p>
+<p>Riv has a lot of shortcuts and built-in features that help editing RST. It has even some features that help managing todos or projects.</p>
+<p>In case of visualizing results riv has shortcuts that are able to generate document and start it in browser to preview result.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">RivInstruction</span>  <span class="c1"># 查看相关命令 (好像没有？可以直接打开安装目录的doc查看)</span>
+<span class="p">:</span><span class="n">RivQuickStart</span>   <span class="c1">#</span>
+<span class="p">:</span><span class="n">RivPrimer</span>       <span class="c1"># 打开restructured 教程</span>
+<span class="p">:</span><span class="n">RivSpecification</span> <span class="c1"># a detailed look at reStructuredText&#39;s specifications</span>
+<span class="p">:</span><span class="n">RivCheatSheet</span>   <span class="c1"># a quick review.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="instantrst">
+<h3>InstantRst<a class="headerlink" href="#instantrst" title="永久链接至标题">¶</a></h3>
+<p>Preview rst document instantly. You can share the address through LAN too.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Inside a rst buffer:
+:InstantRst[!]  # Preview current buffer. Add ! to preview ALL rst buffer.
+:StopInstantRst[!]  # Stop Preview current buffer Add ! to stop preview ALL rst buffer.
+</pre></div>
+</div>
+</div>
+<div class="section" id="vim-multiple-cursors">
+<h3>vim-multiple-cursors<a class="headerlink" href="#vim-multiple-cursors" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 选择一个变量修改： 先选中(v)第一个变量名，然后</span>
+<span class="o">&lt;</span><span class="n">C</span><span class="o">-</span><span class="n">n</span><span class="o">&gt;</span>   <span class="c1"># 选择下一个, 然后进行相应操作</span>
+
+<span class="c1"># 多行前插入：先选中多行/block, 然后</span>
+<span class="o">&lt;</span><span class="n">C</span><span class="o">-</span><span class="n">n</span><span class="o">&gt;</span>   <span class="c1"># 在所有行首插入</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="vim-fugitive">
+<h3>vim-fugitive<a class="headerlink" href="#vim-fugitive" title="永久链接至标题">¶</a></h3>
+<p>在vim 中使用git 命令</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">Git</span> <span class="o">&lt;</span><span class="n">git</span> <span class="n">command</span><span class="o">&gt;</span> <span class="c1"># 从 VIM 命令行中运行任何的 git 命令</span>
+
+<span class="p">:</span><span class="n">Gcommit</span> <span class="c1"># 打开一个水平分隔的窗口填写提交信息并使用 :wq 命令完成</span>
+<span class="p">:</span><span class="n">Gblame</span>  <span class="c1"># 打开一个垂直分隔的窗口，其中包含有对每一次commit的信息</span>
+<span class="p">:</span><span class="n">Gstatus</span> <span class="c1"># 打开一个窗口显示当前 git 仓库的状态,</span>
+<span class="p">:</span><span class="n">Gvdiff</span>  <span class="c1"># 以垂直分隔窗口比较当前文件(r)和当前文件的 index 版本(l)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="vim-autoformat">
+<h3>vim-autoformat<a class="headerlink" href="#vim-autoformat" title="永久链接至标题">¶</a></h3>
+<p>安装好后设置:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">au</span> <span class="n">BufWrite</span> <span class="o">*</span> <span class="p">:</span><span class="n">Autoformat</span> <span class="s2">&quot;自动格式化代码， 针对所有文件</span>
+</pre></div>
+</div>
+<p>需安装相应的format 工具才会生效</p>
+<ul>
+<li><p>clang-format</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew install clang-format //mac
+sudo apt-get install clang-format //ubuntu
+</pre></div>
+</div>
+</li>
+<li><p>atype</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="neovim">
+<h2>neovim 配置<a class="headerlink" href="#neovim" title="永久链接至标题">¶</a></h2>
+<ol class="arabic simple">
+<li><p>安装 neovim，配置文件放在 <cite>~/.config/nvim/init.vim</cite></p></li>
+<li><p>安装 vim-plugin, 注意设置autoload 路径在 <cite>~/.config/nvim/autoload/</cite></p></li>
+</ol>
+</div>
+<div class="section" id="id15">
+<h2>其它<a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h2>
+<p>查看插件列表—— <code class="docutils literal notranslate"><span class="pre">:scriptnames</span></code></p>
+<p>“无法写入，已设定选项 buftype”—— <code class="docutils literal notranslate"><span class="pre">:setlocal</span> <span class="pre">buftype=</span></code></p>
+<p>修改python脚本的缩进量（例如由2转4），在vim编辑器中输入</p>
+<div class="highlight-vim notranslate"><div class="highlight"><pre><span></span><span class="c">&quot; changes every 2 spaces to a TAB character</span>
+<span class="p">:</span><span class="k">set</span> <span class="k">ts</span><span class="p">=</span><span class="m">2</span> <span class="k">sts</span><span class="p">=</span><span class="m">2</span> <span class="nb">noet</span>
+<span class="p">:</span><span class="k">retab</span><span class="p">!</span>
+<span class="c">&quot; changes every TAB to 4 spaces</span>
+<span class="p">:</span><span class="k">set</span> <span class="k">ts</span><span class="p">=</span><span class="m">4</span> <span class="k">sts</span><span class="p">=</span><span class="m">4</span> <span class="nb">et</span>
+<span class="p">:</span><span class="k">retab</span>
+<span class="c">&quot; ts := tabstop, sts := softtabstop and [no]et := [no]expandtab.</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../programing/index.html" class="btn btn-neutral float-right" title="编程相关" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="git.html" class="btn btn-neutral float-left" title="Git" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

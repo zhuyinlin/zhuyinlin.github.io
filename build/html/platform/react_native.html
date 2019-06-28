@@ -1,0 +1,559 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>React_Native &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="math" href="../math/index.html" />
+    <link rel="prev" title="Web 编程" href="web_program.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">平台搭建</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Cmake.html">Cmake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AndroidStudio.html">Android Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XCode.html">XCode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_program.html">Web 编程</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">React_Native</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">开发</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">打包</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reactotron">调试工具 reactotron</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ignite">脚手架 ignite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">一些包</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#realm">realm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#react-navigation">react navigation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#react-native-maps">react-native-maps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ui">UI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">坑</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#hadoop">Hadoop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#jenkins">Jenkins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">平台搭建</a> &raquo;</li>
+        
+      <li>React_Native</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/platform/react_native.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="react-native">
+<h1>React_Native<a class="headerlink" href="#react-native" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>安装<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// <span class="m">1</span>.安装Node.js
+// <span class="m">1</span>.1 mac
+brew install node
+//   设置npm镜像
+npm config <span class="nb">set</span> registry https://registry.npm.taobao.org --global
+npm config <span class="nb">set</span> disturl https://npm.taobao.org/dist --global
+//   npm 降级
+npm install npm@4 -g  <span class="c1"># @后面是版本号</span>
+
+// <span class="m">1</span>.2 ubuntu
+// 参照网址 https://github.com/nodesource/distributions#debinstall 安装 nodejs
+npm install npm@latest -g
+// 如果安装完后有权限问题, 更改npm相关路径权限<span class="o">(</span>其它方法参考https://docs.npmjs.com/getting-started/fixing-npm-permissions<span class="o">)</span>
+sudo chown -R <span class="k">$(</span>whoami<span class="k">)</span> <span class="k">$(</span>npm config get prefix<span class="k">)</span>/<span class="o">{</span>lib/node_modules,bin,share<span class="o">}</span>
+
+// <span class="m">2</span>.
+npm install -g create-react-native-app
+npm install -g yarn react-native-cli
+// 设置yarn 的镜像源
+yarn config <span class="nb">set</span> registry https://registry.npm.taobao.org --global
+yarn config <span class="nb">set</span> disturl https://npm.taobao.org/dist --global
+
+// <span class="m">3</span>.辅助工具
+brew install watchman  <span class="c1"># 监视文件系统变更</span>
+brew install flow  <span class="c1"># 静态的JS类型检查工具</span>
+
+// <span class="m">4</span>.语法检查
+npm install -g eslint
+npm install -g babel-eslint
+npm install -g eslint-plugin-react
+</pre></div>
+</div>
+<p>安装完成后在根目录下新建~/.eslintrc:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;parser&quot;</span><span class="p">:</span> <span class="s2">&quot;babel-eslint&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;env&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;browser&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="n">true</span>
+
+    <span class="p">},</span>
+    <span class="s2">&quot;settings&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;ecmascript&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+        <span class="s2">&quot;jsx&quot;</span><span class="p">:</span> <span class="n">true</span>
+
+    <span class="p">},</span>
+    <span class="s2">&quot;plugins&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;react&quot;</span>
+
+    <span class="p">],</span>
+    <span class="s2">&quot;rules&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;strict&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;quotes&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;no-unused-vars&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;camelcase&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;no-underscore-dangle&quot;</span><span class="p">:</span> <span class="mi">0</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>最后，设置Syntastic使用eslint:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">g</span><span class="p">:</span><span class="n">syntastic_javascript_checkers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;eslint&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>开发<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>react-native init &lt;app_name&gt; --version <span class="m">0</span>.44.3  <span class="c1">#</span>
+<span class="nb">cd</span> &lt;project_dir&gt;
+react-native <span class="o">[</span>run-ios <span class="p">|</span> run-android<span class="o">]</span>
+
+
+// 实时调试
+adb reverse tcp:8081 tcp:8081
+adb shell input keyevent <span class="m">82</span>
+
+// node 版本管理
+n
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>打包<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>出错的可能：</p>
+<ol class="arabic simple">
+<li><p>assets/res 下的资源文件重复</p></li>
+<li><p>__DEV__ 判断的问题, 可能导致白屏</p></li>
+<li><p>控件代码有问题</p></li>
+</ol>
+</div>
+<div class="section" id="reactotron">
+<h2>调试工具 reactotron<a class="headerlink" href="#reactotron" title="永久链接至标题">¶</a></h2>
+<ol class="arabic simple">
+<li><p>安装</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew update
+brew cask install reactotron
+
+<span class="c1"># 如果想要终端版，运行</span>
+npm install -g reactotron-cli
+</pre></div>
+</div>
+<ol class="arabic" start="2">
+<li><p>使用</p>
+<ul>
+<li><p>开启 reactotron</p></li>
+<li><p>为项目文件加包</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm i --save-dev reactotron-react-native
+npm i --save-dev reactotron-redux  // <span class="k">for</span> redux
+</pre></div>
+</div>
+</li>
+<li><p>加配置文件 <em>ReactotronConfig.js</em> 并在入口处导入</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// ReactotronConfig.js</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">reactotronRedux</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;reactotron-redux&#39;</span>
+
+<span class="nx">Reactotron</span>
+  <span class="p">.</span><span class="nx">configure</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;React Native Demo&#39;</span> <span class="p">})</span> <span class="c1">// controls connection &amp; communication settings</span>
+  <span class="p">.</span><span class="nx">useReactNative</span><span class="p">()</span> <span class="c1">// add all built-in react native plugins</span>
+  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">reactotronRedux</span><span class="p">())</span> <span class="c1">// then add it to the plugin list</span>
+  <span class="p">.</span><span class="nx">connect</span><span class="p">()</span> <span class="c1">// let&#39;s connect!</span>
+<span class="c1">// 更具体的写法参考官网</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// App.js (Create React Native App) or index.ios.js and index.android.js</span>
+<span class="kr">import</span> <span class="s1">&#39;./ReactotronConfig&#39;</span>
+</pre></div>
+</div>
+<p>同时将redux 的createStore 替换为 Reactotron 的createStore</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">Reactotron</span><span class="p">.</span><span class="nx">createStore</span><span class="p">(</span><span class="nx">rootReducer</span><span class="p">,</span> <span class="nx">compose</span><span class="p">(</span><span class="nx">middleware</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+<li><p>运行代码</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="ignite">
+<h2>脚手架 ignite<a class="headerlink" href="#ignite" title="永久链接至标题">¶</a></h2>
+<ol class="arabic">
+<li><p>安装及基本命令</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 安装</span>
+npm install -g ignite-cli
+
+<span class="c1"># 初始化新项目</span>
+ignite new &lt;AppName&gt;
+
+<span class="c1"># 添加和移除plugins</span>
+ignite add &lt;PackageName&gt;
+ignite remove &lt;PackageName&gt;
+
+<span class="c1"># 自动构建代码</span>
+ignite generate <span class="o">[</span>screen<span class="p">|</span> component<span class="p">|</span> map<span class="p">|</span> redux<span class="p">|</span> saga<span class="o">]</span> &lt;name&gt;
+</pre></div>
+</div>
+</li>
+<li><p>配置</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span> <span class="cm">/*file:Config/DebugConfig.js*/</span>
+<span class="nx">useFixtures</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// 使用本地数据，这里设为true让我们可以在没有后端支持的情况实现数据mock</span>
+<span class="nx">ezLogin</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// 暂时还不知道这个ezlogin干嘛的</span>
+<span class="nx">yellowBox</span><span class="o">:</span> <span class="nx">__DEV__</span><span class="p">,</span> <span class="c1">// 黄屏警告 开发模式默认打开</span>
+<span class="nx">reduxLogging</span><span class="o">:</span> <span class="nx">__DEV__</span><span class="p">,</span> <span class="c1">// redux-logging当redux变更时打log 开发模式默认打开</span>
+<span class="nx">includeExamples</span><span class="o">:</span> <span class="nx">__DEV__</span><span class="p">,</span> <span class="c1">// 载入初始的includeExamples 开发模式默认打开</span>
+<span class="nx">useReactotron</span><span class="o">:</span> <span class="nx">__DEV__</span> <span class="c1">// 使用useReactotron 开发模式默认打开</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Sagas/index.js</span>
+<span class="p">...</span>
+<span class="kr">const</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">DebugConfig</span><span class="p">.</span><span class="nx">useFixtures</span> <span class="o">?</span> <span class="nx">FixtureAPI</span> <span class="o">:</span> <span class="nx">API</span><span class="p">.</span><span class="nx">create</span><span class="p">()</span>
+<span class="p">...</span>
+<span class="nx">takeLatest</span><span class="p">(</span><span class="nx">StartupTypes</span><span class="p">.</span><span class="nx">STARTUP</span><span class="p">,</span> <span class="nx">startup</span><span class="p">)</span>
+<span class="nx">takeLatest</span><span class="p">(</span><span class="nx">GithubTypes</span><span class="p">.</span><span class="nx">USER_REQUEST</span><span class="p">,</span> <span class="nx">getUserAvatar</span><span class="p">,</span> <span class="nx">api</span><span class="p">)</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="id4">
+<h2>一些包<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p><cite>react-native link</cite> 的作用就是设置好android 和 ios 中相应的配置文件内容</p>
+<p>android</p>
+<ol class="arabic">
+<li><p>app/build.gradle</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">&#39;:&lt;package name&gt;&#39;</span><span class="o">)</span>
+    <span class="o">...</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>settings.gradle</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">include</span> <span class="s1">&#39;:&lt;package-name&gt;&#39;</span>
+<span class="n">project</span><span class="o">(</span><span class="s1">&#39;:&lt;package-name&gt;&#39;</span><span class="o">).</span><span class="na">projectDir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">rootProject</span><span class="o">.</span><span class="na">projectDir</span><span class="o">,</span> <span class="s1">&#39;../node_modules/&lt;package-name&gt;/android&#39;</span><span class="o">)</span>
+<span class="c1">// 最后的路径一般如上，但具体视包而定 (如 react-native-maps 不同版本，此处不一致)</span>
+</pre></div>
+</div>
+</li>
+<li><p>app/src/main/Java/[…]/MainApplication.java (部分包需要)</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>import &lt;java package name&gt;.&lt;package func&gt;;  // &lt;java package name&gt; 对应包的 AndroidManifest.xml 中的 package 参数
+
+@Override
+protected List&lt;ReactPackage&gt; getPackages() {
+  return Arrays.&lt;ReactPackage&gt;asList(
+      ...                      // 注意逗号
+      new &lt;package func&gt;()     // append this line
+  );
+}
+</pre></div>
+</div>
+</li>
+<li><p>app/src/main/AndroidManifest.xml (部分包需要)</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>// 一些权限
+&lt;uses-permission .../&gt;
+
+// api 密钥
+&lt;application
+ ...
+ &lt;meta-date
+  android:name=
+  android:value= /&gt;
+&lt;/application&gt;
+</pre></div>
+</div>
+</li>
+</ol>
+<p>ios</p>
+<div class="section" id="realm">
+<h3>realm<a class="headerlink" href="#realm" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm install --save realm
+rnpm link realm   //关联realm库
+
+// 有可能链接不上，也可能链接上了没有自动添加代码，需要手动处理：
+// <span class="m">1</span>. settings.gradle中是否存在下面的代码
+include <span class="s1">&#39;:realm&#39;</span>
+project<span class="o">(</span><span class="s1">&#39;:realm&#39;</span><span class="o">)</span>.projectDir <span class="o">=</span> new File<span class="o">(</span>rootProject.projectDir, <span class="s1">&#39;../node_modules/realm/android&#39;</span><span class="o">)</span>
+
+// <span class="m">2</span>. app/build.gradle中是否存在如下代码
+dependencies <span class="o">{</span>
+  compile project<span class="o">(</span><span class="s1">&#39;:realm&#39;</span><span class="o">)</span>
+  ...
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="react-navigation">
+<h3>react navigation<a class="headerlink" href="#react-navigation" title="永久链接至标题">¶</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 注意这里二者的差别</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">navigation</span><span class="p">.</span><span class="nx">navigate</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">routeName</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">{</span><span class="o">&lt;</span><span class="nx">para</span> <span class="nx">name</span><span class="o">&gt;:</span> <span class="o">&lt;</span><span class="nx">para</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...})</span> <span class="c1">// 不能有参数名</span>
+                                                                        <span class="c1">// {} 内传入的参数保存在navigation.state.params.&lt;para name&gt;</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">navigate</span><span class="p">({</span><span class="nx">routeName</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">routeName</span><span class="o">&gt;</span><span class="p">})</span> <span class="c1">// 必须有参数名</span>
+
+<span class="c1">// 下面两种做法的结果有时会不同, why?</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">navigation</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="nx">NavigationActions</span><span class="p">.</span><span class="nx">navigate</span><span class="p">())</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">navigation</span><span class="p">.</span><span class="nx">navigate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="react-native-maps">
+<h3>react-native-maps<a class="headerlink" href="#react-native-maps" title="永久链接至标题">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>不同版本的配置不一样，注意区分</p>
+</div>
+</div>
+</div>
+<div class="section" id="ui">
+<h2>UI<a class="headerlink" href="#ui" title="永久链接至标题">¶</a></h2>
+<p>1 inch = 2.54cm</p>
+<p>逻辑分辨率(pt) = D_w x D_h dot/point</p>
+<p>设备分辨率(px) = P_w x P_h pixel</p>
+<p>设备像素比(pixel ratio) = P_w / D_w = P_h / D_h</p>
+<p>独立像素(dp) = 屏幕点密度为160ppi时1px长度</p>
+<p>点密度(dpi, dot per inch) =  <span class="math notranslate nohighlight">\(\sqrt(D_w^2 + D_h^2)/diagonal inch\)</span></p>
+<p>像素密度(ppi, pixel per inch) = <span class="math notranslate nohighlight">\(\sqrt(P_w^2 + P_h^2)/diagonal inch\)</span></p>
+<p>react native 的 Dimensions 获取的是 pt 为单位的尺寸</p>
+</div>
+<div class="section" id="id5">
+<h2>坑<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<ol class="arabic">
+<li><p>编译运行</p>
+<blockquote>
+<div><p>Android端: 安装好环境后，直接运行 <cite>react-native run-android</cite> , 该命令实际是直接使用了android目录下的gradlew命令，运行后这里报错了，主要是一些依赖包的问题。这里使用Android studio导入工程目录下的android，然后运行安装，ok 了。</p>
+<p>ios 端: 注意修改AppDelegate.m中的server地址:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jsCodeLocation</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSURL</span> <span class="n">URLWithString</span><span class="p">:</span><span class="o">@</span><span class="s2">&quot;http://电脑ip:8081/index.ios.bundle?platform=ios&amp;dev=true&quot;</span><span class="p">];</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>unable to load script from assets index.android.bundle. Make sure…</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>可能是代理问题</p></li>
+<li><p>adb revere <a class="reference external" href="tcp:8081">tcp:8081</a> <a class="reference external" href="tcp:8081">tcp:8081</a></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Android 调试菜单不出现</p>
+<p>正常摇一摇手机可以出调试菜单的，然而并没有出来，这里需要设置该应用的悬浮窗权限，设置后可以使用。</p>
+</li>
+<li><p>有时组件不能正常显示是因为导入有问题，例如</p>
+<ul class="simple">
+<li><p>index.js 形式直接导入，无需default, import 到文件夹级， 加{}</p></li>
+<li><p>xxx.js 形式导入，未加default，import 到文件级/文件夹级，加{}</p></li>
+<li><p>xxx.js 形式导入，加了default, import 到文件级，不加{}</p></li>
+<li><p>使用UI库时注意是否相关位置没有配置好</p></li>
+</ul>
+</li>
+<li><p>文件名中不能有空格</p></li>
+<li><p>注意看断点处的this 状态，有的时候没有 bind(this) 函数的this 与预期不同</p></li>
+<li><p>redux 处的 …state 在函数与reducer 中不一样</p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../math/index.html" class="btn btn-neutral float-right" title="math" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="web_program.html" class="btn btn-neutral float-left" title="Web 编程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

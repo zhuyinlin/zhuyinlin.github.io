@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>caffe 学习笔记 &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="OpenCV" href="OpenCV.html" />
+    <link rel="prev" title="tensorflow 学习笔记" href="tensorflow.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">常用第三方包</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tensorflow.html">tensorflow 学习笔记</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">caffe 学习笔记</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install">Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Caffe 使用</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#caffemodel">已训练好的caffemodel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#caffec">使用caffe编译自己的c++ 代码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">训练</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="OpenCV.html">OpenCV</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">常用第三方包</a> &raquo;</li>
+        
+      <li>caffe 学习笔记</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/packages/caffe.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="caffe">
+<h1>caffe 学习笔记<a class="headerlink" href="#caffe" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>介绍<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>caffe 可用于c++、python和matlab</p>
+</div></blockquote>
+</div>
+<div class="section" id="install">
+<h2>Install<a class="headerlink" href="#install" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>ubuntu <a class="reference internal" href="../os/ubuntu.html#caffe-install-ubuntu"><span class="std std-ref">caffe</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>Caffe 使用<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="section" id="caffemodel">
+<h3>已训练好的caffemodel<a class="headerlink" href="#caffemodel" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>已训练好的模型在 “models/bvlc_对应模型名称”文件夹下的 <strong>readme.md</strong> 文件中提供下载链接。</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="caffec">
+<h2>使用caffe编译自己的c++ 代码<a class="headerlink" href="#caffec" title="永久链接至标题">¶</a></h2>
+<ol class="arabic simple">
+<li><p>At the top of your .cpp program which is linking to the Caffe library, you will need to make the following definition <code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">CPU_ONLY</span></code></p></li>
+<li><p>Now if we try to compile anything now, Caffe will make this complaint: <cite>caffe/proto/caffe.pb.h: No such file or directory</cite>  Some of the header files are missing from the Caffe include directory. Thus, you’ll need to generate them with these commands from <strong>within the Caffe root directory</strong> :</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ protoc src/caffe/proto/caffe.proto --cpp_out<span class="o">=</span>.
+$ mkdir include/caffe/proto
+$ mv src/caffe/proto/caffe.pb.h include/caffe/proto
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Finally, I copied libcaffe.so into /usr/lib and the caffe directory containing the header libraries (caffe_root/include/caffe) into the /usr/include directory. To compile this on a <strong>Mac</strong>  (after installing OpenBLAS with Homebrew), I just had to run:</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ g++ classification.cpp -lcaffe -lglog -lopencv_core -lopencv_highgui -lopencv_imgproc -I /usr/local/Cellar/openblas/0.2.14_1/include -L /usr/local/Cellar/openblas/0.2.14_1/lib -o classifier
+</pre></div>
+</div>
+<p>Alternatively, you could do what I did on my <strong>Linux</strong>  machine and instead of copying header files, I just linked directly to those directories when I compiled:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ g++ classification.cpp -lcaffe -lglog -lopencv_core -lopencv_highgui -lopencv_imgproc -I ~/caffe/include -L ~/caffe/build/lib -I /usr/local/Cellar/openblas/0.2.14_1/include -L /usr/local/Cellar/openblas/0.2.14_1/lib -o classifier<span class="sb">``</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2>训练<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="http://www.cnblogs.com/denny402/p/5074049.html">sover及其配置</a></p>
+<p><a class="reference external" href="http://blog.csdn.net/eagelangel/article/details/51761292">caffe中的lr_policy选择</a></p>
+<p><a class="reference external" href="http://blog.csdn.net/qq_30401249/article/details/51460480">caffe学习笔记（4）：lr_policy之各模型形式的总结</a></p>
+<p><a class="reference external" href="https://zhuanlan.zhihu.com/p/22624331">fine_tune</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="OpenCV.html" class="btn btn-neutral float-right" title="OpenCV" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tensorflow.html" class="btn btn-neutral float-left" title="tensorflow 学习笔记" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

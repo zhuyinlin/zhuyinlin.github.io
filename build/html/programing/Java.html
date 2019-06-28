@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Java &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Python" href="Python.html" />
+    <link rel="prev" title="C++" href="C++.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">编程相关</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="development.html">开发相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Shell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="C++.html">C++</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Java</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">一些概念</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gradle">关于gradle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aar-aarjar">什么是AAR包？ AAR包相比于jar包，区别在哪儿？</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#so-abi-app">什么是so库？什么是ABI？相关的处理器型号在构建APP时有什么区别？</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#android-studio">Android Studio</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">一些常遇到的问题</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">一些经验</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ruby.html">ruby</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">规范文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">关于不同编程语言</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id4">编码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">换行符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#makefile">Makefile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">一些经验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id10">当前工作记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#todo">TODO</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">编程相关</a> &raquo;</li>
+        
+      <li>Java</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/programing/Java.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="java">
+<h1>Java<a class="headerlink" href="#java" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>一些概念<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="section" id="gradle">
+<h3>关于gradle<a class="headerlink" href="#gradle" title="永久链接至标题">¶</a></h3>
+<p>Gradle的一些基本依赖配置方式如下:</p>
+<blockquote>
+<div><div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">compile</span> <span class="nf">fileTree</span><span class="o">(</span><span class="nl">dir:</span><span class="s1">&#39;xxx&#39;</span><span class="o">,</span><span class="nl">include:</span><span class="o">[</span><span class="s1">&#39;*.jar&#39;</span><span class="o">,</span><span class="s1">&#39;*.xxx&#39;</span><span class="o">])</span>  <span class="c1">// 将某个目录下所有符合扩展名的文件作为依赖</span>
+    <span class="n">compile</span> <span class="s1">&#39;com.xx.xx:ProjectName:Version&#39;</span>  <span class="c1">// 配置Maven库为依赖</span>
+    <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">&#39;:otherModule&#39;</span><span class="o">)</span>  <span class="c1">// 配置另一个module作为本Module的依赖，被依赖的Module必须被导入到当前工程中</span>
+    <span class="n">compile</span> <span class="nf">file</span><span class="o">(</span><span class="s1">&#39;xxx.jar&#39;</span><span class="o">)</span>  <span class="c1">// 配置某个jar包作为依赖</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="aar-aarjar">
+<h3>什么是AAR包？ AAR包相比于jar包，区别在哪儿？<a class="headerlink" href="#aar-aarjar" title="永久链接至标题">¶</a></h3>
+<p>假如我们希望提供一个带有资源文件的第三方库给别人使用，总不能直接把源代码给别人，但是我们知道eclipse打包的时候不能包含res的资源文件，于是Android在发布Android studio的时候就发布了一种独有的格式AAR，专门用于打包UI组件库。与jar相比其多了一些UI组件用到的属性、图片等一系列文件，它的好处在于你不需要再多创建一个Library Module，只需引用这个AAR文件即可，Android Sudio会自动把AAR包里的文件跟你的项目融合。</p>
+<p>aar包含所有资源，class，xml布局文件以及res资源文件全部包含。注意是全部。jar只包含了class文件与清单文件，不包含资源文件，如图片等所有res中的文件。</p>
+</div>
+<div class="section" id="so-abi-app">
+<h3>什么是so库？什么是ABI？相关的处理器型号在构建APP时有什么区别？<a class="headerlink" href="#so-abi-app" title="永久链接至标题">¶</a></h3>
+<p>android系统目前支持以下七种不同的CPU架构：ARMv5，ARMv7 (从2010年起)，x86 (从2011年起)，MIPS (从2012年起)，ARMv8，MIPS64和x86_64 (从2014年起)，每一种都关联着一个相应的ABI。
+应用程序二进制接口（Application Binary Interface, ABI）定义了二进制文件（尤其是.so文件）如何运行在相应的系统平台上，从使用的指令集，内存对齐到可用的系统函数库。</p>
+<p>so库的好处:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>- so机制让开发者最大化利用已有的C和C++代码，达到重用的效果，利用软件世界积累了几十年的优秀代码；
+- so是二进制，没有解释编译的开消，用so实现的功能比纯java实现的功能要快；
+- so内存分配不受Dalivik/ART的单个应用限制，减少OOM；
+- 相对于java代码，二进制代码的反编译难度更大，一些核心代码可以考虑放在so中。
+</pre></div>
+</div>
+<p>在Android Studio构建APP时可以选择构建时匹配的CPU架构。在project的build.gradle可以明确指定</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="c1">//在buildType标签下声明</span>
+<span class="n">ndk</span><span class="o">{</span>
+    <span class="n">abiFilters</span> <span class="s2">&quot;armeabi&quot;</span><span class="o">,</span><span class="s2">&quot;armeabi-v7a&quot;</span><span class="o">,</span><span class="s2">&quot;x86&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>以上代码可以指定在构建时，生成支持这三类CPU的so库。</p>
+<p>so库的load:</p>
+<ul>
+<li><p>相对路径load: System.loadLibrary(“media_jni”); 其中media_jni名字会被自动替换成libmedia_jni.so</p>
+<p>在使用相对路径load时，需要注意相应的so库是否被打入到 aar包的libs目录下。此处需要注意ABI类型</p>
+</li>
+<li><p>绝对路径load:System.load(“/绝对路径/libmedia_jni.so”);</p>
+<p>绝对路径可以避免这个问题，但是要确保具有相应路径的访问权限，在接入AAR时候，假设合作方是厂商ROM级别的，部分路径需要提前协调。</p>
+</li>
+</ul>
+<p>jni层的方法对应关系：</p>
+<p>全路径，将.置换为_ 例如，假设当前函数native_init函数位于android.media这个包中，它的全路径名应该是android.media.MediaScanner.native_init，而JNI层函数的名字是android_media_MediaScanner_native_init</p>
+</div>
+</div>
+<div class="section" id="android-studio">
+<h2>Android Studio<a class="headerlink" href="#android-studio" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id2">
+<h3>一些常遇到的问题<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<ol class="arabic">
+<li><p><cite>Error: Execution failed for task ‘:app:transformClassesWithDexForDebug’.&gt;com.android.build.api.transform.TransformException:com.android.ide.common.process.ProcessException:java.util.concurrent.ExecutionException:com.android.dex.DexException:Multiple</cite></p>
+<p>app module 和 lib module 导入了同样的jar包，导致jar包重复。</p>
+</li>
+<li><p>gradle降级</p>
+<p>修改项目级gradle 的buildscript -&gt; dependencies -&gt; classpath, module 级gradle的android 下相应选项</p>
+<p>此外可能涉及到support library， 如果也需要降级，那么</p>
+<ol class="arabic simple">
+<li><p>将相应库修改后，</p></li>
+<li><p>在使用到activity的地方，将继承的类改到相应版本</p></li>
+<li><p>修改资源文件（values/styles.xml）中相应的信息</p></li>
+</ol>
+</li>
+<li><p>权限</p>
+<p>同时确认代码permission 和 手机app 权限</p>
+</li>
+<li><p>ndk 相关的项目要注意 ndk 版本</p></li>
+</ol>
+</div>
+<div class="section" id="id3">
+<h3>一些经验<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>ndk 编程时， jsoncpp 代码在 sdk &lt; 20 的设备上无法运行，这是因为相应版本上的stl 没有完全实现，可以通过修改android_stl 为 c++_static
+等改正，但是如果还使用到了其他so库，而它又不是在 c++_static 条件下编译的，那么就没办法了。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Python.html" class="btn btn-neutral float-right" title="Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="C++.html" class="btn btn-neutral float-left" title="C++" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

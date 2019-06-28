@@ -1,0 +1,470 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>数据集 &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="性能指标" href="metrics.html" />
+    <link rel="prev" title="文献资料" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">文献资料</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">数据集</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">数据存储</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">分布式文件系统</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">存储格式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">数据库</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pedestrain">Pedestrain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">手写汉字</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nlp">NLP</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id12">语料库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">阅读理解</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">自然语言推理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">机器翻译</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chatbot">chatbot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#imagecaption">ImageCaption</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ehr">EHR</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#css">CSS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="metrics.html">性能指标</a></li>
+<li class="toctree-l2"><a class="reference internal" href="article.html">文献阅读</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">文献资料</a> &raquo;</li>
+        
+      <li>数据集</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/research/datasets.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>数据集<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="contents local topic" id="id2">
+<ul class="simple">
+<li><p><a class="reference internal" href="#id3" id="id16">数据存储</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id4" id="id17">分布式文件系统</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id18">存储格式</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id19">数据库</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#pedestrain" id="id20">Pedestrain</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id21">手写汉字</a></p></li>
+<li><p><a class="reference internal" href="#nlp" id="id22">NLP</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id12" id="id23">语料库</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id24">阅读理解</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id25">自然语言推理</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id26">机器翻译</a></p></li>
+<li><p><a class="reference internal" href="#chatbot" id="id27">chatbot</a></p></li>
+<li><p><a class="reference internal" href="#imagecaption" id="id28">ImageCaption</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#ehr" id="id29">EHR</a></p>
+<ul>
+<li><p><a class="reference internal" href="#css" id="id30">CSS</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id2">数据存储</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>思路: 分布式存储数据，训练时读写 HDFS 文件路径，</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://support.hdfgroup.org/pubs/papers/Big_HDF_FAQs.pdf">Hadoop + HDF5 + HBase</a></p></li>
+<li><p>Hadoop + HBase , LMDB?</p></li>
+</ul>
+</div></blockquote>
+<p>问题：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>数据以什么格式存储？（ <a class="reference external" href="https://stackoverflow.com/questions/49177531/storing-small-size-big-quantities-image-on-hdfs-for-later-processing">hadoop小文件bad？</a> ）</p></li>
+<li><p>对于图片数据，仅用于存储图片路径？包含图片数据?</p></li>
+<li><p>写代码时怎么操作HBase(+HDF5)</p></li>
+</ul>
+</div></blockquote>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id2">分布式文件系统</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p>Hadoop</p>
+</div>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id2">存储格式</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>HDF5: 通用数据格式（nasa），跨平台，I/O 弱于LMDB, 不支持croping操作? <a class="footnote-reference brackets" href="#footnotes" id="id6">1</a></p></li>
+<li><p>TFRrecords: 被诟病</p></li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h3><a class="toc-backref" href="#id2">数据库</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<p>目前许多大型互联网项目都会选用MySQL（或任何关系型数据库） + NoSQL的组合方案。</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 29%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>SQL</p></th>
+<th class="head"><p>NoSQL</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>实例</p></td>
+<td><p>MySQL, Postgres,</p></td>
+<td><p>MongoDB, Redis, Hbase, LevelDB, LMDB</p></td>
+</tr>
+</tbody>
+</table>
+<p>关系型数据库适合存储结构化数据，如用户的帐号、地址：</p>
+<ol class="arabic simple">
+<li><p>这些数据通常需要做结构化查询，比如join，这时候，关系型数据库就要胜出一筹</p></li>
+<li><p>这些数据的规模、增长的速度通常是可以预期的</p></li>
+<li><p>事务性、一致性</p></li>
+</ol>
+<p>NoSQL适合存储非结构化数据，如文章、评论：</p>
+<ol class="arabic simple">
+<li><p>这些数据通常用于模糊处理，如全文搜索、机器学习</p></li>
+<li><p>这些数据是海量的，而且增长的速度是难以预期的，</p></li>
+<li><p>根据数据的特点，NoSQL数据库通常具有无限（至少接近）伸缩性</p></li>
+<li><p>按key获取数据效率很高，但是对join或其他结构化查询的支持就比较差</p></li>
+</ol>
+<p>When training a model on the ImageNet dataset, the image ﬁle option was more than <code class="docutils literal notranslate"><span class="pre">17</span></code> times slower than the <strong>key-value</strong> storage option.</p>
+<p>For training deep neuralnetwork models, we suggest <strong>key-value</strong> based approaches to efﬁciently retrieve the <strong>image data</strong> . If the image data exceeds the capacity of local ﬁle systems, we might consider <strong>distributed key-value storage</strong> systems such as Redis, and HBase. However, we need to use the caution as the size of individual pixel arrays to be trained can be much larger than the desirable range of value sizes for key-value storages. For instance, HBase generally recommendsless than 100MB of value size <a class="footnote-reference brackets" href="#footnotes" id="id8">1</a></p>
+<p>It is orders of magnitude faster to first turn the images into a database (e.g. LMDB or level DB) <a class="footnote-reference brackets" href="#db2" id="id9">2</a></p>
+<ul class="simple">
+<li><p>LevelDB</p></li>
+<li><p>LMDB: I/O 操作快，支持不同程序同时读取</p></li>
+<li><p>HBase <a class="footnote-reference brackets" href="#db3" id="id10">3</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="pedestrain">
+<h2><a class="toc-backref" href="#id2">Pedestrain</a><a class="headerlink" href="#pedestrain" title="永久链接至标题">¶</a></h2>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 7%" />
+<col style="width: 86%" />
+<col style="width: 2%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>PRW</p></td>
+<td><p>reID</p></td>
+<td><ul class="simple">
+<li><p>videos acquired through six near-synchronized cameras,</p></li>
+<li><p>contains 932 identities and 11,816 frames,</p></li>
+<li><p>pedestrians are annotated with their bounding box positions and identities</p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/reID_db.png" src="../_images/reID_db.png" />
+</div>
+<div class="section" id="id11">
+<h2><a class="toc-backref" href="#id2">手写汉字</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h2>
+<ol class="arabic simple">
+<li><p>规范的
+- 北京邮电大学发布的HCL2000脱机手写数据库
+- 国家863中文手写评测数据
+- 中科院自动化研究所IAAS-4M手写汉字样本库: 3755个国标一级汉字、305个数码、符号、字母和若干个常用的繁体字，总计共4060个字符。每种字符有1000个样本，构成一个共有400万个字符样本的数据库。</p></li>
+<li><p>真实书写情况(局限于GB2312-80标准的6763类,并且数据总量仍然不够大)
+- 中国科学院发布的CASIA-OLHWDB1.0-1.2联机单字
+- CASIA-HWDB1.0-1.2文本行数据集
+- 华南理工大学发布的SCUT-COUCH</p></li>
+</ol>
+<p>ICDAR 2013 offline HCCR competition dataset</p>
+</div>
+<div class="section" id="nlp">
+<h2><a class="toc-backref" href="#id2">NLP</a><a class="headerlink" href="#nlp" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id12">
+<h3><a class="toc-backref" href="#id2">语料库</a><a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>NLTK中的Brown语料库</p></li>
+<li><p><a class="reference external" href="https://catalog.ldc.upenn.edu/ldc99t42">Penn Tree Bank (PTB)</a> dataset,</p></li>
+<li><p>WikiText-2</p></li>
+</ul>
+</div>
+<div class="section" id="id13">
+<h3><a class="toc-backref" href="#id2">阅读理解</a><a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><dl class="simple">
+<dt><abbr title="Stanford Question Answering Dataset">SQuAD</abbr></dt><dd><p>超过 10 万个问答对，并通过突出显示段落中的几个单词来让模型回答一个问题</p>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="id14">
+<h3><a class="toc-backref" href="#id2">自然语言推理</a><a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><dl class="simple">
+<dt><abbr title="Stanford Natural Language Inference">SNLI</abbr> Corpus</dt><dd><p>包含 57 万个人类写的英语句子对 <a class="reference external" href="https://nlp.stanford.edu/projects/snli/">links</a></p>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="id15">
+<h3><a class="toc-backref" href="#id2">机器翻译</a><a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h3>
+<p>WMT2014 的 4 千万个英语法语句子对</p>
+</div>
+<div class="section" id="chatbot">
+<h3><a class="toc-backref" href="#id2">chatbot</a><a class="headerlink" href="#chatbot" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="https://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html">Cornelll Movie-Dialog Corpus</a></p>
+</div>
+<div class="section" id="imagecaption">
+<h3><a class="toc-backref" href="#id2">ImageCaption</a><a class="headerlink" href="#imagecaption" title="永久链接至标题">¶</a></h3>
+<p>微软的COCO（CodaLab组织了一个排行榜；本地评测在这里）、Flickr8k、Flickr30k和SBU</p>
+</div>
+</div>
+<div class="section" id="ehr">
+<h2><a class="toc-backref" href="#id2">EHR</a><a class="headerlink" href="#ehr" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>Children’s Healthcare of Atlanta(CHOA)</p></li>
+<li><p>CMS dataset</p></li>
+</ul>
+<div class="section" id="css">
+<h3><a class="toc-backref" href="#id2">CSS</a><a class="headerlink" href="#css" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>├── Multi_Level_CCS_2015
+│   ├── ccs_multi_dx_tool_2015.csv    // icd-9 diagnose code to css code map
+│   ├── ccs_multi_pr_tool_2015.csv    // icd-9 procedure code to css code map
+│   ├── dxmlabel-13.csv
+│   ├── Multi_CCS_Load_Program.sas
+│   ├── Multi_CCS_Summary_Program.sas
+│   └── prmlabel-09.csv
+├── Single_Level_CSS_2015
+│   ├── dxlabel 2015.csv
+│   ├── $dxref 2015.csv    // icd-9 diagnose code to ccs code map
+│   ├── prlabel 2014.csv
+│   └── $prref 2015.csv    // icd-9 procedure code to ccs code map
+</pre></div>
+</div>
+<dl class="footnote brackets">
+<dt class="label" id="footnotes"><span class="brackets">1</span><span class="fn-backref">(<a href="#id6">1</a>,<a href="#id8">2</a>)</span></dt>
+<dd><p><a class="reference external" href="https://www.researchgate.net/publication/306056875_An_analysis_of_image_storage_systems_for_scalable_training_of_deep_neural_networks#footnotes">https://www.researchgate.net/publication/306056875_An_analysis_of_image_storage_systems_for_scalable_training_of_deep_neural_networks#footnotes</a></p>
+</dd>
+<dt class="label" id="db2"><span class="brackets"><a class="fn-backref" href="#id9">2</a></span></dt>
+<dd><p><a class="reference external" href="https://www.reddit.com/r/MachineLearning/comments/2nu5vf/how_to_store_millions_of_images_for_data_analysis/#db2">https://www.reddit.com/r/MachineLearning/comments/2nu5vf/how_to_store_millions_of_images_for_data_analysis/#db2</a></p>
+</dd>
+<dt class="label" id="db3"><span class="brackets"><a class="fn-backref" href="#id10">3</a></span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/16929832/difference-between-hbase-and-hadoop-hdfs#db3">https://stackoverflow.com/questions/16929832/difference-between-hbase-and-hadoop-hdfs#db3</a></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="metrics.html" class="btn btn-neutral float-right" title="性能指标" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="文献资料" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

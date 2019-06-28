@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GAN &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="GCN" href="GCN.html" />
+    <link rel="prev" title="RNN" href="RNN.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">算法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="image_process.html">图像处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machine_learning.html">机器学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression.html">回归分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deep_learning.html">深度学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta_learning.html">元学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RNN.html">RNN</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GAN</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">基础知识</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">存在的问题</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">GAN的变形</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cgan">CGAN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dcgan">DCGAN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#acgan-gan">ACGAN（辅助类别的GAN）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#infogan">infoGAN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lsgan">LSGAN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lapgan">LAPGAN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pix2pix">pix2pix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wgan">WGAN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgan-boundary-seeking-gan">BGAN（Boundary-Seeking GAN）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gan-stacked-gan">GAN(Stacked GAN)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#gan-nlg-ntg">GAN 在NLG/NTG中的应用</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">GAN为何不能直接用于文本生成 </a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="GCN.html">GCN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NLP.html">NLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Transformer.html">Attention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stanford_notes.html">斯坦福课程笔记</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">算法</a> &raquo;</li>
+        
+      <li>GAN</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/algorithm/GAN.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gan">
+<span id="id1"></span><h1>GAN<a class="headerlink" href="#gan" title="永久链接至标题">¶</a></h1>
+<div class="contents local topic" id="id2">
+<ul class="simple">
+<li><p><a class="reference internal" href="#id3" id="id10">基础知识</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id4" id="id11">结构</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id12">存在的问题</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id7" id="id13">GAN的变形</a></p>
+<ul>
+<li><p><a class="reference internal" href="#cgan" id="id14">CGAN</a></p></li>
+<li><p><a class="reference internal" href="#dcgan" id="id15">DCGAN</a></p></li>
+<li><p><a class="reference internal" href="#acgan-gan" id="id16">ACGAN（辅助类别的GAN）</a></p></li>
+<li><p><a class="reference internal" href="#infogan" id="id17">infoGAN</a></p></li>
+<li><p><a class="reference internal" href="#lsgan" id="id18">LSGAN</a></p></li>
+<li><p><a class="reference internal" href="#lapgan" id="id19">LAPGAN</a></p></li>
+<li><p><a class="reference internal" href="#pix2pix" id="id20">pix2pix</a></p></li>
+<li><p><a class="reference internal" href="#wgan" id="id21">WGAN</a></p></li>
+<li><p><a class="reference internal" href="#bgan-boundary-seeking-gan" id="id22">BGAN（Boundary-Seeking GAN）</a></p></li>
+<li><p><a class="reference internal" href="#gan-stacked-gan" id="id23">GAN(Stacked GAN)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#gan-nlg-ntg" id="id24">GAN 在NLG/NTG中的应用</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id9" id="id25">GAN为何不能直接用于文本生成 </a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id2">基础知识</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id2">结构</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p>生成对抗网络（GAN，Generative Adversarial Networks）的基本原理其实非常简单，以生成图片为例，假设我们有两个网络，G（Generator）和D（Discriminator），它们的功能分别是:</p>
+<ul class="simple">
+<li><p>G是一个生成图片的网络，它接收一个随机的噪声z，通过这个噪声生成图片，记做G(z)。</p></li>
+<li><p>D是一个判别网络，接收一张图片，输出D(x)代表x为真实图片的概率。</p></li>
+</ul>
+<p>在训练过程中，生成网络G的目标就是尽可能生成真实的图片去欺骗判别网络D；而D的目标就是尽量把G生成的图片和真实的图片分别开来。这样，G和D构成了一个动态的“博弈过程”。</p>
+<p>在最理想的状态下，最后博弈的结果是：G可以生成足以“以假乱真”的图片G(z)；而D因为难以判定G生成的图片究竟是不是真实的，<span class="math notranslate nohighlight">\(D(G(\boldsymbol{z}))=0.5\)</span> 。这样我们的目的就达成了，用数学语言描述这一过程如下：</p>
+<div class="math notranslate nohighlight">
+\[\min_G \max_D V(D, G) = \mathbb{E}_{\boldsymbol{x}\sim p_{data}(\boldsymbol{x})}[\log D(\boldsymbol{x})] +
+\mathbb{E}_{\boldsymbol{z}\sim p_{\boldsymbol{z}}(\boldsymbol{z})}[\log (1-D(G(\boldsymbol{z})))]\]</div>
+<p>其中， <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> 表示真实图片， <span class="math notranslate nohighlight">\(\boldsymbol{z}\)</span> 表示输入G网络的噪声， <span class="math notranslate nohighlight">\(G(\boldsymbol{z})\)</span> 表示G网络生成的图片， <span class="math notranslate nohighlight">\(D(\boldsymbol{x})\)</span> 表示D网络判断真实图片是否真实的概率。</p>
+<ul class="simple">
+<li><p>G的目的： <span class="math notranslate nohighlight">\(D(G(\boldsymbol{z}))\)</span> 是D网络判断G生成的图片是否真实的概率，G应该希望自己生成的图片“越接近真实越好”。也就是说，G希望 <span class="math notranslate nohighlight">\(D(G(\boldsymbol{z}))\)</span> 尽可能得大，这时 <span class="math notranslate nohighlight">\(V(D, G)\)</span> 会变小。因此 <span class="math notranslate nohighlight">\(\min_G\)</span> 。</p></li>
+<li><p>D的目的：D的能力越强，D(x)应该越大， <span class="math notranslate nohighlight">\(D(G(\boldsymbol{z}))\)</span> 该越小, 这时 <span class="math notranslate nohighlight">\(V(D,G)\)</span> 会变大。因此 <span class="math notranslate nohighlight">\(\max_D\)</span></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>对于生成器，Goodfellow一开始提出来一个损失函数，后来又提出了一个改进的损失函数，分别是</p>
+<p><span class="math notranslate nohighlight">\(\mathbb{E}_{\boldsymbol{z}\sim p_{\boldsymbol{z}}(\boldsymbol{z})}[\log (1-D(G(\boldsymbol{z})))]\)</span> 在最优判别器下等价于最小化生成分布与真实分布之间的JS散度</p>
+<p><span class="math notranslate nohighlight">\(\mathbb{E}_{\boldsymbol{z}\sim p_{\boldsymbol{z}}(\boldsymbol{z})}[- \log D(G(\boldsymbol{z}))]\)</span>  在最优判别器下等价于既要最小化生成分布与真实分布之间的KL散度，又要最大化其JS散度</p>
+<p>前者会导致：判别器越好，生成器梯度消失越严重</p>
+<p>后者会导致：两个问题，一是梯度不稳定，二是collapse mode即多样性不足</p>
+</div>
+</div>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id2">存在的问题</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<p>GAN目前存在的主要问题:</p>
+<ol class="arabic simple">
+<li><p>不收敛（non-convergence）的问题: 所有的理论都认为 GAN 应该在纳什均衡（Nash equilibrium）上有卓越的表现，但梯度下降只有在凸函数的情况下才能保证实现纳什均衡。当博弈双方都由神经网络表示时，在没有实际达到均衡的情况下，让它们永远保持对自己策略的调整是可能的</p></li>
+<li><p>原始目标函数没有意义，难以训练/崩溃问题（collapse problem）:GAN模型被定义为极小极大问题，没有损失函数，在训练过程中很难区分是否正在取得进展。GAN的学习过程可能发生崩溃问题（collapse problem），生成器开始退化，总是生成同样的样本点，无法继续学习。当生成模型崩溃时，判别模型也会对相似的样本点指向相似的方向，训练无法继续。</p></li>
+<li><p>自由度过高：无需预先建模，模型过于自由不可控</p></li>
+</ol>
+<p>解决问题3的工作：</p>
+<ul class="simple">
+<li><p>partial guidance: 为原始GAN加上一些显式的外部信息</p></li>
+<li><p>fine-grained guidance: 让GAN的生成过程拆解到多步，从而实现“无监督”</p></li>
+<li><p>special architecture</p></li>
+</ul>
+<div class="figure align-center">
+<img alt="../_images/GAN_solution3.png" src="../_images/GAN_solution3.png" />
+</div>
+<p>解决问题1的工作：</p>
+<ul class="simple">
+<li><p>encoder-incorporated: 在原始G和D之上再加上一个自动编码器</p></li>
+<li><p>noisy input:</p></li>
+<li><p>encoders-constrained:</p></li>
+</ul>
+<div class="figure align-center">
+<img alt="../_images/GAN_solution1.png" src="../_images/GAN_solution1.png" />
+</div>
+<p><a class="reference external" href="https://zhuanlan.zhihu.com/p/28487633">一些训练技巧</a></p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id2">GAN的变形</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<div class="section" id="cgan">
+<h3><a class="toc-backref" href="#id2">CGAN</a><a class="headerlink" href="#cgan" title="永久链接至标题">¶</a></h3>
+<p>条件生成式对抗网络（CGAN, Conditional Generative Adversarial Nets）</p>
+<p>在生成模型（D）和判别模型（G）的建模中均引入条件变量y（conditional variable y），使用额外信息y对模型增加条件，可以指导数据生成过程。</p>
+</div>
+<div class="section" id="dcgan">
+<h3><a class="toc-backref" href="#id2">DCGAN</a><a class="headerlink" href="#dcgan" title="永久链接至标题">¶</a></h3>
+<p>深度卷积生成式对抗网络(DCGAN，Deep Convolutional Generative Adversarial Nerworks)指出了许多对于GAN这种不稳定学习方式重要的架构设计和针对CNN这种网络的特定经验。</p>
+<p>DCGAN的原理和GAN是一样的，只是把G和D换成了两个卷积神经网络。但不是直接换就可以了，DCGAN对卷积神经网络的结构做了一些改变，以提高样本的质量和收敛的速度：</p>
+<ul class="simple">
+<li><p>取消所有pooling层。G网络中使用转置卷积（transposed convolutional layer）进行上采样，D网络中用加入stride的卷积代替pooling。</p></li>
+<li><p>在D和G中均使用batch normalization</p></li>
+<li><p>去掉FC层，使网络变为全卷积网络</p></li>
+<li><p>G网络中使用ReLU作为激活函数，最后一层使用tanh</p></li>
+<li><p>D网络中使用LeakyReLU作为激活函数</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/carpedm20/DCGAN-tensorflow">DCGAN-tensorflow(github)</a></p>
+</div>
+<div class="section" id="acgan-gan">
+<h3><a class="toc-backref" href="#id2">ACGAN（辅助类别的GAN）</a><a class="headerlink" href="#acgan-gan" title="永久链接至标题">¶</a></h3>
+<p>GAN不同的是它在判别器D的真实数据x也加入了类别c的信息，这样就进一步告诉G网络该类的样本结构如何，从而生成更好的类别模拟</p>
+</div>
+<div class="section" id="infogan">
+<h3><a class="toc-backref" href="#id2">infoGAN</a><a class="headerlink" href="#infogan" title="永久链接至标题">¶</a></h3>
+</div>
+<div class="section" id="lsgan">
+<h3><a class="toc-backref" href="#id2">LSGAN</a><a class="headerlink" href="#lsgan" title="永久链接至标题">¶</a></h3>
+<p>传统GAN中, D网络和G网络都是用简单的交叉熵loss做更新, 最小二乘GAN则用最小二乘(Least Squares) Loss 做更新:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}L_D &amp;= \mathbb{E}[(D(\boldsymbol{x})-1)^2] + \mathbb{E}[D(G(\boldsymbol{z}))^2]\\L_G &amp;= \mathbb{E}[D(G(\boldsymbol{z})-1)^2]\end{aligned}\end{align} \]</div>
+<p>选择最小二乘Loss做更新有两个好处,</p>
+<ol class="arabic simple">
+<li><p>更严格地惩罚远离数据集的离群Fake sample, 使得生成图片更接近真实数据(同时图像也更清晰)</p></li>
+<li><p>最小二乘保证离群sample惩罚更大, 解决了原本GAN训练不充分(不稳定)的问题:</p></li>
+</ol>
+<p>但缺点也是明显的, LSGAN对离群点的过度惩罚, 可能导致样本生成的”多样性”降低, 生成样本很可能只是对真实样本的简单”模仿”和细微改动</p>
+</div>
+<div class="section" id="lapgan">
+<h3><a class="toc-backref" href="#id2">LAPGAN</a><a class="headerlink" href="#lapgan" title="永久链接至标题">¶</a></h3>
+<p>拉普拉斯金字塔生成式对抗网络(LAPGAN, Laplacian Pyramid of Adversarial Networks)</p>
+<p>不要让 GAN 一次完成全部任务，而是一次生成一部分，分多次生成一张完整的图片</p>
+<p><a class="reference external" href="https://github.com/facebook/eyescream">eyescream(github)</a></p>
+</div>
+<div class="section" id="pix2pix">
+<h3><a class="toc-backref" href="#id2">pix2pix</a><a class="headerlink" href="#pix2pix" title="永久链接至标题">¶</a></h3>
+<p>pix2pix 中 G 和 D 使用的网络都是 U-Net 结构，是一种 encoder-decoder 完全对称的结构，并且在这样的结构中加入了 skip-connection 的使用, 效果十分惊艳</p>
+<p>kip-connection 不仅使得梯度传导更通畅，网络训练更容易，也因为这类工作多数是要学习图片之间的映射，那么让 encoder 和 decoder 之间一一对应的层学到尽可能匹配的特征将会对生成图片的效果产生非常正面的影响。</p>
+</div>
+<div class="section" id="wgan">
+<h3><a class="toc-backref" href="#id2">WGAN</a><a class="headerlink" href="#wgan" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="https://zhuanlan.zhihu.com/p/25071913">令人拍案叫绝的Wasserstein GAN</a></p>
+<ul class="simple">
+<li><p>彻底解决GAN训练不稳定的问题，不再需要小心平衡生成器和判别器的训练程度</p></li>
+<li><p>基本解决了collapse mode的问题，确保了生成样本的多样性</p></li>
+<li><p>训练过程中终于有一个像交叉熵、准确率这样的数值来指示训练的进程，这个数值越小代表GAN训练得越好，代表生成器产生的图像质量越高</p></li>
+<li><p>以上一切好处不需要精心设计的网络架构，最简单的多层全连接网络就可以做到</p></li>
+</ul>
+<p>而改进后相比原始GAN的算法实现流程却只改了四点：</p>
+<ul class="simple">
+<li><p>判别器最后一层去掉sigmoid</p></li>
+<li><p>生成器和判别器的loss不取log</p></li>
+<li><p>每次更新判别器的参数之后把它们的绝对值截断到不超过一个固定常数c</p></li>
+<li><p>不要用基于动量的优化算法（包括momentum和Adam），推荐RMSProp，SGD也行</p></li>
+</ul>
+<p>但是, 有时一味地通过裁剪weight参数的方式保证训练稳定性, 可能导致生成低质量低清晰度的图片, 因此出现了 WGAN-GP</p>
+<blockquote>
+<div><p>WGAN-GP舍弃裁剪D网络weights参数的方式, 而是采用裁剪D网络梯度的方式(依据输入数据裁剪), WGAN-GP在某些情况下是WGAN的改进, 但是如果你已经用了一些可靠的GAN方法, 其实差距并不大.</p>
+</div></blockquote>
+</div>
+<div class="section" id="bgan-boundary-seeking-gan">
+<h3><a class="toc-backref" href="#id2">BGAN（Boundary-Seeking GAN）</a><a class="headerlink" href="#bgan-boundary-seeking-gan" title="永久链接至标题">¶</a></h3>
+<p>BGAN优势在于生成离散样本（当然像图像这样的连续样本也可以支持）。</p>
+<p>BGAN的生成器以不断生成决策边界上的样本为目标</p>
+</div>
+<div class="section" id="gan-stacked-gan">
+<h3><a class="toc-backref" href="#id2">GAN(Stacked GAN)</a><a class="headerlink" href="#gan-stacked-gan" title="永久链接至标题">¶</a></h3>
+<p>SGAN是一种结构创新的GAN，通过堆叠多个GAN网络，实现生成模型的信息“分层化”</p>
+</div>
+</div>
+<div class="section" id="gan-nlg-ntg">
+<h2><a class="toc-backref" href="#id2">GAN 在NLG/NTG中的应用</a><a class="headerlink" href="#gan-nlg-ntg" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id2">GAN为何不能直接用于文本生成 <a class="footnote-reference brackets" href="#rl-gan" id="id8">1</a></a><a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p><a class="reference download internal" download="" href="../_downloads/1d978f1ef2016fcfdf30b41ae8837d7c/Role_of_RL_in_Text_Generation_by_GAN.pdf"><code class="xref download docutils literal notranslate"><span class="pre">RL</span> <span class="pre">&amp;</span> <span class="pre">GAN</span></code></a></p>
+</div></blockquote>
+<div class="topic">
+<p class="topic-title first">啥是离散型数据？</p>
+<p>这里所谓的离散，并不是指：文本由一个词一个词组成，而是指文本本身的取值是不连续的</p>
+</div>
+<p>GAN的作者早在原版论文时就提及，GAN只适用于连续型数据的生成，对于离散型数据效果不佳，原因在于，当前神经网络的优化方法大多数都是基于梯度的，GAN在面对离散型数据时，判别网络无法将梯度Back propagation（BP）给生成网络。</p>
+<p>我们知道，基于梯度的优化方法大致意思是这样的，微调网络中的参数，看看最终输出的结果有没有变得好一点，有没有达到最好的情形。</p>
+<p>但是对于离散数据，判别器D从生成器G得到的是Sampling (即将softmax输出的结果过渡到One-hot vector 然后再从词库中查询出对应index的词)之后的结果，也就是说，经过参数微调之后，即便softmax的输出优化了一点点，但是G输出的结果还是跟以前一模一样，并再次将相同的答案重复输入给D，这样D给出的评价就会毫无意义，G的训练也会失去方向。</p>
+<p>那么能不能每次给D直接吃Sampling之前的结果，也就是softamx输出的那个distribution? 答案是否定的。判别器D的初衷是为了准确辨别生成样本和真实样本的，当生成样本是一个充满了float小数的分布，而真实样本是一个One-hot Vector时，判别器D很容易“作弊”，它根本不用去判断生成分布是否与真实分布更加接近，它只需要识别出给到的分布是不是除了一项是 1，其余都是0就可以了。所以无论Sampling之前的分布多么接近于真实的One-hot Vector，只要它依然是一个概率分布，都可以被判别器D轻易地检测出来。</p>
+<p>上面所说的原因当然也有数学上的解释，生成样本的loss衡量标准是JS散度，它在应用上其实是有弱点的，它只能被正常地应用于互有重叠（Overlap）的两个分布，当面对互不重叠的两个分布 <span class="math notranslate nohighlight">\(P\)</span> 和 <span class="math notranslate nohighlight">\(Q\)</span> ，其JS散度：</p>
+<div class="math notranslate nohighlight">
+\[JSD(P\parallel Q) \equiv log2\]</div>
+<p>因此，除非softmax能output出与真实样本 exactly 相同的独热分布（One-hot Vector）（当然这是不可能的），否则，生成器无论怎么做基于Gradient 的优化，输出分布与真实分布的始终是 <span class="math notranslate nohighlight">\(log2\)</span> ，G的训练于是失去了意义。</p>
+<dl class="footnote brackets">
+<dt class="label" id="rl-gan"><span class="brackets"><a class="fn-backref" href="#id8">1</a></span></dt>
+<dd><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/29168803">https://zhuanlan.zhihu.com/p/29168803</a></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="GCN.html" class="btn btn-neutral float-right" title="GCN" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="RNN.html" class="btn btn-neutral float-left" title="RNN" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

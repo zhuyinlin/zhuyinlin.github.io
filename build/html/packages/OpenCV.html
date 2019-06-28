@@ -1,0 +1,520 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OpenCV &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="平台搭建" href="../platform/index.html" />
+    <link rel="prev" title="caffe 学习笔记" href="caffe.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">常用第三方包</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tensorflow.html">tensorflow 学习笔记</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caffe.html">caffe 学习笔记</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">OpenCV</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install">Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-in-mac">Usage in mac</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cmake-1-2">使用CMake  , </a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xcode-opencv">为 Xcode 配置 OpenCV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eclipse-opencv-3">为 Eclipse 配置 OpenCV </a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-in-as">Usage in AS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debug-with-gdb">Debug with gdb</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#c-code">C++ code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mat">Mat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">常用第三方包</a> &raquo;</li>
+        
+      <li>OpenCV</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/packages/OpenCV.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="opencv">
+<h1>OpenCV<a class="headerlink" href="#opencv" title="永久链接至标题">¶</a></h1>
+<div class="section" id="install">
+<h2>Install<a class="headerlink" href="#install" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>ubuntu <a class="reference internal" href="../os/ubuntu.html#opencv-install-ubuntu"><span class="std std-ref">opencv</span></a></p></li>
+<li><p>mac <a class="reference internal" href="../os/mac.html#opencv-install-mac"><span class="std std-ref">OpenCV</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="usage-in-mac">
+<h2>Usage in mac<a class="headerlink" href="#usage-in-mac" title="永久链接至标题">¶</a></h2>
+<div class="section" id="cmake-1-2">
+<h3>使用CMake <a class="footnote-reference brackets" href="#id5" id="id1">1</a> , <a class="footnote-reference brackets" href="#id6" id="id2">2</a><a class="headerlink" href="#cmake-1-2" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><ol class="loweralpha">
+<li><p>新建BlurImage.cpp文件</p></li>
+<li><p>新建CMakeLists.txt文件，代码如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cmake_minimum_required(VERSION 2.8)
+project( BlurImage )
+find_package( OpenCV )
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+add_executable( BlurImage BlurImage.cpp )
+target_link_libraries( BlurImage ${OpenCV_LIBS} )
+</pre></div>
+</div>
+</li>
+<li><p>编译两个文件</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> &lt;path/to/application/folder&gt;
+$ /usr/local/Cellar/cmake/3.4.1/bin/cmake .i
+$ make
+</pre></div>
+</div>
+</li>
+<li><p>运行编译好的结果</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./BlurImage lena.jpg
+</pre></div>
+</div>
+</li>
+</ol>
+<p>之后新的编程需要做的就是 add your own .cpp file and alter the .txt file. Then follow the above commands.</p>
+</div></blockquote>
+</div>
+<div class="section" id="xcode-opencv">
+<span id="opencv-with-xcode"></span><h3>为 Xcode 配置 OpenCV<a class="headerlink" href="#xcode-opencv" title="永久链接至标题">¶</a></h3>
+<div class="section" id="command-line">
+<h4>command line工程<a class="headerlink" href="#command-line" title="永久链接至标题">¶</a></h4>
+<blockquote>
+<div><p>打开Xcode，新建一个command line工程：工程名字TestOpenCVDemo，注意语言选择C++。这样C++的HelloWorld就建好了，编译应该能正常运行。接下来先来配置Xcode再来写代码：</p>
+<ol class="loweralpha">
+<li><p>添加lib文件查找支持：</p>
+<p>最左边选中工程，然后右边选中Targets，在BuildSettings下，右边搜索框里输入search，很快就能找到Search Paths设置项。在Header Search Paths里输入 <code class="docutils literal notranslate"><span class="pre">/usr/local/include</span></code>  在Library Search Paths里输入 <code class="docutils literal notranslate"><span class="pre">/usr/local/lib</span></code></p>
+<div class="figure align-center">
+<img alt="../_images/opencv1.png" src="../_images/opencv1.png" />
+</div>
+<p>接着在Build Phases里找到Link Binary With Libraries，点击＋号</p>
+<div class="figure align-center">
+<img alt="../_images/opencv2.png" src="../_images/opencv2.png" />
+</div>
+<p>选择add other，然后按下／键，输入lib的路径 <code class="docutils literal notranslate"><span class="pre">/usr/local/lib</span></code> ,点go：</p>
+<div class="figure align-center">
+<img alt="../_images/opencv3.png" src="../_images/opencv3.png" />
+</div>
+<div class="figure align-center">
+<img alt="../_images/opencv4.png" src="../_images/opencv4.png" />
+</div>
+</li>
+<li><p>添加lib文件：</p>
+<p>然后就是选择OpenCV的库了，用哪个添加哪个，没必要都添加完。我们添加最基础的几个:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">libopencv_core</span><span class="o">.</span><span class="mf">2.4</span><span class="o">.</span><span class="mf">11.</span><span class="n">dylib</span>
+<span class="n">libopencv_highgui</span><span class="o">.</span><span class="mf">2.4</span><span class="o">.</span><span class="mf">11.</span><span class="n">dylib</span>
+<span class="n">libopencv_imgproc</span><span class="o">.</span><span class="mf">2.4</span><span class="o">.</span><span class="mf">11.</span><span class="n">dylib</span>
+<span class="n">libopencv_ml</span><span class="o">.</span><span class="mf">2.4</span><span class="o">.</span><span class="mf">11.</span><span class="n">dylib</span>
+</pre></div>
+</div>
+<p>可以按下command实现多选。添加上面这四个最常用的就可以胜任本次的测试代码了。添加完毕后可以在左侧看到：</p>
+<div class="figure align-center">
+<img alt="../_images/opencv5.png" src="../_images/opencv5.png" />
+</div>
+</li>
+<li><p>添加头文件：</p>
+<p>点击工程名文件，进入“Build Settings”选项卡，在“Header Search Paths”栏中输入 <code class="docutils literal notranslate"><span class="pre">/usr/local/include</span>&#160; <span class="pre">/usr/local/include/opencv</span></code></p>
+<p>在main.cpp里输入以下内容，实现显示一张照片及显示灰度化后的结果</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//  main.cpp</span>
+<span class="c1">//  TestOpenCV</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="cp">#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">cv</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="c1">// insert code here...</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Hello, World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+    <span class="n">string</span> <span class="n">path</span> <span class="o">=</span> <span class="s">&quot;/Users/Emily/Downloads/123.jpg&quot;</span><span class="p">;</span>
+    <span class="n">Mat</span> <span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">path</span><span class="p">);</span>
+    <span class="n">namedWindow</span><span class="p">(</span><span class="s">&quot;NanHuaiJin&quot;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">image</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+        <span class="n">imshow</span><span class="p">(</span><span class="s">&quot;NanHuaiJin&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">Mat</span> <span class="n">gray</span><span class="p">;</span>
+    <span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">gray</span><span class="p">,</span> <span class="n">COLOR_RGBA2GRAY</span><span class="p">);</span>
+    <span class="n">namedWindow</span><span class="p">(</span><span class="s">&quot;gray&quot;</span><span class="p">);</span>
+    <span class="n">imshow</span><span class="p">(</span><span class="s">&quot;gray&quot;</span><span class="p">,</span> <span class="n">gray</span><span class="p">);</span>
+    <span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div></blockquote>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>在第3步，对于C++版的OpenCV，会出现下面的错误:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Undefined symbols for architecture x86_64
+“cv::imshow(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt; const&amp;, cv::_InputArray const&amp;)”, referenced from:_main in main1.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use-v to see invocation)
+</pre></div>
+</div>
+<p>解决方法为:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Open Build Settings by double-clicking on the project name with the Xcode icon.
+In this window, under “Architectures” section, set “Base SDK” to “Current OX S”.
+Now scroll down to “Apple LLVM compiler 4.1 – Language” section.
+In “C++ Language Dialect”, change it to “Compiler Default”. In “C++ Standard Library”, change it from “libc++ (LLVM …)” to “libstdc++ (GNU C++ …)”
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ios">
+<h4>iOS 工程<a class="headerlink" href="#ios" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>opencv: 下载 .framework 添加到项目中</p></li>
+<li><p>opencv_contribe for ios: 下载opencv 及 contrib 源码， 将contrib modules 下要用到的模块拷贝到opencv moduls下，然后根据 platforms/ios 下的 readme 编译</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="eclipse-opencv-3">
+<h3>为 Eclipse 配置 OpenCV <a class="footnote-reference brackets" href="#id7" id="id3">3</a><a class="headerlink" href="#eclipse-opencv-3" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><ol class="loweralpha">
+<li><p>安装带有CDT（C/C++ Development Tooling）的Eclipse,使用eclipse建立一个Mac C++工程，包含一个cpp文件</p></li>
+<li><p>右击工程名, 选择“Properties”，在属性配置页中选择，点击C/C++ Build, 在下拉选项中选择 Settings. 在右边的选项卡中选择 Tool Settings</p></li>
+<li><p>在GCC C++ Compiler选项列表中选择Includes，在Include paths(-l)中添加安装好的opencv的头文件存放目录 <code class="docutils literal notranslate"><span class="pre">/usr/local/include/</span></code> (注意最后面的/不能少)</p>
+<p>如果不知道目录，在命令行输入pkg-config –cflags opencv</p>
+</li>
+<li><p>在MacOS X C++Linker选项列表中选择Library，在Library search path (-L)中添加安装好的opencv Lib文件存放目录：/usr/local/lib/</p>
+<p>如果不知道目录，在命令行输入pkg-config –libs opencv</p>
+</li>
+<li><p>MacOS X C++Linker选项列表中选择Library, 在Libraries(-l) 中依次点击“＋”号，添加需要使用的Lib文件(通常情况下，使用前三个):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">opencv_core</span>
+<span class="n">opencv_imgproc</span>
+<span class="n">opencv_highgui</span>
+<span class="n">opencv_ml</span>
+<span class="n">opencv_video</span>
+<span class="n">opencv_features2d</span>
+<span class="n">opencv_calib3d</span>
+<span class="n">opencv_objdetect</span>
+<span class="n">opencv_contrib</span>
+<span class="n">opencv_legacy</span>
+<span class="n">opencv_flann</span>
+</pre></div>
+</div>
+</li>
+<li><p>重新build all工程</p></li>
+</ol>
+</div></blockquote>
+<p>出现失败情况:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">launch</span> <span class="n">failed</span> <span class="n">binary</span> <span class="ow">not</span> <span class="n">found</span>
+</pre></div>
+</div>
+<p>解决: File - New - C++ project - 输入工程名称 - 下面Project type 选择Executable里的HelloWorld C++ Project - Finish - 不要运行 - Project -build project - 左侧工程目录下多了一个binaries目录，成功！</p>
+<p>很神奇的是，必须严格按照这个流程来创建工程，否则人品好的话，或许会有binaries目录。经多次试验，上述流程最佳对于要输入参数的程序：参考 <a class="footnote-reference brackets" href="#id7" id="id4">3</a></p>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="http://blogs.wcode.org/2014/10/howto-install-build-and-use-opencv-macosx-10-10/">http://blogs.wcode.org/2014/10/howto-install-build-and-use-opencv-macosx-10-10/</a></p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="http://docs.opencv.org/2.4/doc/tutorials/introduction/linux_gcc_cmake/linux_gcc_cmake.html#linux-gcc-usage">http://docs.opencv.org/2.4/doc/tutorials/introduction/linux_gcc_cmake/linux_gcc_cmake.html#linux-gcc-usage</a></p>
+</dd>
+<dt class="label" id="id7"><span class="brackets">3</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id4">2</a>)</span></dt>
+<dd><p><a class="reference external" href="http://docs.opencv.org/2.4/doc/tutorials/introduction/linux_eclipse/linux_eclipse.html#linux-eclipse-usage">http://docs.opencv.org/2.4/doc/tutorials/introduction/linux_eclipse/linux_eclipse.html#linux-eclipse-usage</a></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="usage-in-as">
+<h2>Usage in AS<a class="headerlink" href="#usage-in-as" title="永久链接至标题">¶</a></h2>
+<p>参考 <a class="reference internal" href="../platform/AndroidStudio.html#opencv-with-as"><span class="std std-ref">OpenCV</span></a></p>
+</div>
+<div class="section" id="debug-with-gdb">
+<h2>Debug with gdb<a class="headerlink" href="#debug-with-gdb" title="永久链接至标题">¶</a></h2>
+<p>写一个 python 脚本，然后在运行gdb 以后，输入 <cite>source &lt;script.py&gt;</cite>, 即可使用其中的命令</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>如果python脚本写得有问题，可能会影响debug，例如python中输出int类型的mat, 而实际调试的mat是float 类型，那么输出的结果就是错误的</p>
+</div>
+<p>打印mat</p>
+<p>显示图片</p>
+</div>
+<div class="section" id="c-code">
+<h2>C++ code<a class="headerlink" href="#c-code" title="永久链接至标题">¶</a></h2>
+<div class="section" id="mat">
+<h3>Mat<a class="headerlink" href="#mat" title="永久链接至标题">¶</a></h3>
+<p>Mat 的数据格式</p>
+<blockquote>
+<div><table class="docutils align-center">
+<colgroup>
+<col style="width: 51%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 16%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>CV_(bits)(type)/channel</p></td>
+<td><p>C1</p></td>
+<td><p>C2</p></td>
+<td><p>C3</p></td>
+<td><p>C4</p></td>
+<td><p>Mat.at</p></td>
+</tr>
+<tr class="row-even"><td><p>CV_8U</p></td>
+<td><p>0</p></td>
+<td><p>8</p></td>
+<td><p>16</p></td>
+<td><p>24</p></td>
+<td><p>uchar</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV_8S</p></td>
+<td><p>1</p></td>
+<td><p>9</p></td>
+<td><p>17</p></td>
+<td><p>25</p></td>
+<td><p>schar</p></td>
+</tr>
+<tr class="row-even"><td><p>CV_16U</p></td>
+<td><p>2</p></td>
+<td><p>10</p></td>
+<td><p>18</p></td>
+<td><p>26</p></td>
+<td><p>ushort</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV_16S</p></td>
+<td><p>3</p></td>
+<td><p>11</p></td>
+<td><p>19</p></td>
+<td><p>27</p></td>
+<td><p>short</p></td>
+</tr>
+<tr class="row-even"><td><p>CV_32S</p></td>
+<td><p>4</p></td>
+<td><p>12</p></td>
+<td><p>29</p></td>
+<td><p>28</p></td>
+<td><p>int</p></td>
+</tr>
+<tr class="row-odd"><td><p>CV_32F</p></td>
+<td><p>5</p></td>
+<td><p>13</p></td>
+<td><p>21</p></td>
+<td><p>29</p></td>
+<td><p>float</p></td>
+</tr>
+<tr class="row-even"><td><p>CV_64F</p></td>
+<td><p>6</p></td>
+<td><p>14</p></td>
+<td><p>22</p></td>
+<td><p>30</p></td>
+<td><p>double</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>Mat 属性</p>
+<blockquote>
+<div><p>Mat.rows
+Mat.cols
+Mat.channels
+Mat.rowRange(r1, r2).colRange(c1,c2)
+Mat.type()</p>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../platform/index.html" class="btn btn-neutral float-right" title="平台搭建" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="caffe.html" class="btn btn-neutral float-left" title="caffe 学习笔记" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

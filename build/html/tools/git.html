@@ -1,0 +1,627 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Git &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="vim" href="vim.html" />
+    <link rel="prev" title="浏览器" href="browser.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">工具</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="browser.html">浏览器</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Git</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Git 基础命令</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">新建 Git 项目</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">版本控制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">重写历史</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gitignore">.gitignore 文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">查看文件修改前后区别</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#log">个性化 log 输出</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">保存当前工作</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">分支</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#submodule">submodule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">复制工程项目</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">上传自己的更改</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">基于Git的团队合作</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id11">一般流程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">分支结构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mac-git-server">mac 上搭建 git server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ubuntu-git-server">ubuntu 上搭建git server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">错误集锦</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vim.html">vim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#tmux">tmux</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">工具</a> &raquo;</li>
+        
+      <li>Git</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tools/git.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="git">
+<h1>Git<a class="headerlink" href="#git" title="永久链接至标题">¶</a></h1>
+<p><a class="reference external" href="https://git-scm.com/doc">Documentation</a></p>
+<div class="section" id="id1">
+<h2>Git 基础命令<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id2">
+<h3>新建 Git 项目<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git init
+</pre></div>
+</div>
+<p>此时文件所在目录会生成 <code class="docutils literal notranslate"><span class="pre">.git</span></code> 文件。Git 项目包含3部分:</p>
+<ul class="simple">
+<li><p><strong>Working Directory</strong>: where you’ll be doing all the work: creating, editing, deleting and organizing files</p></li>
+<li><p><strong>Staging Area</strong>: where you’ll list changes you make to the working directory</p></li>
+<li><p><strong>Repository</strong>: where Git permanently stores those changes as different versions of the project</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>版本控制<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 查看 Git 项目状态</span>
+git status   <span class="c1"># “Untracted files” 下的红色文件是 Git 检测到，但没开始追踪的文件</span>
+
+<span class="c1"># 将文件添加到追踪(add to the staging area )</span>
+git add &lt;filename1&gt; &lt;filename2&gt; ...  <span class="c1"># 注意：修改完后记得用此命令将文件添加到追踪中</span>
+git add -A  <span class="c1"># add all, 会自动忽略.gitignore 文件中指定的文件</span>
+git add -u  <span class="c1"># add tracked file</span>
+
+<span class="c1"># 从 staging area 删除 add 的内容（前提是未 commit ）</span>
+git reset HEAD &lt;filename&gt;  <span class="c1"># &quot;Unstaged changes after reset&quot; 下现实的是删除的内容</span>
+
+<span class="c1"># 提交修改(Commit the changes to the repository)</span>
+git commit -m <span class="s2">&quot;some describe words&quot;</span>  <span class="c1"># 每次commit 必须先 add</span>
+git commit  <span class="c1"># 可换行输入信息</span>
+
+<span class="c1"># 查看提交的所有版本</span>
+git log
+
+<span class="c1"># 查看最近提交的版本</span>
+git show HEAD  <span class="c1"># 会现实最新 commit 的所有内容，除 log 以外的内容，还有diff</span>
+
+<span class="c1"># 单一文件恢复到最近一次 commit 的版本</span>
+git checkout HEAD &lt;filename&gt;
+<span class="c1"># 单一文件恢复到指定版本</span>
+git checkout --patch &lt;commit id&gt; &lt;filename&gt;
+<span class="c1"># 单一文件改成某一分支的版本</span>
+git checkout --patch &lt;branch name&gt; &lt;filename&gt;
+<span class="c1"># 恢复到指定版本</span>
+git reset SHA  <span class="c1"># SHA 是相应版本号的前7位。注意，恢复到该版本后，次版本后的版本历史将被彻底删除, HEAD也将变为该版本。</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--mixed</span></code> ：此为默认方式，它回退到某个版本，只保留源码，回退commit和index信息</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--soft</span></code> ：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span></code> : 彻底回退到某个版本，本地的源码也会变为上一个版本的内容</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>重写历史<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 修改 commit message</span>
+git commit --amend  <span class="c1"># 只能修改上一次的</span>
+
+<span class="c1"># 合并 commit</span>
+git rebase -i
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>在commit 信息已被push 的情况下， <code class="code docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span></code> ， <code class="code docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-amend</span></code> ， <code class="code docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span></code> 等对 commit 信息做修改的命令最好不要使用， 因为这会影响到其它已拉取历史分支进行开发的伙伴</p>
+</div>
+<p>详细参考 <a class="reference external" href="https://www.atlassian.com/git/tutorials/rewriting-history">Rewriting history</a></p>
+</div>
+<div class="section" id="gitignore">
+<h3>.gitignore 文件<a class="headerlink" href="#gitignore" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 本地添加可以直接修改.gitignore, 并将其添加到库</span>
+git config --global core.excludesfile ~/.gitignore_global <span class="c1"># 全局设置</span>
+
+<span class="c1"># 有时可能因为 gitignore 的设置导致无法添加文件， 为确认该问题， 可使用</span>
+git check-ignore -v &lt;filename&gt;
+
+<span class="c1"># 若想忽略的文件先前已被添加，先从记录中删除，然后将要忽略的文件添加到ignore，</span>
+<span class="c1"># 再commit</span>
+git rm --cached &lt;filename&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>查看文件修改前后区别<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git diff &lt;filename&gt;
+git diff version<span class="o">(</span>all<span class="o">)</span>  &lt;filename&gt;  <span class="c1"># difference with a specific version</span>
+git diff &lt;commit id&gt; --stat  <span class="c1"># difference file list</span>
+</pre></div>
+</div>
+<p>白色的代表未修改， <code class="docutils literal notranslate"><span class="pre">＋</span></code> 开头的代表其内有增加内容,  <code class="docutils literal notranslate"><span class="pre">-</span></code> 开头的表示其内有删除内容</p>
+</div>
+<div class="section" id="log">
+<h3>个性化 log 输出<a class="headerlink" href="#log" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git log --graph --pretty<span class="o">=</span>format:<span class="s1">&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39;</span> --abbrev-commit
+<span class="c1"># 或者, 使用以下命令， 就可以在每次输入 git lg 时打印个性输出</span>
+git config --global alias.lg <span class="s2">&quot;log --color --graph --pretty=format:&#39;%cred%h%creset -%c(yellow)%d%creset %s %cgreen(%cr) %c(bold blue)&lt;%an&gt;%creset&#39; --abbrev-commit&quot;</span>
+
+<span class="c1"># --graph选项可以显示branch的ascii图例</span>
+</pre></div>
+</div>
+<p>其它参数参考 <a class="reference external" href="https://linux.die.net/man/1/git-show">git-show</a></p>
+</div>
+<div class="section" id="id6">
+<h3>保存当前工作<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git stash
+<span class="k">do</span> some work
+git stash pop
+</pre></div>
+</div>
+<p>可用来暂存当前正在进行的工作， 比如想pull 最新代码，又不想加新commit； 或者另外一种情况，为了fix 一个紧急的bug，先stash，使返回到自己上一个commit，改完bug之后再stash pop，继续原来的工作。</p>
+<p>多次使用 <code class="code docutils literal notranslate"><span class="pre">git</span> <span class="pre">stash</span></code> 命令后，你的栈里将充满了未提交的代码，这时候你会对 ‘将哪个版本应用回来’ 有些困惑，</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git stash list  <span class="c1"># 可以将当前的Git栈信息打印出来，</span>
+git stash apply stash@<span class="o">{</span><span class="m">1</span><span class="o">}</span>  <span class="c1"># 你只需要将找到对应的版本号， 就可以将你指定版本号为stash@{1}的工作取出来，</span>
+git stash clear <span class="c1"># 将栈清空。</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>分支<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 查看当前分支</span>
+git branch
+
+<span class="c1"># 新建分支</span>
+git branch &lt;new_branch&gt;
+git branch &lt;new_branch&gt; &lt;from_branch&gt;  <span class="c1"># 从特定分支拉取新分支</span>
+
+<span class="c1"># 跳到指定分支</span>
+git checkout &lt;branch_name&gt;
+
+<span class="c1"># 分支跳转时，如果其它分支track 的文件在本分支untrack， 跳转失败， 解决方法如下:</span>
+git clear -d -fx <span class="s2">&quot;&quot;</span>  <span class="c1"># -d means remove untracked directories in addition to untracked files</span>
+                     <span class="c1"># -x means ignored files are also removed as well as file unknown to git</span>
+                     <span class="c1"># -f is required to force it to run</span>
+<span class="c1"># 新建并跳到指定分支</span>
+git checkout -b &lt;branch_name&gt;
+
+<span class="c1"># 分支重命名</span>
+git branch -m &lt;oldname&gt; &lt;newname&gt;  <span class="c1"># rename a branch while pointed to any branch</span>
+git branch -m &lt;newname&gt; <span class="c1"># rename the current branch</span>
+
+<span class="c1"># 将其它分支的改动融合到当前分支</span>
+git merge &lt;branch_name&gt;  <span class="c1"># 注意：融合成功的前提是融合对象和被融合对象没有冲突</span>
+git checkout --patch &lt;branch_name&gt; &lt;filename&gt;  <span class="c1"># 将分支上某文件的改动融合到当前分支, --patch 会显示差异</span>
+
+<span class="c1"># 删除指定分支</span>
+git branch -d &lt;branch_name&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="submodule">
+<h3>submodule<a class="headerlink" href="#submodule" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># add</span>
+git submodule add &lt;submodule repo url&gt; &lt;submodule path in current project&gt;
+
+<span class="c1"># 下载带submodule 的工程</span>
+<span class="c1"># 1. 下载工程后</span>
+git submodule update --init --recursive
+<span class="c1"># 2.</span>
+git clone --recursive &lt;project repo&gt;
+<span class="c1"># 3.</span>
+git clone --recurse-submodules &lt;project repo&gt;
+</pre></div>
+</div>
+<p>remove submodule</p>
+<ul class="simple">
+<li><p>Delete the relevant section from the <code class="docutils literal notranslate"><span class="pre">.gitmodules</span></code> file.</p></li>
+<li><p>Stage the .gitmodules changes <strong class="command">git add .gitmodules</strong></p></li>
+<li><p>Delete the relevant section from <code class="docutils literal notranslate"><span class="pre">.git/config</span></code> .</p></li>
+<li><p>Run <strong class="command">git rm --cached &lt;path_to_submodule&gt;</strong> (no trailing slash).</p></li>
+<li><p>Run <strong class="command">rm -rf &lt;.git/modules/path_to_submodule&gt;</strong></p></li>
+<li><p>Commit <strong class="command">git commit -m &quot;Removed submodule &lt;name&gt;&quot;</strong></p></li>
+<li><p>Delete the now untracked submodule files <strong class="command">rm -rf path_to_submodule</strong></p></li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h3>复制工程项目<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 复制</span>
+git clone &lt;remote_location&gt; &lt;local_clone_name&gt;
+git clone -b &lt;new_branch_name&gt; &lt;remote_location&gt;  <span class="c1"># clone时创建新的分支替代默认Origin HEAD（master）</span>
+
+<span class="c1"># 查看被复制项目的信息：</span>
+git remote -v
+
+<span class="c1"># 同步下载的工程：</span>
+git fetch
+git merge origin/master
+</pre></div>
+</div>
+<p><code class="code docutils literal notranslate"><span class="pre">fetch</span></code> fetched new commits from the remote into local copy of the Git project, those commits are on the <strong>origin/master</strong>  branch, it will not merge changes from the remote into your local repository. Which means your local master branch has not been updated yet, so you need to integrate <strong>origin/master</strong> into your local <strong>master</strong> branch.</p>
+</div>
+<div class="section" id="id9">
+<h3>上传自己的更改<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git push origin &lt;local_branch_name&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>基于Git的团队合作<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="http://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a></p>
+<div class="section" id="id11">
+<h3>一般流程<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>构建项目repo 并从 master 分支拉取develop 分支</p></li>
+<li><p>Fetch and merge changes from the remote develop branch</p></li>
+<li><p>Create a branch(feature branch) to work on a new project feature</p></li>
+<li><p>Develop the feature on your branch and commit your work</p></li>
+<li><p>Fetch and merge from the remote again (in case new commits were made while you were working)</p></li>
+<li><p>Push your branch up to the remote for review</p></li>
+</ul>
+</div>
+<div class="section" id="id12">
+<h3>分支结构<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p><strong>master</strong> - 在git repo下主分支的职责主要就是负责记录stable版本的迭代，当在beta版本的项目或是开发版本的项目得到了充分的验证之后，我才能将分支并入master分支。master分支永远是production-ready的状态，即稳定可产品化发布的状态。</p></li>
+<li><p><strong>develop</strong> - 平常开发的一个主要分支了，不管是要做新的feature还是需要做bug fix，都是从这个分支分出来做。在这个分支下主要负责记录开发状态下相对稳定的版本，即完成了某个feature或者修复了某个bug后的开发稳定版本。</p></li>
+<li><p><strong>feature branches</strong> - 这是由许多分别负责不同feature开发的分支组成的一个分支系列。new feature主要就在这个分支系列下进行开发。当我在一个大的develop的迭代之下，往往我们会把每一个迭代分成很多个功能点，并将功能点分派给不同人的人员去开发。每一个人员开发的功能点就会形成一个feature分支，当功能点开发测试完毕之后，就会合并到develop分支去。</p></li>
+<li><p><strong>release branches</strong> - 这是由多个分支组成的一个分支系列。这个分支系列  <strong>从develop</strong> 分支出来，也就是预发分支。在预发状态下，我们往往会进行预发环境下的测试，如果出现缺陷，那么就在该release分支下进行修复，修复完毕测试通过后，即分别并入master分支后develop分支，随后master分支做正常发布。</p></li>
+<li><p><strong>hotfixes</strong> - 这个分支系列也就是我们常说的紧急线上修复，当线上出现bug且特别紧急的时候，就可以从 <strong>master</strong> 拉出分支到这里进行修复，修复完成后分别并入master和develop分支。</p></li>
+</ul>
+<img alt="../_images/git_repo_branch.jpg" src="../_images/git_repo_branch.jpg" />
+</div>
+</div>
+<div class="section" id="mac-git-server">
+<h2>mac 上搭建 git server<a class="headerlink" href="#mac-git-server" title="永久链接至标题">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>server 和 client 必须在同一个局域网</p>
+</div>
+<ol class="arabic">
+<li><p>创建名为 git 的普通用户（系统偏好与设置-&gt; 用户和群组）</p></li>
+<li><p>开启ssh服务 （系统偏好与设置 -&gt; 共享 -&gt; 远程登录 &amp; 仅git ）</p></li>
+<li><p>将 git 用户添加到sudoers</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo chmod u+w /etc/sudoers
+sudo vim /etc/sudoers
+<span class="c1"># 找到 &quot;root ALL=(ALL) ALL&quot;, 在其下添加 “git ALL=(ALL) ALL” , 然后保存退出。</span>
+<span class="c1"># 第一个ALL是指网络中的主机，我们后面把它改成了主机名，它指明git可以在此主机上执行后面的命令。</span>
+<span class="c1"># 第二个括号里的ALL是指目标用户，也就是以谁的身份去执行命令。</span>
+<span class="c1"># 最后一个ALL指命令名。</span>
+sudo chmod <span class="m">440</span> /etc/sudoers <span class="c1"># 把/etc/sudoers权限改回440</span>
+
+<span class="c1"># 此时可以在客户端测试是否能连接：ssh git@servername ，这里的servername 即服务端terminal显示的名称.local</span>
+</pre></div>
+</div>
+</li>
+<li><p>增加安全性，使用ssh rsa 公钥</p>
+<ol class="arabic">
+<li><p>在client 创建 ssh rsa 公钥 （若已创建，则跳过此步）</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~
+ssh-keygen -t rsa <span class="c1">#默认存放路径 ~/.ssh/id_rsa.pub</span>
+</pre></div>
+</div>
+</li>
+<li><p>把ssh rsa 公钥复制到server端</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh git@servername mkdir .ssh <span class="c1">#登录 server 并创建 .ssh 文件夹</span>
+scp ~/.ssh/id_rsa.pub git@servername:.ssh/authorized_keys
+</pre></div>
+</div>
+</li>
+<li><p>修改server 端的sshd_config</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh git@servername
+<span class="nb">cd</span> /etc/ssh
+sudo chmod <span class="m">666</span> sshd_config
+vim sshd_config
+<span class="c1"># PermitRootLogin yes 改为 no</span>
+<span class="c1"># 去掉下面几项前的注释</span>
+<span class="c1"># RSAAuthentication yes</span>
+<span class="c1"># PubKeyAuthentication yes</span>
+<span class="c1"># AuthorizedKeyFile  .ssh/authorized_keys</span>
+<span class="c1"># PasswordAuthentication no</span>
+<span class="c1"># PermitEmptyPasswords no</span>
+<span class="c1"># UsePAM yes 改为 no</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p>使用例子</p>
+<ol class="arabic">
+<li><p>在 server 端创建空的 repository</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> path/to/repo
+mkdir &lt;newreponame.git&gt;  <span class="c1"># 注意这里新建的项目所属用户得是上面创建的用户（这里是git), 所以最好是ssh 到server端自行创建，否则会出现无法上传</span>
+<span class="nb">cd</span> &lt;newreponame.git&gt;
+git init --bare  <span class="c1"># --bare 只是用来存储 pushes，不会当作本地repository 来使用</span>
+
+<span class="c1"># 可以增加 --shared 参数来限制用户权限</span>
+<span class="c1"># 1.bare repo</span>
+git init --bare --shared<span class="o">=</span>group &lt;repo_dir.git&gt;  <span class="c1"># sets some important variables in repodir/config</span>
+                                               <span class="c1"># &quot;core.sharedRepository=group&quot; and &quot;receive.denyNonFastforwards=true&quot;)</span>
+                                               <span class="c1"># 若已创建: cd &lt;repo_dir.git&gt;/</span>
+                                               <span class="c1">#           git config core.sharedRepository group</span>
+chgrp -R &lt;group_name&gt; &lt;repo_dir.git&gt;      <span class="c1"># Change files and directories&#39; group</span>
+chmod -R g+rw &lt;repo_dir&gt;                  <span class="c1"># Change permissions</span>
+chmod g-w  &lt;repo_dir.git&gt;/objects/pack/*  <span class="c1"># Git pack files should be immutable</span>
+chmod g+s <span class="sb">`</span>find &lt;repo_dir.git&gt; -type d<span class="sb">`</span>   <span class="c1"># New files get group id of directory</span>
+<span class="c1"># 2.non-bare repo</span>
+<span class="nb">cd</span> &lt;project_dir&gt;/                         <span class="c1"># Enter inside the project directory</span>
+git config core.sharedRepository group    <span class="c1"># Update the git&#39;s config</span>
+chgrp -R &lt;group_name&gt; &lt;repo_dir&gt;          <span class="c1"># Change files and directories&#39; group</span>
+chmod -R g+rw &lt;repo_dir&gt;                  <span class="c1"># Change permissions</span>
+chmod g-w  &lt;repo_dir.git&gt;/.git/objects/pack/*             <span class="c1"># Git pack files should be immutable</span>
+chmod g+s <span class="sb">`</span>find &lt;repo_dir.git&gt; -type d<span class="sb">`</span>   <span class="c1"># New files get group id of directory</span>
+
+<span class="c1"># 或者把client端的现有仓库导出为裸仓库(即一个不包含当前工作目录的仓库),</span>
+<span class="c1"># 再移到服务器上 (不推荐!!： remote 错误)</span>
+git clone --bare &lt;my_project&gt;/.git &lt;save_project.git&gt;
+scp -r &lt;save_project.git&gt; user@server_name:path/to/parent_dir
+</pre></div>
+</div>
+</li>
+</ol>
+<p>2）在client 端，创建local repository 并 push</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> path/to/project
+git init
+git add .
+git commit -m <span class="s2">&quot;init commit&quot;</span>
+git remote add origin git@servername:path/to/newreponame.git
+git push origin master
+
+<span class="c1"># 创建远程分支</span>
+git push origin &lt;local_branch_name&gt;         <span class="c1"># 提交本地分支到远程的默认分支</span>
+git push origin &lt;local_branch_name&gt;:&lt;remote_branch_name&gt;    <span class="c1"># 提交本地分支到远程的特定分支</span>
+
+<span class="c1"># 删除远程的分支</span>
+git push origin :&lt;remote_branch_name&gt;               <span class="c1"># 1.刚提交的远程分支将被删除，但是本地还会保留</span>
+git branch -r -d origin/&lt;remote_branch_name&gt;        <span class="c1"># 或者这样 # 2.</span>
+
+<span class="c1"># 若要删除的远程为默认分支，则需将修改参考的当前默认分支, 在远程输入：</span>
+git symbolic-ref HEAD refs/heads/&lt;branch_name&gt;
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic" start="3">
+<li><p>在client 端，获取server端的更改</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git pull origin master  <span class="c1"># 注意：pull相当于是fetch 和 merge 的结合，实际使用时，fetch 更安全</span>
+
+<span class="c1"># 拉取远程分支</span>
+git fetch origin &lt;远程分支名&gt; <span class="c1"># 1.直接拉取</span>
+git checkout -b &lt;本地分支名&gt; origin/&lt;远程分支名&gt;  <span class="c1"># 2.本地新建分支, 把此分支放入其中</span>
+git checkout -t &lt;remote_name/branch_name&gt; <span class="c1">#clone 指定分支（= git checkout -b &lt;branch_name&gt; &lt;remote_name/branch_name&gt;）</span>
+
+<span class="c1"># 本地修改的情况下拉取远程分支会报错，此时先stash，再pull， 根据冲突做修改，</span>
+<span class="c1"># 然后stash pop 以重新获取之前的修改</span>
+git stash
+git pull origin master
+git stash pop
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://wincent.com/wiki/Git_repository_access_control">GitRepo acess control</a></p></li>
+</ol>
+</div>
+<div class="section" id="ubuntu-git-server">
+<h2>ubuntu 上搭建git server<a class="headerlink" href="#ubuntu-git-server" title="永久链接至标题">¶</a></h2>
+<p>参考 <a class="reference external" href="https://git-scm.com/book/en/Git-on-the-Server-Setting-Up-the-Server">Git on the Server - Setting Up the Server</a></p>
+</div>
+<div class="section" id="id13">
+<h2>错误集锦<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p>如果拉取远程分支失败，‘cannot update paths and switch to branch’, 原因可能是remote 没有 update</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git remote show &lt;remote_name&gt;  <span class="c1"># 查看想拉取的分支是否在 new remote branch</span>
+git remote update              <span class="c1"># 若是， 更新  remote</span>
+git fetch
+</pre></div>
+</div>
+</li>
+<li><p>the ECDSA host key for ‘lxh-mac.local’ differs from the key for the IP address ‘192.168.1.101’</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen -R <span class="m">192</span>.168.1.101
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vim.html" class="btn btn-neutral float-right" title="vim" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="browser.html" class="btn btn-neutral float-left" title="浏览器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,1095 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ubuntu &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="mac" href="mac.html" />
+    <link rel="prev" title="OS" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">OS</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ubuntu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">软件等安装</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nvidia-etc">nvidia etc..</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#python">python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tensorflow">Tensorflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#caffe">caffe</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bazel">bazel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#java">java</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cmake">cmake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opengl">opengl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vtk">vtk</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#itk">itk</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fltk">fltk</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opencv">opencv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jsoncpp">jsoncpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#genymotion">genymotion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jenkins">jenkins</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mac">安装mac主题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">终端</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ssh">ssh 连接</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sshfs">sshfs 连接</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">快捷键</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">一些技巧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">错误解决办法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mac.html">mac</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html">windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">OS</a> &raquo;</li>
+        
+      <li>ubuntu</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/os/ubuntu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ubuntu">
+<h1>ubuntu<a class="headerlink" href="#ubuntu" title="永久链接至标题">¶</a></h1>
+<p><a class="reference external" href="https://askubuntu.com">askubuntu</a></p>
+<div class="section" id="id1">
+<h2>软件等安装<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>推荐软件:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install --no-install-recommends thunar  <span class="c1"># 批量重命名</span>
+</pre></div>
+</div>
+<p>找不到动态链接库时，设置LD_LIBRARY_PATH</p>
+<div class="section" id="nvidia-etc">
+<span id="nvidia-install-ubuntu"></span><h3>nvidia etc..<a class="headerlink" href="#nvidia-etc" title="永久链接至标题">¶</a></h3>
+<div class="section" id="nvidia-driver">
+<h4>NVIDIA driver<a class="headerlink" href="#nvidia-driver" title="永久链接至标题">¶</a></h4>
+<ul>
+<li><p>ubuntu 16.04</p>
+<p>修改 grub 文件</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo cp -n /etc/default/grub /etc/default/grub.orig  <span class="c1"># 备份</span>
+$ sudo vim /etc/default/grub  <span class="c1"># 按后文修改文件</span>
+$ sudo update-grub
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. Comment the line GRUB_CMDLINE_LINUX_DEFAULT=”quiet splash”, by adding # at the beginning, which will disable the Ubuntu purple screen.
+2. Change GRUB_CMDLINE_LINUX=&quot;&quot; to GRUB_CMDLINE_LINUX=”text”, this makes Ubuntu boot directly into Text Mode.
+3. Uncomment this line #GRUB_TERMINAL=console, by removing the # at the beginning, this makes Grub Menu into real black &amp; white Text Mode (without background image)
+</pre></div>
+</div>
+<p>重启计算机, 进入字符界面(Ctrl+Alt+F1)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo shutdown -r now
+</pre></div>
+</div>
+<p>安装 driver</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo service lightdm stop
+sudo ./&lt;DRIVER&gt;.run
+
+<span class="c1"># 卸载</span>
+./&lt;DRIVER&gt;.run --uninstall
+<span class="c1"># 或者</span>
+sudo /usr/bin/nvidia-uninstall  <span class="c1"># 未验证</span>
+
+ // 安装完重启，用以下命令查看
+ nvidia-smi
+</pre></div>
+</div>
+<p>将 grub 文件改回来</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mv /etc/default/grub /etc/default/grub.textonly
+sudo mv /etc/default/grub.orig /etc/default/grub
+sudo update-grub
+sudo shutdown -r now
+</pre></div>
+</div>
+</li>
+<li><p>ubuntu 18.04</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// 添加源
+sudo add-apt-repository ppa:graphics-drivers/ppa
+sudo apt update
+
+// 安装
+ubuntu-drivers devices   // 查看本机gpu 及推荐的驱动
+sudo ubuntu-drivers autoinstall  // 自动安装
+sudo apt install nvidia-driver-390  // 或者根据前面推荐使用apt安装
+
+// 安装完重启，用以下命令查看
+nvidia-smi
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="cuda-tookit">
+<h4>CUDA Tookit<a class="headerlink" href="#cuda-tookit" title="永久链接至标题">¶</a></h4>
+<blockquote>
+<div><p>到官网下载 cuda_x.x.x_linux.run, 运行</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod +x cuda_x.x.x_linux.run
+sudo sh cuda_x.x.x._linux.run
+sudo sh cuda_x.x.x._linux.run --override  <span class="c1"># cuda 9.0</span>
+
+<span class="c1"># 查看cuda版本</span>
+nvcc --version
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>在安装完driver 后进行此项时，此项中的安装driver 选项选 No，以免旧的driver 覆盖新的driver</p>
+<p>对于 ubuntu 16.04 每次更新ubuntu内核后，记得重新安装CUDA driver</p>
+</div>
+<p>若安装时提示错误:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Missing</span> <span class="n">recommended</span> <span class="n">library</span><span class="p">:</span> <span class="n">libGLU</span><span class="o">.</span><span class="n">so</span>
+<span class="n">Missing</span> <span class="n">recommended</span> <span class="n">library</span><span class="p">:</span> <span class="n">libX11</span><span class="o">.</span><span class="n">so</span>
+<span class="n">Missing</span> <span class="n">recommended</span> <span class="n">library</span><span class="p">:</span> <span class="n">libXi</span><span class="o">.</span><span class="n">so</span>
+<span class="n">Missing</span> <span class="n">recommended</span> <span class="n">library</span><span class="p">:</span> <span class="n">libXmu</span><span class="o">.</span><span class="n">so</span>
+<span class="n">Missing</span> <span class="n">recommended</span> <span class="n">library</span><span class="p">:</span> <span class="n">libGL</span><span class="o">.</span><span class="n">so</span>
+</pre></div>
+</div>
+<p>安装依赖库即可</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install freeglut3-dev build-essential libx11-dev libxmu-dev <span class="se">\</span>
+    libxi-dev libgl1-mesa-glx libglu1-mesa libglu1-mesa-dev
+</pre></div>
+</div>
+<p>在 .bashrc 中添加环境变量</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/usr/local/cuda/bin<span class="si">${</span><span class="nv">PATH</span><span class="p">:+:</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}}</span>
+$ <span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/cuda/lib64<span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">:+:</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}}</span>
+
+<span class="c1"># 在ubuntu18.04 上，上述直接设置LD_LIBRARY_PATH 对一些第三方库的编译安装貌似不起作用，会找不到库</span>
+<span class="c1"># 推荐使用以下设置</span>
+<span class="nb">export</span> <span class="nv">CUDA_HOME</span><span class="o">=</span>/usr/local/cuda
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/cuda/bin
+<span class="c1"># 另外cuda库要在/etc/ld.so.conf.d/cuda.conf 中设置，内容为：/usr/local/cuda/lib64</span>
+<span class="c1"># 设置完在命令行输入sudo ldconfig 使其生效</span>
+</pre></div>
+</div>
+<p>查看cuda版本</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nvcc --version
+</pre></div>
+</div>
+<p>卸载</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo /usr/local/cuda-xx/bin/uninstall_cuda_xx.pl
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="cudnn">
+<h4>cuDNN<a class="headerlink" href="#cudnn" title="永久链接至标题">¶</a></h4>
+<blockquote>
+<div><p>下载并解压 cudnn，将其复制到cudn 安装目录（/usr/local/cuda）下</p>
+<p>[直接复制可能会使得lib64中的文件链接失效(可自己重新链接)，直接解压到/usr/local/cuda更合适]</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tar xvzf cudnn-8.0-linux-x64-v5.1.tgz <span class="c1"># 注意此处解压命令可能出错，改为xvf</span>
+$ sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+$ sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+$ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+</pre></div>
+</div>
+<p>测试 cuda 的例子，看是否安装成功</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> NVIDIA_CUDA-8.0_Samples/5_Simulations/nbody
+$ make
+$ ./nbody -benchmark -numbodies<span class="o">=</span><span class="m">256000</span> -device<span class="o">=</span><span class="m">0</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="python">
+<span id="python-install-ubuntu"></span><h3>python<a class="headerlink" href="#python" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 安装</span>
+sudo apt-get install python-dev  // <span class="k">for</span> python
+sudo apt-get install python3-dev  // <span class="k">for</span> python3
+
+<span class="c1"># 1.基于用户修改 Python 版本：</span>
+<span class="nb">alias</span> <span class="nv">python</span><span class="o">=</span><span class="s1">&#39;/usr/bin/python3.4&#39;</span>
+<span class="nb">source</span> ~/.bashrc
+
+<span class="c1"># 2.系统级修改 Python 版本</span>
+update-alternatives --list python <span class="c1"># 查看</span>
+update-alternatives --install /usr/bin/python python /usr/bin/python2.7 <span class="m">1</span>
+update-alternatives --install /usr/bin/python python /usr/bin/python3.4 <span class="m">2</span> <span class="c1"># 如果查看发现没有，可人工添加</span>
+update-alternatives --config python <span class="c1"># 替换</span>
+</pre></div>
+</div>
+<p>找不到python库时，设置PYTHONPATH</p>
+</div></blockquote>
+</div>
+<div class="section" id="tensorflow">
+<span id="tf-install-ubuntu"></span><h3>Tensorflow<a class="headerlink" href="#tensorflow" title="永久链接至标题">¶</a></h3>
+<p>若要安装GPU版本，需先安装 <a class="reference internal" href="#nvidia-install-ubuntu"><span class="std std-ref">nvidia etc..</span></a></p>
+<div class="section" id="requirements">
+<h4>Requirements<a class="headerlink" href="#requirements" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>NVDIA driver 390</p></li>
+<li><p>gcc 6</p></li>
+<li><p>g++ 6</p></li>
+<li><p>cuda 9.0 (cuda_9.0.176_384.81_linux.run)</p></li>
+<li><p>cudnn v7.1 (cudnn-9.0-linux-x64-v7.1.tgz)</p></li>
+<li><p>python</p></li>
+<li><p>pip</p></li>
+<li><p>tensorflow 1.8/1.9</p></li>
+</ul>
+</div>
+<div class="section" id="install">
+<h4>Install<a class="headerlink" href="#install" title="永久链接至标题">¶</a></h4>
+<p>直接从 pip 安装 安装会缺少部分功能，推荐从源码安装</p>
+<p>从源码安装时，configure 过程中，如果gcc，python 等的版本是通过update-alternatives 管理的，那么配置时应该输入相应版本所在位置而不是默认路径；另外在bazel build时，可能需要添加参数 –action_env=LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib64/stubs:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH</p>
+<p>18.04 上 r1.8 版:
+gcc=4.8
+cuda库要在/etc/ld.so.conf.d/cuda.conf 中设置，直接设置LD_LIBRARY_PATH 会找不到</p>
+<p>装gpu版本时，可通过以下代码验证后文相关库等是否正确安装(ubuntu18.04版)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.python.client</span> <span class="kn">import</span> <span class="n">device_lib</span>
+<span class="n">device_lib</span><span class="o">.</span><span class="n">list_local_devices</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>当安装了 pip 版和源码版时，系统首先检测到的是 pip 版， 若需将其卸载，做以下步骤</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo pip show tensorflow
+sudo pip uninstall tensorflow
+</pre></div>
+</div>
+<p>若要卸载从源码安装的版本，则还要</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> TENSORFLOW_ROOT/_python_build
+python setup.py develop --uninstall
+</pre></div>
+</div>
+<p>下载建议使用</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone --recursive
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h4>后期可能出现的问题<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>驱动实效</p></li>
+<li><p>tensorflow 更新造成的一些不匹配</p></li>
+<li><p>bazel版本不匹配</p></li>
+<li><p>pip 多版本造成混乱</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="caffe">
+<span id="caffe-install-ubuntu"></span><h3>caffe<a class="headerlink" href="#caffe" title="永久链接至标题">¶</a></h3>
+<dl>
+<dt>安装依赖库(一):</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
+sudo apt-get install --no-install-recommends libboost-all-dev
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>安装BLAS:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install libatlas-base-dev
+</pre></div>
+</div>
+<p>可以安装OpenBLAS 或 MKL，以提升CPU性能，但是要修改caffe中Makefile文件…</p>
+</div></blockquote>
+<p>安装python</p>
+<dl>
+<dt>安装matlab</dt><dd><p>详见： <a class="reference external" href="http://blog.csdn.net/u011762313/article/details/47211393">Ubuntu14.04安装Matlab2014a</a></p>
+<p>如果不使用matcaffe接口，可以不装</p>
+</dd>
+<dt>安装opencv</dt><dd><p>详见： <a class="reference external" href="http://blog.csdn.net/u011762313/article/details/47263845">Ubuntu14.04安装OpenCV3.0</a> ，这里我参考官网,下载的是2.4的最新版</p>
+<p>注：opencv必须安装，且版本为&gt;=2.4或3.0</p>
+<ol class="loweralpha">
+<li><p>安装依赖库</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install build-essential
+sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
+</pre></div>
+</div>
+</li>
+<li><p>下载opencv</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir opencv
+<span class="nb">cd</span> opencv
+<span class="c1">#上官网直接下载文件，或</span>
+git clone https://github.com/Itseez/opencv.git
+</pre></div>
+</div>
+</li>
+<li><p>安装</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip 下载的zip文件
+<span class="nb">cd</span> 解压的文件夹
+mkdir release
+<span class="nb">cd</span> release
+cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>RELEASE -D <span class="nv">CMAKE_INSTALL_PREFIX</span><span class="o">=</span>/usr/local ..
+make
+sudo make install
+</pre></div>
+</div>
+</li>
+<li><p>编译sample程序</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/opencv/samples
+sudo cmake .
+sudo make -j <span class="k">$(</span>nproc<span class="k">)</span>
+＃可运行samples／cpp下的程序测试
+
+<span class="c1"># 若出现错误：OpenCV is considered to be NOT FOUND</span>
+<span class="c1"># 1) clean cmake cache  2) cmake 时加 -D OpenCV_DIR=/path/to/opencv/build_dir</span>
+
+<span class="c1"># 若出现错误：/usr/bin/ld: 找不到 -lopencv_dep_cudart</span>
+<span class="c1"># 在cmake 时加 -DCUDA_USE_STATIC_CUDA_RUNTIME=OFF 或者</span>
+<span class="c1"># 创建一个软链接 sudo ln -s /path/to/cuda/lib64/libcudart.so /usr/lib/libopencv_dep_cudart.so</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</dd>
+</dl>
+<p>安装依赖库（二）</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
+</pre></div>
+</div>
+</div></blockquote>
+<dl>
+<dt>下载并编译Caffe</dt><dd><ol class="arabic">
+<li><p>下载</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone git://github.com/BVLC/caffe.git
+</pre></div>
+</div>
+<p>如果安装的是opencv3.0</p>
+<blockquote>
+<div><ol class="loweralpha">
+<li><p>修改Makefile，在</p>
+<p>LIBRARIES += glog gflags protobuf leveldb snappy lmdb boost_system hdf5_hl hdf5 m opencv_core opencv_highgui opencv_imgproc opencv_imgcodecs</p>
+<p>处加入后面的opencv_imgcodecs，因为opencv3.0.0把imread相关函数放到imgcodecs.lib中了（原来是imgproc.lib）</p>
+</li>
+<li><p>修改caffe/examples/cpp_classification/classification.cpp文件，加入</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;opencv2/imgproc/types_c.h&gt;</span>
+<span class="c1">#include &lt;opencv2/objdetect/objdetect_c.h&gt;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div></blockquote>
+<p>否则会出现”CV_BGR2GRAY”的错误</p>
+</li>
+<li><p>编译Caffe</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/caffe
+cp Makefile.config.example Makefile.config
+sudo gedit Makefile.config
+</pre></div>
+</div>
+<p>修改Makefile.config文件:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>//如果你不使用GPU的话，就将
+# CPU_ONLY := 1
+修改成：
+CPU_ONLY := 1
+
+//若使用cudnn，则将
+# USE_CUDNN := 1
+修改成：
+USE_CUDNN := 1
+
+//若使用的opencv版本是3的，则将
+# OPENCV_VERSION := 3
+修改为：
+OPENCV_VERSION := 3
+
+//若要使用python来编写layer，则需要将
+# WITH_PYTHON_LAYER := 1
+修改为
+WITH_PYTHON_LAYER := 1
+
+//重要的一项
+将# Whatever else you find you need goes here.下面的
+INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include
+LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib
+修改为：
+INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial
+LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/hdf5/serial
+//这是因为ubuntu16.04的文件包含位置发生了变化，尤其是需要用到的hdf5的位置，所以需要更改这一路径
+</pre></div>
+</div>
+</li>
+</ol>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> python
+<span class="k">for</span> req in <span class="k">$(</span>cat requirements.txt<span class="k">)</span><span class="p">;</span> <span class="k">do</span> pip install <span class="nv">$req</span><span class="p">;</span> <span class="k">done</span>
+<span class="se">\\</span>如果发现执行上述代码后，终端中有很多红字，一堆的错误之类的，那不管是什么错误都执行下面一句话：
+<span class="k">for</span> req in <span class="k">$(</span>cat requirements.txt<span class="k">)</span><span class="p">;</span> <span class="k">do</span> sudo -H pip install <span class="nv">$req</span> --upgrade<span class="p">;</span> <span class="k">done</span>
+<span class="se">\\</span>执行完上面这句话后应该就不会有很多红字错误了
+<span class="nb">cd</span> ..
+make all
+make <span class="nb">test</span>
+make runtest
+</pre></div>
+</div>
+</div></blockquote>
+</dd>
+<dt>配置python:</dt><dd><ol class="loweralpha">
+<li><p>安装依赖库</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install python-numpy python-scipy python-matplotlib python-sklearn python-skimage python-h5py python-protobuf python-leveldb python-networkx python-nose python-pandas python-gflags cython ipython
+$ sudo apt-get install protobuf-c-compiler protobuf-compiler
+</pre></div>
+</div>
+</li>
+<li><p>编译</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/caffe
+make pycaffe
+make distribute
+</pre></div>
+</div>
+</li>
+<li><p>添加~/caffe/python到$PYTHONPATH</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo gedit /etc/profile
+<span class="c1"># 末尾添加： export PYTHONPATH=/path/to/caffe/python: $PYTHONPATH</span>
+<span class="c1"># 用完整路径，不要用~</span>
+$ <span class="nb">source</span> /etc/profile <span class="c1"># 使之生效</span>
+</pre></div>
+</div>
+</li>
+<li><p>测试是否可以引用</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python
+Python <span class="m">2</span>.7.6 <span class="o">(</span>default, Jun <span class="m">22</span> <span class="m">2015</span>, <span class="m">17</span>:58:13<span class="o">)</span>
+<span class="o">[</span>GCC <span class="m">4</span>.8.2<span class="o">]</span> on linux2
+Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for</span> more information.
+&gt;&gt;&gt; import caffe
+&gt;&gt;&gt;
+</pre></div>
+</div>
+</li>
+</ol>
+</dd>
+<dt>配置matcaffe</dt><dd><ol class="loweralpha">
+<li><p>gcc降级（Ubuntu14.04自带的gcc版本是4.8，MATLAB2014a支持的最高版本为4.7x。因此，需要安装gcc4.7，并给gcc降级）</p>
+<p>详见: <a class="reference external" href="http://blog.csdn.net/u011762313/article/details/47324839">Ubuntu中update-alternatives命令（版本切换）</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install gcc-4.7 g++-4.7 g++-4.7-multilib gcc-4.7-multilib
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.7 <span class="m">100</span>
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 <span class="m">50</span>
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.7 <span class="m">100</span>
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 <span class="m">50</span>
+sudo update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.7 <span class="m">100</span>
+sudo update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.8 <span class="m">50</span>
+<span class="c1"># 验证gcc默认版本</span>
+$ gcc -v
+</pre></div>
+</div>
+</li>
+<li><p>编译</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/caffe
+<span class="c1"># 修改Makefile.config文件，MATLAB_DIR :=/usr/local/MATLAB/R2014a</span>
+$ make matcaffe
+</pre></div>
+</div>
+</li>
+<li><p>添加工作空间</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo matlab -nodesktop -nosplash
+&gt;&gt;&gt; addpath ~/caffe/matlab
+&gt;&gt;&gt; savepath
+</pre></div>
+</div>
+</li>
+</ol>
+</dd>
+<dt>错误集锦</dt><dd><p>make all 发生如下错误</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/usr/bin/ld: cannot find -lcblas
+/usr/bin/ld: cannot find -latlas
+collect2: error:ld returned <span class="m">1</span> <span class="nb">exit</span> status
+make: *** <span class="o">[</span>.build_release/lib/libcaffe.so.1.0.0-rc3<span class="o">]</span>
+Error <span class="m">1</span>
+</pre></div>
+</div>
+<p>安装如下库</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install libatlas-dev
+sudo apt-get install liblapack-dev
+sudo apt-get install  libatlas-base-dev
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="bazel">
+<h3>bazel<a class="headerlink" href="#bazel" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>卸载</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo  ./bazel-xxx-installer-linux-x86_64.sh --uninstall
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="java">
+<h3>java<a class="headerlink" href="#java" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># search</span>
+apt-cache search jdk
+
+<span class="c1"># install</span>
+sudo apt-get install openjdk-8-jdk
+sudo apt-get install openjdk-8-source <span class="c1">#this is optional, the jdk source code</span>
+
+<span class="c1"># 设置环境变量(二选其一，注意修改到自己的路径)</span>
+<span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/java-8-openjdk
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/lib/jvm/java-8-openjdk/bin
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="cmake">
+<span id="cmake-install-ubuntu"></span><h3>cmake<a class="headerlink" href="#cmake" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># ubuntu16.04</span>
+sudo add-apt-repository ppa:george-edison55/cmake-3.x
+sudo apt-get update
+sudo apt-get upgrade
+cmake --version
+
+<span class="c1"># ccmake</span>
+sudo apt-get install cmake-curses-gui
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="opengl">
+<h3>opengl<a class="headerlink" href="#opengl" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install build-essential libgl1-mesa-dev
+sudo apt-get install freeglut3-dev
+sudo apt-get install libglew-dev libsdl2-dev libsdl2-image-dev libglm-dev libfreetype6-dev
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="vtk">
+<h3>vtk<a class="headerlink" href="#vtk" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 安装VTK：</span>
+<span class="c1"># 1.安装依赖包：cmake, opengl, ccmake</span>
+sudo apt-get install cmake-curses-gui
+<span class="c1"># 2.下载vtk并配置</span>
+mkdir VTK-build
+<span class="nb">cd</span> VTK-build
+ccmake ..  <span class="c1"># 按c配置，按g生成,</span>
+<span class="c1"># 注意设置python wrapper，python版本-&gt;这跟安装路径有关</span>
+<span class="c1"># 3.编译安装</span>
+make
+sudo make install
+<span class="c1"># 安装python wrapper (配置时要勾选python wrapper)</span>
+<span class="nb">cd</span> Wrappers/Python
+make
+sudo make install
+<span class="c1"># 4.环境变量设置</span>
+<span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+<span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span>/usr/local/lib/pythonXXX/site-packages:<span class="nv">$PYTHONPATH</span>
+
+<span class="c1"># 验证</span>
+<span class="nb">cd</span> &lt;VTK path&gt;/Examples/Tutorial/Step1/CXX
+cmake .
+make
+./Cone
+
+<span class="c1"># 卸载VTK：</span>
+<span class="nb">cd</span> /usr/local/include
+<span class="nb">cd</span> /usr/local/lib
+sudo rm -r libvtk*//删掉以libvtk开头的所有文件
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="itk">
+<h3>itk<a class="headerlink" href="#itk" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>安装ITK同VTK类似。注意添加相关设置</p>
+<p>先设置:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ITK_WRAP_PYTHON             ON
+ITK_LEGACY_SILENT           ON
+Module_BridgeNumPy          ON
+PYTHON_EXECUTABLE           设置好python路径，这决定了python package 的安装路径, 先查看/usr/local/lib下python目录名，选取相关的bin目录(好像不起作用)
+ITKVtkGLUE                  ON
+</pre></div>
+</div>
+<p>然后设置:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ITK_WRAP_DIMS</span>               <span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">;</span><span class="mi">4</span>
+<span class="n">ITK_WRAP_VECTOR_COMPONENTS</span>  <span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">;</span><span class="mi">4</span>
+
+<span class="n">ITK_WRAP_float</span>              <span class="n">ON</span>
+<span class="n">ITK_WRAP_double</span>             <span class="n">ON</span>
+<span class="n">ITK_WRAP_signed_char</span>        <span class="n">ON</span>
+<span class="n">ITK_WRAP_signed_long</span>        <span class="n">ON</span>
+<span class="n">ITK_WRAP_signed_short</span>       <span class="n">ON</span>
+<span class="n">ITK_WRAP_unsigned_char</span>      <span class="n">ON</span>
+<span class="n">ITK_WRAP_unsigned_long</span>      <span class="n">ON</span>
+<span class="n">ITK_WRAP_unsigned_short</span>     <span class="n">ON</span>
+<span class="n">ITK_WRAP_vector_float</span>       <span class="n">ON</span>
+    <span class="n">WRAP_</span><span class="o">&lt;</span><span class="n">data</span><span class="o">-</span><span class="nb">type</span><span class="o">&gt;</span>                <span class="n">Select</span> <span class="n">yourself</span> <span class="n">which</span> <span class="n">more</span> <span class="n">to</span> <span class="n">activate</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 验证</span>
+<span class="nb">cd</span> &lt;ITK path&gt;/Examples/Installation
+cmake .
+make
+./HelloWorld
+</pre></div>
+</div>
+<p>记得设置python路径和ld路径</p>
+</div></blockquote>
+</div>
+<div class="section" id="fltk">
+<h3>fltk<a class="headerlink" href="#fltk" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install build-essential xorg-dev libx11-dev libcairo2-dev
+<span class="c1"># 解压文件并进入目录</span>
+./configure <span class="o">[</span>options<span class="o">]</span>
+make
+sudo make install
+
+<span class="c1"># 测试</span>
+<span class="c1"># 到官网复制tutorial中的代码，新建文件</span>
+<span class="c1"># gcc hello.cxx `fltk-config --ldflags`  # 可在命令行查询 fltk-config 的相关命令</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="opencv">
+<span id="opencv-install-ubuntu"></span><h3>opencv<a class="headerlink" href="#opencv" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>先参考 <a class="reference external" href="https://docs.opencv.org/master/d9/df8/tutorial_root.html">官网</a> 安装需要的库</p>
+<p>下载zip 文件解压</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/opencv
+mkdir release
+<span class="nb">cd</span> release
+cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>RELEASE -D <span class="nv">CMAKE_INSTALL_PREFIX</span><span class="o">=</span>/usr/local ..
+<span class="c1"># -D BUILD_TIFF=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_V4L=ON -D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D BUILD_EXAMPLES=ON -D WITH_QT=ON -D WITH_GTK=ON -D WITH_OPENGL=ON -D BUILD_SHARED_LIBS=ON 等参数待理解</span>
+<span class="c1"># 1.要编译java库，首先要配好java 环境及ant，然后加上 -D BUILD_SHARED_LIBS=OFF 或者 -DBUILD_TESTS=OFF; 注意查看 To be built 中是否有java</span>
+<span class="c1"># 2.如果电脑中有CUDA，默认会安装CUDA版本，如果不想要，就加 -DWITH_CUDA=OFF</span>
+<span class="c1"># 3.如果要加入contribe 模块，-D OPENCV_EXTRA_MODULES_PATH=&lt;path/to/opencv_contrib-xxx/modules&gt;</span>
+<span class="c1"># 4.如果要加vtk，WITH_VTK=ON, BUILD_opencv_viz=ON, VTK_DIR设置到vtk build的文件夹,</span>
+
+<span class="c1"># -j4 代表运行逻辑核数</span>
+make -j4
+sudo make install -j4
+
+<span class="c1"># 卸载</span>
+make uninstall
+<span class="nb">cd</span> ..
+sudo rm -r release
+sudo rm -r /usr/local/include/opencv2 /usr/local/include/opencv /usr/include/opencv /usr/include/opencv2 /usr/local/share/opencv /usr/local/share/OpenCV /usr/share/opencv /usr/share/OpenCV /usr/local/bin/opencv* /usr/local/lib/libopencv
+</pre></div>
+</div>
+<p>安装多版本时， 将 CMAKE_INSTALL_PREFIX 设为不同值即可, 在使用时记得设置</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span>:/usr/local/&lt;opencv_path&gt;/lib
+<span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span>:/usr/local/&lt;opencv_path&gt;/share/OpenCV/Java // 如果编译了java的话
+<span class="nb">export</span> <span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span>/usr/local/&lt;opencv_path&gt;/lib/pkgconfig
+// 注意编译过程中使用的release文件夹不能改名，因为安装目录下的很多文件是链接到这里的
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="jsoncpp">
+<h3>jsoncpp<a class="headerlink" href="#jsoncpp" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="https://github.com/open-source-parsers/jsoncpp/wiki/Building)">编译安装jsoncpp</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install libjsoncpp-dev
+<span class="c1"># 或者</span>
+git clone https://github.com/open-source-parsers/jsoncpp.git
+<span class="nb">cd</span> jsoncpp
+mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>release -DBUILD_STATIC_LIBS<span class="o">=</span>OFF -DBUILD_SHARED_LIBS<span class="o">=</span>ON -DCMAKE_INSTALL_INCLUDEDIR<span class="o">=</span>include/jsoncpp -DARCHIVE_INSTALL_DIR<span class="o">=</span>. -G <span class="s2">&quot;Unix Makefiles&quot;</span> ../..
+make
+make install
+</pre></div>
+</div>
+<p>记得添加路径到 .bashrc 文件</p>
+</div>
+<div class="section" id="genymotion">
+<h3>genymotion<a class="headerlink" href="#genymotion" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>先 <a class="reference external" href="https://www.virtualbox.org/wiki/Linux_Downloads">安装 virtualbox</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo vim /etc/apt/sources.list  <span class="c1"># 在文件末尾加入 deb http://download.virtualbox.org/virtualbox/debian xenial contrib</span>
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- <span class="p">|</span> sudo apt-key add -
+sudo apt-get update
+sudo apt-get install virtualbox-5.2
+sudo apt-get install dkms
+</pre></div>
+</div>
+<p>再 <a class="reference external" href="https://docs.genymotion.com/Content/01_Get_Started/Installation.htm">安装genymotion</a></p>
+</div></blockquote>
+</div>
+<div class="section" id="jenkins">
+<span id="jenkins-install-ubuntu"></span><h3>jenkins<a class="headerlink" href="#jenkins" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="https://jenkins.io/doc/book/installing/">官方安装文档</a></p>
+<div class="section" id="requirement">
+<h4>Requirement<a class="headerlink" href="#requirement" title="永久链接至标题">¶</a></h4>
+<ul class="simple">
+<li><p>java</p></li>
+<li><p>docker</p></li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h4>Install<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h4>
+<p>可以参考官网使用离线方式安装，或者采用离线安装的方式
+安装 docker， jenkins</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key <span class="p">|</span> sudo apt-key add -
+<span class="c1"># FOR STABLE JENKINS VERSION RUN:</span>
+sudo apt-add-repository <span class="s2">&quot;deb https://pkg.jenkins.io/debian-stable binary/&quot;</span>
+<span class="c1"># FOR LATEST JENKINS VERSION RUN:</span>
+sudo apt-add-repository <span class="s2">&quot;deb http://pkg.jenkins-ci.org/debian binary/&quot;</span>
+sudo apt-get update
+sudo apt-get install jenkins
+</pre></div>
+</div>
+</div>
+<div class="section" id="uninstall">
+<h4>Uninstall<a class="headerlink" href="#uninstall" title="永久链接至标题">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// 卸载jenkins 并移除相关依赖
+sudo apt-get remove jenkins
+sudo apt-get remove --auto-remove jenkins
+// 清除各种相关配置和数据
+sudo apt-get purge jenkins
+sudo apt-get purge --auto-remove jenkins
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="mac">
+<h2>安装mac主题<a class="headerlink" href="#mac" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://laravel-china.org/topics/2723/create-a-perfect-ubuntu1604-development-environment-continuous-update">打造完美的 Ubuntu16.04 开发环境</a></p>
+<blockquote>
+<div><p><a class="reference external" href="http://pan.baidu.com/s/1skQCq2T">mac壁纸</a></p>
+</div></blockquote>
+</div>
+<div class="section" id="id9">
+<h2>终端<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
+<ol class="arabic">
+<li><p>安装完首先要更新源：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get  update <span class="c1">#更新</span>
+sudo apt-get upgrade <span class="c1">#升级</span>
+</pre></div>
+</div>
+</li>
+<li><p>添加用户，并使其有 root 权限</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo useradd -r &lt;name&gt;   <span class="c1">#  -r 参数建立系统用户</span>
+sudo usermod -g root &lt;name&gt;  <span class="c1"># 将用户划分到 root 权限组下</span>
+<span class="c1"># 同时修改 /etc/sudoer 文件， 添加 &lt;name&gt;  ALL=(ALL:ALL)ALL  # 添加ROOT权限</span>
+passwd &lt;name&gt;       <span class="c1"># 设置密码</span>
+
+<span class="c1"># 更改文件夹的用户及组</span>
+sudo chown -R &lt;username/groupname&gt; &lt;folder&gt;
+</pre></div>
+</div>
+</li>
+<li><p>修改更新源：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo  cp /etc/apt/sources.list /etc/apt/sources.list.backup  <span class="c1">#备份</span>
+sudo  gedit /etc/apt/sources.list  <span class="c1">#用编辑器打开文件</span>
+接下来就是删除文件中的内容，加入新的更新源
+</pre></div>
+</div>
+</li>
+<li><p>开启自动补全功能</p>
+<p>终端输入</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ nano .inputrc
+</pre></div>
+</div>
+<p>然后在打开的文件中粘贴:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">completion</span><span class="o">-</span><span class="n">ignore</span><span class="o">-</span><span class="n">case</span> <span class="n">on</span>
+<span class="nb">set</span> <span class="n">show</span><span class="o">-</span><span class="nb">all</span><span class="o">-</span><span class="k">if</span><span class="o">-</span><span class="n">ambiguous</span> <span class="n">on</span>
+<span class="n">TAB</span><span class="p">:</span> <span class="n">menu</span><span class="o">-</span><span class="n">complete</span>
+</pre></div>
+</div>
+</li>
+<li><p>压缩／解压</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># ZIP</span>
+<span class="c1"># 优点: 不同的操作系统平台上使用;</span>
+<span class="c1"># 缺点: 支持的压缩率不是很高</span>
+zip -r &lt;archive_name&gt;.zip &lt;directory_to_compress&gt;   <span class="c1"># 压缩</span>
+unzip &lt;archive_name&gt;.zip   <span class="c1"># 解压</span>
+
+<span class="c1"># tar</span>
+<span class="c1"># 只消耗非常少的CPU以及时间去打包文件，仅仅只是一个打包工具，并不负责压缩</span>
+tar -cvf &lt;archive_name&gt;.tar &lt;directory_to_compress&gt;  <span class="c1"># 压缩</span>
+tar -xvf &lt;archive_name&gt;.tar -C &lt;target_dir&gt;  <span class="c1"># 解压</span>
+
+<span class="c1"># tar.gz</span>
+<span class="c1"># 压缩时不会占用太多CPU，而且可以得到一个非常理想的压缩率</span>
+tar -zcvf &lt;archive_name&gt;.tar.gz &lt;directory_to_compress&gt;  <span class="c1"># 压缩</span>
+tar -zxvf &lt;archive_name&gt;.tar.gz -C &lt;target_dir&gt;  <span class="c1"># 解压</span>
+
+<span class="c1"># tar.bz2</span>
+<span class="c1"># 所有方式中压缩率最好的, 占用更多的CPU与时间</span>
+tar -jcvf &lt;archive_name&gt;.tar.bz2 &lt;directory_to_compress&gt;  <span class="c1"># 压缩</span>
+tar -jxvf &lt;archive_name&gt;.tar.bz2 -C &lt;target_dir&gt;  <span class="c1"># 解压</span>
+</pre></div>
+</div>
+</li>
+<li><p>zsh 和 oh-my-zsh</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 可先查看本机的shell</span>
+$ cat /etc/shells
+$ <span class="nb">echo</span> <span class="nv">$SHELL</span>
+
+$ sudo apt-get install zsh
+$ sudo chsh -s /bin/zsh <span class="c1"># 重新启动生效</span>
+
+<span class="c1"># 安装 oh-my-zsh, 配置 .zshrc</span>
+</pre></div>
+</div>
+<p>若安装 agnoster 主题，需修改匹配 <a class="reference external" href="https://github.com/powerline/fonts.git">字体</a> , 安装好后在 terminal 的preferences 中设置</p>
+</li>
+</ol>
+</div>
+<div class="section" id="ssh">
+<h2>ssh 连接<a class="headerlink" href="#ssh" title="永久链接至标题">¶</a></h2>
+<p>connet to host [hostname] port 22: No route to host 出现的可能原因:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. 网络连接方式 wifi ／wan
+2. 防火墙设置
+</pre></div>
+</div>
+</div>
+<div class="section" id="sshfs">
+<h2>sshfs 连接<a class="headerlink" href="#sshfs" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install sshfs  <span class="c1"># 安装</span>
+sudo sshfs -o allow_other &lt;user@hostname:folder&gt; &lt;<span class="nb">local</span> mount folder&gt;  <span class="c1"># 挂载</span>
+sudo fusermount -u &lt;<span class="nb">local</span> mount folder&gt;  <span class="c1"># 卸载</span>
+
+<span class="c1"># sshfs 连接典型例子（断网后自动连接）</span>
+sudo sshfs -o allow_other xshine@192.168.1.102:Documents/projects_tf ~/remote_home/alienware -o reconnect
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>快捷键<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ctrl</span> <span class="o">+</span> <span class="n">Alt</span> <span class="o">+</span> <span class="n">T</span> <span class="o">//</span> <span class="n">打开终端</span>
+<span class="n">Ctrl</span> <span class="o">+</span> <span class="n">Shift</span> <span class="o">+</span> <span class="n">T</span> <span class="o">//</span><span class="n">新建终端标签</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>一些技巧<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h2>
+<dl>
+<dt>软链接</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln -s 原始文件夹 目标文件夹 <span class="c1"># 对链接后文件的修改是否会影响到原始文件</span>
+</pre></div>
+</div>
+</dd>
+<dt>查看文件路径</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>which appname
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="id13">
+<h2>错误解决办法<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h2>
+<dl>
+<dt>卷boot仅剩余0字节的磁盘空间:</dt><dd><p>Ubuntu系统经过升级之后，之前的Linux内核依然会存在boot分区中，造成boot分区提示硬盘不足，此时我们可以通过删除之前的linux内核，仅仅保留当前正在使用的内核解决，步骤如下：</p>
+<ol class="arabic">
+<li><p>查看已安装的 linux-image 各版本</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ dpkg --get-selections <span class="p">|</span>grep linux-image
+</pre></div>
+</div>
+</li>
+<li><p>查看当前使用的版本</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ uname -a
+</pre></div>
+</div>
+</li>
+<li><p>卸载掉其他不用的版本</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get purge linux-image-#.#.#-##-generic
+</pre></div>
+</div>
+</li>
+<li><p>卸载完后查看boot分区的空间使用情况</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ df
+</pre></div>
+</div>
+</li>
+</ol>
+</dd>
+<dt>无法上网的问题：</dt><dd><p>更新驱动</p>
+</dd>
+<dt>/bin/bash^M:bad interpreter</dt><dd><p>用vim 打开脚本文件，查看文件格式： <code class="docutils literal notranslate"><span class="pre">:set</span> <span class="pre">ff?</span></code> , 如果是 <code class="docutils literal notranslate"><span class="pre">doc</span></code> ,通过 <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">fileformat=unix</span></code>, 再运行</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mac.html" class="btn btn-neutral float-right" title="mac" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="OS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

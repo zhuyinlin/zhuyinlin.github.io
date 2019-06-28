@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>XCode &mdash; EmilyNotes 1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Web 编程" href="web_program.html" />
+    <link rel="prev" title="Android Studio" href="AndroidStudio.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EmilyNotes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">平台搭建</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Cmake.html">Cmake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AndroidStudio.html">Android Studio</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">XCode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#xcode-opencv">为XCode 配置OpenCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sdk">SDK 制作</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">基础概念</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-xcode-9-4-1">创建.a 静态库(XCode 9.4.1)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">查看静态库支持的架构</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="web_program.html">Web 编程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="react_native.html">React_Native</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#hadoop">Hadoop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#jenkins">Jenkins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/index.html">文献资料</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EmilyNotes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">平台搭建</a> &raquo;</li>
+        
+      <li>XCode</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/platform/XCode.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="xcode">
+<h1>XCode<a class="headerlink" href="#xcode" title="永久链接至标题">¶</a></h1>
+<div class="section" id="xcode-opencv">
+<h2>为XCode 配置OpenCV<a class="headerlink" href="#xcode-opencv" title="永久链接至标题">¶</a></h2>
+<p>参考 <a class="reference internal" href="../packages/OpenCV.html#opencv-with-xcode"><span class="std std-ref">为 Xcode 配置 OpenCV</span></a></p>
+</div>
+<div class="section" id="sdk">
+<h2>SDK 制作<a class="headerlink" href="#sdk" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://blog.csdn.net/wanna_dance/article/details/78687676">iOS 静态库制作</a></p>
+<div class="section" id="id1">
+<h3>基础概念<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h3>
+<p>库从本质上来说是一种可执行代码的二进制格式，可以被载入内存中执行。</p>
+<div class="section" id="id2">
+<h4>库类别<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h4>
+<blockquote>
+<div><ul class="simple">
+<li><p>静态库（.a 和.framework）</p></li>
+<li><p>动态库（.dylib/.tbd 和.framework）</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>.a与.framework的区别:</dt><dd><ul class="simple">
+<li><p>.a是一个纯二进制文件，.framework中除了有二进制文件之外还有资源文件和.h文件。</p></li>
+<li><p>.a文件不能直接使用，至少要有.h文件配合，.framework文件可以直接使用。</p></li>
+</ul>
+</dd>
+</dl>
+<p>.a + .h + sourceFile = .framework。个人建议用.framework,看个人习惯。</p>
+</div>
+<div class="section" id="id3">
+<h4>静态库和动态库的区别<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h4>
+<p>静态库和动态库是相对编译期和运行期的：静态库在程序 <strong>编译</strong> 时会被链接到目标代码中，程序运行时将不再需要改静态库；而动态库在程序编译时并不会被链接到目标代码中，只是在程序 <strong>运行</strong> 时才被载入，因为在程序运行期间还需要动态库的存在。</p>
+<dl>
+<dt>静态库：</dt><dd><ul class="simple">
+<li><p>优点:</p>
+<ul>
+<li><p>编译后的执行程序不需要外部的函数库支持</p></li>
+<li><p>模块化，分工合作，提高了代码的复用及核心技术的保密程度(减少耦合性，因为静态库中是不可以包含其他静态库的，使用的时候要另外导入它的依赖库，最大限度的保证了每一个静态库都是独立的，不会重复引用。)</p></li>
+<li><p>也可以重用，注意不是共享使用</p></li>
+</ul>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li><p>编译成的文件比较大</p></li>
+<li><p>静态库在项目编译时完整地拷贝至可执行文件中，被多次使用就有多份冗余拷贝。</p></li>
+<li><p>如果静态函数库改变了，那么你的程序必须重新编译</p></li>
+</ul>
+</li>
+<li><p>平时我们用的第三方SDK基本上都是静态库。</p></li>
+</ul>
+</dd>
+<dt>动态库：</dt><dd><ul class="simple">
+<li><p>优点:</p>
+<ul>
+<li><p>产生的可执行文件比较小。</p></li>
+<li><p>动态库在程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存。</p></li>
+<li><p>动态函数库的改变并不影响你的程序，所以动态函数库的升级比较方便</p></li>
+</ul>
+</li>
+<li><p>缺点:</p>
+<ul>
+<li><p>程序的运行环境中必须提供相应的库</p></li>
+</ul>
+</li>
+<li><p>iOS平时使用的系统库基本是动态库，比如使用频率最高的UIKit.framework和Fundation.framework。</p></li>
+<li><p>动态库在制作的时候可以直接包含静态库，也能自动link所需要的依赖库。</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>苹果禁止iOS开发中使用动态库, iOS上的动态库只能是私有的，因为我们仍然不能将动态库文件放置在除了自身沙盒以外的其它任何地方</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="a-xcode-9-4-1">
+<h3>创建.a 静态库(XCode 9.4.1)<a class="headerlink" href="#a-xcode-9-4-1" title="永久链接至标题">¶</a></h3>
+<ol class="arabic simple">
+<li><p>新建工程</p></li>
+</ol>
+<p>打开Xcode 新建工程, 选择iOS -&gt; Framework &amp; Library —&gt; Cocoa Touch Static Library, 创建工程。</p>
+<div class="figure align-center">
+<img alt="../_images/xcode_staticLib1.png" src="../_images/xcode_staticLib1.png" />
+</div>
+<p>删除项目文件夹下自动生成的 <code class="docutils literal notranslate"><span class="pre">.m/.h</span></code> 文件，将要打包的c++文件拷贝进去</p>
+<div class="figure align-center">
+<img alt="../_images/xcode_staticLib2.png" src="../_images/xcode_staticLib2.png" />
+</div>
+<p>注意在Compile Sources 中添加cpp 文件</p>
+<div class="figure align-center">
+<img alt="../_images/xcode_staticLib7.png" src="../_images/xcode_staticLib7.png" />
+</div>
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>嵌套文件夹，则文件夹中的文件不会自动添加（蓝色）到compile sources，需手动添加（黄色）</p>
+</div>
+<p><a class="reference external" href="https://blog.csdn.net/zzzzzdddddxxxxx/article/details/50408732">关于导出头文件</a></p>
+<ol class="arabic simple" start="2">
+<li><p>配置工程环境</p></li>
+</ol>
+<p>配置最低支持版本</p>
+<div class="figure align-center">
+<img alt="../_images/xcode_staticLib3.png" src="../_images/xcode_staticLib3.png" />
+</div>
+<p>设置适配所有模拟器架构</p>
+<div class="figure align-center">
+<img alt="../_images/xcode_staticLib4.png" src="../_images/xcode_staticLib4.png" />
+</div>
+<p>设置依赖库</p>
+<div class="figure align-center">
+<img alt="../_images/xcode_staticLib8.png" src="../_images/xcode_staticLib8.png" />
+</div>
+<ol class="arabic simple" start="3">
+<li><p>生成 .a 文件</p></li>
+</ol>
+<p>此处注意需要生成4个</p>
+<ul class="simple">
+<li><p>真机-Debug版本</p></li>
+<li><p>真机-Release版本</p></li>
+<li><p>模拟器-Debug版本</p></li>
+<li><p>模拟器-Release版本</p></li>
+</ul>
+<dl class="simple">
+<dt>Debug:</dt><dd><ul class="simple">
+<li><p>含完整的符号信息，以方便调试;</p></li>
+<li><p>不会对代码进行优化</p></li>
+</ul>
+</dd>
+<dt>Release:</dt><dd><ul class="simple">
+<li><p>不会包含完整的符号信息</p></li>
+<li><p>执行代码是进行过优化的</p></li>
+<li><p>大小会比Debug版本的略小</p></li>
+<li><p>在执行速度方面，Release版本会更快些（但不意味着会有显著的提升）</p></li>
+</ul>
+</dd>
+</dl>
+<p>通过 EditSchemae… 选择 Debug 和 Release 环境</p>
+<div class="figure align-center">
+<img alt="../_images/xcode_staticLib5.png" src="../_images/xcode_staticLib5.png" />
+</div>
+<p>选择真机和模拟器</p>
+<div class="figure align-center">
+<img alt="../_images/xcode_staticLib6.png" src="../_images/xcode_staticLib6.png" />
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">command+R</span></code> 生成.a</p>
+<ol class="arabic simple" start="4">
+<li><p>合并 debug 两个包和 release 两个包</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>这里的合并指的是
+1. debug 下真机+模拟器合并
+2. release 下真机+模拟器合并</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lipo -create &lt;Debug版.a路径&gt; &lt;Release版.a路径&gt; -output &lt;输出路径&gt;
+
+//example
+lipo -create /Users/Emily/Library/Developer/Xcode/DerivedData/xocr-ccbtpzpnrtsoymgqmvjuwapryswm/Build/Products/Release-iphonesimulator/libxocr.a /Users/Emily/Library/Developer/Xcode/DerivedData/xocr-ccbtpzpnrtsoymgqmvjuwapryswm/Build/Products/Release-iphoneos/libxocr.a -output tmp/libxocr.a
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>查看静态库支持的架构<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lipo -info &lt;.a file&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="web_program.html" class="btn btn-neutral float-right" title="Web 编程" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="AndroidStudio.html" class="btn btn-neutral float-left" title="Android Studio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Emily
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
