@@ -204,6 +204,12 @@ html_static_path = ['_static']
 # If true, links to the reST sources are added to the pages.
 #
 # html_show_sourcelink = True
+html_context = {
+    'display_github': True,
+    'github_user': 'zhuyinlin',
+    'github_repo': 'zhuyinlin.github.io',
+    'github_version': 'master/source/',
+}
 
 # If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
 #
