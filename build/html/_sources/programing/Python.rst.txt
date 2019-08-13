@@ -399,6 +399,8 @@ matplotlib
        from matplotlib.font_manager import _rebuild
        _rebuild()
 
+  如果此后出现部分中文无法正常显示，则考虑是否数据本身有问题
+
 
 
 dlib

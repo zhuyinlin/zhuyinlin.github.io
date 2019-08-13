@@ -121,6 +121,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#neo4j">neo4j</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Install</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id11">本地安装</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">远程控制</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Usage</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
@@ -789,6 +798,55 @@ sudo systemctl stop jenkins // 停止服务
 </pre></div>
 </div>
 <p>查看</p>
+</div>
+</div>
+<div class="section" id="neo4j">
+<h2>neo4j<a class="headerlink" href="#neo4j" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id10">
+<h3>Install<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id11">
+<h4>本地安装<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h4>
+<p>安装java</p>
+<p>下载 <a class="reference external" href="https://neo4j.com/download/other-releases/#releases">社区免费版</a>  或</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -O http://dist.neo4j.org/neo4j-community-3.4.5-unix.tar.gz
+</pre></div>
+</div>
+<p>解压，根据需要修改 &lt;neo dir&gt;/conf/neo4j.conf 文件相关配置，然后运行 &lt;neo4j dir&gt;/bin/neo4j start，在浏览器中打开 0.0.0.0:7474 ，初始密码为neo4j</p>
+</div>
+<div class="section" id="id13">
+<h4>远程控制<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h4>
+<p>远程安装好后，修改&lt;neo dir&gt;/conf/neo4j.conf 文件:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dbms</span><span class="o">.</span><span class="n">connectors</span><span class="o">.</span><span class="n">default_listen_address</span><span class="o">=</span><span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span>
+</pre></div>
+</div>
+<p>在本地ssh连接，</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh -NfL localhost:7474:localhost:7474 -L localhost:7687:localhost:7687 &lt;remote name&gt;@&lt;remote host&gt;
+</pre></div>
+</div>
+<p>然后在浏览器中打开 localhost:7474</p>
+</div>
+</div>
+<div class="section" id="id14">
+<h3>Usage<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>neo4j start <span class="c1"># 开启</span>
+neo4j stop <span class="c1"># 关闭</span>
+neo4j status <span class="c1"># 查看数据库状态</span>
+</pre></div>
+</div>
+<p>清空数据库</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 法1:</span>
+<span class="n">match</span> <span class="n">p</span> <span class="o">=</span> <span class="p">()</span><span class="o">-</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">()</span> <span class="n">delete</span> <span class="n">p</span>
+<span class="n">match</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="n">delete</span> <span class="n">n</span>
+
+<span class="c1"># 法2:</span>
+<span class="n">match</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">optional</span> <span class="n">match</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">-</span><span class="p">()</span>
+<span class="n">delete</span> <span class="n">n</span><span class="p">,</span> <span class="n">r</span>
+
+<span class="c1"># 法3:</span>
+<span class="n">match</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="n">detach</span> <span class="n">delete</span> <span class="n">n</span> <span class="c1"># detach 会删除节点及与该节点相关的关系</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>

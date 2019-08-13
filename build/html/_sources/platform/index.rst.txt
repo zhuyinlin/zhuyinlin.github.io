@@ -501,3 +501,63 @@ Usage
 
 查看
 
+
+
+neo4j
+------
+
+Install
+^^^^^^^^
+
+本地安装
+""""""""
+安装java
+
+下载 `社区免费版 <https://neo4j.com/download/other-releases/#releases>`_  或
+
+.. code-block:: bash
+
+    curl -O http://dist.neo4j.org/neo4j-community-3.4.5-unix.tar.gz
+    
+解压，根据需要修改 <neo dir>/conf/neo4j.conf 文件相关配置，然后运行 <neo4j dir>/bin/neo4j start，在浏览器中打开 0.0.0.0:7474 ，初始密码为neo4j
+
+远程控制
+""""""""
+
+远程安装好后，修改<neo dir>/conf/neo4j.conf 文件::
+
+   dbms.connectors.default_listen_address=0.0.0.0
+
+在本地ssh连接，
+
+.. code-block:: bash
+
+   ssh -NfL localhost:7474:localhost:7474 -L localhost:7687:localhost:7687 <remote name>@<remote host>
+
+然后在浏览器中打开 localhost:7474
+
+Usage
+^^^^^^^
+
+.. code-block:: bash
+
+   neo4j start # 开启
+   neo4j stop # 关闭
+   neo4j status # 查看数据库状态
+
+清空数据库
+
+.. code-block::
+
+   # 法1:
+   match p = ()-[r]->() delete p
+   match (n) delete n
+
+   # 法2:
+   match (n) 
+   optional match (n)-[r]-()
+   delete n, r
+
+   # 法3:
+   match (n) detach delete n # detach 会删除节点及与该节点相关的关系
+

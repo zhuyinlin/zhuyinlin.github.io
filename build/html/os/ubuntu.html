@@ -978,6 +978,17 @@ $ sudo usermod -s /bin/zsh &lt;user name&gt;
 2. 防火墙设置
 </pre></div>
 </div>
+<p>端口映射到本地：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh -N -f -L localhost:8888:localhost:8889 remote_user@remote_host
+<span class="c1"># or</span>
+ssh -NfL localhost:8888:localhost:8889 remote_user@remote_host
+
+<span class="c1">#  -N 告诉SSH没有命令要被远程执行；</span>
+<span class="c1">#  -f 告诉SSH在后台执行；</span>
+<span class="c1">#  -L 是指定port forwarding的配置，远端端口是8889，本地的端口号的8888。</span>
+<span class="c1"># remote_user@remote_host 用实际的远程帐户和远程地址替换</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="sshfs">
 <h2>sshfs 连接<a class="headerlink" href="#sshfs" title="永久链接至标题">¶</a></h2>

@@ -32,7 +32,7 @@ cgdb 和 ddd调试
 
 .. code:: bash
 
-   ssh fd@pwnable.kr -D <local port> -p 2222
+   ssh fd@pwnable.kr -D <local port> -p 2222  # guest
 
 在浏览器中设置代理： 127.0.0.1, <local port>
 
