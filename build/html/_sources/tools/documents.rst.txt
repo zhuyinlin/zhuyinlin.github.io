@@ -321,7 +321,7 @@ citation::
    :file:`build/html/index.html`
 3. 添加 :file:`.nojekyll` 文件：Github Pages 找不到下划线开头的文件，这会使得网页主题渲染出问题，
    需要在项目中添加 :file:`.nojekyll` 文件来屏蔽此限制
-4. 将项目push到仓库，打开 https://<username>/github.io 即可访问博客主页
+4. 将项目push到仓库，打开 https://<username>.github.io 即可访问博客主页
 
 
 Markdown

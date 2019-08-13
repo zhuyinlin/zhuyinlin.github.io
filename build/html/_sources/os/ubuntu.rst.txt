@@ -854,6 +854,20 @@ connet to host [hostname] port 22: No route to host 出现的可能原因::
         1. 网络连接方式 wifi ／wan
         2. 防火墙设置
 
+
+端口映射到本地：
+
+.. code-block:: bash
+
+   ssh -N -f -L localhost:8888:localhost:8889 remote_user@remote_host
+   # or
+   ssh -NfL localhost:8888:localhost:8889 remote_user@remote_host
+
+   #  -N 告诉SSH没有命令要被远程执行；
+   #  -f 告诉SSH在后台执行；
+   #  -L 是指定port forwarding的配置，远端端口是8889，本地的端口号的8888。
+   # remote_user@remote_host 用实际的远程帐户和远程地址替换
+
 sshfs 连接
 -----------
 .. code-block:: bash

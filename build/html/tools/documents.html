@@ -36,7 +36,9 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" /> 
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="编程相关" href="../programing/index.html" />
+    <link rel="prev" title="vim" href="vim.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -84,9 +86,29 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">工具</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">工具</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="browser.html">浏览器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git.html">Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vim.html">vim</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">文档工具</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#restructuredtext">restructuredText</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#install">Install</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#github-pagessphinxrst">基于Github Pages和Sphinx使用rST文档搭建个人博客</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#markdown">Markdown</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#set">Set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#tmux">tmux</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
@@ -137,6 +159,8 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">工具</a> &raquo;</li>
         
       <li>文档工具</li>
     
@@ -492,7 +516,7 @@ See the :ref:`the-glossary` for details.
 </li>
 <li><p>添加 <code class="file docutils literal notranslate"><span class="pre">.nojekyll</span></code> 文件：Github Pages 找不到下划线开头的文件，这会使得网页主题渲染出问题，
 需要在项目中添加 <code class="file docutils literal notranslate"><span class="pre">.nojekyll</span></code> 文件来屏蔽此限制</p></li>
-<li><p>将项目push到仓库，打开 <a class="reference external" href="https:/">https:/</a>/&lt;username&gt;/github.io 即可访问博客主页</p></li>
+<li><p>将项目push到仓库，打开 <a class="reference external" href="https:/">https:/</a>/&lt;username&gt;.github.io 即可访问博客主页</p></li>
 </ol>
 </div>
 </div>
@@ -532,6 +556,15 @@ git clone
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../programing/index.html" class="btn btn-neutral float-right" title="编程相关" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="vim.html" class="btn btn-neutral float-left" title="vim" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
