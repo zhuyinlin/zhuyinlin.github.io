@@ -307,6 +307,8 @@ normal
 
     ## riv
     z + a           # fold toggle
+    z + M           # fold all
+    z + R           # unfold all
 
     ## vim-surround 
     <leader> + cs + <old_s> + <new_s>  # surround 替换

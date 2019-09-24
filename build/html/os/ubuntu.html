@@ -989,6 +989,9 @@ ssh -NfL localhost:8888:localhost:8889 remote_user@remote_host
 <span class="c1">#  -f 告诉SSH在后台执行；</span>
 <span class="c1">#  -L 是指定port forwarding的配置，远端端口是8889，本地的端口号的8888。</span>
 <span class="c1"># remote_user@remote_host 用实际的远程帐户和远程地址替换</span>
+
+<span class="c1"># 当有多个端口需要映射时，加多个 -L 参数即可，如</span>
+ssh -NfL localhost:8888:localhost:8889 -L localhost:&lt;port&gt;:localhost:&lt;port&gt; remote_user@remote_host
 </pre></div>
 </div>
 </div>

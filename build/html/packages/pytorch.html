@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>开发相关 &mdash; EmilyNotes 1.0 文档</title>
+  <title>torch 学习笔记 &mdash; EmilyNotes 1.0 文档</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="Shell" href="Shell.html" />
-    <link rel="prev" title="编程相关" href="index.html" /> 
+    <link rel="next" title="OpenCV" href="OpenCV.html" />
+    <link rel="prev" title="caffe 学习笔记" href="caffe.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,32 +89,17 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">编程相关</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">开发相关</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">基于验证的开发</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">经验总结</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id4">项目交接打包注意事项</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">代码移植</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id6">算法测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programing/index.html">编程相关</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">常用第三方包</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tensorflow.html">tensorflow 学习笔记</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caffe.html">caffe 学习笔记</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">torch 学习笔记</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install">Install</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="OpenCV.html">OpenCV</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="Shell.html">Shell</a></li>
-<li class="toctree-l2"><a class="reference internal" href="C++.html">C++</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Java.html">Java</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Python.html">Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ruby.html">ruby</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#id2">规范文档</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#id3">关于不同编程语言</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#id4">编码</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#id5">换行符</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#makefile">Makefile</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#id6">当前工作记录</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#todo">TODO</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../packages/index.html">常用第三方包</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../platform/index.html">平台搭建</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../math/index.html">math</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../algorithm/index.html">算法</a></li>
@@ -164,16 +149,16 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">编程相关</a> &raquo;</li>
+          <li><a href="index.html">常用第三方包</a> &raquo;</li>
         
-      <li>开发相关</li>
+      <li>torch 学习笔记</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/zhuyinlin/zhuyinlin.github.io/blob/master/source/programing/development.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/zhuyinlin/zhuyinlin.github.io/blob/master/source/packages/pytorch.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -187,45 +172,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="id1">
-<h1>开发相关<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<div class="figure align-center" id="fig-process">
-<img alt="../_images/process.jpg" src="../_images/process.jpg" />
-</div>
-<div class="section" id="id2">
-<h2>基于验证的开发<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
-<ul class="simple">
-<li><p>特征置信度验证：进入训练的特征需要验证其置信程度是否足够。</p></li>
-<li><p>样本“填充度”验证：训练之前，还需要验证 <em>样本上的特征数量</em> ，虽然稀疏性是大数据下的基本特点，但是如果大量样本上只有很少的特征覆盖，那么就需要考虑是否需要增加特征。</p></li>
-<li><p>特征处理验证：各种 <em>特征处理的流程</em> 都需要不同的验证，例如连续值分段的处理，在分段之后，需要看一下每分段内样本数量之类的，确认不会出现太稀疏或者太稠密的分段</p></li>
-</ul>
-</div>
-<div class="section" id="id3">
-<h2>经验总结<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
-<div class="figure align-center" id="fig-experience">
-<img alt="../_images/experience1.jpg" src="../_images/experience1.jpg" />
-</div>
-<div class="section" id="id4">
-<h3>项目交接打包注意事项<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
-<ul class="simple">
-<li><p>删除缓存文件</p></li>
-<li><p>删除git 记录</p></li>
-<li><p>删除代码中一些不必要的注释</p></li>
-</ul>
-</div>
-<div class="section" id="id5">
-<h3>代码移植<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
-<ul class="simple">
-<li><p>使用相同的数据测试</p></li>
-<li><p>确认输入数据是否和待移植代码移植</p></li>
-</ul>
-</div>
-<div class="section" id="id6">
-<h3>算法测试<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
-<ul class="simple">
-<li><p>同时使用规范数据和不规范数据（用于查bug）</p></li>
-</ul>
-</div>
+  <div class="section" id="torch">
+<h1>torch 学习笔记<a class="headerlink" href="#torch" title="永久链接至标题">¶</a></h1>
+<div class="section" id="install">
+<h2>Install<a class="headerlink" href="#install" title="永久链接至标题">¶</a></h2>
+<p>pip install torch torchvision</p>
 </div>
 </div>
 
@@ -237,10 +188,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Shell.html" class="btn btn-neutral float-right" title="Shell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="OpenCV.html" class="btn btn-neutral float-right" title="OpenCV" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="编程相关" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="caffe.html" class="btn btn-neutral float-left" title="caffe 学习笔记" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

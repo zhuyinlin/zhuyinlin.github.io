@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>开发相关 &mdash; EmilyNotes 1.0 文档</title>
+  <title>regular expressions &mdash; EmilyNotes 1.0 文档</title>
   
 
   
@@ -38,7 +38,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="Shell" href="Shell.html" />
-    <link rel="prev" title="编程相关" href="index.html" /> 
+    <link rel="prev" title="开发相关" href="development.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,16 +90,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../os/index.html">OS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">编程相关</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">开发相关</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">基于验证的开发</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">经验总结</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id4">项目交接打包注意事项</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">代码移植</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id6">算法测试</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html">开发相关</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">regular expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Shell.html">Shell</a></li>
 <li class="toctree-l2"><a class="reference internal" href="C++.html">C++</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Java.html">Java</a></li>
@@ -166,14 +158,14 @@
         
           <li><a href="index.html">编程相关</a> &raquo;</li>
         
-      <li>开发相关</li>
+      <li>regular expressions</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/zhuyinlin/zhuyinlin.github.io/blob/master/source/programing/development.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/zhuyinlin/zhuyinlin.github.io/blob/master/source/programing/re.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -187,46 +179,102 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="id1">
-<h1>开发相关<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<div class="figure align-center" id="fig-process">
-<img alt="../_images/process.jpg" src="../_images/process.jpg" />
-</div>
-<div class="section" id="id2">
-<h2>基于验证的开发<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+  <div class="section" id="regular-expressions">
+<h1>regular expressions<a class="headerlink" href="#regular-expressions" title="永久链接至标题">¶</a></h1>
+<p><a class="reference external" href="https://regex101.com">online test</a></p>
 <ul class="simple">
-<li><p>特征置信度验证：进入训练的特征需要验证其置信程度是否足够。</p></li>
-<li><p>样本“填充度”验证：训练之前，还需要验证 <em>样本上的特征数量</em> ，虽然稀疏性是大数据下的基本特点，但是如果大量样本上只有很少的特征覆盖，那么就需要考虑是否需要增加特征。</p></li>
-<li><p>特征处理验证：各种 <em>特征处理的流程</em> 都需要不同的验证，例如连续值分段的处理，在分段之后，需要看一下每分段内样本数量之类的，确认不会出现太稀疏或者太稠密的分段</p></li>
+<li><p>非打印字符</p></li>
 </ul>
-</div>
-<div class="section" id="id3">
-<h2>经验总结<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
-<div class="figure align-center" id="fig-experience">
-<img alt="../_images/experience1.jpg" src="../_images/experience1.jpg" />
-</div>
-<div class="section" id="id4">
-<h3>项目交接打包注意事项<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 73%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>字符</p></td>
+<td><p>描述</p></td>
+</tr>
+<tr class="row-even"><td><p>\d</p></td>
+<td><p>匹配数字</p></td>
+</tr>
+<tr class="row-odd"><td><p>\f</p></td>
+<td><p>匹配换页符</p></td>
+</tr>
+<tr class="row-even"><td><p>\n</p></td>
+<td><p>匹配换行符</p></td>
+</tr>
+<tr class="row-odd"><td><p>\r</p></td>
+<td><p>匹配回车符</p></td>
+</tr>
+<tr class="row-even"><td><p>\s</p></td>
+<td><p>匹配空白字符</p></td>
+</tr>
+<tr class="row-odd"><td><p>\S</p></td>
+<td><p>匹配非空白字符</p></td>
+</tr>
+<tr class="row-even"><td><p>\t</p></td>
+<td><p>匹配制表符</p></td>
+</tr>
+<tr class="row-odd"><td><p>\v</p></td>
+<td><p>匹配垂直制表符</p></td>
+</tr>
+<tr class="row-even"><td><p>\w</p></td>
+<td><p>匹配字母或数字</p></td>
+</tr>
+</tbody>
+</table>
 <ul class="simple">
-<li><p>删除缓存文件</p></li>
-<li><p>删除git 记录</p></li>
-<li><p>删除代码中一些不必要的注释</p></li>
+<li><p>特殊字符</p></li>
 </ul>
-</div>
-<div class="section" id="id5">
-<h3>代码移植<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
-<ul class="simple">
-<li><p>使用相同的数据测试</p></li>
-<li><p>确认输入数据是否和待移植代码移植</p></li>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 83%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>字符</p></td>
+<td><p>描述</p></td>
+</tr>
+<tr class="row-even"><td><p>.</p></td>
+<td><p>匹配换行符之外的任意单字符</p></td>
+</tr>
+<tr class="row-odd"><td><p>^</p></td>
+<td><p>匹配输入字符串的开始位置</p></td>
+</tr>
+<tr class="row-even"><td><p>$</p></td>
+<td><p>匹配输入字符串的结尾位置</p></td>
+</tr>
+<tr class="row-odd"><td><p>*</p></td>
+<td><p>前面的子表达式 <em>任意次(包括0)</em></p></td>
+</tr>
+<tr class="row-even"><td><p>+</p></td>
+<td><p>前面的子表达式 <em>至少一次</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>?</p></td>
+<td><p>前面的子表达式 <em>0 或 1 次</em></p></td>
+</tr>
+<tr class="row-even"><td><p>{n}</p></td>
+<td><p>n 是一个非负整数。匹配确定的 n 次</p></td>
+</tr>
+<tr class="row-odd"><td><p>{n,}</p></td>
+<td><p>n 是一个非负整数。至少匹配n 次</p></td>
+</tr>
+<tr class="row-even"><td><p>{n,m}</p></td>
+<td><p>匹配 [n, m] 次</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>两项之间的选择</p></td>
+</tr>
+<tr class="row-even"><td><p>()</p></td>
+<td><p>标记字表达式</p></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>中括号表达式例子</p>
+<p>[0-9a-zA-Z_] 可以匹配一个数字、字母或者下划线</p>
+</li>
 </ul>
-</div>
-<div class="section" id="id6">
-<h3>算法测试<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
-<ul class="simple">
-<li><p>同时使用规范数据和不规范数据（用于查bug）</p></li>
-</ul>
-</div>
-</div>
 </div>
 
 
@@ -240,7 +288,7 @@
         <a href="Shell.html" class="btn btn-neutral float-right" title="Shell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="编程相关" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="development.html" class="btn btn-neutral float-left" title="开发相关" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

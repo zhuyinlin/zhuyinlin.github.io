@@ -5,5 +5,6 @@
 
    tensorflow.rst
    caffe.rst
+   pytorch.rst
    OpenCV.rst
 

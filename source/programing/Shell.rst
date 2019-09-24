@@ -14,7 +14,8 @@ Shell
        lspci -v -s XX:XX.X  # 根据前面查到信息的编号查询具体GPU信息
 
        sudo -s              # 以 root 身份运行
-       chmod +x filename    # 修改执行权限 
+       chmod +x <filename>    # 修改执行权限 
+       chown <user_name> <file/dir name>
 
        pwd                  # 获取当前文件路径
        mkdir                # 文创建文件夹

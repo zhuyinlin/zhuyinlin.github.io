@@ -96,7 +96,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#id3">版本控制</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id4">重写历史</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#gitignore">.gitignore 文件</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">查看文件修改前后区别</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">查看文件区别</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#log">个性化 log 输出</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id6">保存当前工作</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id7">分支</a></li>
@@ -283,10 +283,13 @@ git rm --cached &lt;filename&gt;
 </div>
 </div>
 <div class="section" id="id5">
-<h3>查看文件修改前后区别<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<h3>查看文件区别<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git diff &lt;filename&gt;
 git diff version<span class="o">(</span>all<span class="o">)</span>  &lt;filename&gt;  <span class="c1"># difference with a specific version</span>
 git diff &lt;commit id&gt; --stat  <span class="c1"># difference file list</span>
+
+<span class="c1"># compare different files in different commits</span>
+git diff &lt;commit id1&gt;:&lt;file1&gt; &lt;commit id2&gt;:&lt;file2&gt;
 </pre></div>
 </div>
 <p>白色的代表未修改， <code class="docutils literal notranslate"><span class="pre">＋</span></code> 开头的代表其内有增加内容,  <code class="docutils literal notranslate"><span class="pre">-</span></code> 开头的表示其内有删除内容</p>

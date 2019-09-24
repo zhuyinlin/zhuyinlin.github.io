@@ -868,6 +868,10 @@ connet to host [hostname] port 22: No route to host 出现的可能原因::
    #  -L 是指定port forwarding的配置，远端端口是8889，本地的端口号的8888。
    # remote_user@remote_host 用实际的远程帐户和远程地址替换
 
+   # 当有多个端口需要映射时，加多个 -L 参数即可，如
+   ssh -NfL localhost:8888:localhost:8889 -L localhost:<port>:localhost:<port> remote_user@remote_host
+
+
 sshfs 连接
 -----------
 .. code-block:: bash

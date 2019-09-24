@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">编程相关</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="development.html">开发相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="re.html">regular expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Shell.html">Shell</a></li>
 <li class="toctree-l2"><a class="reference internal" href="C++.html">C++</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Java.html">Java</a></li>
@@ -101,13 +102,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#id4">编码</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id5">换行符</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#makefile">Makefile</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">一些经验</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id7">项目交接打包注意事项</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id8">代码移植</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">算法测试</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id10">当前工作记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">当前工作记录</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#todo">TODO</a></li>
 </ul>
 </li>
@@ -188,8 +183,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="development.html">开发相关</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="development.html#id2">基于验证的开发</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#id3">经验总结</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#id4">项目交接打包注意事项</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#id5">代码移植</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#id6">算法测试</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="re.html">regular expressions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Shell.html">Shell</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Shell.html#id1">常用命令</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Shell.html#id2">变量</a></li>
@@ -431,31 +433,7 @@
 </table>
 </div>
 <div class="section" id="id6">
-<h2>一些经验<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
-<div class="section" id="id7">
-<h3>项目交接打包注意事项<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
-<ul class="simple">
-<li><p>删除缓存文件</p></li>
-<li><p>删除git 记录</p></li>
-<li><p>删除代码中一些不必要的注释</p></li>
-</ul>
-</div>
-<div class="section" id="id8">
-<h3>代码移植<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
-<ul class="simple">
-<li><p>使用相同的数据测试</p></li>
-<li><p>确认输入数据是否和待移植代码移植</p></li>
-</ul>
-</div>
-<div class="section" id="id9">
-<h3>算法测试<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
-<ul class="simple">
-<li><p>同时使用规范数据和不规范数据（用于查bug）</p></li>
-</ul>
-</div>
-</div>
-<div class="section" id="id10">
-<h2>当前工作记录<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
+<h2>当前工作记录<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
 <dl>
 <dt>roi_pooling_layer 的编译</dt><dd><ol class="upperalpha simple">
 <li><p>编译时找不到nvcc： /usr/local/cuda/bin 未添加到环境变量</p></li>

@@ -87,13 +87,16 @@ Git 基础命令
    # 再commit
    git rm --cached <filename>
 
-查看文件修改前后区别
+查看文件区别
 ~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: bash
 
    git diff <filename> 
    git diff version(all)  <filename>  # difference with a specific version 
    git diff <commit id> --stat  # difference file list
+
+   # compare different files in different commits
+   git diff <commit id1>:<file1> <commit id2>:<file2>
 
 白色的代表未修改， ``＋`` 开头的代表其内有增加内容,  ``-`` 开头的表示其内有删除内容
      

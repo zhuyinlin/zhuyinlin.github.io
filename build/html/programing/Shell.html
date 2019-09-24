@@ -203,7 +203,8 @@ lspci <span class="p">|</span>grep VGA      <span class="c1"># 查看GPU信息</
 lspci -v -s XX:XX.X  <span class="c1"># 根据前面查到信息的编号查询具体GPU信息</span>
 
 sudo -s              <span class="c1"># 以 root 身份运行</span>
-chmod +x filename    <span class="c1"># 修改执行权限</span>
+chmod +x &lt;filename&gt;    <span class="c1"># 修改执行权限</span>
+chown &lt;user_name&gt; &lt;file/dir name&gt;
 
 <span class="nb">pwd</span>                  <span class="c1"># 获取当前文件路径</span>
 mkdir                <span class="c1"># 文创建文件夹</span>
