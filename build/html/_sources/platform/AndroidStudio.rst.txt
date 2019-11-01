@@ -1,3 +1,5 @@
+.. include:: ../_refs/abbrs.ref
+
 Android Studio
 =========================
 
@@ -35,16 +37,16 @@ OpenCV 配置 (java 层)
   
    **OpenCVLoader.initDebug()** must be used for debugging purposes only as when you are developing locally on your machine. But for production purposes where you need to release the app on Play Store, etc. you must use **OpenCVLoader.initAsync()**. Actually initializing the **OpenCVLoader** takes some time depending upon the phone. So if you load it using **initDebug()**, then it would be executed in the main thread, which may block the UI for a fractional time. So it is advised to load the OpenCV in background which can be achieved using **initAsync()**
 
-2. 将OpenCV引入 :abbr:`AS (Android studio)` 
+2. 将OpenCV引入 |a_as| 
    
-   在 :abbr:`AS (Android studio)` 中选择 **File** -> **Import Module** ，找到OpenCV解压的路径，选择 :file:`sdk/java` 文件夹。
+   在 |a_as| 中选择 **File** -> **Import Module** ，找到OpenCV解压的路径，选择 :file:`sdk/java` 文件夹。
 
    .. figure:: /_static/platform/android_opencv2.png
       :align: center
 
 3. 更新build.gradle信息
    
-   在 :abbr:`AS (Android studio)` 中的左上角选择Project视图，在oepnCVLibrary2411文件夹里，打开build.gradle（有很多重名的文件，一定找对openCV库文件下的），修改文件中的1）compileSdkVersion 2）buildToolsVersion 3） minSdkVersion 4）targetSdkVersion，将其内容与app文件夹下的build.gradle中信息相一致。点击上方提示的黄色提示框内的Try Again进行更新。
+   在 |a_as| 中的左上角选择Project视图，在oepnCVLibrary2411文件夹里，打开build.gradle（有很多重名的文件，一定找对openCV库文件下的），修改文件中的1）compileSdkVersion 2）buildToolsVersion 3） minSdkVersion 4）targetSdkVersion，将其内容与app文件夹下的build.gradle中信息相一致。点击上方提示的黄色提示框内的Try Again进行更新。
 
    .. figure:: /_static/platform/android_opencv3.png
       :align: center
@@ -140,7 +142,7 @@ Android.mk
 
      android{
         ...
-        sourceSets.main.jni.srcDirs = []   //禁止自带的ndk功能/禁止自动调用ndk-build命令,防止 :abbr:`AS (Android studio)` 自己生成Android.mk编译jni工程    
+        sourceSets.main.jni.srcDirs = []   //禁止自带的ndk功能/禁止自动调用ndk-build命令,防止 |a_as| 自己生成Android.mk编译jni工程    
         sourceSets.main.jniLibs.srcDirs = ['src/main/libs','src/main/jniLibs'] //重定向so目录为src/main/libs和src/main/jniLibs，原来为src/main/jniLibs
         
         task ndkBuild(type: Exec, description: 'Compile JNI source with NDK') {        
@@ -172,7 +174,7 @@ Android.mk
         clean.dependsOn 'ndkClean'
      }
       
-这时候， 使用gradle构建一下(点击 :abbr:`AS (Android studio)` 右侧的gradle展开，双击ndkBuild进行构建)，如果能成功构建出so，说明配置没问题。
+这时候， 使用gradle构建一下(点击 |a_as| 右侧的gradle展开，双击ndkBuild进行构建)，如果能成功构建出so，说明配置没问题。
 
 .. figure:: /_static/platform/android_opencv9.png
    :align: center
@@ -451,7 +453,7 @@ OpenCV with contribe module
 在单元测试中使用OpenCV
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-要先将系统级的opencv java 环境配好，设好环境变量 :code:`LD_LIBRARY_PATH` , 然后重启 :abbr:`AS (Android studio)` 
+要先将系统级的opencv java 环境配好，设好环境变量 :code:`LD_LIBRARY_PATH` , 然后重启 |a_as| 
 
 .. code-block:: bash
 
@@ -475,13 +477,13 @@ Use :command:`java -XshowSettings:properties` to show the :code:`java.library.pa
 """"""""""
 .. topic:: 什么是AAR包？ AAR包相比于jar包，区别在哪儿？
 
-   假如我们希望提供一个带有资源文件的第三方库给别人使用，总不能直接把源代码给别人，但是我们知道eclipse打包的时候不能包含res的资源文件，于是Android在发布 :abbr:`AS (Android studio)` 的时候就发布了一种独有的格式AAR，专门用于打包UI组件库。与jar相比其多了一些UI组件用到的属性、图片等一系列文件，它的好处在于你不需要再多创建一个Library Module，只需引用这个AAR文件即可，Android Sudio会自动把AAR包里的文件跟你的项目融合。
+   假如我们希望提供一个带有资源文件的第三方库给别人使用，总不能直接把源代码给别人，但是我们知道eclipse打包的时候不能包含res的资源文件，于是Android在发布 |a_as| 的时候就发布了一种独有的格式AAR，专门用于打包UI组件库。与jar相比其多了一些UI组件用到的属性、图片等一系列文件，它的好处在于你不需要再多创建一个Library Module，只需引用这个AAR文件即可，Android Sudio会自动把AAR包里的文件跟你的项目融合。
 
    aar包含所有资源，class，xml布局文件以及res资源文件全部包含。注意是全部。jar只包含了class文件与清单文件，不包含资源文件，如图片等所有res中的文件。
 
 .. topic:: 什么是so库？什么是ABI？相关的处理器型号在构建APP时有什么区别？
 
-   Android系统目前支持 :ref:`七种不同的CPU架构 <cpu_architecture>` ，每一种都关联着一个相应的 **应用程序二进制接口** （Application Binary Interface, ABI）。 :abbr:`ABI (Application Binary Interface)` 定义了二进制文件（尤其是.so文件）如何运行在相应的系统平台上，从使用的指令集，内存对齐到可用的系统函数库。
+   Android系统目前支持 :ref:`七种不同的CPU架构 <cpu_architecture>` ，每一种都关联着一个相应的 **应用程序二进制接口** |a_abi|。 |a_abi| 定义了二进制文件（尤其是.so文件）如何运行在相应的系统平台上，从使用的指令集，内存对齐到可用的系统函数库。
 
 so库的好处：
 
@@ -524,9 +526,9 @@ jni层的方法对应关系：
 关于jar包
 ^^^^^^^^^^
 
-使用 :abbr:`AS (Android studio)` 打jar包
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-如果想使用 :abbr:`AS (Android studio)` 将我们的项目打成jar包，首先要明确的是 **只能将java文件打包，而不能打包res等资源文件**。 
+使用 |a_as| 打jar包
+""""""""""""""""""""""
+如果想使用 |a_as| 将我们的项目打成jar包，首先要明确的是 **只能将java文件打包，而不能打包res等资源文件**。 
 
 1. 首先module只能是library，而不能是application，所以在module的 :file:`build.gradle` 中，
    将 :code:`app plugin: 'com.android.application'` 改为 :code:`apply plugin: 'com.android.library'`
@@ -1059,7 +1061,7 @@ Cmake
 
 1. Error:failed to find Build Tools revision 19.1.0  
 
-   该类问题属SDK问题，实在连接不上镜像服务器的，SDK管理器里也改了很多配置都无法解决，只能自己手动更新SDK，而此处问题首先下载 `build-tools_r19.1-windows.zip <http://mirrors.neusoft.edu.cn/android/repository/>`_ ，注意不同版本的不一样。然后接到 ``<SDK目录>\build-tools`` ，最终会形成这样的目录 ``<SDK目录>\build-tools\android-4.4.2`` ，然后重新打开 :abbr:`AS (Android studio)` 问题解决。至于缺什么该放到什么文件夹， `参考这里 <http://lzw.me/a/android-sdk-update-package.html>`_
+   该类问题属SDK问题，实在连接不上镜像服务器的，SDK管理器里也改了很多配置都无法解决，只能自己手动更新SDK，而此处问题首先下载 `build-tools_r19.1-windows.zip <http://mirrors.neusoft.edu.cn/android/repository/>`_ ，注意不同版本的不一样。然后接到 ``<SDK目录>\build-tools`` ，最终会形成这样的目录 ``<SDK目录>\build-tools\android-4.4.2`` ，然后重新打开 |a_as| 问题解决。至于缺什么该放到什么文件夹， `参考这里 <http://lzw.me/a/android-sdk-update-package.html>`_
 
 #. Activity class {} does not exit
 

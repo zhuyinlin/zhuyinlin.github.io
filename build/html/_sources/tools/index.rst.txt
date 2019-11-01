@@ -1,8 +1,10 @@
 工具
 =======
 
-
 .. toctree::
+   :glob:
+   :maxdepth: 2
+   :caption: 工具
 
    browser.rst
    git.rst

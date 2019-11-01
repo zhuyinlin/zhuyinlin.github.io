@@ -1,7 +1,11 @@
+
 算法
 ======
 
 .. toctree::
+   :glob:
+   :maxdepth: 2
+   :caption: 算法
 
    image_process.rst
    machine_learning.rst

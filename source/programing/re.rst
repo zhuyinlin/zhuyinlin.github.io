@@ -60,7 +60,7 @@ regular expressions
   + [0-9a-zA-Z\_] 可以匹配一个数字、字母或者下划线
   + "[\u4E00-\u9FA5]+" 匹配中文
 
-  .. Warning::
+  .. warning::
 
      python 中进行正则匹配时遇到中文，注意在匹配规则前加上 ur, 如
 

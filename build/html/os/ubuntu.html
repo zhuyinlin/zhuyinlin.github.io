@@ -109,6 +109,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#mac">安装mac主题</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id9">终端</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rsync">rsync</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ssh">ssh 连接</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sshfs">sshfs 连接</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id11">快捷键</a></li>
@@ -903,9 +904,10 @@ sudo apt-get upgrade <span class="c1">#升级</span>
 </div>
 </li>
 <li><p>添加用户，并使其有 root 权限</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo useradd -r &lt;name&gt;   <span class="c1">#  -r 参数建立系统用户</span>
-sudo usermod -g root &lt;name&gt;  <span class="c1"># 将用户划分到 root 权限组下</span>
-<span class="c1"># 同时修改 /etc/sudoer 文件， 添加 &lt;name&gt;  ALL=(ALL:ALL)ALL  # 添加ROOT权限</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo adduser &lt;name&gt;  <span class="c1"># 会建立用户home目录</span>
+sudo useradd -r &lt;name&gt;   <span class="c1">#  -r 参数建立系统用户, 不会创建用户home 目录</span>
+sudo usermod -g sudo &lt;name&gt;  <span class="c1"># 将用户划分到 sudo 权限组下</span>
+<span class="c1"># 若是添加root组，同时修改 /etc/sudoer 文件， 添加 &lt;name&gt;  ALL=(ALL:ALL)ALL  # 添加ROOT权限</span>
 passwd &lt;name&gt;       <span class="c1"># 设置密码</span>
 
 <span class="c1"># 更改文件夹的用户及组</span>
@@ -972,6 +974,20 @@ $ sudo usermod -s /bin/zsh &lt;user name&gt;
 <p>若安装 agnoster 主题，需修改匹配 <a class="reference external" href="https://github.com/powerline/fonts.git">字体</a> , 安装好后在 terminal 的preferences 中设置</p>
 </li>
 </ol>
+</div>
+<div class="section" id="rsync">
+<h2>rsync<a class="headerlink" href="#rsync" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 复制/同步文件</span>
+rsync -rav -e ssh --include <span class="s1">&#39;*/&#39;</span> --include<span class="o">=</span><span class="s1">&#39;*.class&#39;</span> --exclude<span class="o">=</span><span class="s1">&#39;*&#39;</span> <span class="se">\</span>
+&lt;src folder path&gt; <span class="se">\</span>
+&lt;target folder path&gt;
+
+<span class="c1"># -r for recursive</span>
+<span class="c1"># -a for archive (mostly all files)</span>
+<span class="c1"># -v for verbose output</span>
+<span class="c1"># -e to specify ssh instead of the default (which should be ssh, actually)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="ssh">
 <h2>ssh 连接<a class="headerlink" href="#ssh" title="永久链接至标题">¶</a></h2>

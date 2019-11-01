@@ -273,8 +273,10 @@ AutoEncoder存在一些变体，这里简要介绍下两个：
 
 如果我们将数据减去其均值，数据点就分散开，这时一个随机分界面落入数据分布的概率增加了多少呢？2^n倍！如果我们使用去除相关性的算法（例如PCA和ZCA白化），数据不再是一个狭长的分布，随机分界面有效的概率就又大大增加了。不过计算协方差矩阵的特征值太耗时也太耗空间，我们一般最多只用到z-score处理，即每一维度减去自身均值，再除以自身标准差，这样能使数据点在每维上具有相似的宽度，可以起到一定的增大数据分布范围，进而使更多随机分界面有意义的作用。
 
-Conv & Deconv/Transpose Conv/Fractionally Strided Conv
-------------------------------------------------------
+卷积相关操作 
+----------------
+
+`图示 <https://github.com/vdumoulin/conv_arithmetic>`_
 
 Conv
 ``````
@@ -283,20 +285,24 @@ output size: :math:`\frac{n+2p-f}{s}+1`
 
  :math:`n` 表示原图大小，:math:`p` 表示padding, :math:`f` 表示filer, :math:`s` 表示stride
 
-Transpose Conv 
-``````````````````
+Deconv/Transpose Conv/Fractionally Strided Conv 
+``````````````````````````````````````````````````````
 
-  的参数只是原卷积的转置，并不原卷积的可逆运算
   逆卷积(deconv)相对于卷积在神经网络结构的正向和反向传播中做相反的运算, deconv的参数只是原卷积的转置，并不是原卷积的可逆运算，因此转置卷积(Transposed Convolution)是一个更为合适的叫法。
 
   x upsampling with 3x3 filter and stride of 2
 
   .. image:: /_static/algorithm/deep_learning/conv2d_transpose.png
 
-  `更多图示 <https://github.com/vdumoulin/conv_arithmetic>`_
+Dilated/Atrous Conv
+`````````````````````
 
-Dilated Conv
-`````````````
+空洞/膨胀卷积(dilated convolution) 在标准的 convolution map 里注入空洞，以此来增加 reception field。相比标准卷积多了一个 hyper-parameter 称之为 dilation rate 指的是kernel的间隔数量(e.g. 正常的 convolution 是 dilatation rate 1)
+
+`如何理解空洞卷积 <https://app.yinxiang.com/shard/s49/nl/12875915/709b3f8b-168e-4d8e-b635-28c0454719b0/>`_
+
+`Dilated Convolutions and Kronecker Factored Convolutions <https://www.inference.vc/dilated-convolutions-and-kronecker-factorisation/>`_
+
 
 Maxpooling & Unpooling
 -----------------------

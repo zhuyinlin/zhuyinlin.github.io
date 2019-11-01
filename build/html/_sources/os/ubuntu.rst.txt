@@ -769,9 +769,10 @@ Uninstall
 
    .. code-block:: bash
         
-        sudo useradd -r <name>   #  -r 参数建立系统用户
-        sudo usermod -g root <name>  # 将用户划分到 root 权限组下
-        # 同时修改 /etc/sudoer 文件， 添加 <name>  ALL=(ALL:ALL)ALL  # 添加ROOT权限
+        sudo adduser <name>  # 会建立用户home目录
+        sudo useradd -r <name>   #  -r 参数建立系统用户, 不会创建用户home 目录
+        sudo usermod -g sudo <name>  # 将用户划分到 sudo 权限组下
+        # 若是添加root组，同时修改 /etc/sudoer 文件， 添加 <name>  ALL=(ALL:ALL)ALL  # 添加ROOT权限
         passwd <name>       # 设置密码
 
         # 更改文件夹的用户及组
@@ -846,6 +847,22 @@ Uninstall
 
    若安装 agnoster 主题，需修改匹配 `字体 <https://github.com/powerline/fonts.git>`_ , 安装好后在 terminal 的preferences 中设置
  
+
+rsync
+--------
+
+.. code-block:: bash
+
+   # 复制/同步文件
+   rsync -rav -e ssh --include '*/' --include='*.class' --exclude='*' \
+   <src folder path> \
+   <target folder path>
+
+   # -r for recursive
+   # -a for archive (mostly all files)
+   # -v for verbose output
+   # -e to specify ssh instead of the default (which should be ssh, actually)
+
 
 ssh 连接
 -----------

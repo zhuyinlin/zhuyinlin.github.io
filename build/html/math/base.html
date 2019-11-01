@@ -189,11 +189,12 @@
 </div>
 <div class="section" id="id4">
 <h3>运算<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
-<p>点积/内积/数量积（dot product/scalar product): 两个向量的夹角</p>
-<p>叉积：两个向量的法向量</p>
-<p>Hadamard product（哈达玛积): 矩阵对应位置的数字相乘</p>
-<blockquote>
-<div><div class="math notranslate nohighlight" id="equation-eq-hadamard-product">
+<dl>
+<dt>点积/内积/数量积（dot product/scalar product):</dt><dd><p>两个向量的夹角</p>
+</dd>
+<dt>叉积：</dt><dd><p>两个向量的法向量</p>
+</dd>
+<dt>Hadamard product（哈达玛积): 矩阵对应位置的数字相乘</dt><dd><div class="math notranslate nohighlight" id="equation-eq-hadamard-product">
 <span class="eqno">(1)<a class="headerlink" href="#equation-eq-hadamard-product" title="公式的永久链接">¶</a></span>\[\begin{split}A\odot B =\left[\begin{array}{ccc}a_{11} &amp; a_{12} &amp; a_{13}\\
                          a_{21} &amp; a_{22} &amp; a_{23}\\
                          a_{31} &amp; a_{32} &amp; a_{33}\end{array} \right]
@@ -203,51 +204,57 @@
 =\left[\begin{array}{ccc}a_{11} \cdot b_{11} &amp; a_{12} \cdot b_{12} &amp; a_{13} \cdot b_{13}\\
                          a_{21} \cdot b_{21} &amp; a_{22} \cdot b_{22} &amp; a_{23} \cdot b_{23}\\
                          a_{31} \cdot b_{31} &amp; a_{32} \cdot b_{32} &amp; a_{33} \cdot b_{33}\end{array} \right]\end{split}\]</div>
-</div></blockquote>
-<p>拉普拉斯算子</p>
-<blockquote>
-<div><div class="math notranslate nohighlight">
+</dd>
+<dt>Kronecker product（克罗内克积/直积/张量积）:</dt><dd><div class="math notranslate nohighlight" id="equation-eq-kronecker-product">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eq-kronecker-product" title="公式的永久链接">¶</a></span>\[\begin{split}A\otimes B =\left[\begin{array}{ccc}a_{11} &amp; a_{12} &amp; a_{13}\\
+                         a_{21} &amp; a_{22} &amp; a_{23}\\
+                         a_{31} &amp; a_{32} &amp; a_{33}\end{array} \right]
+\left[\begin{array}{ccc}b_{11} &amp; b_{12} &amp; b_{13}\\
+                         b_{21} &amp; b_{22} &amp; b_{23}\\
+                         b_{31} &amp; b_{32} &amp; b_{33}\end{array}\right]
+=\left[\begin{array}{ccc}a_{11} B &amp; a_{12} B &amp; a_{13} B\\
+                         a_{21} B &amp; a_{22} B &amp; a_{23} B\\
+                         a_{31} B &amp; a_{32} B &amp; a_{33} B\end{array} \right]\end{split}\]</div>
+</dd>
+<dt>拉普拉斯算子</dt><dd><div class="math notranslate nohighlight">
 \[\bigtriangleup f = \bigtriangledown ^2f = \sum_i{\frac{\partial ^2 f}{\partial ^2 x_i}} = Tr(Hession(f))\]</div>
-</div></blockquote>
+</dd>
+</dl>
 </div>
 <div class="section" id="id5">
 <h3>各种变换<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
-<p>傅里叶变换</p>
-<blockquote>
-<div><p><a class="reference external" href="https://www.matongxue.com/madocs/619.html">傅里叶级数</a></p>
+<dl>
+<dt>傅里叶变换</dt><dd><p><a class="reference external" href="https://www.matongxue.com/madocs/619.html">傅里叶级数</a></p>
 <p>傅立叶级数是针对周期函数的，为了可以处理非周期函数，需要傅立叶变换</p>
 <p><a class="reference external" href="https://www.matongxue.com/madocs/473.html">傅里叶变换</a></p>
 <p><a class="reference external" href="https://www.matongxue.com/madocs/712.html">傅里叶级数到傅里叶变换</a></p>
-</div></blockquote>
-<p>拉普拉斯变换</p>
-<blockquote>
-<div><p>为了解决傅里叶变换某些情况下不可积, 引出了拉普拉斯变换</p>
+</dd>
+<dt>拉普拉斯变换</dt><dd><p>为了解决傅里叶变换某些情况下不可积, 引出了拉普拉斯变换</p>
 <p><a class="reference external" href="https://www.matongxue.com/madocs/723.html">拉普拉斯变换</a></p>
 <p><a class="reference external" href="https://www.jianshu.com/p/400d93229ff5">拉普拉斯变换中的S是个什么鬼？</a></p>
 <p><a class="reference external" href="https://www.youtube.com/watch?v=zvbdoSeGAgI">Where the Laplace Transform comes from (Arthur Mattuck, MIT) 1.0</a></p>
 <p><a class="reference external" href="https://www.youtube.com/watch?v=hqOboV2jgVo">Where the Laplace Transform comes from (Arthur Mattuck, MIT) 2</a></p>
-</div></blockquote>
+</dd>
+</dl>
 </div>
 <div class="section" id="id10">
 <h3>特殊的函数<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
-<p>克罗内克函数(Kronecker delta function)</p>
-<blockquote>
-<div><div class="math notranslate nohighlight">
+<dl>
+<dt>克罗内克函数(Kronecker delta function)</dt><dd><div class="math notranslate nohighlight">
 \[\begin{split}\delta_{ij} = \left\{
 \begin{array}{ll}
 0 &amp; \textrm{if $i \ne j$} \\
 1 &amp; \textrm{if $i= j$}
 \end{array} \right.\end{split}\]</div>
-</div></blockquote>
-<p>狄拉克函数(dirac delta)</p>
-<blockquote>
-<div><div class="math notranslate nohighlight">
+</dd>
+<dt>狄拉克函数(dirac delta)</dt><dd><div class="math notranslate nohighlight">
 \[\begin{split}\delta(x) = \left \{
 \begin{array}{ll}
 0 &amp; x\ne 0 \\
 1 &amp; x =+ \infty
 \end{array} \right.\end{split}\]</div>
-</div></blockquote>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="id11">

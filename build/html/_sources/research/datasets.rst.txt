@@ -1,3 +1,5 @@
+.. include:: ../_refs/abbrs.ref
+
 数据集
 =======
 
@@ -112,12 +114,12 @@ NLP
 
 阅读理解
 ^^^^^^^^^
- :abbr:`SQuAD (Stanford Question Answering Dataset)`
+ |a_squad|
     超过 10 万个问答对，并通过突出显示段落中的几个单词来让模型回答一个问题
 
 自然语言推理
 ^^^^^^^^^^^^^^
- :abbr:`SNLI (Stanford Natural Language Inference)` Corpus
+ |a_snli| Corpus
      包含 57 万个人类写的英语句子对 `links <https://nlp.stanford.edu/projects/snli/>`_
 
 机器翻译

@@ -38,7 +38,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="C++" href="C++.html" />
-    <link rel="prev" title="开发相关" href="development.html" /> 
+    <link rel="prev" title="regular expressions" href="re.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">编程相关</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="development.html">开发相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="re.html">regular expressions</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Shell</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">常用命令</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">变量</a></li>
@@ -113,8 +114,7 @@
 <li class="toctree-l2"><a class="reference internal" href="index.html#id4">编码</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#id5">换行符</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#makefile">Makefile</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#id6">一些经验</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#id10">当前工作记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">当前工作记录</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#todo">TODO</a></li>
 </ul>
 </li>
@@ -198,16 +198,17 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>getconf LONG_BIT     <span class="c1"># 查看系统是几位的</span>
 cat /proc/cpiinfo    <span class="c1"># 查看CPU信息</span>
 cat /etc/issue       <span class="c1"># 查看ubuntu版本</span>
-ifconfig  －a        <span class="c1"># 查看本机ip</span>
+ifconfig  -a        <span class="c1"># 查看本机ip</span>
 lspci <span class="p">|</span>grep VGA      <span class="c1"># 查看GPU信息</span>
 lspci -v -s XX:XX.X  <span class="c1"># 根据前面查到信息的编号查询具体GPU信息</span>
 
 sudo -s              <span class="c1"># 以 root 身份运行</span>
 chmod +x &lt;filename&gt;    <span class="c1"># 修改执行权限</span>
-chown &lt;user_name&gt; &lt;file/dir name&gt;
+chown &lt;user_name&gt; &lt;file/dir name&gt; <span class="c1"># 修改文件所有者</span>
 
 <span class="nb">pwd</span>                  <span class="c1"># 获取当前文件路径</span>
 mkdir                <span class="c1"># 文创建文件夹</span>
+rm -rf !<span class="o">(</span>&lt;file1&gt;<span class="p">|</span>&lt;file2&gt;<span class="o">)</span>  <span class="c1"># 删除除 file1 和 file2 以外的文件</span>
 
 mdfind   <span class="c1"># 查找文件</span>
 <span class="nb">echo</span> <span class="nv">$0</span>  <span class="c1"># 查看当前使用的shell</span>
@@ -428,7 +429,7 @@ tee -a filename  <span class="c1"># 重定向的同时也能在命令行输出</
         <a href="C++.html" class="btn btn-neutral float-right" title="C++" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="development.html" class="btn btn-neutral float-left" title="开发相关" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="re.html" class="btn btn-neutral float-left" title="regular expressions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

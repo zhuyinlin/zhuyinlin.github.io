@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">编程相关</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="development.html">开发相关</a></li>
+<li class="toctree-l2"><a class="reference internal" href="re.html">regular expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Shell.html">Shell</a></li>
 <li class="toctree-l2"><a class="reference internal" href="C++.html">C++</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Java.html">Java</a></li>
@@ -133,8 +134,7 @@
 <li class="toctree-l2"><a class="reference internal" href="index.html#id4">编码</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#id5">换行符</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#makefile">Makefile</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#id6">一些经验</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#id10">当前工作记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">当前工作记录</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#todo">TODO</a></li>
 </ul>
 </li>
@@ -462,13 +462,16 @@ pipenv shell     <span class="c1"># 激活虚拟环境(为存在虚拟环境可�
 <span class="nb">exit</span>    <span class="c1"># 退出pipenv</span>
 
 pipenv install &lt;pkg_name&gt;   <span class="c1"># 安装相关模块并加入到Pipfile</span>
-pipenv uninstall &lt;pkg_name&gt;    <span class="c1"># 卸载安装包</span>
+pipenv install -r requirements.txt  <span class="c1"># 通过requirements 文件安装包</span>
+pipenv uninstall &lt;pkg_name&gt;    <span class="c1"># 卸载安装包, 并将其从Pipfile中删除</span>
 pipenv uninstall --all    <span class="c1"># 卸载全部包并从Pipfile中移除</span>
+pipenv update &lt;pkg_name&gt;  <span class="c1"># 更新指定包</span>
 piplist     <span class="c1"># 查找所有安装包</span>
 pipenv graph     <span class="c1"># 查看目前安装的库及其依赖</span>
-pipenv lock      <span class="c1"># 生成lockfile</span>
+pipenv lock      <span class="c1"># 生成Pipfile.lock文件</span>
+pipenv sync   <span class="c1"># 安装所有在Pipfile.lock中指定的软件包</span>
 pipenv lock -r --dev &gt; requirements.txt  <span class="c1"># 生成requirements 文件</span>
-pipenv install -r requirements.txt  <span class="c1"># 通过requirements 文件安装包</span>
+pipenv run    <span class="c1"># 在未激活虚拟环境时可以直接使用虚拟环境的Python执行命令</span>
 
 pipenv --where    <span class="c1"># 显示目录信息</span>
 pipenv --venv    <span class="c1"># 查找虚拟环境的路径</span>
@@ -476,6 +479,18 @@ pipenv --rm      <span class="c1"># 删除虚拟环境</span>
 pipenv --py    <span class="c1"># 显示Python解释器信息</span>
 
 pipenv check    <span class="c1"># 检查安全漏洞</span>
+</pre></div>
+</div>
+<p>另外也可以以下面格式的URL安装在git或其他版本控制系统中的包</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;vcs_type&gt;+&lt;scheme&gt;://&lt;location&gt;/&lt;user_or_organization&gt;/&lt;repository&gt;@&lt;branch_or_tag&gt;#&lt;package_name&gt;
+<span class="c1"># vcs_type有效值：git，bzr，svn，hg</span>
+<span class="c1"># scheme有效值：http，https，ssh，file</span>
+<span class="c1"># branch_or_tag：可选参数</span>
+
+<span class="c1"># 强烈建议以编辑模式安装任何版本控制依赖，如下示例：</span>
+
+<span class="c1"># 安装requests</span>
+pipenv install -e git+https://github.com/requests/requests.git@v2.19#egg<span class="o">=</span>requests
 </pre></div>
 </div>
 </div>

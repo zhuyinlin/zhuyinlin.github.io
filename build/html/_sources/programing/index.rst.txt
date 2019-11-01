@@ -2,6 +2,9 @@
 =========
 
 .. toctree::
+   :glob:
+   :maxdepth: 2
+   :caption: 编程相关
 
    development.rst
    re.rst

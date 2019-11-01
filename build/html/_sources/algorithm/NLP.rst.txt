@@ -1,3 +1,4 @@
+.. include:: ../_refs/abbrs.ref
 =======
 NLP
 =======
@@ -163,7 +164,7 @@ turotial:
 Seq2Seq
 =========
 
-cho2014learning [#cho2014learning]_ 提出 Encoder-Decoder 结构, 以及 :abbr:`GRU (Gated Recurrent Unit)` 这个 RNN 结构。
+cho2014learning [#cho2014learning]_ 提出 Encoder-Decoder 结构, 以及 |a_gru| 这个 RNN 结构。
 
 Cho etl [#cho2014learning]_ 的模型结构中，语义向量c（整个句子的）需要作用到每个时刻t, 而在sutskever2014sequence [#sutskever2014sequence]_ 中Encoder 最后输出的中间语义只作用于 Decoder 的第一个时刻，这样子模型理解起来更容易一些。 另外，作者使用了一个trick: 将源句子顺序颠倒后再输入 Encoder 中，使得性能得到提升。 Google 的机器对话 [#vinyals2015neural]_ 用的就是这个 seq2seq 模型。 `文中参数量计算过程 <https://blog.csdn.net/Jerr__y/article/details/53749693>`_
 
@@ -174,7 +175,7 @@ Cho etl [#cho2014learning]_ 的模型结构中，语义向量c（整个句子的
 
    基础seq2seq模型
 
-Cho etl [#cho2014learning]_ 的 decoder 中，每次预测下一个词都会用到中间语义c，而这个c主要就是最后一个时刻的隐藏状态。bahdanau2014neural [#bahdanau2014neural]_ 提出了attention模型(详情查看 :ref:`attention-mechanism`)，在Decoder进行预测的时候，Encoder 中每个时刻的隐藏状态都被利用上了。这样子，Encoder 就能利用多个语义信息（隐藏状态）来表达整个句子的信息了。此外，Encoder用的是双端的 :abbr:`GRU (Gated Recurrent Unit)`  `深度学习中的注意力机制(2017版) <https://blog.csdn.net/malefactor/article/details/78767781>`_
+Cho etl [#cho2014learning]_ 的 decoder 中，每次预测下一个词都会用到中间语义c，而这个c主要就是最后一个时刻的隐藏状态。bahdanau2014neural [#bahdanau2014neural]_ 提出了attention模型(详情查看 :ref:`attention-mechanism`)，在Decoder进行预测的时候，Encoder 中每个时刻的隐藏状态都被利用上了。这样子，Encoder 就能利用多个语义信息（隐藏状态）来表达整个句子的信息了。此外，Encoder用的是双端的 |a_gru|  `深度学习中的注意力机制(2017版) <https://blog.csdn.net/malefactor/article/details/78767781>`_
 
 .. figure:: /_static/algorithm/NLP/seq2seq_attention.jpg
    :align: center
@@ -262,11 +263,11 @@ Attention 机制
 References
 *******************
 
-.. [#mitchell2008predicting] Mitchell T M, Shinkareva S V, Carlson A, et al. `Predicting human brain activity associated with the meanings of nouns[J] <http://www.cs.cmu.edu/~tom/pubs/science2008.pdf>`_ . science, 2008, 320(5880): 1191-1195.  
-.. [#mikolov2013efficient] Mikolov T, Chen K, Corrado G, et al. `Efficient estimation of word representations in vector space[J] <http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf>`_ . arXiv preprint arXiv:1301.3781, 2013. 
+.. [#mitchell2008predicting] Mitchell T M, Shinkareva S V, Carlson A, et al. `Predicting human brain activity associated with the meanings of nouns[J] <http://www.cs.cmu.edu/~tom/pubs/science2008.pdf>`_ . science, 2008, 320(5880): 1191-1195.
+.. [#mikolov2013efficient] Mikolov T, Chen K, Corrado G, et al. `Efficient estimation of word representations in vector space[J] <http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf>`_ . arXiv preprint arXiv:1301.3781, 2013.
 .. [#mihalcea2004textrank] Mihalcea R, Tarau P. Textrank: `Bringing order into text[C] <http://www.aclweb.org/anthology/W04-3252>`_ //Proceedings of the 2004 conference on empirical methods in natural language processing. 2004.
-.. [#cho2014learning] Cho K, Van Merriënboer B, Gulcehre C, et al. `Learning phrase representations using RNN encoder-decoder for statistical machine translation[J] <https://arxiv.org/abs/1406.1078>`_ . arXiv preprint arXiv:1406.1078, 2014. 
-.. [#sutskever2014sequence] Sutskever I, Vinyals O, Le Q V. `Sequence to sequence learning with neural networks[J] <http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf>`_ . Advances in neural information processing systems, 2014: 3104-3112. 
+.. [#cho2014learning] Cho K, Van Merriënboer B, Gulcehre C, et al. `Learning phrase representations using RNN encoder-decoder for statistical machine translation[J] <https://arxiv.org/abs/1406.1078>`_ . arXiv preprint arXiv:1406.1078, 2014.
+.. [#sutskever2014sequence] Sutskever I, Vinyals O, Le Q V. `Sequence to sequence learning with neural networks[J] <http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf>`_ . Advances in neural information processing systems, 2014: 3104-3112.
 .. [#vinyals2015neural] Vinyals O, Le Q. `A neural conversational model[J] <https://arxiv.org/pdf/1506.05869.pdf>`_ . arXiv preprint arXiv:1506.05869, 2015.
 .. [#bahdanau2014neural] Bahdanau D, Cho K, Bengio Y. `Neural machine translation by jointly learning to align and translate[J] <https://arxiv.org/pdf/1409.0473.pdf>`_ . arXiv preprint arXiv:1409.0473, 2014.
 .. [#jean2014using] Jean S, Cho K, Memisevic R, et al. `On using very large target vocabulary for neural machine translation[J] <https://arxiv.org/pdf/1412.2007.pdf>`_ . arXiv preprint arXiv:1412.2007, 2014.

@@ -20,7 +20,10 @@ GCN
 
 tools
 --------
-- DGL
+- `DGL <https://github.com/dmlc/dgl>`_
+- `pytorch_geometric <https://github.com/rusty1s/pytorch_geometric>`_
+
+  pytorch_geometric 比 DGL 快
 
 TODO
 ------

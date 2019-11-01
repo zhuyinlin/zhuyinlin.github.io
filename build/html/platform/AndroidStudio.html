@@ -342,7 +342,7 @@
 <p>在module的 <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> 中添加</p>
 <div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">android</span><span class="o">{</span>
    <span class="o">...</span>
-   <span class="n">sourceSets</span><span class="o">.</span><span class="na">main</span><span class="o">.</span><span class="na">jni</span><span class="o">.</span><span class="na">srcDirs</span> <span class="o">=</span> <span class="o">[]</span>   <span class="c1">//禁止自带的ndk功能/禁止自动调用ndk-build命令,防止 :abbr:`AS (Android studio)` 自己生成Android.mk编译jni工程</span>
+   <span class="n">sourceSets</span><span class="o">.</span><span class="na">main</span><span class="o">.</span><span class="na">jni</span><span class="o">.</span><span class="na">srcDirs</span> <span class="o">=</span> <span class="o">[]</span>   <span class="c1">//禁止自带的ndk功能/禁止自动调用ndk-build命令,防止 |a_as| 自己生成Android.mk编译jni工程</span>
    <span class="n">sourceSets</span><span class="o">.</span><span class="na">main</span><span class="o">.</span><span class="na">jniLibs</span><span class="o">.</span><span class="na">srcDirs</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;src/main/libs&#39;</span><span class="o">,</span><span class="s1">&#39;src/main/jniLibs&#39;</span><span class="o">]</span> <span class="c1">//重定向so目录为src/main/libs和src/main/jniLibs，原来为src/main/jniLibs</span>
 
    <span class="n">task</span> <span class="nf">ndkBuild</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Exec</span><span class="o">,</span> <span class="nl">description:</span> <span class="s1">&#39;Compile JNI source with NDK&#39;</span><span class="o">)</span> <span class="o">{</span>
@@ -667,7 +667,7 @@ For manual SDK, AVD, and project management, please use Android Studio.</p>
 </div>
 <div class="topic">
 <p class="topic-title first">什么是so库？什么是ABI？相关的处理器型号在构建APP时有什么区别？</p>
-<p>Android系统目前支持 <a class="reference internal" href="#cpu-architecture"><span class="std std-ref">七种不同的CPU架构</span></a> ，每一种都关联着一个相应的 <strong>应用程序二进制接口</strong> （Application Binary Interface, ABI）。 <abbr title="Application Binary Interface">ABI</abbr> 定义了二进制文件（尤其是.so文件）如何运行在相应的系统平台上，从使用的指令集，内存对齐到可用的系统函数库。</p>
+<p>Android系统目前支持 <a class="reference internal" href="#cpu-architecture"><span class="std std-ref">七种不同的CPU架构</span></a> ，每一种都关联着一个相应的 <strong>应用程序二进制接口</strong> <abbr title="Application Binary Interface">ABI</abbr>。 <abbr title="Application Binary Interface">ABI</abbr> 定义了二进制文件（尤其是.so文件）如何运行在相应的系统平台上，从使用的指令集，内存对齐到可用的系统函数库。</p>
 </div>
 <p>so库的好处：</p>
 <ul class="simple">
@@ -710,8 +710,8 @@ For manual SDK, AVD, and project management, please use Android Studio.</p>
 </div>
 <div class="section" id="jar">
 <h3>关于jar包<a class="headerlink" href="#jar" title="永久链接至标题">¶</a></h3>
-<div class="section" id="as-jar">
-<h4>使用 <abbr title="Android studio">AS</abbr> 打jar包<a class="headerlink" href="#as-jar" title="永久链接至标题">¶</a></h4>
+<div class="section" id="a-as-jar">
+<h4>使用 <abbr title="Android studio">AS</abbr> 打jar包<a class="headerlink" href="#a-as-jar" title="永久链接至标题">¶</a></h4>
 <p>如果想使用 <abbr title="Android studio">AS</abbr> 将我们的项目打成jar包，首先要明确的是 <strong>只能将java文件打包，而不能打包res等资源文件</strong>。</p>
 <ol class="arabic">
 <li><p>首先module只能是library，而不能是application，所以在module的 <code class="file docutils literal notranslate"><span class="pre">build.gradle</span></code> 中，

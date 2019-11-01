@@ -178,6 +178,11 @@ Mask RCNN
 
 - network-depth-features: ResNet-50-C4, Feature Pyramid Network (FPN)
 
+oriented bbox detection
+``````````````````````````
+
+
+
 
 image caption generation
 -------------------------

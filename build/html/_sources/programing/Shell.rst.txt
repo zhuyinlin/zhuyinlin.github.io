@@ -9,16 +9,17 @@ Shell
        getconf LONG_BIT     # 查看系统是几位的
        cat /proc/cpiinfo    # 查看CPU信息 
        cat /etc/issue       # 查看ubuntu版本
-       ifconfig  －a        # 查看本机ip
+       ifconfig  -a        # 查看本机ip
        lspci |grep VGA      # 查看GPU信息
        lspci -v -s XX:XX.X  # 根据前面查到信息的编号查询具体GPU信息
 
        sudo -s              # 以 root 身份运行
        chmod +x <filename>    # 修改执行权限 
-       chown <user_name> <file/dir name>
+       chown <user_name> <file/dir name> # 修改文件所有者
 
        pwd                  # 获取当前文件路径
        mkdir                # 文创建文件夹
+       rm -rf !(<file1>|<file2>)  # 删除除 file1 和 file2 以外的文件
            
        mdfind   # 查找文件 
        echo $0  # 查看当前使用的shell

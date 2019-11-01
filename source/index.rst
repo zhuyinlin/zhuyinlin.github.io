@@ -6,16 +6,30 @@
 Emily's Notes 
 =================
 
-目录:
+.. 目录:
 
 .. toctree::
+   :glob:
    :maxdepth: 2
+   :caption: Environment
 
    os/index.rst
    tools/index.rst
+   platform/index.rst
+
+.. toctree::
+   :glob:
+   :maxdepth: 2
+   :caption: Skills
+
    programing/index.rst
    packages/index.rst
-   platform/index.rst
+
+.. toctree::
+   :glob:
+   :maxdepth: 2
+   :caption: Core
+
    math/index.rst
    algorithm/index.rst
    research/index.rst

@@ -1,0 +1,12 @@
+.. |a_gru| replace:: :abbr:`GRU (Gated Recurrent Unit)` 
+.. |a_sota| replace:: :abbr:`ASOA (state of the art)`
+.. |a_nlp| replace:: :abbr:`NLP (Natural Language Processing)`
+.. |a_nli| replace:: :abbr:`NLI (Natural Language Inference)`
+.. |a_oov| replace:: :abbr:`OOV (Out of Vacabulary)`
+.. |a_bert| replace:: :abbr:`BERT (Bidirectional Encoder Representations from Transformers)`
+.. |a_mlm| replace:: :abbr:`MLM (masked language model)`
+.. |a_nsp| replace:: :abbr:`NSP (Next sentence prediction)`
+.. |a_as| replace:: :abbr:`AS (Android studio)`
+.. |a_abi| replace:: :abbr:`ABI (Application Binary Interface)`
+.. |a_squad| replace:: :abbr:`SQuAD (Stanford Question Answering Dataset)`
+.. |a_snli| replace:: :abbr:`SNLI (Stanford Natural Language Inference)`

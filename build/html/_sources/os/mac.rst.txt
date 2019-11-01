@@ -108,6 +108,15 @@ vim
 
 .. _cmake-install-mac:
 
+
+Latex 
+^^^^^
+
+- `MacTex <https://tug.org/mactex/>`_
+- `BasicTex <http://www.tug.org/mactex/morepackages.html>`_
+- `TinyTex <https://yihui.name/tinytex/>`_
+
+
 CMake
 ^^^^^^^^^
 

@@ -1,6 +1,8 @@
 
 .. _attention-mechanism:
 
+.. include:: ../_refs/abbrs.ref
+
 ============
 Attention
 ============
@@ -221,7 +223,7 @@ share param between embedding layer and pre-softmax linear transformation
 - 无法对位置信息进行很好地建模
 - 并非所有问题都需要长程的、全局的依赖的，也有很多问题只依赖于局部结构，这时候用纯Attention也不大好。(restrict 版本)
 
-:abbr:`BERT (Bidirectional Encoder Representations from Transformers)` [#bert]_
+|a_bert| [#bert]_
 -------------------------------------------------------------------------------------
 
 Motivation
@@ -240,14 +242,14 @@ ULMFiT、ELMo 和 OpenAI transformer 最新进展的核心是一个关键的范�
 Works
 ^^^^^^
 
-1. BERT (Bidirectional Encoder Representations from Transformers): a multi-layer bidirectional Transformer encoder
+1. |a_bert|: a multi-layer bidirectional Transformer encoder
 
 2. 预训练目标
    
-   - MLM(masked language model) :deep bidirectionality
-   - NSP(next sentence prediction): understanding the relationship between two text sentences
+   - |a_mlm|: deep bidirectionality
+   - |a_nsp|: understanding the relationship between two text sentences
 
-3. 预训练的BERT可以通过fine-tune，适用于广泛任务的最先进模型的构建; 也可以用于feature-based approach
+3. 预训练的 |a_bert| 可以通过fine-tune，适用于广泛任务的最先进模型的构建; 也可以用于feature-based approach
 
 Model Architecture
 ^^^^^^^^^^^^^^^^^^^^
@@ -275,8 +277,8 @@ batch size of 256 sequences (256 sequences * 512 tokens = 128,000 tokens/batch),
 - BASE: 4 Cloud TPUs in Pod configuration (16 TPU chipstotal), 4d
 - LARGE: 16 Cloud TPUs (64 TPU chips total), 4d
 
-:abbr:`MLM (masked language model)`
-""""""""""""""""""""""""""""""""""""""
+|a_mlm|
+""""""""
 
 Masking some percentage(15%) of the input tokens at random, and then predicting only those masked tokens.
 
@@ -291,8 +293,8 @@ Masking some percentage(15%) of the input tokens at random, and then predicting 
    `difference between distributed representation and distributional representation <https://zhuanlan.zhihu.com/p/22386230>`_
 2. 15% mask => more pre-training steps may be required for the model to converge.
 
-:abbr:`NSP (Next sentence prediction)`
-""""""""""""""""""""""""""""""""""""""""""
+|a_nsp|
+""""""""
 
 50% of the time B is the actual next sentence that follows A , and 50% of the time it is a random sentence from the corpus.
 

@@ -4,7 +4,7 @@ vim
 :download:`Practice Vim <../_doc/tools/Practical Vim.pdf>`
 
 vim 使用技巧
--------------
+==============
 
 + vim 粘贴系统剪切板中的内容：Shift ＋ Insert
 + 查看插件变量值： :echo <var_name>
@@ -13,7 +13,7 @@ vim 使用技巧
 
 
 代码整理
-~~~~~~~~~
+--------------
 
 .. code:: 
 
@@ -22,7 +22,7 @@ vim 使用技巧
         <n>=   # 格式当前行及接下来的n行代码
 
 normal
-~~~~~~~
+--------------
 
 .. code::
 
@@ -33,7 +33,7 @@ normal
     <C-x> # 数字减1
 
 选取
-~~~~
+--------------
 
 .. code::
      
@@ -46,7 +46,7 @@ normal
         va <char>     # 选中<char> 之间的文本（包括<char>） 
 
 插入
-~~~~~
+--------------
 
 .. code::
 
@@ -55,7 +55,7 @@ normal
         :r! <command> # 命令行的运行结果插入到光标之后
 
 跳转
-~~~~
+--------------
 
 .. code:: 
 
@@ -77,7 +77,7 @@ normal
 
 
 多窗口操作
-~~~~~~~~~~
+--------------
   
 .. code::
           
@@ -122,7 +122,7 @@ normal
         :wqa  # 保存并退出所有窗口  
 
 搜索
-~~~~~~~~~~~
+--------------
 
 .. code::
 
@@ -151,7 +151,7 @@ normal
    :argdo /<pattern> 
 
 删除将文件末的 ^M
-~~~~~~~~~~~~~~~~~
+---------------------------
 
 .. code::
 
@@ -159,10 +159,10 @@ normal
 
 
 配置文件语法
-------------
+==============
 
 变量
-~~~~
+--------------
 1.  标量变量
     
     可以是数字或字符串，基本与perl相同。
@@ -213,7 +213,7 @@ normal
            正则匹配运算符：=~ !~
 
 控制结构
-~~~~~~~~~
+--------------
 
 .. code-block:: vim
         
@@ -231,7 +231,7 @@ normal
         endwhile
 
 函数
-~~~~
+--------------
 
 .. code-block:: vim
 
@@ -248,7 +248,7 @@ normal
         在函数体中使用参数需要在参数变量名称前加上a:
 
 执行命令,键盘绑定,命令行命令和自动命令
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------
 
 1. 执行命令
    
@@ -284,15 +284,18 @@ normal
 
 
 插件
--------------
+==============
 
 我的快捷键一览(<leader> = ,)
+-----------------------------
 
 ::
 
     # N mode
+    [[       # 跳转到函数头
     :Td                    # 显示所有 todo 位置
     :Fx                    # 显示所有 fixme 位置
+
     ## nerdcommenter
     <leader> + c + space   # 注释toggle
 
@@ -331,6 +334,10 @@ normal
     <Leader>kh # opens the man page on a vertical split window to the left of the current window.
     <Leader>kl # opens the man page on a vertical split window to the right of the current window.
 
+    ## 横竖屏切换
+    <C-w> <Shift h>  # 将当前缓冲区置于最左侧
+    <C-w> <Shift k>  # 将当前缓冲区置于最上方
+
     # V mode
     ## multi-select
     ctrl + n        # next
@@ -344,8 +351,21 @@ normal
     :Autoformat   # python 要装相应的插件
 
 
-neocomplete
-~~~~~~~~~~~~~~~~
+.. warning::
+
+   ale 插件的ale_fix_on_save=1 会导致代码保存时自动调整格式
+
+   gtags 插件会导致 nerdcommenter 的 <,cc> 命令不可用
+
+
+自动补全类
+--------------
+
+`neocomplete <https://github.com/Shougo/neocomplete.vim>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+deprecated:
+    现在使用 `deoplete <https://github.com/Shougo/deoplete.nvim#requirements>`_
 
 设置python的omnifunc时，要根据vim的 +python 和 +python3 属性设置::
     
@@ -354,9 +374,11 @@ neocomplete
 
 否则报错 unknown function pythoncomplete#complete 
 
-YouCompleteMe
-~~~~~~~~~~~~~~
+
+`YouCompleteMe <https://github.com/ycm-core/YouCompleteMe>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 在 ``.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py`` 配置信息如下
+(新版位于 ``.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py``)
   
 .. code-block:: python
 
@@ -379,8 +401,12 @@ YouCompleteMe
 
 详情参考 `Vim自动补全神器YouCompleteMe的配置 <http://www.cnblogs.com/starrytales/p/6031671.html>`_
 
-UltiSnips
-~~~~~~~~~~~
+.. Tip::
+
+   推荐将 ``.ycm_extra_conf`` 文件拷贝到工程目录做修改使用，YouCompleteMe 会自动识别
+
+`ultisnips <https://github.com/SirVer/ultisnips>`_ 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 自动添加代码块，UltiSnips 更像是一个调用引擎，它本身并不提供任何 snips, 可以结合vim-snippets 使用
 
@@ -412,8 +438,16 @@ UltiSnips
 
 `参考链接 <http://vimzijun.net/2016/10/30/ultisnip/>`_
 
+
+符号索引
+----------
+
 cscope
-~~~~~~~
+^^^^^^^^^^^^^^
+
+deprecated:
+    能查引用，但只支持C语言，且常年不更新
+
 + 建立符号列表
   
   进入源代码目录，建立符号表： ``cscope -R`` ， Ctrl-D 退出，当前目录会多一个 ``cscope.out`` 文件;
@@ -429,7 +463,11 @@ cscope
           Ctrl + t   # 回到原来跳转前的地方，连续按两下''可以再回去。 
 
 ctags
-~~~~~
+^^^^^^^^^^^^^^
+
+deprecated:
+    只能查定义，不能查引用
+
 * 安装
 
   .. code-block:: bash
@@ -471,9 +509,50 @@ ctags
 .. Tip:
    在 ``.vimrc`` 中设置 ``set tag=tag;`` , 否则在进入自文件夹时出现 tag not found 的错误
 
+gtags(GNU GLOBAL)
+^^^^^^^^^^^^^^^^^^^
+
+* 优点：
+
+  1. 不但能查定义，还能查引用
+  2. 原生支持 6 种语言（C，C++，Java，PHP4，Yacc，汇编）
+  3. 扩展支持 50+ 种语言（包括 go/rust/scala 等，基本覆盖所有主流语言）
+  4. 使用性能更好的本地数据库存储符号，而不是 ctags 那种普通文本文件
+  5. 支持增量更新，每次只索引改变过的文件
+  6. 多种输出格式，能更好的同编辑器相集成
+
+* 安装
+
+  .. code-block:: bash
+
+      # 安装依赖库
+      sudo apt install global libncurses5-dev libncursesw5-dev
+
+      # 如果要支持其它语言，还需安装
+      pip install pygments
+
+      # 下载global并编译安装
+      wget http://tamacom.com/global/global-6.6.3.tar.gz
+      tar xvf global-6.6.6.tar.gz
+      cd global-6.6.3
+      ./configure
+      make
+      sudo make install 
+
+  然后在 vimrc 中加入以下两个插件搭配使用::
+
+     'ludovicchabant/vim-gutentags'
+     'skywind3000/gutentags_plus'
+
+  前者提供 gtags 数据库的无缝更新，后者提供数据库无缝切换
+  相关配置参考 `Vim 8 中 C/C++ 符号索引：GTags 篇 <https://zhuanlan.zhihu.com/p/36279445>`_
+
+  .. warning::
+      gutentags_plus 的快捷键 ``<leader> cc`` 与nerdcommenter 的冲突，要设置一下
+
 taglist
-~~~~~~~~
-* 安装: 使用vundle
+^^^^^^^^^^^^^^
+* 安装: 使用vim-plug
 
 * 命令
 
@@ -501,11 +580,13 @@ taglist
       <F1>   #显示帮助
         
 tagbar
-~~~~~~~
-+ 安装：使用vundle
+^^^^^^^^^^^^^^
++ 安装：使用vim-plug
 
+language
+---------------
 riv
-~~~~
+^^^^^^^^^^^^^^
 
 To make it easier to visualize and easier to edit
 
@@ -523,7 +604,7 @@ In case of visualizing results riv has shortcuts that are able to generate docum
    
 
 InstantRst
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^^
 Preview rst document instantly. You can share the address through LAN too.
 
 .. code::
@@ -533,7 +614,9 @@ Preview rst document instantly. You can share the address through LAN too.
     :StopInstantRst[!]  # Stop Preview current buffer Add ! to stop preview ALL rst buffer.
 
 vim-multiple-cursors
-~~~~~~~~~~~~~~~~~~~~
+--------------------
+
+多位置选择编辑
 
 .. code::
 
@@ -544,7 +627,7 @@ vim-multiple-cursors
     <C-n>   # 在所有行首插入
 
 vim-fugitive
-~~~~~~~~~~~~~
+-------------
 
 在vim 中使用git 命令
 
@@ -560,7 +643,9 @@ vim-fugitive
 
 
 vim-autoformat
-~~~~~~~~~~~~~~
+---------------
+
+代码自动格式化
 
 安装好后设置::
     
@@ -579,12 +664,12 @@ vim-autoformat
 
 
 neovim 配置
-------------
+==============
 1. 安装 neovim，配置文件放在 `~/.config/nvim/init.vim`
 2. 安装 vim-plugin, 注意设置autoload 路径在 `~/.config/nvim/autoload/` 
 
 其它
--------------
+==============
 查看插件列表—— ``:scriptnames``
 
 “无法写入，已设定选项 buftype”—— ``:setlocal buftype=``  
@@ -600,3 +685,15 @@ neovim 配置
     :set ts=4 sts=4 et
     :retab
     " ts := tabstop, sts := softtabstop and [no]et := [no]expandtab.
+
+保存文件时想获得sudo权限
+
+.. code-block::
+
+   :w !sudo tee %  # tee 是一个将stdin写入文件的命令，%是vim的一个寄存器
+
+查看冲突快捷键
+
+.. code-block::
+
+   :verbose map <keymap>

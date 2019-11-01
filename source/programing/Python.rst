@@ -239,13 +239,16 @@ pipenv
    exit    # 退出pipenv　　
 
    pipenv install <pkg_name>   # 安装相关模块并加入到Pipfile
-   pipenv uninstall <pkg_name>    # 卸载安装包　　
+   pipenv install -r requirements.txt  # 通过requirements 文件安装包
+   pipenv uninstall <pkg_name>    # 卸载安装包, 并将其从Pipfile中删除
    pipenv uninstall --all    # 卸载全部包并从Pipfile中移除
+   pipenv update <pkg_name>  # 更新指定包
    piplist     # 查找所有安装包　　
    pipenv graph     # 查看目前安装的库及其依赖
-   pipenv lock      # 生成lockfile
+   pipenv lock      # 生成Pipfile.lock文件
+   pipenv sync   # 安装所有在Pipfile.lock中指定的软件包
    pipenv lock -r --dev > requirements.txt  # 生成requirements 文件
-   pipenv install -r requirements.txt  # 通过requirements 文件安装包
+   pipenv run    # 在未激活虚拟环境时可以直接使用虚拟环境的Python执行命令
 
    pipenv --where    # 显示目录信息
    pipenv --venv    # 查找虚拟环境的路径　　
@@ -254,6 +257,19 @@ pipenv
 
    pipenv check    # 检查安全漏洞
 
+另外也可以以下面格式的URL安装在git或其他版本控制系统中的包
+
+.. code-block:: bash
+
+   <vcs_type>+<scheme>://<location>/<user_or_organization>/<repository>@<branch_or_tag>#<package_name>
+   # vcs_type有效值：git，bzr，svn，hg
+   # scheme有效值：http，https，ssh，file
+   # branch_or_tag：可选参数
+
+   # 强烈建议以编辑模式安装任何版本控制依赖，如下示例：
+
+   # 安装requests
+   pipenv install -e git+https://github.com/requests/requests.git@v2.19#egg=requests
 
 pylint
 ^^^^^^^^^

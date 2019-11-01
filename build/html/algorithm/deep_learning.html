@@ -107,14 +107,14 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#id19">数据预处理</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#conv-deconv-transpose-conv-fractionally-strided-conv">Conv &amp; Deconv/Transpose Conv/Fractionally Strided Conv</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id20">卷积相关操作</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#conv">Conv</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transpose-conv">Transpose Conv</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dilated-conv">Dilated Conv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deconv-transpose-conv-fractionally-strided-conv">Deconv/Transpose Conv/Fractionally Strided Conv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dilated-atrous-conv">Dilated/Atrous Conv</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#maxpooling-unpooling">Maxpooling &amp; Unpooling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id21">激活函数</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id23">激活函数</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#sigmoid">1、sigmoid函数</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#tanh">2、tanh函数</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#relu-rectified-linear-unit">3、ReLU(Rectified Linear Unit)</a></li>
@@ -125,14 +125,14 @@
 <li class="toctree-l4"><a class="reference internal" href="#maxout">8、Maxout</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id23">反向传播算法</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id24">1 公式推导</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id25">2 算法步骤</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">反向传播算法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id26">1 公式推导</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id27">2 算法步骤</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id27">过饱和问题</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id28">1 输出层过饱和问题</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id31">2 隐含层过饱和问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id29">过饱和问题</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id30">1 输出层过饱和问题</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id33">2 隐含层过饱和问题</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#overfitting">解决overfitting问题</a><ul>
@@ -140,11 +140,11 @@
 <li class="toctree-l4"><a class="reference internal" href="#early-stopping">2 early-stopping</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#dropout">3 dropout</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#batch-normalization">4 batch_normalization</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id38">5 人工增加训练集</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id40">5 人工增加训练集</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id39">DL 中的优化方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id40">网络模型变化</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id41">DL 中的优化方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id42">网络模型变化</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#inception-google">Inception (google）</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#residual-microsoft">Residual (Microsoft)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mobilenet-google">MobileNet(google)</a></li>
@@ -152,7 +152,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#highway-network">Highway Network</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id42">调试经验</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id44">调试经验</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="meta_learning.html">元学习</a></li>
@@ -237,129 +237,129 @@
 <h1>深度学习<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <div class="contents local topic" id="id2">
 <ul class="simple">
-<li><p><a class="reference internal" href="#id4" id="id50">综述 </a></p>
+<li><p><a class="reference internal" href="#id4" id="id52">综述 </a></p>
 <ul>
-<li><p><a class="reference internal" href="#id5" id="id51">1 引言</a></p>
+<li><p><a class="reference internal" href="#id5" id="id53">1 引言</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id6" id="id52">1.1 概述</a></p></li>
-<li><p><a class="reference internal" href="#id7" id="id53">1.2  背景</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id54">1.1 概述</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id55">1.2  背景</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id8" id="id54">2 人脑视觉机理</a></p></li>
-<li><p><a class="reference internal" href="#id9" id="id55">3 关于特征</a></p>
+<li><p><a class="reference internal" href="#id8" id="id56">2 人脑视觉机理</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id57">3 关于特征</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id10" id="id56">3.1 特征表示的粒度</a></p></li>
-<li><p><a class="reference internal" href="#id11" id="id57">3.2  初级（浅层）特征表示</a></p></li>
-<li><p><a class="reference internal" href="#id12" id="id58">3.3  结构性特征表示</a></p></li>
-<li><p><a class="reference internal" href="#id13" id="id59">3.4  需要有多少个特征</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id58">3.1 特征表示的粒度</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id59">3.2  初级（浅层）特征表示</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id60">3.3  结构性特征表示</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id61">3.4  需要有多少个特征</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id14" id="id60">4 算法介绍</a></p>
+<li><p><a class="reference internal" href="#id14" id="id62">4 算法介绍</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id15" id="id61">4.1 基本思想</a></p></li>
-<li><p><a class="reference internal" href="#shallow-learning-dl" id="id62">4.2  浅层学习（Shallow Learning）和DL</a></p></li>
-<li><p><a class="reference internal" href="#dl" id="id63">4.3  DL与神经网络</a></p></li>
-<li><p><a class="reference internal" href="#id16" id="id64">4.4  DL训练过程</a></p>
+<li><p><a class="reference internal" href="#id15" id="id63">4.1 基本思想</a></p></li>
+<li><p><a class="reference internal" href="#shallow-learning-dl" id="id64">4.2  浅层学习（Shallow Learning）和DL</a></p></li>
+<li><p><a class="reference internal" href="#dl" id="id65">4.3  DL与神经网络</a></p></li>
+<li><p><a class="reference internal" href="#id16" id="id66">4.4  DL训练过程</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id17" id="id65">4.4.1  传统神经网络的训练方法为什么不能用在深度神经网络</a></p></li>
-<li><p><a class="reference internal" href="#id18" id="id66">4.4.2 DL训练过程</a></p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#deep-learning" id="id67">5 Deep Learning的常用模型或者方法</a></p>
-<ul>
-<li><p><a class="reference internal" href="#autoencoder" id="id68">5.1  AutoEncoder自动编码器</a></p></li>
-<li><p><a class="reference internal" href="#sparse-coding" id="id69">5.2 Sparse Coding稀疏编码</a></p></li>
+<li><p><a class="reference internal" href="#id17" id="id67">4.4.1  传统神经网络的训练方法为什么不能用在深度神经网络</a></p></li>
+<li><p><a class="reference internal" href="#id18" id="id68">4.4.2 DL训练过程</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id19" id="id70">数据预处理</a></p></li>
-<li><p><a class="reference internal" href="#conv-deconv-transpose-conv-fractionally-strided-conv" id="id71">Conv &amp; Deconv/Transpose Conv/Fractionally Strided Conv</a></p>
+<li><p><a class="reference internal" href="#deep-learning" id="id69">5 Deep Learning的常用模型或者方法</a></p>
 <ul>
-<li><p><a class="reference internal" href="#conv" id="id72">Conv</a></p></li>
-<li><p><a class="reference internal" href="#transpose-conv" id="id73">Transpose Conv</a></p></li>
-<li><p><a class="reference internal" href="#dilated-conv" id="id74">Dilated Conv</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#maxpooling-unpooling" id="id75">Maxpooling &amp; Unpooling</a></p></li>
-<li><p><a class="reference internal" href="#id21" id="id76">激活函数</a></p>
-<ul>
-<li><p><a class="reference internal" href="#sigmoid" id="id77">1、sigmoid函数</a></p></li>
-<li><p><a class="reference internal" href="#tanh" id="id78">2、tanh函数</a></p></li>
-<li><p><a class="reference internal" href="#relu-rectified-linear-unit" id="id79">3、ReLU(Rectified Linear Unit)</a></p></li>
-<li><p><a class="reference internal" href="#leaky-relu" id="id80">4、Leaky ReLU</a></p></li>
-<li><p><a class="reference internal" href="#prelu-parametric-rectified-linear-unit" id="id81">5、PReLU(Parametric Rectified Linear Unit)</a></p></li>
-<li><p><a class="reference internal" href="#rrelu-randomized-relu" id="id82">6、RReLU(Randomized ReLU)</a></p></li>
-<li><p><a class="reference internal" href="#elu-exponential-linear-units" id="id83">7、ELU(Exponential Linear Units)</a></p></li>
-<li><p><a class="reference internal" href="#maxout" id="id84">8、Maxout</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#id23" id="id85">反向传播算法</a></p>
-<ul>
-<li><p><a class="reference internal" href="#id24" id="id86">1 公式推导</a></p></li>
-<li><p><a class="reference internal" href="#id25" id="id87">2 算法步骤</a></p>
-<ul>
-<li><p><a class="reference internal" href="#id26" id="id88">2.1 单个样本</a></p></li>
-<li><p><a class="reference internal" href="#minibatch" id="id89">2.2 minibatch</a></p></li>
+<li><p><a class="reference internal" href="#autoencoder" id="id70">5.1  AutoEncoder自动编码器</a></p></li>
+<li><p><a class="reference internal" href="#sparse-coding" id="id71">5.2 Sparse Coding稀疏编码</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id27" id="id90">过饱和问题</a></p>
+<li><p><a class="reference internal" href="#id19" id="id72">数据预处理</a></p></li>
+<li><p><a class="reference internal" href="#id20" id="id73">卷积相关操作</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id28" id="id91">1 输出层过饱和问题</a></p>
-<ul>
-<li><p><a class="reference internal" href="#id29" id="id92">1.1 改变损失函数</a></p></li>
-<li><p><a class="reference internal" href="#id30" id="id93">1.2 改变激活函数</a></p></li>
+<li><p><a class="reference internal" href="#conv" id="id74">Conv</a></p></li>
+<li><p><a class="reference internal" href="#deconv-transpose-conv-fractionally-strided-conv" id="id75">Deconv/Transpose Conv/Fractionally Strided Conv</a></p></li>
+<li><p><a class="reference internal" href="#dilated-atrous-conv" id="id76">Dilated/Atrous Conv</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id31" id="id94">2 隐含层过饱和问题</a></p>
+<li><p><a class="reference internal" href="#maxpooling-unpooling" id="id77">Maxpooling &amp; Unpooling</a></p></li>
+<li><p><a class="reference internal" href="#id23" id="id78">激活函数</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id32" id="id95">2.1 权重和偏置量的初始化方法</a></p></li>
-<li><p><a class="reference internal" href="#id33" id="id96">2.2 更换激励函数</a></p></li>
-<li><p><a class="reference internal" href="#momentum" id="id97">2.3 使用基于momentum的随机梯度下降</a></p></li>
-<li><p><a class="reference internal" href="#id34" id="id98">2.4 近期出现的</a></p></li>
+<li><p><a class="reference internal" href="#sigmoid" id="id79">1、sigmoid函数</a></p></li>
+<li><p><a class="reference internal" href="#tanh" id="id80">2、tanh函数</a></p></li>
+<li><p><a class="reference internal" href="#relu-rectified-linear-unit" id="id81">3、ReLU(Rectified Linear Unit)</a></p></li>
+<li><p><a class="reference internal" href="#leaky-relu" id="id82">4、Leaky ReLU</a></p></li>
+<li><p><a class="reference internal" href="#prelu-parametric-rectified-linear-unit" id="id83">5、PReLU(Parametric Rectified Linear Unit)</a></p></li>
+<li><p><a class="reference internal" href="#rrelu-randomized-relu" id="id84">6、RReLU(Randomized ReLU)</a></p></li>
+<li><p><a class="reference internal" href="#elu-exponential-linear-units" id="id85">7、ELU(Exponential Linear Units)</a></p></li>
+<li><p><a class="reference internal" href="#maxout" id="id86">8、Maxout</a></p></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#overfitting" id="id99">解决overfitting问题</a></p>
+<li><p><a class="reference internal" href="#id25" id="id87">反向传播算法</a></p>
 <ul>
-<li><p><a class="reference internal" href="#l1-l2-regularization" id="id100">1 L1/L2 规则化(regularization)</a></p>
+<li><p><a class="reference internal" href="#id26" id="id88">1 公式推导</a></p></li>
+<li><p><a class="reference internal" href="#id27" id="id89">2 算法步骤</a></p>
 <ul>
-<li><p><a class="reference internal" href="#weight-decay-l2" id="id101">1.1 权重衰减(weight decay)/L2规则化</a></p></li>
-<li><p><a class="reference internal" href="#l1" id="id102">1.2 L1规则化</a></p></li>
+<li><p><a class="reference internal" href="#id28" id="id90">2.1 单个样本</a></p></li>
+<li><p><a class="reference internal" href="#minibatch" id="id91">2.2 minibatch</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#early-stopping" id="id103">2 early-stopping</a></p></li>
-<li><p><a class="reference internal" href="#dropout" id="id104">3 dropout</a></p>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id29" id="id92">过饱和问题</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id35" id="id105">3.1 原版</a></p></li>
-<li><p><a class="reference internal" href="#id36" id="id106">3.2 maxout</a></p></li>
-<li><p><a class="reference internal" href="#dropconnect" id="id107">3.3 DropConnect</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#batch-normalization" id="id108">4 batch_normalization</a></p></li>
-<li><p><a class="reference internal" href="#id38" id="id109">5 人工增加训练集</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#id39" id="id110">DL 中的优化方法</a></p></li>
-<li><p><a class="reference internal" href="#id40" id="id111">网络模型变化</a></p>
+<li><p><a class="reference internal" href="#id30" id="id93">1 输出层过饱和问题</a></p>
 <ul>
-<li><p><a class="reference internal" href="#inception-google" id="id112">Inception (google）</a></p></li>
-<li><p><a class="reference internal" href="#residual-microsoft" id="id113">Residual (Microsoft)</a></p></li>
-<li><p><a class="reference internal" href="#mobilenet-google" id="id114">MobileNet(google)</a></p></li>
-<li><p><a class="reference internal" href="#shufflenet" id="id115">ShuffleNet</a></p></li>
-<li><p><a class="reference internal" href="#highway-network" id="id116">Highway Network</a></p></li>
+<li><p><a class="reference internal" href="#id31" id="id94">1.1 改变损失函数</a></p></li>
+<li><p><a class="reference internal" href="#id32" id="id95">1.2 改变激活函数</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id42" id="id117">调试经验</a></p></li>
+<li><p><a class="reference internal" href="#id33" id="id96">2 隐含层过饱和问题</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id34" id="id97">2.1 权重和偏置量的初始化方法</a></p></li>
+<li><p><a class="reference internal" href="#id35" id="id98">2.2 更换激励函数</a></p></li>
+<li><p><a class="reference internal" href="#momentum" id="id99">2.3 使用基于momentum的随机梯度下降</a></p></li>
+<li><p><a class="reference internal" href="#id36" id="id100">2.4 近期出现的</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#overfitting" id="id101">解决overfitting问题</a></p>
+<ul>
+<li><p><a class="reference internal" href="#l1-l2-regularization" id="id102">1 L1/L2 规则化(regularization)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#weight-decay-l2" id="id103">1.1 权重衰减(weight decay)/L2规则化</a></p></li>
+<li><p><a class="reference internal" href="#l1" id="id104">1.2 L1规则化</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#early-stopping" id="id105">2 early-stopping</a></p></li>
+<li><p><a class="reference internal" href="#dropout" id="id106">3 dropout</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id37" id="id107">3.1 原版</a></p></li>
+<li><p><a class="reference internal" href="#id38" id="id108">3.2 maxout</a></p></li>
+<li><p><a class="reference internal" href="#dropconnect" id="id109">3.3 DropConnect</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#batch-normalization" id="id110">4 batch_normalization</a></p></li>
+<li><p><a class="reference internal" href="#id40" id="id111">5 人工增加训练集</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id41" id="id112">DL 中的优化方法</a></p></li>
+<li><p><a class="reference internal" href="#id42" id="id113">网络模型变化</a></p>
+<ul>
+<li><p><a class="reference internal" href="#inception-google" id="id114">Inception (google）</a></p></li>
+<li><p><a class="reference internal" href="#residual-microsoft" id="id115">Residual (Microsoft)</a></p></li>
+<li><p><a class="reference internal" href="#mobilenet-google" id="id116">MobileNet(google)</a></p></li>
+<li><p><a class="reference internal" href="#shufflenet" id="id117">ShuffleNet</a></p></li>
+<li><p><a class="reference internal" href="#highway-network" id="id118">Highway Network</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id44" id="id119">调试经验</a></p></li>
 </ul>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id2">综述 <a class="footnote-reference brackets" href="#id43" id="id3">1</a></a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">综述 <a class="footnote-reference brackets" href="#id45" id="id3">1</a></a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
 <div class="section" id="id5">
 <h3><a class="toc-backref" href="#id2">1 引言</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
 <div class="section" id="id6">
@@ -581,8 +581,9 @@ BP算法存在的问题：</p>
 <p>由于数据的强相关性, 实际训练中，数据点仅会落在分布空间中很小的区域中(特别是数据维度很高时),  而随机初始化的权重落入数据内部的概率很低，需要迭代很多次才能对数据进行有效的分割。可想而知不对数据进行预处理带来了多少运算 <strong>资源的浪费</strong> ，而且大量的数据外分割面在迭代时很可能会在刚进入数据中时就遇到了一个局部最优，导致 <strong>overfit</strong> 的问题。</p>
 <p>如果我们将数据减去其均值，数据点就分散开，这时一个随机分界面落入数据分布的概率增加了多少呢？2^n倍！如果我们使用去除相关性的算法（例如PCA和ZCA白化），数据不再是一个狭长的分布，随机分界面有效的概率就又大大增加了。不过计算协方差矩阵的特征值太耗时也太耗空间，我们一般最多只用到z-score处理，即每一维度减去自身均值，再除以自身标准差，这样能使数据点在每维上具有相似的宽度，可以起到一定的增大数据分布范围，进而使更多随机分界面有意义的作用。</p>
 </div>
-<div class="section" id="conv-deconv-transpose-conv-fractionally-strided-conv">
-<h2><a class="toc-backref" href="#id2">Conv &amp; Deconv/Transpose Conv/Fractionally Strided Conv</a><a class="headerlink" href="#conv-deconv-transpose-conv-fractionally-strided-conv" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id20">
+<h2><a class="toc-backref" href="#id2">卷积相关操作</a><a class="headerlink" href="#id20" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/vdumoulin/conv_arithmetic">图示</a></p>
 <div class="section" id="conv">
 <h3><a class="toc-backref" href="#id2">Conv</a><a class="headerlink" href="#conv" title="永久链接至标题">¶</a></h3>
 <p>output size: <span class="math notranslate nohighlight">\(\frac{n+2p-f}{s}+1\)</span></p>
@@ -590,18 +591,19 @@ BP算法存在的问题：</p>
 <div><p><span class="math notranslate nohighlight">\(n\)</span> 表示原图大小，<span class="math notranslate nohighlight">\(p\)</span> 表示padding, <span class="math notranslate nohighlight">\(f\)</span> 表示filer, <span class="math notranslate nohighlight">\(s\)</span> 表示stride</p>
 </div></blockquote>
 </div>
-<div class="section" id="transpose-conv">
-<h3><a class="toc-backref" href="#id2">Transpose Conv</a><a class="headerlink" href="#transpose-conv" title="永久链接至标题">¶</a></h3>
+<div class="section" id="deconv-transpose-conv-fractionally-strided-conv">
+<h3><a class="toc-backref" href="#id2">Deconv/Transpose Conv/Fractionally Strided Conv</a><a class="headerlink" href="#deconv-transpose-conv-fractionally-strided-conv" title="永久链接至标题">¶</a></h3>
 <blockquote>
-<div><p>的参数只是原卷积的转置，并不原卷积的可逆运算
-逆卷积(deconv)相对于卷积在神经网络结构的正向和反向传播中做相反的运算, deconv的参数只是原卷积的转置，并不是原卷积的可逆运算，因此转置卷积(Transposed Convolution)是一个更为合适的叫法。</p>
+<div><p>逆卷积(deconv)相对于卷积在神经网络结构的正向和反向传播中做相反的运算, deconv的参数只是原卷积的转置，并不是原卷积的可逆运算，因此转置卷积(Transposed Convolution)是一个更为合适的叫法。</p>
 <p>x upsampling with 3x3 filter and stride of 2</p>
 <img alt="../_images/conv2d_transpose.png" src="../_images/conv2d_transpose.png" />
-<p><a class="reference external" href="https://github.com/vdumoulin/conv_arithmetic">更多图示</a></p>
 </div></blockquote>
 </div>
-<div class="section" id="dilated-conv">
-<h3><a class="toc-backref" href="#id2">Dilated Conv</a><a class="headerlink" href="#dilated-conv" title="永久链接至标题">¶</a></h3>
+<div class="section" id="dilated-atrous-conv">
+<h3><a class="toc-backref" href="#id2">Dilated/Atrous Conv</a><a class="headerlink" href="#dilated-atrous-conv" title="永久链接至标题">¶</a></h3>
+<p>空洞/膨胀卷积(dilated convolution) 在标准的 convolution map 里注入空洞，以此来增加 reception field。相比标准卷积多了一个 hyper-parameter 称之为 dilation rate 指的是kernel的间隔数量(e.g. 正常的 convolution 是 dilatation rate 1)</p>
+<p><a class="reference external" href="https://app.yinxiang.com/shard/s49/nl/12875915/709b3f8b-168e-4d8e-b635-28c0454719b0/">如何理解空洞卷积</a></p>
+<p><a class="reference external" href="https://www.inference.vc/dilated-convolutions-and-kronecker-factorisation/">Dilated Convolutions and Kronecker Factored Convolutions</a></p>
 </div>
 </div>
 <div class="section" id="maxpooling-unpooling">
@@ -611,16 +613,16 @@ BP算法存在的问题：</p>
 <img alt="../_images/Pooling.png" src="../_images/Pooling.png" />
 </div></blockquote>
 </div>
-<div class="section" id="id21">
-<h2><a class="toc-backref" href="#id2">激活函数</a><a class="headerlink" href="#id21" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id23">
+<h2><a class="toc-backref" href="#id2">激活函数</a><a class="headerlink" href="#id23" title="永久链接至标题">¶</a></h2>
 <blockquote>
 <div><p>When training a deep network, it is important to use a non-linear activation each hidden layer.
 This is because multiple layers of linear functions would itself compute only a linear function
 of the input (i.e., composing multiple linear functions together results in just another linear function),
 and thus be no more expressive than using just a single layer of hidden units.</p>
-<div class="figure align-center" id="id44">
+<div class="figure align-center" id="id46">
 <img alt="../_images/activation_functions.png" src="../_images/activation_functions.png" />
-<p class="caption"><span class="caption-text">不同激活函数</span><a class="headerlink" href="#id44" title="永久链接至图片">¶</a></p>
+<p class="caption"><span class="caption-text">不同激活函数</span><a class="headerlink" href="#id46" title="永久链接至图片">¶</a></p>
 </div>
 </div></blockquote>
 <div class="section" id="sigmoid">
@@ -629,9 +631,9 @@ and thus be no more expressive than using just a single layer of hidden units.</
 <div><div class="math notranslate nohighlight">
 \[\begin{split}f(x) &amp;=\frac{1}{1+e^{-x}} \\
 f'(x) &amp;= f(x)(1-f(x))\end{split}\]</div>
-<div class="figure align-center" id="id45">
+<div class="figure align-center" id="id47">
 <img alt="../_images/sigmoid.png" src="../_images/sigmoid.png" />
-<p class="caption"><span class="caption-text">sigmoid 激活函数及其导数</span><a class="headerlink" href="#id45" title="永久链接至图片">¶</a></p>
+<p class="caption"><span class="caption-text">sigmoid 激活函数及其导数</span><a class="headerlink" href="#id47" title="永久链接至图片">¶</a></p>
 </div>
 <dl class="simple">
 <dt>sigmoid将一个实数输入映射到 <span class="math notranslate nohighlight">\([0,1]\)</span> 范围内，使用sigmoid作为激活函数存在以下几个问题：</dt><dd><ul class="simple">
@@ -649,9 +651,9 @@ f'(x) &amp;= f(x)(1-f(x))\end{split}\]</div>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[f(x) &amp;=\frac{e^x-e^{-x}}{e^x+e^{-x}}\]</div>
-<div class="figure align-center" id="id46">
+<div class="figure align-center" id="id48">
 <img alt="../_images/tanh.png" src="../_images/tanh.png" />
-<p class="caption"><span class="caption-text">tanh 激活函数及其导数</span><a class="headerlink" href="#id46" title="永久链接至图片">¶</a></p>
+<p class="caption"><span class="caption-text">tanh 激活函数及其导数</span><a class="headerlink" href="#id48" title="永久链接至图片">¶</a></p>
 </div>
 <p>tanh函数将一个实数输入映射到 <span class="math notranslate nohighlight">\([-1,1]\)</span> 范围内，当输入为0时，tanh函数输出为 <span class="math notranslate nohighlight">\(0\)</span> ，符合我们对激活函数的要求。然而，tanh函数也存在梯度饱和问题，导致训练效率低下。</p>
 </div></blockquote>
@@ -661,9 +663,9 @@ f'(x) &amp;= f(x)(1-f(x))\end{split}\]</div>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[f(x)=\max(0, x)\]</div>
-<div class="figure align-center" id="id47">
+<div class="figure align-center" id="id49">
 <img alt="../_images/ReLU.png" src="../_images/ReLU.png" />
-<p class="caption"><span class="caption-text">ReLU 激活函数及其导数</span><a class="headerlink" href="#id47" title="永久链接至图片">¶</a></p>
+<p class="caption"><span class="caption-text">ReLU 激活函数及其导数</span><a class="headerlink" href="#id49" title="永久链接至图片">¶</a></p>
 </div>
 <dl class="simple">
 <dt>相比sigmoid和tanh函数，ReLU激活函数的优点在于(因为其分段线性性质，导致其前传，后传，求导都是分段线性)：</dt><dd><ul class="simple">
@@ -700,9 +702,9 @@ f'(x) &amp;= f(x)(1-f(x))\end{split}\]</div>
 x &amp; \textrm{if } x \ge 0 \\
 0.01x &amp; \textrm{otherwise}
 \end{array} \right.\end{split}\]</div>
-<div class="figure align-center" id="id48">
+<div class="figure align-center" id="id50">
 <img alt="../_images/LeakyReLU.png" src="../_images/LeakyReLU.png" />
-<p class="caption"><span class="caption-text">Leaky ReLU 激活函数及其导数</span><a class="headerlink" href="#id48" title="永久链接至图片">¶</a></p>
+<p class="caption"><span class="caption-text">Leaky ReLU 激活函数及其导数</span><a class="headerlink" href="#id50" title="永久链接至图片">¶</a></p>
 </div>
 <p>理论上来讲，Leaky ReLU有ReLU的所有优点，外加不会有Dead ReLU问题，但是在实际操作当中，并没有完全证明Leaky ReLU总是好于ReLU</p>
 </div></blockquote>
@@ -736,9 +738,9 @@ a_ix &amp; \textrm{otherwise}
 x &amp; \textrm{if } x \ge 0 \\
 \alpha (e^x-1) &amp; \textrm{otherwise}
 \end{array} \right.\end{split}\]</div>
-<div class="figure align-center" id="id49">
+<div class="figure align-center" id="id51">
 <img alt="../_images/ELU.png" src="../_images/ELU.png" />
-<p class="caption"><span class="caption-text">ELU 激活函数及其导数</span><a class="headerlink" href="#id49" title="永久链接至图片">¶</a></p>
+<p class="caption"><span class="caption-text">ELU 激活函数及其导数</span><a class="headerlink" href="#id51" title="永久链接至图片">¶</a></p>
 </div>
 <p>ELU也是为解决ReLU存在的问题而提出，显然，ELU有ReLU的基本所有优点，以及：</p>
 <blockquote>
@@ -776,10 +778,10 @@ x &amp; \textrm{if } x \ge 0 \\
 </dl>
 </div>
 </div>
-<div class="section" id="id23">
-<h2><a class="toc-backref" href="#id2">反向传播算法</a><a class="headerlink" href="#id23" title="永久链接至标题">¶</a></h2>
-<div class="section" id="id24">
-<h3><a class="toc-backref" href="#id2">1 公式推导</a><a class="headerlink" href="#id24" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id25">
+<h2><a class="toc-backref" href="#id2">反向传播算法</a><a class="headerlink" href="#id25" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id26">
+<h3><a class="toc-backref" href="#id2">1 公式推导</a><a class="headerlink" href="#id26" title="永久链接至标题">¶</a></h3>
 <blockquote>
 <div><div class="admonition note">
 <p class="admonition-title">注解</p>
@@ -862,10 +864,10 @@ w^la^{l-1}+b^l\right)\)</span></p></td>
 </div>
 </div></blockquote>
 </div>
-<div class="section" id="id25">
-<h3><a class="toc-backref" href="#id2">2 算法步骤</a><a class="headerlink" href="#id25" title="永久链接至标题">¶</a></h3>
-<div class="section" id="id26">
-<h4><a class="toc-backref" href="#id2">2.1 单个样本</a><a class="headerlink" href="#id26" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id27">
+<h3><a class="toc-backref" href="#id2">2 算法步骤</a><a class="headerlink" href="#id27" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id28">
+<h4><a class="toc-backref" href="#id2">2.1 单个样本</a><a class="headerlink" href="#id28" title="永久链接至标题">¶</a></h4>
 <blockquote>
 <div><img alt="../_images/bp_step1.png" src="../_images/bp_step1.png" />
 </div></blockquote>
@@ -878,32 +880,32 @@ w^la^{l-1}+b^l\right)\)</span></p></td>
 </div>
 </div>
 </div>
-<div class="section" id="id27">
-<h2><a class="toc-backref" href="#id2">过饱和问题</a><a class="headerlink" href="#id27" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id29">
+<h2><a class="toc-backref" href="#id2">过饱和问题</a><a class="headerlink" href="#id29" title="永久链接至标题">¶</a></h2>
 <blockquote>
 <div><p>过饱和，即，会造成学习速度慢。</p>
 <p>以sigmoid函数（logistic neurons）为例，当 <span class="math notranslate nohighlight">\(x\)</span> 的绝对值变大时，函数值越来越平滑，趋于饱和，这个时候函数的导数趋于 <span class="math notranslate nohighlight">\(0\)</span> 。为了让神经网络学习得快一些，我们希望激活函数sigmoid的导数较大。 从数值上，大约让sigmoid的输入在 <span class="math notranslate nohighlight">\([-4,4]\)</span> 之间即可，见 <span class="xref std std-ref">fig_1</span> 。 我们知道，一个神经元j的输入是由前一层神经元的输出的加权和，因此，我们可以通过控制权重参数初始值的范围，使得神经元的输入落在我们需要的范围内。</p>
 </div></blockquote>
-<div class="section" id="id28">
-<h3><a class="toc-backref" href="#id2">1 输出层过饱和问题</a><a class="headerlink" href="#id28" title="永久链接至标题">¶</a></h3>
-<div class="section" id="id29">
-<h4><a class="toc-backref" href="#id2">1.1 改变损失函数</a><a class="headerlink" href="#id29" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id30">
+<h3><a class="toc-backref" href="#id2">1 输出层过饱和问题</a><a class="headerlink" href="#id30" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id31">
+<h4><a class="toc-backref" href="#id2">1.1 改变损失函数</a><a class="headerlink" href="#id31" title="永久链接至标题">¶</a></h4>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[C=-\frac{1}{n}\sum_x\sum_j\left[y_j\ln a_j^L+(1-y_j)\ln (1-a_j^L)\right]\]</div>
 </div></blockquote>
 </div>
-<div class="section" id="id30">
-<h4><a class="toc-backref" href="#id2">1.2 改变激活函数</a><a class="headerlink" href="#id30" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id32">
+<h4><a class="toc-backref" href="#id2">1.2 改变激活函数</a><a class="headerlink" href="#id32" title="永久链接至标题">¶</a></h4>
 <blockquote>
 <div><p>使用 softmax output layer，ReLU</p>
 </div></blockquote>
 </div>
 </div>
-<div class="section" id="id31">
-<h3><a class="toc-backref" href="#id2">2 隐含层过饱和问题</a><a class="headerlink" href="#id31" title="永久链接至标题">¶</a></h3>
-<div class="section" id="id32">
-<h4><a class="toc-backref" href="#id2">2.1 权重和偏置量的初始化方法</a><a class="headerlink" href="#id32" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id33">
+<h3><a class="toc-backref" href="#id2">2 隐含层过饱和问题</a><a class="headerlink" href="#id33" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id34">
+<h4><a class="toc-backref" href="#id2">2.1 权重和偏置量的初始化方法</a><a class="headerlink" href="#id34" title="永久链接至标题">¶</a></h4>
 <blockquote>
 <div><p>1、将权重初始化为均值 <span class="math notranslate nohighlight">\(0\)</span> ，方差 <span class="math notranslate nohighlight">\(1/\sqrt{n_{in}}\)</span> 的高斯分布；偏置量为均值 <span class="math notranslate nohighlight">\(0\)</span> ，方差为 <span class="math notranslate nohighlight">\(1\)</span> 的高斯分布。（提速的同时也会改善效果？后文说明）</p>
 <p>2、权重初始化为 <span class="math notranslate nohighlight">\(\left [ -\frac{1}{\sqrt{n_{in}}}, \frac{1}{\sqrt{n_{in}}} \right]\)</span> 的均匀随机取值。（其中 <span class="math notranslate nohighlight">\(n_{in}\)</span> 是一个神经元的输入量）</p>
@@ -953,8 +955,8 @@ w^la^{l-1}+b^l\right)\)</span></p></td>
 </div></blockquote>
 </div></blockquote>
 </div>
-<div class="section" id="id33">
-<h4><a class="toc-backref" href="#id2">2.2 更换激励函数</a><a class="headerlink" href="#id33" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id35">
+<h4><a class="toc-backref" href="#id2">2.2 更换激励函数</a><a class="headerlink" href="#id35" title="永久链接至标题">¶</a></h4>
 <blockquote>
 <div><p>ReLU、maxout</p>
 </div></blockquote>
@@ -962,8 +964,8 @@ w^la^{l-1}+b^l\right)\)</span></p></td>
 <div class="section" id="momentum">
 <h4><a class="toc-backref" href="#id2">2.3 使用基于momentum的随机梯度下降</a><a class="headerlink" href="#momentum" title="永久链接至标题">¶</a></h4>
 </div>
-<div class="section" id="id34">
-<h4><a class="toc-backref" href="#id2">2.4 近期出现的</a><a class="headerlink" href="#id34" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id36">
+<h4><a class="toc-backref" href="#id2">2.4 近期出现的</a><a class="headerlink" href="#id36" title="永久链接至标题">¶</a></h4>
 <blockquote>
 <div><p>高速公路网络（highway network）
 深度残差学习（deep residual learning，152层）</p>
@@ -1028,8 +1030,8 @@ y_j\ln a_j^L+(1-y_j)\ln (1-a_j^L) \right
 </div>
 <div class="section" id="dropout">
 <h3><a class="toc-backref" href="#id2">3 dropout</a><a class="headerlink" href="#dropout" title="永久链接至标题">¶</a></h3>
-<div class="section" id="id35">
-<h4><a class="toc-backref" href="#id2">3.1 原版</a><a class="headerlink" href="#id35" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id37">
+<h4><a class="toc-backref" href="#id2">3.1 原版</a><a class="headerlink" href="#id37" title="永久链接至标题">¶</a></h4>
 <p><a class="reference external" href="http://arxiv.org/pdf/1207.0580.pdf">Improving neural networks by preventing co-adaptation of feature detectors</a>  by Geoffrey Hinton, Nitish Srivastava, Alex Krizhevsky, Ilya Sutskever, and Ruslan Salakhutdinov (2012).</p>
 <p><a class="reference external" href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">ImageNet Classification with Deep Convolutional Neural Networks</a> by Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton (2012).</p>
 <p>随机抽取隐含层的一半训练网络（每个神经元被移除的概率是50%），然后不断重复这个过程。这一方法类似于对同一批数据训练不同的网络再做平均，换句话说，它是训练一个在缺少某些输入时依旧鲁棒的网络，类似L1/2 规则化的思路，因此可以消除过拟合。</p>
@@ -1062,8 +1064,8 @@ a^l=\sigma\left (w^la^{l-1}+b^l \right)\end{split}\]</div>
 </dd>
 </dl>
 </div>
-<div class="section" id="id36">
-<h4><a class="toc-backref" href="#id2">3.2 maxout</a><a class="headerlink" href="#id36" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id38">
+<h4><a class="toc-backref" href="#id2">3.2 maxout</a><a class="headerlink" href="#id38" title="永久链接至标题">¶</a></h4>
 <p>ICML2013，by Goodfellow</p>
 <p>maxout其实是一种激发函数形式。通常情况下，如果激发函数采用sigmoid函数的话，在前向传播过程中，隐含层节点的输出表达式为：</p>
 <div class="math notranslate nohighlight">
@@ -1148,12 +1150,12 @@ a^l=\sigma\left (w^la^{l-1}+b^l \right)\end{split}\]</div>
 <li><p>减少图像扭曲的使用。 由于现在训练epoch数降低，所以要对输入数据少做一些扭曲，让神经网络多看看真实的数据。</p></li>
 </ol>
 </div>
-<div class="section" id="id38">
-<h3><a class="toc-backref" href="#id2">5 人工增加训练集</a><a class="headerlink" href="#id38" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id40">
+<h3><a class="toc-backref" href="#id2">5 人工增加训练集</a><a class="headerlink" href="#id40" title="永久链接至标题">¶</a></h3>
 </div>
 </div>
-<div class="section" id="id39">
-<h2><a class="toc-backref" href="#id2">DL 中的优化方法</a><a class="headerlink" href="#id39" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id41">
+<h2><a class="toc-backref" href="#id2">DL 中的优化方法</a><a class="headerlink" href="#id41" title="永久链接至标题">¶</a></h2>
 <p>On optimization methods for deep learning</p>
 <p>SGD优点：实现简单，当训练样本足够多时优化速度非常快。</p>
 <p>SGD缺点：需要人为调整很多参数，比如学习率，收敛准则等。另外，它是序列的方法，不利于GPU并行或分布式处理。</p>
@@ -1164,8 +1166,8 @@ a^l=\sigma\left (w^la^{l-1}+b^l \right)\end{split}\]</div>
 <p>RMSprop</p>
 <p>Adam</p>
 </div>
-<div class="section" id="id40">
-<h2><a class="toc-backref" href="#id2">网络模型变化</a><a class="headerlink" href="#id40" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id42">
+<h2><a class="toc-backref" href="#id2">网络模型变化</a><a class="headerlink" href="#id42" title="永久链接至标题">¶</a></h2>
 <img alt="../_images/change_of_cnn.png" src="../_images/change_of_cnn.png" />
 <p>2012年AlexNet做出历史突破以来，直到GoogLeNet出来之前，主流的网络结构突破大致是网络更深（层数），网络更宽（神经元数）。所以大家调侃深度学习为“深度调参”，但是纯粹的增大网络的缺点：???</p>
 <p>那么解决上述问题的方法当然就是增加网络深度和宽度的同时减少参数，Inception就是在这样的情况下应运而生。</p>
@@ -1219,8 +1221,8 @@ a^l=\sigma\left (w^la^{l-1}+b^l \right)\end{split}\]</div>
 <p>方法：受LSTM技术启发，采用门技术——增加 T(Transform) 门和C(Carry) 门，控制信息的流动</p>
 </div>
 </div>
-<div class="section" id="id42">
-<h2><a class="toc-backref" href="#id2">调试经验</a><a class="headerlink" href="#id42" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id44">
+<h2><a class="toc-backref" href="#id2">调试经验</a><a class="headerlink" href="#id44" title="永久链接至标题">¶</a></h2>
 <p><a class="reference external" href="http://lamda.nju.edu.cn/weixs/project/CNNTricks/CNNTricks.html">Must Know Tips/Tricks in Deep Neural Networks</a></p>
 <ol class="arabic simple">
 <li><p>在全连接层较小的时候，使用dropout 并不会提升效果，可能导致无法学习</p></li>
@@ -1237,7 +1239,7 @@ a^l=\sigma\left (w^la^{l-1}+b^l \right)\end{split}\]</div>
 <li><p>训练测试时的输入不一致需注意，eg：landmark 基于 rpn 而非 det</p></li>
 </ol>
 <dl class="footnote brackets">
-<dt class="label" id="id43"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
+<dt class="label" id="id45"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
 <dd><p><a class="reference external" href="http://blog.csdn.net/zouxy09/article/details/8775360">http://blog.csdn.net/zouxy09/article/details/8775360</a></p>
 </dd>
 </dl>

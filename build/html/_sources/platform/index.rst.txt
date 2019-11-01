@@ -2,6 +2,9 @@
 =========================
 
 .. toctree::
+   :glob:
+   :maxdepth: 2
+   :caption: 平台搭建
 
    Cmake.rst
    AndroidStudio.rst

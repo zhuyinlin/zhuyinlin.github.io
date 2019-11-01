@@ -272,7 +272,15 @@
 </table>
 <ul>
 <li><p>中括号表达式例子</p>
-<p>[0-9a-zA-Z_] 可以匹配一个数字、字母或者下划线</p>
+<ul class="simple">
+<li><p>[0-9a-zA-Z_] 可以匹配一个数字、字母或者下划线</p></li>
+<li><p>“[u4E00-u9FA5]+” 匹配中文</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>python 中进行正则匹配时遇到中文，注意在匹配规则前加上 ur, 如</p>
+<p>ur“[u4E00-u9FA5]+”, 另外待匹配字符串也应转为unicode 编码</p>
+</div>
 </li>
 </ul>
 </div>

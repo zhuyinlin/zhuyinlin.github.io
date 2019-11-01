@@ -116,7 +116,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#id12">问题</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#bert"><abbr title="Bidirectional Encoder Representations from Transformers">BERT</abbr> </a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#a-bert"><abbr title="Bidirectional Encoder Representations from Transformers">BERT</abbr> </a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id14">Motivation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id15">Works</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id16">Model Architecture</a></li>
@@ -208,42 +208,42 @@
 </ul>
 <div class="contents local topic" id="id1">
 <ul class="simple">
-<li><p><a class="reference internal" href="#id3" id="id19">Attention mechanism </a></p>
+<li><p><a class="reference internal" href="#id3" id="id18">Attention mechanism </a></p>
 <ul>
-<li><p><a class="reference internal" href="#todo" id="id20">TODO</a></p></li>
+<li><p><a class="reference internal" href="#todo" id="id19">TODO</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#transformer" id="id21">Transformer </a></p>
+<li><p><a class="reference internal" href="#transformer" id="id20">Transformer </a></p>
 <ul>
-<li><p><a class="reference internal" href="#motivation" id="id22">Motivation</a></p></li>
-<li><p><a class="reference internal" href="#works" id="id23">Works</a></p></li>
-<li><p><a class="reference internal" href="#model-architecture" id="id24">Model Architecture</a></p>
+<li><p><a class="reference internal" href="#motivation" id="id21">Motivation</a></p></li>
+<li><p><a class="reference internal" href="#works" id="id22">Works</a></p></li>
+<li><p><a class="reference internal" href="#model-architecture" id="id23">Model Architecture</a></p>
 <ul>
-<li><p><a class="reference internal" href="#self-intra-attention" id="id25">self/intra attention</a></p></li>
-<li><p><a class="reference internal" href="#multi-head-attention" id="id26">Multi-head attention</a></p></li>
-<li><p><a class="reference internal" href="#position-wise-feed-forward-networks" id="id27">Position-wise Feed-Forward Networks</a></p></li>
-<li><p><a class="reference internal" href="#position-embedding" id="id28">Position Embedding</a></p></li>
+<li><p><a class="reference internal" href="#self-intra-attention" id="id24">self/intra attention</a></p></li>
+<li><p><a class="reference internal" href="#multi-head-attention" id="id25">Multi-head attention</a></p></li>
+<li><p><a class="reference internal" href="#position-wise-feed-forward-networks" id="id26">Position-wise Feed-Forward Networks</a></p></li>
+<li><p><a class="reference internal" href="#position-embedding" id="id27">Position Embedding</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id11" id="id29">TODO</a></p></li>
-<li><p><a class="reference internal" href="#id12" id="id30">问题</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id28">TODO</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id29">问题</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#bert" id="id31"><abbr title="Bidirectional Encoder Representations from Transformers">BERT</abbr> </a></p>
+<li><p><a class="reference internal" href="#a-bert" id="id30"><abbr title="Bidirectional Encoder Representations from Transformers">BERT</abbr> </a></p>
 <ul>
-<li><p><a class="reference internal" href="#id14" id="id32">Motivation</a></p></li>
-<li><p><a class="reference internal" href="#id15" id="id33">Works</a></p></li>
-<li><p><a class="reference internal" href="#id16" id="id34">Model Architecture</a></p></li>
-<li><p><a class="reference internal" href="#pretrain" id="id35">Pretrain</a></p>
+<li><p><a class="reference internal" href="#id14" id="id31">Motivation</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id32">Works</a></p></li>
+<li><p><a class="reference internal" href="#id16" id="id33">Model Architecture</a></p></li>
+<li><p><a class="reference internal" href="#pretrain" id="id34">Pretrain</a></p>
 <ul>
-<li><p><a class="reference internal" href="#mlm" id="id36"><abbr title="masked language model">MLM</abbr></a></p></li>
-<li><p><a class="reference internal" href="#nsp" id="id37"><abbr title="Next sentence prediction">NSP</abbr></a></p></li>
+<li><p><a class="reference internal" href="#a-mlm" id="id35"><abbr title="masked language model">MLM</abbr></a></p></li>
+<li><p><a class="reference internal" href="#a-nsp" id="id36"><abbr title="Next sentence prediction">NSP</abbr></a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#fine-tune" id="id38">Fine-tune</a></p></li>
+<li><p><a class="reference internal" href="#fine-tune" id="id37">Fine-tune</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id17" id="id39">应用到我们的项目中</a></p></li>
+<li><p><a class="reference internal" href="#id17" id="id38">应用到我们的项目中</a></p></li>
 </ul>
 </div>
 <div class="figure align-center" id="fig-attention-timeline">
@@ -465,8 +465,8 @@ PE_{(pos, 2i+1)} &amp;= \cos(pos/10000^{2i/d_{\mathrm{model}}})\end{split}\]</di
 </ul>
 </div>
 </div>
-<div class="section" id="bert">
-<h2><a class="toc-backref" href="#id1"><abbr title="Bidirectional Encoder Representations from Transformers">BERT</abbr> <a class="footnote-reference brackets" href="#id18" id="id13">5</a></a><a class="headerlink" href="#bert" title="永久链接至标题">¶</a></h2>
+<div class="section" id="a-bert">
+<h2><a class="toc-backref" href="#id1"><abbr title="Bidirectional Encoder Representations from Transformers">BERT</abbr> <a class="footnote-reference brackets" href="#bert" id="id13">5</a></a><a class="headerlink" href="#a-bert" title="永久链接至标题">¶</a></h2>
 <div class="section" id="id14">
 <h3><a class="toc-backref" href="#id1">Motivation</a><a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
 <p><a class="reference external" href="https://baijiahao.baidu.com/s?id=1605509936010416597&amp;wfr=spider&amp;for=pc">NLP 的 ImageNet时代</a></p>
@@ -478,14 +478,14 @@ PE_{(pos, 2i+1)} &amp;= \cos(pos/10000^{2i/d_{\mathrm{model}}})\end{split}\]</di
 <div class="section" id="id15">
 <h3><a class="toc-backref" href="#id1">Works</a><a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h3>
 <ol class="arabic simple">
-<li><p>BERT (Bidirectional Encoder Representations from Transformers): a multi-layer bidirectional Transformer encoder</p></li>
+<li><p><abbr title="Bidirectional Encoder Representations from Transformers">BERT</abbr>: a multi-layer bidirectional Transformer encoder</p></li>
 <li><p>预训练目标</p>
 <ul class="simple">
-<li><p>MLM(masked language model) :deep bidirectionality</p></li>
-<li><p>NSP(next sentence prediction): understanding the relationship between two text sentences</p></li>
+<li><p><abbr title="masked language model">MLM</abbr>: deep bidirectionality</p></li>
+<li><p><abbr title="Next sentence prediction">NSP</abbr>: understanding the relationship between two text sentences</p></li>
 </ul>
 </li>
-<li><p>预训练的BERT可以通过fine-tune，适用于广泛任务的最先进模型的构建; 也可以用于feature-based approach</p></li>
+<li><p>预训练的 <abbr title="Bidirectional Encoder Representations from Transformers">BERT</abbr> 可以通过fine-tune，适用于广泛任务的最先进模型的构建; 也可以用于feature-based approach</p></li>
 </ol>
 </div>
 <div class="section" id="id16">
@@ -514,8 +514,8 @@ PE_{(pos, 2i+1)} &amp;= \cos(pos/10000^{2i/d_{\mathrm{model}}})\end{split}\]</di
 <li><p>BASE: 4 Cloud TPUs in Pod configuration (16 TPU chipstotal), 4d</p></li>
 <li><p>LARGE: 16 Cloud TPUs (64 TPU chips total), 4d</p></li>
 </ul>
-<div class="section" id="mlm">
-<h4><a class="toc-backref" href="#id1"><abbr title="masked language model">MLM</abbr></a><a class="headerlink" href="#mlm" title="永久链接至标题">¶</a></h4>
+<div class="section" id="a-mlm">
+<h4><a class="toc-backref" href="#id1"><abbr title="masked language model">MLM</abbr></a><a class="headerlink" href="#a-mlm" title="永久链接至标题">¶</a></h4>
 <p>Masking some percentage(15%) of the input tokens at random, and then predicting only those masked tokens.</p>
 <ol class="arabic">
 <li><p>a mismatch between pre-training and fine-tuning</p>
@@ -530,8 +530,8 @@ PE_{(pos, 2i+1)} &amp;= \cos(pos/10000^{2i/d_{\mathrm{model}}})\end{split}\]</di
 <li><p>15% mask =&gt; more pre-training steps may be required for the model to converge.</p></li>
 </ol>
 </div>
-<div class="section" id="nsp">
-<h4><a class="toc-backref" href="#id1"><abbr title="Next sentence prediction">NSP</abbr></a><a class="headerlink" href="#nsp" title="永久链接至标题">¶</a></h4>
+<div class="section" id="a-nsp">
+<h4><a class="toc-backref" href="#id1"><abbr title="Next sentence prediction">NSP</abbr></a><a class="headerlink" href="#a-nsp" title="永久链接至标题">¶</a></h4>
 <p>50% of the time B is the actual next sentence that follows A , and 50% of the time it is a random sentence from the corpus.</p>
 </div>
 </div>
@@ -583,7 +583,7 @@ PE_{(pos, 2i+1)} &amp;= \cos(pos/10000^{2i/d_{\mathrm{model}}})\end{split}\]</di
 <dt class="label" id="luong2015effective"><span class="brackets">4</span><span class="fn-backref">(<a href="#id5">1</a>,<a href="#id6">2</a>)</span></dt>
 <dd><p>Luong M T, Pham H, Manning C D. <a class="reference external" href="https://arxiv.org/pdf/1508.04025.pdf">Effective approaches to attention-based neural machine translation[J]</a> . arXiv preprint arXiv:1508.04025, 2015.</p>
 </dd>
-<dt class="label" id="id18"><span class="brackets"><a class="fn-backref" href="#id13">5</a></span></dt>
+<dt class="label" id="bert"><span class="brackets"><a class="fn-backref" href="#id13">5</a></span></dt>
 <dd><p><a class="reference external" href="https://arxiv.org/pdf/1810.04805.pdf">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a></p>
 </dd>
 </dl>
