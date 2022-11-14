@@ -2,6 +2,7 @@ vim
 ====
 
 :download:`Practice Vim <../_doc/tools/Practical Vim.pdf>`
+:download:`Modern Vim <../_doc/tools/modern_vim.pdf>`
 
 vim 使用技巧
 ==============
